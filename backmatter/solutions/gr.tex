@@ -1,0 +1,37 @@
+\solchapter{gr}
+
+\sol{gr}{1} $r_s = 2GM/c^2$: Sun $3.0\un{km}$, Earth $9\un{mm}$, person $10^{-25}\un{m}$ (a ten-billionth of a proton). Squeezed inside $r_s$, their densities would be $2\times10^{19}$, $2\times10^{30}$, and $10^{76}\un{kg/m^3}$. Since $r_s\propto M$, the required density $M/r_s^3$ falls as $1/M^2$: a black hole of $10^8$ solar masses has the average density of water. Small black holes need impossible compression; big ones can form from ordinary matter that just keeps piling up.
+
+\sol{gr}{2} Pound--Rebka: $gh/c^2 = 2.5\times10^{-15}$, which they measured using the M\"ossbauer effect. Sun: $GM/Rc^2 = 2.1\times10^{-6}$. The Sun's lines are redshifted by two parts per million, equivalent to a Doppler shift of $0.64\un{km/s}$ --- hard to disentangle from the motions of convecting gas, but measured.
+
+\sol{gr}{3} In the time $h/c$ that the pulse takes to reach the ceiling, the ceiling has gained speed $gh/c$ relative to the floor's speed at emission, moving away from the source. The Doppler shift is $f(1 - v/c) = f(1 - gh/c^2)$. By the equivalence principle, the same holds in a gravitational field $g$: light climbing a height $h$ arrives with lower frequency. The field is static, so crests cannot pile up between floor and ceiling: as many arrive per second (by the upper clock) as leave per second (by the lower clock), yet the upper observer counts fewer. Each second of the lower clock must last longer than a second of the upper one: higher clocks run faster.
+
+\sol{gr}{4} The fractional rate difference is $\Delta\Phi/c^2 = (GM/c^2)(1/R_\oplus - 1/r)$, with $r = 26\,600\un{km}$: $5.3\times10^{-10}$, or $+46\un{\mu s}$ per day (satellite clocks fast). Special relativity gives $-7\un{\mu s}$ per day. The net is $+38\un{\mu s}$ per day; uncorrected, positions would drift by about $10\un{km}$ a day. The clocks are deliberately tuned slow before launch.
+
+\sol{gr}{5} $2GM/c^2R_\odot = 4.2\times10^{-6}\un{rad} = 0.87''$; general relativity predicts $1.75''$. In a freely falling frame light travels straight, so by the equivalence principle it must fall in a gravitational field like anything else: that gives the Newtonian half, and Einstein himself predicted $0.87''$ in 1911. The other half comes from the curvature of space, which depends on the field equations of general relativity, not on the equivalence principle alone. Eddington's $1.75''$ (within large errors) confirmed the full theory.
+
+\sol{gr}{6} At the horizon $r_s = 2GM/c^2$, the tidal acceleration is $2GML/r_s^3 = Lc^6/(4G^2M^2)\propto1/M^2$. For $10\Msun$ ($r_s = 30\un{km}$): $2\times10^{8}\un{m/s^2}$, twenty million $g$ --- you would be torn apart well outside the horizon. For Sagittarius~A$^*$ ($r_s = 1.2\times10^{10}\un{m}$): $1.3\times10^{-3}\un{m/s^2}$, a ten-thousandth of $g$. You could cross the horizon of the giant black hole without noticing anything --- and then, inevitably, reach the singularity.
+
+\sol{gr}{7} Two meridians a distance $d$ apart at the equator are an angle $d/R$ apart. At latitude $s/R$, they are a distance $d\cos(s/R)$ apart, with second derivative $-(d/R^2)\cos(s/R)\to-d/R^2$ at $s = 0$. Two balls dropped a horizontal distance $d$ apart at distance $r$ from the Earth's centre both fall toward the centre, so they converge with relative acceleration $-(GM/r^3)d$. The analogue of $1/R^2$ is $GM/r^3$ --- with time converted into distance by $c$, a curvature of $GM/c^2r^3$. At the Earth's surface this is $(2.4\times10^{11}\un{m})^{-2}$: spacetime here is curved on the scale of an astronomical unit.
+
+\sol{gr}{8} With $V\propto1/r^2 - r_s/r^3$, $V' \propto -2/r^3 + 3r_s/r^4$, which vanishes at $r = \tfrac32r_s$. Since $V = 0$ at $r = r_s$ and $V\to0$ as $r\to\infty$, while it is positive in between, this point is a maximum. A circular orbit on top of a potential hill is unstable: nudge the light slightly inward and it spirals into the black hole; outward, and it escapes. The photon sphere marks the edge of the black hole's ``shadow'' imaged by the Event Horizon Telescope.
+
+\sol{gr}{9} $T = \hbar c^3/(8\pi GM\kB)$: $6\times10^{-8}\un{K}$ for the Sun's mass and $1.8\un{K}$ for the Moon's. Both are colder than the $2.7\un{K}$ background, so both absorb more than they emit and grow; only black holes lighter than $4.5\times10^{22}\un{kg}$ (about $60\%$ of the Moon's mass) are currently shrinking. Evaporation time: $1.4\times10^{10}\un{yr}\times(2\times10^{30}/2\times10^{11})^3\approx10^{67}$ years.
+
+\sol{gr}{10} $M = 1000^3/16^2 = 3.9\times10^6\Msun$. S2's closest approach, $120\un{AU}$, is only four times the radius of Neptune's orbit. Four million solar masses within this region, yet emitting almost no light, cannot be a cluster of stars (it would shine brightly and, at that density, collide and merge within a short time), nor of dark remnants such as neutron stars (it would evaporate or collapse). The only long-lived possibility is a single black hole --- the conclusion of the 2020 Nobel Prize. (Its Schwarzschild radius is $0.08\un{AU}$, and the Event Horizon Telescope has since imaged its shadow.)
+
+\sol{gr}{11} With $h = L/m$, the radial equation is $\ddot r - h^2/r^3 = -GM/r^2 - 3GMh^2/c^2r^4$. Changing variables to $u = 1/r$ and $\phi$ ($\ddot r = -h^2u^2u''$) gives
+\[
+  u'' + u = \frac{GM}{h^2} + \frac{3GM}{c^2}u^2.
+\]
+Try $u = (GM/h^2)(1 + e\cos\omega\phi)$, keeping only terms first order in $e$ and in the small correction: $u^2\approx(GM/h^2)^2(1 + 2e\cos\omega\phi)$. Matching the coefficients of $\cos\omega\phi$ gives
+\[
+  1 - \omega^2 = \frac{6G^2M^2}{c^2h^2},\qquad\omega\approx1 - \frac{3G^2M^2}{c^2h^2}.
+\]
+The perihelion recurs when $\omega\phi = 2\pi$, so each orbit takes it a little further, $\Delta\phi = 2\pi/\omega - 2\pi\approx6\pi G^2M^2/c^2h^2$. With $h^2 = GMa(1-e^2)$, $\Delta\phi = 6\pi GM/c^2a(1-e^2)$. For Mercury, $\Delta\phi = 5.0\times10^{-7}\un{rad}$ per orbit; over $415$ orbits in a century, that is $43''$. This was the anomaly Le Verrier had found in 1859, unexplained for half a century; Einstein said that getting it right gave him heart palpitations.
+
+\sol{gr}{12} Starting from rest at $x = 0$, the observer's worldline is $x = (c^2/a)\big(\sqrt{1+(at/c)^2}-1\big)$, which approaches the line $x = ct - c^2/a$ from above but never reaches it. A light ray $x = ct - D$ emitted at $t = 0$ from a distance $D$ behind her catches up only if it eventually lies ahead of her worldline. Her lead over the ray is $(c^2/a)\sqrt{1+(at/c)^2} - ct + D - c^2/a$; the first two terms together decrease steadily toward zero, so the ray catches up if and only if $D<c^2/a$. Events farther behind are forever hidden: a horizon. (For $a = g$, $c^2/g\approx1$ light-year.) To hover at radius $r$ outside a black hole requires proper acceleration $a = GM/r^2\sqrt{1-r_s/r}$, which diverges at the horizon. The local Unruh temperature $\hbar a/2\pi c\kB$, redshifted to infinity by the factor $\sqrt{1-r_s/r}$, becomes
+\[
+  T_\infty = \frac{\hbar GM}{2\pi c\kB r^2}\;\xrightarrow{\;r\to r_s\;}\;\frac{\hbar c^3}{8\pi GM\kB},
+\]
+exactly Hawking's temperature. By the equivalence principle, a small region just outside the horizon looks like flat spacetime; the freely falling observer sees empty vacuum there, and the hovering observer is accelerating relative to it. So the hovering observer must see Unruh's thermal bath --- and what climbs out to infinity is Hawking radiation. (The Unruh temperature for $a = g$ is $4\times10^{-20}\un{K}$.)

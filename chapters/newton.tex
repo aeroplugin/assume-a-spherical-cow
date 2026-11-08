@@ -1,0 +1,246 @@
+\chapter{Newtonian mechanics}
+\label{ch:newton}
+
+\buildson{nothing --- this is the trunk of the tree}
+
+\chapterdek{Why things move: forces, orbits, spinning tops, and the clockwork universe that started all of physics.}
+
+\begin{prototype}
+The Moon as a falling apple. The same force that pulls an apple to the ground holds the Moon in its orbit; the Moon is falling toward the Earth all the time, and missing. Newton checked this with one division, which we will redo in \S\ref{sec:moon-apple}.
+\end{prototype}
+
+Classical mechanics is the physics of objects that are larger than atoms, slower than light, and far from black holes. That covers nearly everything you have ever touched, and it is still the first thing every physicist learns, because its ideas --- force, momentum, energy, angular momentum, the equation of motion --- reappear, transformed, in every later theory.
+
+\section{Describing motion}
+
+The position of a particle is a vector $\vb r(t)$. Its \emph{velocity} is $\vb v = \dot{\vb r}$ and its \emph{acceleration} is $\vb a = \dot{\vb v} = \ddot{\vb r}$. For constant acceleration, integrating twice gives the formulas everyone meets first:
+\[
+  \vb v = \vb v_0 + \vb a t, \qquad \vb r = \vb r_0 + \vb v_0 t + \tfrac12 \vb a t^{2}, \qquad v^2 = v_0^2 + 2\,\vb a\cdot(\vb r-\vb r_0).
+\]
+
+\begin{example}[Projectiles]
+Throw a ball at speed $v_0$ and angle $\theta$ above flat ground, ignoring air. Horizontally it coasts, $x = v_0\cos\theta\,t$; vertically it decelerates, $y = v_0\sin\theta\,t - \tfrac12 gt^2$. It lands when $y=0$, at $t = 2v_0\sin\theta/g$, having travelled
+\[
+  R = \frac{v_0^2\sin 2\theta}{g}.
+\]
+The range is greatest at $45^\circ$, and complementary angles ($30^\circ$ and $60^\circ$) give the same range. The two motions are independent: a bullet fired horizontally and one dropped from the same height hit the ground at the same moment.
+\end{example}
+
+\section{Newton's three laws}
+
+\begin{law}[Newton's laws of motion]
+\begin{enumerate}[label=(\arabic*),itemsep=2pt]
+  \item In an \emph{inertial frame}, a body with no net force on it moves in a straight line at constant speed.
+  \item The net force on a body equals the rate of change of its momentum: $\vb F = \dv{\vb p}{t}$, with $\vb p = m\vb v$. For constant mass, $\vb F = m\vb a$.
+  \item Forces come in pairs: if $A$ pushes on $B$ with force $\vb F$, then $B$ pushes on $A$ with $-\vb F$.
+\end{enumerate}
+\end{law}
+
+The first law is not a special case of the second. It defines the stage on which the second law is true: an inertial frame is one in which free particles move uniformly. The Earth's surface is approximately inertial; a car going around a corner is not. The third law is what makes momentum conservation work (\S\ref{sec:momentum}).
+
+The second law is the engine. It is a second-order differential equation: give it the forces and the initial position and velocity, and it predicts the entire future. This determinism --- the clockwork universe --- survived for two centuries until quantum mechanics (Chapter~\ref{ch:qm}) softened it.
+
+\begin{keyidea}
+To solve a mechanics problem: draw every body separately, draw every force acting \emph{on} it (a free-body diagram), write $\vb F = m\vb a$ for each body along convenient axes, and add constraints that link the bodies together. Then count: you need as many equations as unknowns.
+\end{keyidea}
+
+\section{A field guide to forces}
+
+Fundamentally there are only a few forces (gravity, electromagnetism, and the nuclear forces; Chapter~\ref{ch:particle}). But in everyday mechanics we use effective descriptions --- spherical cows --- of the electromagnetic forces between enormous numbers of atoms.
+
+\begin{itemize}[itemsep=4pt]
+  \item \textbf{Weight}: near the Earth's surface, $\vb F = m\vb g$ with $g\approx9.8\un{m/s^2}$.
+  \item \textbf{Normal force}: whatever perpendicular push a surface must supply to stop you passing through it. It is not $mg$ in general; it is whatever the constraint demands.
+  \item \textbf{Tension}: the pull along a taut string. For a massless string over a frictionless pulley, the tension is the same everywhere.
+  \item \textbf{Friction}: a static friction force up to $\mu_s N$ that opposes the onset of sliding, and a kinetic friction $\mu_k N$ (usually $\mu_k < \mu_s$) that opposes sliding. Remarkably, friction does not depend on the area of contact. The reason is that surfaces touch only at microscopic asperities whose true contact area is proportional to the load, not the apparent area.
+  \item \textbf{Springs}: $F = -kx$, Hooke's law, the subject of Chapter~\ref{ch:sho}.
+  \item \textbf{Drag}: a body moving through a fluid feels a force opposing its motion. At low speeds in viscous fluids it is linear, $F = 6\pi\eta r v$ for a sphere (Stokes' law). At everyday speeds in air it is quadratic,
+  \[
+    F_{\text{drag}} \approx \tfrac12 C_D\,\rho\,A\,v^2,
+  \]
+  with $C_D\sim 1$. The crossover is governed by the Reynolds number (Chapter~\ref{ch:fluids}).
+\end{itemize}
+
+\begin{example}[Terminal velocity]
+A falling object speeds up until drag balances weight: $mg = \tfrac12 C_D\rho A v_t^2$. A skydiver ($m=75\un{kg}$, $A\approx0.7\un{m^2}$, $C_D\approx1$, $\rho = 1.2\un{kg/m^3}$) reaches $v_t\approx 40\un{m/s}$, about $140\un{km/h}$. Because $v_t\propto\sqrt{m/A}$ and for a body of size $L$ this ratio grows like $\sqrt{L}$, small animals fall slowly: a mouse survives a fall down a mine shaft, a horse does not.
+\end{example}
+
+\section{Momentum}
+\label{sec:momentum}
+
+For a system of particles, the internal forces cancel in pairs by Newton's third law. Adding the second law over all particles gives
+\[
+  \vb F_{\text{ext}} = \dv{\vb P}{t}, \qquad \vb P = \sum_i m_i\vb v_i = M\,\dot{\vb R},
+\]
+where $\vb R = \sum m_i\vb r_i/M$ is the \emph{centre of mass}. The centre of mass moves as if all the mass were concentrated there and all the external forces acted there. A firework that explodes in mid-air sends its pieces flying, but their centre of mass keeps following the original parabola.
+
+\begin{law}[Conservation of momentum]
+If the net external force on a system vanishes, its total momentum is constant.
+\end{law}
+
+Collisions are the classic application. In every collision momentum is conserved. In an \emph{elastic} collision kinetic energy is also conserved; in an \emph{inelastic} one some becomes heat or deformation; in a \emph{perfectly inelastic} one the bodies stick. Collisions look simplest in the centre-of-mass frame, where the total momentum is zero: an elastic collision just rotates the two velocities without changing their sizes.
+
+\begin{example}[The rocket equation]
+A rocket expels exhaust backward at speed $u$ relative to itself. In time $\dd t$ it loses mass $\dd m$ (negative) and gains speed $\dd v$. Conservation of momentum gives $m\,\dd v = -u\,\dd m$, so
+\[
+  \Delta v = u\ln\frac{m_{\text{initial}}}{m_{\text{final}}} .
+\]
+This is \emph{Tsiolkovsky's rocket equation}, and the logarithm is the cruelty of spaceflight. Reaching low Earth orbit takes $\Delta v\approx9.4\un{km/s}$ (including losses). With chemical exhaust at $u\approx4.4\un{km/s}$, the mass ratio is $e^{2.1}\approx 8$: about $88\%$ of a rocket on the launch pad must be fuel.
+\end{example}
+
+\section{Energy}
+
+The \emph{work} done by a force along a path is $W = \int\vb F\cdot\dd\vb r$. Integrating Newton's second law along the path gives the \textbf{work--energy theorem}:
+\[
+  W_{\text{net}} = \Delta K, \qquad K = \tfrac12 mv^{2}.
+\]
+Some forces --- gravity, springs, electrostatics --- have the special property that the work they do depends only on the endpoints, not the path. These \emph{conservative} forces can be written as $\vb F = -\grad U$ for a \emph{potential energy} $U(\vb r)$, and then
+\[
+  E = K + U = \text{constant}.
+\]
+(A force is conservative exactly when $\curl\vb F=0$; friction is the standard non-conservative example.) Near the Earth, $U = mgh$; for a spring, $U=\tfrac12kx^2$; for gravity in general, $U = -GMm/r$.
+
+\begin{keyidea}
+In one dimension, the potential energy curve $U(x)$ tells you everything qualitative about the motion. A particle with energy $E$ is confined to where $U(x)\le E$; it turns around where $U = E$; it speeds up in valleys and slows on hills. Stable equilibria are minima of $U$, and near any of them the motion is a harmonic oscillation (Chapter~\ref{ch:sho}).
+\end{keyidea}
+
+Energy conservation is often the fastest route to an answer, because it skips the details of the path. How fast is a roller coaster at the bottom? $v = \sqrt{2gh}$, whatever the shape of the track. Deeper down, energy conservation is a consequence of the laws of physics being the same at all times (Chapter~\ref{ch:analytical}).
+
+\section{Rotation}
+
+Rotation has its own versions of everything. A body spinning about a fixed axis at \emph{angular velocity} $\omega$ has
+\[
+  K = \tfrac12 I\omega^{2},\qquad L = I\omega,\qquad \tau = I\dot\omega,
+\]
+where the \emph{moment of inertia} $I = \sum m_i r_i^2$ measures how far the mass sits from the axis. It plays the role of mass for rotation. For a thin hoop $I = MR^2$; a uniform disc $\tfrac12 MR^2$; a solid sphere $\tfrac25 MR^2$; a rod about its centre $\tfrac1{12}ML^2$. The \emph{parallel axis theorem}, $I = I_{\text{cm}} + Md^2$, shifts the axis a distance $d$ from the centre of mass.
+
+The \emph{torque} $\boldsymbol\tau = \vb r\times\vb F$ is the rotational version of force, and \emph{angular momentum} $\vb L = \vb r\times\vb p$ is the rotational version of momentum, with $\boldsymbol\tau = \dot{\vb L}$.
+
+\begin{law}[Conservation of angular momentum]
+If the net external torque on a system vanishes, its total angular momentum is constant.
+\end{law}
+
+A figure skater pulling in her arms decreases $I$, so $\omega$ must increase. A collapsing star does the same thing on a grander scale, which is why neutron stars can spin hundreds of times per second (Chapter~\ref{ch:astro}).
+
+\begin{example}[Rolling]
+A ball rolling without slipping has $v = \omega R$ and kinetic energy $\tfrac12 Mv^2 + \tfrac12 I\omega^2$. Released from rest at height $h$,
+\[
+  v = \sqrt{\frac{2gh}{1 + I/MR^{2}}}.
+\]
+A solid sphere ($I/MR^2 = \tfrac25$) beats a disc ($\tfrac12$), which beats a hoop ($1$) --- independently of their masses and sizes. Some of the energy has to go into spinning, and the hoop wastes the most.
+\end{example}
+
+In three dimensions, $\vb L$ and $\boldsymbol\omega$ need not be parallel: they are related by a $3\times3$ symmetric matrix, the \emph{inertia tensor}, $\vb L = \mathsf{I}\boldsymbol\omega$. By the spectral theorem (Chapter~\ref{ch:math}) it has three perpendicular \emph{principal axes}, and spinning about any of them is steady. A spinning gyroscope with a torque applied does not fall over; its angular momentum vector \emph{precesses}, swinging sideways at a rate $\Omega = \tau/L$.
+
+\section{Gravity and orbits}
+
+\begin{law}[Newton's law of gravitation]
+Two point masses attract each other with a force
+\[
+  F = \frac{G m_1 m_2}{r^{2}}, \qquad G = 6.674\times10^{-11}\un{N\,m^2/kg^2}.
+\]
+\end{law}
+Newton also proved the \textbf{shell theorem}: a spherically symmetric body attracts outside masses as if all its mass were at its centre, and a spherical shell exerts no net force on anything inside it. (This took him years; with Gauss's law of Chapter~\ref{ch:em} it takes a line.) So at the Earth's surface $g = GM_\oplus/R_\oplus^2$, and weighing the Earth amounts to measuring $G$, which Cavendish did in 1798.
+
+\subsection{The Moon is a falling apple}
+\label{sec:moon-apple}
+The Moon is $r = 3.84\times10^{8}\un{m}$ away and goes around in $T = 27.3$ days. Its centripetal acceleration is
+\[
+  a = \frac{4\pi^{2}r}{T^{2}} \approx 2.7\times10^{-3}\un{m/s^2}.
+\]
+The ratio $g/a \approx 3600 = 60^2$ --- and the Moon is $60$ Earth radii away. The force falls off exactly as the inverse square of distance. One law describes the apple and the Moon: the heavens and the Earth obey the same physics. It is hard to overstate how radical that was.
+
+\subsection{Kepler's laws}
+For a circular orbit, gravity supplies the centripetal force: $GMm/r^2 = mv^2/r$, so $v = \sqrt{GM/r}$ and the period obeys
+\[
+  T^{2} = \frac{4\pi^{2}}{GM}\,r^{3}.
+\]
+This is Kepler's third law, true also for ellipses with $r$ replaced by the semi-major axis. Kepler's first two laws --- orbits are ellipses with the Sun at a focus, and the line to the planet sweeps equal areas in equal times --- also follow from Newton. The equal-area law is just conservation of angular momentum, and holds for any central force.
+
+\begin{center}
+\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}[scale=0.95]
+  \fill[ascbluebg] plot coordinates {(1.680,0.000) (1.775,-1.732) (1.851,-1.681) (1.925,-1.626) (2.000,-1.568) (2.073,-1.506) (2.145,-1.439) (2.216,-1.369) (2.286,-1.294) (2.353,-1.214) (2.417,-1.130) (2.479,-1.042) (2.537,-0.948) (2.591,-0.850) (2.640,-0.747) (2.683,-0.641) (2.720,-0.530) (2.751,-0.416) (2.775,-0.299) (2.791,-0.180) (2.799,-0.060) (2.799,0.060) (2.791,0.180) (2.775,0.299) (2.751,0.416) (2.720,0.530) (2.683,0.641) (2.640,0.747) (2.591,0.850) (2.537,0.948) (2.479,1.042) (2.417,1.130) (2.353,1.214) (2.286,1.294) (2.216,1.369) (2.145,1.439) (2.073,1.506) (2.000,1.568) (1.925,1.626) (1.851,1.681) (1.775,1.732)} -- cycle;
+  \fill[ascbluebg] plot coordinates {(1.680,0.000) (-2.703,0.584) (-2.713,0.554) (-2.722,0.525) (-2.731,0.495) (-2.739,0.465) (-2.747,0.435) (-2.754,0.406) (-2.760,0.376) (-2.766,0.346) (-2.772,0.316) (-2.777,0.286) (-2.782,0.256) (-2.786,0.226) (-2.789,0.196) (-2.792,0.166) (-2.795,0.136) (-2.797,0.106) (-2.798,0.075) (-2.799,0.045) (-2.800,0.015) (-2.800,-0.015) (-2.799,-0.045) (-2.798,-0.075) (-2.797,-0.106) (-2.795,-0.136) (-2.792,-0.166) (-2.789,-0.196) (-2.786,-0.226) (-2.782,-0.256) (-2.777,-0.286) (-2.772,-0.316) (-2.766,-0.346) (-2.760,-0.376) (-2.754,-0.406) (-2.747,-0.435) (-2.739,-0.465) (-2.731,-0.495) (-2.722,-0.525) (-2.713,-0.554) (-2.703,-0.584)} -- cycle;
+  \draw[ascblue!60] plot coordinates {(1.680,0.000) (1.775,-1.732) (1.851,-1.681) (1.925,-1.626) (2.000,-1.568) (2.073,-1.506) (2.145,-1.439) (2.216,-1.369) (2.286,-1.294) (2.353,-1.214) (2.417,-1.130) (2.479,-1.042) (2.537,-0.948) (2.591,-0.850) (2.640,-0.747) (2.683,-0.641) (2.720,-0.530) (2.751,-0.416) (2.775,-0.299) (2.791,-0.180) (2.799,-0.060) (2.799,0.060) (2.791,0.180) (2.775,0.299) (2.751,0.416) (2.720,0.530) (2.683,0.641) (2.640,0.747) (2.591,0.850) (2.537,0.948) (2.479,1.042) (2.417,1.130) (2.353,1.214) (2.286,1.294) (2.216,1.369) (2.145,1.439) (2.073,1.506) (2.000,1.568) (1.925,1.626) (1.851,1.681) (1.775,1.732)} -- cycle;
+  \draw[ascblue!60] plot coordinates {(1.680,0.000) (-2.703,0.584) (-2.713,0.554) (-2.722,0.525) (-2.731,0.495) (-2.739,0.465) (-2.747,0.435) (-2.754,0.406) (-2.760,0.376) (-2.766,0.346) (-2.772,0.316) (-2.777,0.286) (-2.782,0.256) (-2.786,0.226) (-2.789,0.196) (-2.792,0.166) (-2.795,0.136) (-2.797,0.106) (-2.798,0.075) (-2.799,0.045) (-2.800,0.015) (-2.800,-0.015) (-2.799,-0.045) (-2.798,-0.075) (-2.797,-0.106) (-2.795,-0.136) (-2.792,-0.166) (-2.789,-0.196) (-2.786,-0.226) (-2.782,-0.256) (-2.777,-0.286) (-2.772,-0.316) (-2.766,-0.346) (-2.760,-0.376) (-2.754,-0.406) (-2.747,-0.435) (-2.739,-0.465) (-2.731,-0.495) (-2.722,-0.525) (-2.713,-0.554) (-2.703,-0.584)} -- cycle;
+  \draw[thick] (0,0) ellipse [x radius=2.800, y radius=2.240];
+  \fill[ascwarm] (1.680,0) circle (4pt) node[below=3pt, font=\small] {Sun};
+  \draw[ascrule] (-1.680,0) ++(-2pt,-2pt) -- ++(4pt,4pt) ++(-4pt,0) -- ++(4pt,-4pt);
+  \foreach \p in {(1.775,-1.732), (1.775,1.732), (-2.703,0.584), (-2.703,-0.584)} \fill[ascink] \p circle (2pt);
+  \node[font=\small, align=left, anchor=west] at (2.95,0) {fast near\\the Sun};
+  \node[font=\small, align=right, anchor=east] at (-2.95,0) {slow far\\away};
+\end{tikzpicture}
+
+{\small Kepler's second law. The planet takes the same time to cover each shaded stretch of its orbit, so the two shaded areas are equal: it moves fast near the Sun and slowly far from it.}
+\end{minipage}
+\end{center}
+
+The cleanest way to see the shapes of orbits is the \textbf{effective potential}. Because angular momentum $L$ is conserved, the radial motion behaves like a one-dimensional problem with
+\[
+  U_{\text{eff}}(r) = -\frac{GMm}{r} + \frac{L^{2}}{2mr^{2}} .
+\]
+The second term is the ``centrifugal barrier.'' Negative-energy orbits are trapped between two turning points --- ellipses. Zero energy gives a parabola; positive energy, a hyperbola that escapes. The \emph{escape velocity} from radius $r$ is $v_{\text{esc}} = \sqrt{2GM/r}$, which is $11.2\un{km/s}$ from the Earth's surface.
+
+\section{Non-inertial frames}
+
+Newton's laws hold in inertial frames. If you insist on working in an accelerating frame, you can rescue them by adding \emph{fictitious forces} --- forces with no physical source, which exist only because your frame is accelerating. In a frame rotating at angular velocity $\boldsymbol\Omega$,
+\[
+  m\vb a_{\text{rot}} = \vb F - 2m\,\boldsymbol\Omega\times\vb v_{\text{rot}} - m\,\boldsymbol\Omega\times(\boldsymbol\Omega\times\vb r).
+\]
+The last term is the \emph{centrifugal} force, pushing outward from the axis. The middle term is the \emph{Coriolis} force, which deflects moving objects sideways --- to the right in the northern hemisphere. Over the scale of a hurricane it is decisive (Chapter~\ref{ch:geo}); in a bathtub it is utterly negligible, whatever you have heard. The \emph{Foucault pendulum}, whose plane of swing slowly rotates over the day, is a direct demonstration that the Earth turns.
+
+That fictitious forces are proportional to mass, just like gravity, is a clue Einstein took seriously. It leads, through the equivalence principle, to general relativity (Chapter~\ref{ch:gr}).
+
+\section{Where Newton breaks}
+
+Newtonian mechanics is a spherical cow too. It fails, in a controlled way, in three directions:
+\begin{itemize}[itemsep=3pt]
+  \item at speeds approaching $c$, where special relativity takes over (Chapter~\ref{ch:sr}), with corrections of order $v^2/c^2$;
+  \item at small scales, where quantum mechanics takes over (Chapter~\ref{ch:qm}), when the action involved is comparable to $\hbar$;
+  \item in strong gravity, where general relativity takes over (Chapter~\ref{ch:gr}), with corrections of order $GM/rc^2$.
+\end{itemize}
+In each case the new theory reduces to Newton's in the appropriate limit. That is a pattern worth noticing: good theories are not overthrown, they are \emph{contained}.
+
+\section{Problems}
+
+\begin{problems}
+\prob{1}\core Show that the range of a projectile on flat ground is greatest at $45^\circ$. If the projectile is launched from a cliff of height $h$, is the optimal angle more or less than $45^\circ$? Explain without calculating.
+
+\prob{1} A block rests on a ramp with coefficient of static friction $\mu_s$. Show that it begins to slide when the ramp angle exceeds $\theta_c = \arctan\mu_s$, regardless of the block's mass. How could you use this to measure $\mu_s$?
+
+\prob{1} Two masses $m_1 > m_2$ hang on either side of a massless pulley (an Atwood machine). Find their acceleration and the tension in the string. Check the limits $m_2\to0$ and $m_1=m_2$.
+
+\prob{1} A raindrop of radius $1\un{mm}$ falls from a cloud. Estimate its terminal velocity using quadratic drag. Why don't raindrops hurt?
+
+\prob{2}\core Derive Kepler's third law for circular orbits, and use it to find the radius of a geostationary orbit (one with a period of one sidereal day, $23.93$ hours). Express the answer in Earth radii.
+
+\prob{2}\core A hoop, a disc, and a solid sphere race from rest down the same incline, rolling without slipping. Show that the order of finish is independent of their masses and radii. Now add a frictionless block that slides. Who wins?
+
+\prob{2} Using the rocket equation, compare a single-stage rocket with a two-stage rocket in which each stage carries half the fuel and the empty first stage is discarded. Why are real launch vehicles multi-stage?
+
+\prob{2} A ball is dropped from a $100\un{m}$ tower at the equator. Because the top of the tower moves eastward slightly faster than its base, the ball lands slightly east of the point directly below. Estimate the deflection, either in the inertial frame or using the Coriolis force. (Answer: about $2\un{cm}$.)
+
+\prob{2} Compute the escape velocity from the Moon. The typical thermal speed of a gas molecule is $\sqrt{3k_BT/m}$. Use this to explain why the Moon has no atmosphere while the Earth keeps its nitrogen but has lost almost all its hydrogen. (Rule of thumb: a planet keeps a gas for billions of years only if the thermal speed is below about a sixth of the escape velocity.)
+
+\prob{3}\core \emph{(The leaning tower of books.)} You stack identical books of length $L$ at the edge of a table, each overhanging the one below. Show that with $n$ books the maximum total overhang is
+\[
+  \frac{L}{2}\left(1 + \frac12 + \frac13 + \cdots + \frac1n\right),
+\]
+and conclude that the overhang can be made arbitrarily large. How many books do you need for the top book to lie entirely beyond the table's edge?
+\hint{Build the stack from the top down. At each stage the centre of mass of everything above must lie exactly over the edge of the book below.}
+
+\prob{3}\label{prob:bead-hoop} \emph{(The bead on a spinning hoop.)} A bead slides without friction on a vertical circular hoop of radius $R$ that spins about its vertical diameter at angular velocity $\Omega$. Find the equilibrium positions of the bead. Show that the bottom is stable for $\Omega^2 < g/R$, but that above this critical speed the bottom becomes unstable and two new stable equilibria appear symmetrically on either side. This sudden change in the number of equilibria is a \emph{bifurcation} (Chapter~\ref{ch:chaos}), and a toy model of spontaneous symmetry breaking (Chapter~\ref{ch:particle}).
+
+\prob{3} \emph{(The tennis racket theorem.)} A rigid body has three principal moments of inertia $I_1 < I_2 < I_3$. Euler's equations for torque-free rotation are
+$I_1\dot\omega_1 = (I_2 - I_3)\omega_2\omega_3$ and cyclic permutations. Show that rotation about the axis of largest or smallest moment is stable to small perturbations, but rotation about the intermediate axis is unstable: a small wobble grows exponentially. Try it with a phone or a tennis racket tossed in the air; astronauts on the International Space Station have filmed a spinning wing nut flipping over and over (the Dzhanibekov effect).
+\hint{Linearize about $\boldsymbol\omega = (0,\Omega,0)$ and look for solutions $\propto e^{\lambda t}$.}
+\end{problems}
+
+\begin{reading}
+\rd{Kleppner and Kolenkow, \emph{An Introduction to Mechanics}}{The classic first rigorous mechanics course, with problems that build real skill.}
+\rd{David Morin, \emph{Introduction to Classical Mechanics}}{Hundreds of beautiful problems with full solutions; the best book for learning to solve problems.}
+\rd{John R.\ Taylor, \emph{Classical Mechanics}}{The smoothest route to intermediate mechanics, from Newton to Lagrange and beyond.}
+\rd{\emph{The Feynman Lectures on Physics}, Volume I}{Free online. Read the chapters on mechanics for the physical insight no textbook quite matches.}
+\rd{Any calculus-based introductory text}{Halliday--Resnick, Young--Freedman, or similar. They are all about equally good; what matters is doing the problems.}
+\end{reading}

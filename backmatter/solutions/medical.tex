@@ -1,0 +1,41 @@
+\solchapter{medical}
+
+\sol{medical}{1} $e^{-0.2\times20} = e^{-4} = 1.8\%$; $e^{-0.2\times18 - 0.6\times2} = e^{-4.8} = 0.8\%$. Behind bone the film receives less than half the exposure. Film darkens where X-rays hit it, so a radiograph is a negative: bone, which casts an X-ray shadow, shows up white.
+
+\sol{medical}{2} $f = 42.58\un{MHz/T}\times B$: $64\un{MHz}$ at $1.5\un{T}$ and $128\un{MHz}$ at $3\un{T}$, in the radio band, right beside FM stations ($88$--$108\un{MHz}$). The signal from the body is minute, and any stray radio transmission at these frequencies would swamp it, so the room is a Faraday cage. (It also keeps the scanner's powerful radio pulses inside.)
+
+\sol{medical}{3} $R = ((Z_2-Z_1)/(Z_2+Z_1))^2$. Tissue--bone: $(6.2/9.4)^2 = 43\%$ reflected. Air--tissue: $99.9\%$ reflected. Without gel, a thin layer of air between the probe and the skin would reflect almost all the sound before it entered the body; the gel matches impedances and squeezes the air out.
+
+\sol{medical}{4} $\lambda = v/f = 1540/(5\times10^6) = 0.3\un{mm}$, which is about the finest detail resolvable. Attenuation in tissue grows roughly in proportion to frequency (about $0.5\un{dB/cm}$ per MHz), so higher frequencies give finer detail but penetrate less. The liver lies $10$--$20\un{cm}$ deep and needs $3\un{MHz}$ ($0.5\un{mm}$ resolution); the eye is only a few centimetres deep, so $20\un{MHz}$ ($0.08\un{mm}$) can be used.
+
+\sol{medical}{5} For a positron and electron annihilating at rest, the total momentum is zero and the total energy $2m_ec^2 = 1022\un{keV}$. A single photon has momentum $E/c\neq0$, so it cannot carry away zero momentum. Two photons can if they travel in opposite directions with equal momenta, so equal energies, $511\un{keV}$ each. (The pair's small residual motion tilts them by about a quarter of a degree.) A timing difference $\Delta t$ locates the annihilation to $\Delta x = c\Delta t/2 = 4.5\un{cm}$ along the line. This ``time of flight'' information doesn't replace the reconstruction, but it reduces the noise in it.
+
+\sol{medical}{6} $\Delta E/\kB T = h(128\un{MHz})/\kB(310\un{K}) = 2.0\times10^{-5}$. The fractional excess is half of this, $1.0\times10^{-5}$: ten parts per million. A cubic millimetre of water has $6.7\times10^{19}$ protons, so the excess is $7\times10^{14}$. That's still a large number, which is why MRI works at all. Doubling $B$ doubles the polarization and also doubles the frequency, and so the voltage induced in the coils: the signal grows roughly as $B^2$, and the signal-to-noise ratio about linearly with $B$, buying finer resolution or faster scans.
+
+\sol{medical}{7} $\Delta B = (10\un{mT/m})(1\un{mm}) = 10^{-5}\un{T}$, so $\Delta f = 426\un{Hz}$. A $10\un{ms}$ recording resolves frequency differences of about $1/T = 100\un{Hz}$, so yes, comfortably --- down to about $0.25\un{mm}$.
+
+\sol{medical}{8} $2\un{Gy}\times1\un{kg} = 2\un{J}$, warming the tumour by $2/4186\approx5\times10^{-4}\un{K}$. Per cell, $2\times10^{-12}\un{J}/30\un{eV}\approx4\times10^5$ ionizations. The energy is delivered not as heat, a few hundredths of an electron volt per molecule, but in packets of tens of electron volts, each enough to break several chemical bonds. A few of these hit DNA: $2\un{Gy}$ causes about $80$ double-strand breaks per cell, and a cell that cannot repair them dies when it next tries to divide --- which is why fast-dividing tumours are vulnerable, and why the therapy is split into many sessions to let healthy tissue repair.
+
+\sol{medical}{9} $24$ hours is $4$ half-lives: $500/16 = 31\un{MBq}$. A few hours is long enough to inject the patient and image them, but short enough that the radioactivity (and the dose) is soon gone. Hospitals make Tc-99m on site from the decay of molybdenum-99 (half-life $66$ hours), whose ``generators'' are shipped weekly.
+
+\sol{medical}{10} With $\dd E/\dd x\propto-1/E$, $E\,\dd E\propto-\dd x$, so $E^2 = E_0^2(1-x/R)$. The dose is proportional to the stopping power,
+\[
+  \dv{E}{x}\propto\frac1E\propto\frac{1}{\sqrt{1-x/R}},
+\]
+nearly flat for most of the path, rising steeply in the last centimetre, and zero beyond the range $R$. This is the Bragg peak (in reality, random fluctuations in energy loss smear it over a few millimetres). Tumours are irradiated by stacking peaks of different energies, while sparing tissue behind. But if the anatomy differs from the plan by a centimetre (a filled bowel, weight loss, a shrunken tumour), the peak lands in the wrong place, possibly in a critical organ right behind the tumour. X-rays, whose dose falls off gradually, are much more forgiving.
+
+\sol{medical}{11} Write $s = x\cos\theta + y\sin\theta$, and at each angle the projection is $\delta(s)$. Backprojecting gives
+\[
+  b(\vb r) = \int_0^\pi\delta(x\cos\theta + y\sin\theta)\,\dd\theta = \int_0^\pi\delta\big(r\cos(\theta-\phi)\big)\,\dd\theta = \frac1r,
+\]
+since the argument vanishes once in the range, where its derivative has magnitude $r$. Now the projection--slice theorem says the one-dimensional Fourier transform of the projection at angle $\theta$ is the two-dimensional transform $F(\vb k)$ of the image along the line at angle $\theta$. Inverting in polar coordinates,
+\[
+  f(\vb r) = \int\frac{\dd^2k}{(2\pi)^2}F(\vb k)e^{i\vb k\cdot\vb r} = \frac{1}{(2\pi)^2}\int_0^\pi\dd\theta\int_{-\infty}^\infty\abs k\,\dd k\;F(k,\theta)e^{iks}.
+\]
+The inner integral is the projection with its Fourier transform weighted by $\abs k$, and the outer integral is a backprojection. Without the factor $\abs k$, the Jacobian of polar coordinates, low spatial frequencies are overcounted (the slices all cross at $k = 0$), which is the $1/r$ blur: its Fourier transform is $\propto1/\abs k$. The ramp filter boosts high frequencies and with them noise, so real scanners roll it off at the highest frequencies.
+
+\sol{medical}{12} With saturation $s$ and total haemoglobin concentration $c$ along a path $L$, the absorbance at wavelength $\lambda$ is $A_\lambda = cL[s\epsilon_{\text{ox}}(\lambda) + (1-s)\epsilon_{\text{de}}(\lambda)]$. The ratio $R = A_{660}/A_{940}$ is independent of $c$ and $L$, and solving for $s$,
+\[
+  s = \frac{\epsilon_{\text{de}}(660) - R\,\epsilon_{\text{de}}(940)}{R[\epsilon_{\text{ox}}(940) - \epsilon_{\text{de}}(940)] - [\epsilon_{\text{ox}}(660) - \epsilon_{\text{de}}(660)]}.
+\]
+But the finger also contains skin, bone, tissue, and venous blood, all absorbing; and the LED brightness and detector sensitivity are unknown. None of these change with the heartbeat. Only the arterial blood volume pulses, so the pulsing part of the signal (divided by the steady part, at each wavelength) isolates the arterial blood. Taking the ratio between wavelengths of these normalized pulses removes everything else. Real devices are calibrated empirically against blood samples, since light scattering in tissue complicates the simple Beer--Lambert picture --- and skin pigmentation can bias the reading, a problem that came to wide attention during the COVID pandemic.

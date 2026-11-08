@@ -1,0 +1,214 @@
+\chapter{Thermodynamics}
+\label{ch:thermo}
+
+\buildson{Newtonian mechanics (Chapter~\ref{ch:newton})}
+
+\chapterdek{Engines, entropy, and why time only ever runs one way --- a theory so general that it survived the discovery of atoms, quantum mechanics, and relativity without changing a word.}
+
+\begin{prototype}
+The Carnot engine: an idealized engine that takes heat from a hot reservoir, turns part of it into work, and dumps the rest into a cold reservoir, all as gently and reversibly as possible. Its efficiency, $1 - T_c/T_h$, is a hard ceiling on every engine that has ever been or ever will be built.
+\end{prototype}
+
+Thermodynamics is strange among physical theories. It says nothing about what matter is made of. It was built in the early nineteenth century by engineers trying to make better steam engines, at a time when most of them believed heat was a fluid. And yet its laws are among the most reliable in all of science. Einstein said it was the only physical theory of universal content which he was convinced would never be overthrown. Its power comes from the fact that it does not care about details: it is the ultimate spherical cow.
+
+\section{Temperature}
+
+Two bodies in contact eventually stop exchanging heat: they reach \emph{thermal equilibrium}. The \textbf{zeroth law} says that if $A$ is in equilibrium with $B$, and $B$ with $C$, then $A$ is in equilibrium with $C$. That transitivity is what makes temperature meaningful: it is the property that is equal for bodies in equilibrium, and a thermometer is a body $B$ that we bring into contact with others.
+
+The natural temperature scale is the \emph{absolute} or Kelvin scale, whose zero is the lowest possible temperature: $T(\text{K}) = T(^\circ\text{C}) + 273.15$. Room temperature is about $300\un{K}$. A useful number to carry: at room temperature $\kB T\approx\tfrac1{40}\un{eV}$, where $\kB = 1.38\times10^{-23}\un{J/K}$ is Boltzmann's constant. Chemical bonds (a few eV) are therefore stable at room temperature, while hydrogen bonds ($\sim0.2\un{eV}$) are only just stable --- which is why life, built from both, works at the temperatures it does.
+
+\section{The ideal gas}
+
+A dilute gas obeys the \textbf{ideal gas law},
+\[
+  PV = N\kB T = nRT,
+\]
+where $N$ is the number of molecules, $n$ the number of moles, and $R = N_A\kB = 8.31\un{J/(mol\,K)}$.
+
+Kinetic theory explains it. Model the gas as point molecules bouncing elastically off the walls. A molecule hitting a wall of area $A$ transfers momentum $2mv_x$; working out the rate of collisions gives the pressure $P = \tfrac13 (N/V)\,m\langle v^2\rangle$. Comparing with the ideal gas law,
+\[
+  \big\langle\tfrac12 mv^2\big\rangle = \tfrac32\,\kB T .
+\]
+\emph{Temperature is a measure of the average kinetic energy of the molecules.} Nitrogen molecules in the air around you move at about $500\un{m/s}$, roughly the speed of sound --- which is not a coincidence, since sound is carried by these collisions.
+
+\section{The first law}
+
+Energy is conserved, but in thermodynamics it can enter a system in two ways: as \emph{work}, through organized motion like a piston, or as \emph{heat}, through disorganized molecular jostling across a boundary.
+
+\begin{law}[The first law of thermodynamics]
+\[
+  \Delta U = Q - W,
+\]
+where $U$ is the internal energy of the system, $Q$ the heat added to it, and $W$ the work done by it. For a gas, $W = \int P\,\dd V$.
+\end{law}
+
+$U$ is a \emph{state function}: it depends only on the current state of the system. Heat and work are not; they depend on how you got there. It makes sense to ask how much energy a gas has, but not how much ``heat'' it contains.
+
+For an ideal monatomic gas, $U = \tfrac32 N\kB T$. The \emph{heat capacity} at constant volume is $C_V = \dd U/\dd T = \tfrac32N\kB$. At constant pressure the gas also does work as it expands, so it needs more heat per degree: $C_P = C_V + N\kB$. The ratio $\gamma = C_P/C_V$ is $\tfrac53$ for monatomic gases and $\tfrac75$ for diatomic ones like air.
+
+\subsection{Processes}
+On a $P$--$V$ diagram, the work done by a gas is the area under its path. The standard processes:
+\begin{itemize}[itemsep=3pt]
+  \item \textbf{Isothermal} (constant $T$, in contact with a reservoir): $PV$ is constant, and the work done in expanding from $V_1$ to $V_2$ is $N\kB T\ln(V_2/V_1)$, all supplied as heat.
+  \item \textbf{Adiabatic} (no heat exchange, $Q=0$): the work comes out of the internal energy, so the gas cools as it expands. Combining $\dd U = -P\,\dd V$ with the ideal gas law gives
+  \[
+    PV^{\gamma} = \text{constant}, \qquad TV^{\gamma-1} = \text{constant}.
+  \]
+  \item \textbf{Isobaric} (constant $P$) and \textbf{isochoric} (constant $V$).
+\end{itemize}
+Adiabatic processes are everywhere. Air rising in the atmosphere expands and cools at about $10^\circ\text{C}$ per kilometre, which is why mountaintops are cold (Chapter~\ref{ch:geo}). A bicycle pump gets hot. A diesel engine needs no spark plug: compressing air by a factor of twenty heats it enough to ignite the fuel.
+
+\section{The second law}
+
+The first law says energy is conserved. It does not say which way things go. Heat flows from hot coffee into the room, never from the room into the coffee, though both directions conserve energy. Something else is at work.
+
+\begin{law}[The second law of thermodynamics]
+Two equivalent statements:
+\begin{itemize}[itemsep=2pt]
+  \item \textbf{(Clausius)} No process can have as its sole result the transfer of heat from a colder body to a hotter one.
+  \item \textbf{(Kelvin--Planck)} No process can have as its sole result the complete conversion of heat into work.
+\end{itemize}
+\end{law}
+
+\subsection{Heat engines and the Carnot limit}
+A \emph{heat engine} takes heat $Q_h$ from a hot reservoir at $T_h$, does work $W$, and dumps heat $Q_c$ into a cold reservoir at $T_c$. By the first law $W = Q_h - Q_c$, and its efficiency is $\eta = W/Q_h$. Kelvin--Planck says $Q_c$ can never be zero: every engine must waste some heat.
+
+How much? Carnot imagined the gentlest possible engine: a gas taken around a cycle of two isotherms and two adiabats, always infinitesimally close to equilibrium, so that it could be run backwards. Working through the cycle gives $Q_c/Q_h = T_c/T_h$, so
+\[
+  \eta_{\text{Carnot}} = 1 - \frac{T_c}{T_h}.
+\]
+
+\begin{center}
+\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}[x=1.9cm, y=1.35cm, mid/.style={postaction={decorate}, decoration={markings, mark=at position 0.55 with {\arrow{Stealth[length=6pt]}}}}]
+  \fill[ascbluebg] plot[domain=1:2.2000, samples=40] (\x, {3/\x}) -- plot[domain=2.2000:4.4525, samples=40] (\x, {1.36364*(2.2000/\x)^(5/3)})
+    -- plot[domain=4.4525:2.0239, samples=40] (\x, {1.875/\x}) -- plot[domain=2.0239:1, samples=40] (\x, {0.92645*(2.0239/\x)^(5/3)}) -- cycle;
+  \draw[-{Stealth[length=6pt]}] (0,0) -- (5.0,0) node[right] {$V$};
+  \draw[-{Stealth[length=6pt]}] (0,0) -- (0,3.45) node[above] {$p$};
+  \draw[ascwarm, thick, mid] plot[domain=1:2.2000, samples=40] (\x, {3/\x});
+  \draw[ascink, thick, mid] plot[domain=2.2000:4.4525, samples=40] (\x, {1.36364*(2.2000/\x)^(5/3)});
+  \draw[ascblue, thick, mid] plot[domain=4.4525:2.0239, samples=40] (\x, {1.875/\x});
+  \draw[ascink, thick, mid] plot[domain=2.0239:1, samples=40] (\x, {0.92645*(2.0239/\x)^(5/3)});
+  \foreach \v/\p/\l/\pos in {1/3.0000/A/above right, 2.2000/1.3636/B/above right, 4.4525/0.4211/C/right, 2.0239/0.9264/D/below left}
+    \fill (\v,\p) circle (1.6pt) node[\pos, font=\small] {\l};
+  \node[ascwarm, font=\small, anchor=south west] at (1.62,1.9) {heat $Q_h$ in at $T_h$};
+  \node[ascblue, font=\small, anchor=north] at (3.25,0.48) {heat $Q_c$ out at $T_c$};
+  \node[font=\small] at (1.95,1.27) {$W$};
+  \node[font=\small, anchor=west] at (3.45,0.95) {adiabats};
+  \draw[ascink!55] (3.42,0.95) -- (3.050,0.791) (3.42,0.95) -- (1.550,1.445);
+\end{tikzpicture}
+
+{\small The Carnot cycle for an ideal gas: two isotherms joined by two adiabats. The shaded area is the work $W$ done in one trip around.}
+\end{minipage}
+\end{center}
+
+\begin{theorem}[Carnot's theorem]
+No engine operating between two reservoirs can be more efficient than a reversible one, and all reversible engines operating between the same two reservoirs have the same efficiency.
+\end{theorem}
+The proof is a beautiful piece of reasoning: if some engine beat Carnot's, use its work output to drive a Carnot engine \emph{backwards} as a refrigerator. The combination would move heat from cold to hot with no other effect, violating Clausius's statement.
+
+A power station with steam at $800\un{K}$ and cooling water at $300\un{K}$ can never exceed $63\%$ efficiency; real ones reach about $40\%$. The waste is not bad engineering. It is a law of nature.
+
+Run backwards, an engine becomes a refrigerator or a heat pump. A heat pump warming a house to $293\un{K}$ from outdoor air at $273\un{K}$ could in principle deliver $T_h/(T_h - T_c)\approx 15$ joules of heat for every joule of electricity, which is why heat pumps are so much better than electric heaters.
+
+\section{Entropy}
+
+Carnot's result $Q_h/T_h = Q_c/T_c$ suggests that the quantity $Q/T$ is somehow conserved in reversible processes. Clausius made this into a new state function.
+
+\begin{definition}[Entropy]
+The change in \emph{entropy} of a system along a reversible path is
+\[
+  \dd S = \frac{\delta Q_{\text{rev}}}{T}.
+\]
+Because $S$ is a state function, $\Delta S$ between two states is the same whatever path is actually taken; to compute it, invent any reversible path between them.
+\end{definition}
+
+\begin{law}[The second law, in terms of entropy]
+The entropy of an isolated system never decreases: $\Delta S\ge0$, with equality only for reversible processes.
+\end{law}
+
+Heat $Q$ flowing from a hot body to a cold one changes the total entropy by $Q/T_c - Q/T_h > 0$: allowed. The reverse would decrease it: forbidden. Every irreversible process --- friction, mixing, free expansion, heat flowing down a temperature gradient --- creates entropy, and that entropy can never be destroyed.
+
+\begin{keyidea}
+The second law is the only fundamental law of physics that distinguishes past from future. The equations of mechanics and electromagnetism run equally well backwards. Eggs unscramble in principle; they just never do. The arrow of time is the direction in which entropy increases.
+\end{keyidea}
+
+What \emph{is} entropy? Thermodynamics cannot say. Statistical mechanics (Chapter~\ref{ch:statmech}) can: entropy is the logarithm of the number of microscopic arrangements consistent with what you see, $S = \kB\ln\Omega$, and the second law holds because there are overwhelmingly more disordered arrangements than ordered ones. Why the universe started in such a low-entropy state that it has been running downhill ever since is a question for cosmology (Chapter~\ref{ch:cosmo}), and not a fully answered one.
+
+\section{Free energy}
+
+At constant temperature, a system can exchange heat with its surroundings, so its own entropy can go down as long as the surroundings' goes up by more. The bookkeeping is done by \emph{thermodynamic potentials}:
+\begin{align*}
+  F &= U - TS &&\text{(Helmholtz free energy: fixed $T$ and $V$)},\\
+  G &= U - TS + PV &&\text{(Gibbs free energy: fixed $T$ and $P$)},\\
+  H &= U + PV &&\text{(enthalpy: heat absorbed at fixed $P$)}.
+\end{align*}
+\begin{keyidea}
+At fixed temperature and pressure, a system evolves to minimize its Gibbs free energy $G = H - TS$. Low energy is favoured, but so is high entropy, and temperature sets the exchange rate between them.
+\end{keyidea}
+At low temperature energy wins, and things order: water freezes, magnets magnetize, proteins fold. At high temperature entropy wins, and things disorder: ice melts, magnets lose their magnetism, proteins unfold. Every phase transition is a contest between $H$ and $TS$. Chemistry runs on $\Delta G$: a reaction proceeds spontaneously when it lowers $G$ (Chapter~\ref{ch:chem}). The free energy is also the maximum work you can extract from a system at fixed temperature --- the ``free'' part of its energy.
+
+Because these potentials are state functions, their mixed second derivatives are equal, giving the \emph{Maxwell relations}, for example $(\partial S/\partial V)_T = (\partial P/\partial T)_V$. They relate quantities that are hard to measure (entropy changes) to quantities that are easy (pressures and temperatures), and they are how thermodynamics extracts surprising predictions from almost nothing.
+
+\section{Phases and phase transitions}
+
+A \emph{phase diagram} shows which phase of a substance is stable at each temperature and pressure. Along the lines between phases, two phases coexist; at the \emph{triple point} all three do; beyond the \emph{critical point} the distinction between liquid and gas disappears entirely.
+
+Crossing a phase boundary absorbs or releases \emph{latent heat} $L$ without changing the temperature: a pot of water boils at $100^\circ\text{C}$ however high the flame, the extra energy going into breaking molecules free. The slope of a phase boundary is fixed by the \textbf{Clausius--Clapeyron equation},
+\[
+  \dv{P}{T} = \frac{L}{T\,\Delta V},
+\]
+where $\Delta V$ is the change in volume. Since vapour takes up far more volume than liquid, the boiling point is very sensitive to pressure: on Everest, water boils at about $70^\circ\text{C}$, and pasta never really cooks. Water is anomalous in that ice is less dense than liquid water, so $\Delta V<0$ for melting and the melting line tilts backwards: squeezing ice can melt it. (This effect is far too small to explain ice skating, despite the textbook myth; the slipperiness of ice comes mostly from a thin premelted surface layer and frictional heating.)
+
+\section{The third law}
+
+\begin{law}[The third law of thermodynamics]
+As $T\to0$, the entropy of a system approaches a constant (zero, for a perfect crystal), and absolute zero cannot be reached in a finite number of steps.
+\end{law}
+Each cooling step removes a fraction of the remaining entropy, so you approach zero asymptotically, like Zeno's runner. The record low temperatures, achieved with laser cooling and evaporative cooling of atoms (Chapter~\ref{ch:amo}), are below a nanokelvin.
+
+\section{Radiation has a temperature too}
+
+A hot object glows. A cavity in equilibrium at temperature $T$ fills with electromagnetic radiation whose energy density depends only on $T$ --- not on the material of the walls, as Kirchhoff showed by a clever second-law argument. Using only thermodynamics and the fact that radiation pressure is one third of its energy density, Boltzmann proved that the radiated power per unit area is
+\[
+  j = \sigma T^{4},\qquad \sigma = 5.67\times10^{-8}\un{W/(m^2K^4)}
+\]
+(Problem~\ref{prob:stefan-boltzmann}). But thermodynamics cannot tell you the \emph{spectrum} of the radiation --- how much energy is at each frequency. Every classical attempt gave nonsense, predicting infinite energy at high frequencies. Fixing that required Planck's quantum hypothesis in 1900, and it was the first crack in classical physics (Chapters~\ref{ch:statmech} and~\ref{ch:qm}).
+
+\section{Problems}
+
+\begin{problems}
+\prob{1} One mole of an ideal gas at $300\un{K}$ expands isothermally to twice its volume. How much work does it do, and how much heat does it absorb? What is its change in entropy?
+
+\prob{1}\core A coal power station runs between $800\un{K}$ and $300\un{K}$. Find its maximum possible efficiency. If it produces $1\un{GW}$ of electricity at $40\%$ efficiency, how much heat does it dump into its cooling river every second? Estimate the temperature rise of a river flowing at $100\un{m^3/s}$.
+
+\prob{1} An ideal heat pump warms a house to $20^\circ\text{C}$ when it is $0^\circ\text{C}$ outside. Compute its maximum coefficient of performance (heat delivered per unit work). Why does a heat pump become less effective in very cold weather?
+
+\prob{2} A diesel engine compresses air adiabatically from $1\un{atm}$ and $300\un{K}$ by a factor of $20$ in volume. Find the final temperature and pressure, taking $\gamma = 1.4$. Why does this ignite the fuel without a spark?
+
+\prob{2} One kilogram of water at $80^\circ\text{C}$ is mixed with one kilogram at $20^\circ\text{C}$ in an insulated container. Find the final temperature and the total change in entropy, and verify that it is positive.
+\hint{Imagine each kilogram changing temperature slowly and reversibly; then for each one, $\Delta S = mc\ln(T_f/T_i)$.}
+
+\prob{2} Use the Clausius--Clapeyron equation, treating the vapour as an ideal gas and neglecting the liquid's volume, to show that the vapour pressure obeys $P\propto e^{-L/RT}$ (with $L$ per mole). Use $L = 40.7\un{kJ/mol}$ to estimate the boiling point of water at the summit of Everest, where the pressure is about $0.33\un{atm}$.
+
+\prob{2}\core Two identical bodies with constant heat capacity $C$ start at temperatures $T_1$ and $T_2$. A reversible engine runs between them until they reach a common temperature. Show that the final temperature is $\sqrt{T_1T_2}$ and that the work extracted is $C(\sqrt{T_1}-\sqrt{T_2})^2$. Compare with simply putting them in contact.
+
+\prob{2} An ideal gas expands freely into a vacuum, doubling its volume, inside an insulated box. No heat flows and no work is done, so $\Delta U=0$ and $T$ is unchanged. Find $\Delta S$ by inventing a reversible path between the same states. Why is the process irreversible?
+
+\prob{2} \emph{(Rubber bands.)} Stretch a rubber band quickly and touch it to your lip: it warms. Hang a weight from a rubber band and heat the band with a hair dryer: it contracts, lifting the weight. Explain both observations by modelling rubber as a tangle of polymer chains whose tension comes mainly from entropy, not energy. (See also Chapter~\ref{ch:bio}.)
+
+\prob{3}\core \label{prob:landauer} \emph{(Landauer's principle.)} Maxwell imagined a demon that watches molecules at a trapdoor between two gas chambers, opening it only for fast molecules going one way, apparently making one side hot and the other cold with no work. Show that if the demon must eventually erase its memory, and erasing one bit of information into an environment at temperature $T$ increases the environment's entropy by at least $\kB\ln2$, the second law is saved. How much energy must a computer dissipate, at minimum, to erase a gigabyte at room temperature? Compare with what real computers dissipate.
+
+\prob{3}\core \label{prob:stefan-boltzmann} \emph{(The $T^4$ law from pure thermodynamics.)} For radiation in a cavity, the energy density $u$ depends only on $T$, and the pressure is $P = u/3$. Starting from $\dd U = T\,\dd S - P\,\dd V$ and the Maxwell relation $(\partial S/\partial V)_T = (\partial P/\partial T)_V$, derive
+\[
+  \left(\pdv{U}{V}\right)_T = T\left(\pdv{P}{T}\right)_V - P,
+\]
+and apply it to $U = uV$ to show that $u\propto T^4$. Boltzmann did this in 1884, sixteen years before anyone understood why.
+\end{problems}
+
+\begin{reading}
+\rd{Daniel V.\ Schroeder, \emph{An Introduction to Thermal Physics}}{An extremely clean, focused, and clear introduction to thermodynamics and statistical mechanics together. The standard recommendation, deservedly.}
+\rd{Enrico Fermi, \emph{Thermodynamics}}{A short, classic Dover book of lectures. Thermodynamics as a logical structure, with no microscopic crutches.}
+\rd{Blundell and Blundell, \emph{Concepts in Thermal Physics}}{Broad and modern, with many applications to astrophysics, information, and biology.}
+\rd{\emph{The Feynman Lectures on Physics}, Volume I, Chapters~39--46}{Kinetic theory and the laws of thermodynamics, including the famous ratchet-and-pawl.}
+\end{reading}

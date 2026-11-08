@@ -1,0 +1,150 @@
+\chapter{Cosmology}
+\label{ch:cosmo}
+
+\buildson{general relativity (Chapter~\ref{ch:gr}), astrophysics (Chapter~\ref{ch:astro})}
+
+\chapterdek{The history of the whole universe --- written in the stretching of light, the afterglow of its birth, and the cosmic recipe of how much of everything there is.}
+
+\begin{prototype}
+A loaf of raisin bread rising in the oven. As the dough expands, every raisin moves away from every other, and raisins twice as far apart separate twice as fast. No raisin is at the centre. On the largest scales, that is the universe: not an explosion into space, but space itself expanding, carrying the galaxies apart.
+\end{prototype}
+
+Cosmology is the study of the universe as a whole: where it came from, what it contains, and where it is going. A century ago it was mostly philosophy. Today it is a precision science, with a standard model whose half-dozen parameters are measured to within a percent --- and which contains two ingredients, dark matter and dark energy, that make up $95\%$ of the universe and that nobody understands. The universe is the ultimate spherical cow: on large enough scales, it really is the same everywhere.
+
+\section{The expanding universe}
+
+In 1929 Edwin Hubble, building on Vesto Slipher's measurements of galaxy redshifts and Henrietta Leavitt's Cepheid distance scale (Chapter~\ref{ch:astro}), found that distant galaxies recede from us at speeds proportional to their distance:
+\[
+  v = H_0\,d, \qquad H_0\approx70\un{km\,s^{-1}\,Mpc^{-1}}.
+\]
+At first sight this puts us at the centre of an explosion. It does not. If space itself is stretching uniformly, then from \emph{any} galaxy every other galaxy recedes with speed proportional to distance --- like the raisins in the bread. There is no centre and no edge.
+
+The light from a receding galaxy is \emph{redshifted}: its wavelength is stretched by the same factor as space has expanded while the light was in transit,
+\[
+  1 + z = \frac{\lambda_{\text{obs}}}{\lambda_{\text{emit}}} = \frac{a(t_{\text{now}})}{a(t_{\text{emit}})},
+\]
+where $a(t)$, the \emph{scale factor}, measures the size of the universe relative to today. A galaxy at redshift $z=1$ emitted its light when the universe was half its present size. Running the expansion backwards, everything was once on top of everything else, a time about $1/H_0\approx14$ billion years ago: the \emph{Hubble time}. The universe had a beginning.
+
+\section{The cosmological principle}
+
+On scales larger than a few hundred million light-years, the universe looks the same in every direction and at every place: it is \emph{homogeneous} and \emph{isotropic}. This \textbf{cosmological principle}, once an assumption, is now an observed fact, confirmed by galaxy surveys and the uniformity of the cosmic microwave background. It drastically simplifies general relativity: the only spacetimes with this symmetry are the \emph{Friedmann--Lema\^itre--Robertson--Walker} metrics,
+\[
+  \dd s^2 = -c^2\dd t^2 + a(t)^2\left[\frac{\dd r^2}{1-kr^2} + r^2\dd\Omega^2\right],
+\]
+in which the entire history of the universe is a single function $a(t)$, and the geometry of space is flat ($k=0$), positively curved like a sphere ($k>0$), or negatively curved like a saddle ($k<0$).
+
+\section{The Friedmann equation}
+
+Einstein's equations for this metric give the \textbf{Friedmann equation}. Remarkably, it can be derived from Newtonian physics (Problem~\ref{prob:friedmann}). Consider a sphere of radius $R = ar$ in a uniform universe of density $\rho$, and a test galaxy on its surface. By the shell theorem (Chapter~\ref{ch:newton}), only the mass inside matters. Its energy per unit mass is $\tfrac12\dot R^2 - GM/R = $ constant, which gives
+\[
+  \left(\frac{\dot a}{a}\right)^2 = \frac{8\pi G}{3}\rho - \frac{kc^2}{a^2}.
+\]
+The left side is $H^2$, the Hubble parameter squared. The universe is like a ball thrown upward: whether it expands forever or recollapses depends on whether its kinetic energy beats its gravitational energy. The dividing line is the \emph{critical density}
+\[
+  \rho_c = \frac{3H^2}{8\pi G}\approx9\times10^{-27}\un{kg/m^3},
+\]
+about five protons per cubic metre (Problem~\ref{prob:critical-density}). If $\rho = \rho_c$, space is flat. It is conventional to measure each component's density as a fraction $\Omega = \rho/\rho_c$ of the critical density. Observations show that the universe is flat to within a fraction of a percent: $\Omega_{\text{total}} = 1$.
+
+\section{What is in the universe}
+
+Different ingredients dilute differently as the universe expands:
+\begin{itemize}[itemsep=3pt]
+  \item \textbf{Matter} (ordinary and dark): the number of particles in a volume stays fixed while the volume grows as $a^3$, so $\rho_m\propto a^{-3}$.
+  \item \textbf{Radiation}: the number of photons also dilutes as $a^{-3}$, but each photon's wavelength is stretched by $a$, losing energy, so $\rho_r\propto a^{-4}$.
+  \item \textbf{Dark energy}, if it is a cosmological constant: an energy of empty space itself, which stays the same however much space there is, so $\rho_\Lambda$ is constant.
+\end{itemize}
+So the universe passes through eras. Early on, radiation dominates and $a\propto t^{1/2}$. After about $50\,000$ years, at a redshift of about $3400$, matter takes over and $a\propto t^{2/3}$. About six billion years ago the expansion began to \emph{accelerate}, and about four billion years ago dark energy overtook matter entirely; the universe is now heading toward exponential growth.
+
+\begin{keyidea}
+Today's cosmic inventory: about $5\%$ ordinary matter (atoms), $27\%$ dark matter, and $68\%$ dark energy, plus a trace of radiation and neutrinos. Everything we have ever seen or touched --- every star, planet, and person --- is the $5\%$.
+\end{keyidea}
+
+\section{The hot Big Bang}
+
+As the universe expands, radiation cools as $T\propto1/a$. Running the film backwards, the early universe was hot and dense, and its history can be read off by asking what was happening at each temperature, using the statistical mechanics of Chapter~\ref{ch:statmech} and the particle physics of Chapter~\ref{ch:particle}.
+\begin{itemize}[itemsep=4pt]
+  \item \textbf{First microsecond}: a quark--gluon plasma (Chapter~\ref{ch:nuclear}). As it cools below about $10^{12}\un{K}$, quarks are confined into protons and neutrons.
+  \item \textbf{One second} ($10^{10}\un{K}$): neutrinos stop interacting and stream freely; a cosmic neutrino background, at $1.9\un{K}$, still fills the universe. The ratio of neutrons to protons freezes out at about $1:6$, set by a Boltzmann factor and the neutron--proton mass difference.
+  \item \textbf{Three minutes} ($10^9\un{K}$): \textbf{Big Bang nucleosynthesis}. The universe is now cool enough for deuterium to survive, and almost all the remaining neutrons are swept into helium-4. The result: about $25\%$ of the mass in helium, the rest hydrogen, with traces of deuterium, helium-3, and lithium (Problem~\ref{prob:helium}). These predictions, which depend on the density of ordinary matter, match the oldest stars and gas clouds --- a precise test of physics in the first minutes of time.
+  \item \textbf{$380\,000$ years} ($3000\un{K}$): \textbf{recombination}. Electrons and nuclei combine into neutral atoms (Chapter~\ref{ch:plasma}). The universe, until now an opaque plasma, becomes transparent, and the light of that moment travels freely ever after.
+\end{itemize}
+
+\section{The cosmic microwave background}
+
+In 1965 Arno Penzias and Robert Wilson, testing a horn antenna at Bell Labs, found a faint microwave hiss coming equally from every direction, which no amount of cleaning (including removing pigeon droppings) would remove. It was the light of recombination, redshifted by a factor of $1100$ from $3000\un{K}$ to $2.7\un{K}$: the \textbf{cosmic microwave background} (CMB). In 1990 the COBE satellite measured its spectrum and found the most perfect blackbody ever observed, at $2.725\un{K}$ (Chapter~\ref{ch:statmech}) --- the smoking gun of a hot, dense early universe.
+
+\begin{center}
+\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}
+\begin{axis}[asc, width=0.76\linewidth, height=0.42\linewidth, xmin=0, xmax=720, ymin=0, ymax=440,
+  xlabel={frequency (GHz)}, ylabel={intensity (MJy/sr)}, xtick={0,100,...,700}, ytick={0,100,...,400}]
+  \addplot[ascwarm, thick] coordinates {(2.0,0.33) (6.0,2.87) (10.0,7.69) (14.0,14.54) (18.0,23.16) (22.1,33.33) (26.1,44.83) (30.1,57.45) (34.1,71.00) (38.1,85.30) (42.1,100.17) (46.1,115.47) (50.1,131.04) (54.1,146.76) (58.2,162.50) (62.2,178.15) (66.2,193.61) (70.2,208.78) (74.2,223.59) (78.2,237.96) (82.2,251.83) (86.2,265.14) (90.3,277.85) (94.3,289.90) (98.3,301.28) (102.3,311.95) (106.3,321.89) (110.3,331.08) (114.3,339.52) (118.3,347.19) (122.3,354.11) (126.4,360.26) (130.4,365.66) (134.4,370.32) (138.4,374.25) (142.4,377.47) (146.4,380.00) (150.4,381.84) (154.4,383.04) (158.4,383.61) (162.5,383.57) (166.5,382.96) (170.5,381.79) (174.5,380.10) (178.5,377.92) (182.5,375.26) (186.5,372.17) (190.5,368.66) (194.6,364.77) (198.6,360.53) (202.6,355.95) (206.6,351.07) (210.6,345.91) (214.6,340.51) (218.6,334.87) (222.6,329.04) (226.6,323.02) (230.7,316.85) (234.7,310.54) (238.7,304.11) (242.7,297.59) (246.7,290.99) (250.7,284.33) (254.7,277.62) (258.7,270.89) (262.7,264.14) (266.8,257.40) (270.8,250.67) (274.8,243.96) (278.8,237.29) (282.8,230.67) (286.8,224.11) (290.8,217.61) (294.8,211.19) (298.9,204.85) (302.9,198.59) (306.9,192.43) (310.9,186.37) (314.9,180.42) (318.9,174.57) (322.9,168.84) (326.9,163.22) (330.9,157.72) (335.0,152.34) (339.0,147.08) (343.0,141.95) (347.0,136.94) (351.0,132.05) (355.0,127.30) (359.0,122.66) (363.0,118.16) (367.0,113.77) (371.1,109.51) (375.1,105.38) (379.1,101.37) (383.1,97.47) (387.1,93.70) (391.1,90.05) (395.1,86.51) (399.1,83.08) (403.1,79.76) (407.2,76.56) (411.2,73.46) (415.2,70.47) (419.2,67.58) (423.2,64.80) (427.2,62.11) (431.2,59.51) (435.2,57.01) (439.3,54.61) (443.3,52.29) (447.3,50.05) (451.3,47.90) (455.3,45.84) (459.3,43.85) (463.3,41.94) (467.3,40.10) (471.3,38.33) (475.4,36.64) (479.4,35.01) (483.4,33.45) (487.4,31.95) (491.4,30.51) (495.4,29.13) (499.4,27.81) (503.4,26.54) (507.4,25.32) (511.5,24.16) (515.5,23.05) (519.5,21.98) (523.5,20.96) (527.5,19.98) (531.5,19.05) (535.5,18.15) (539.5,17.30) (543.6,16.48) (547.6,15.70) (551.6,14.95) (555.6,14.24) (559.6,13.55) (563.6,12.90) (567.6,12.28) (571.6,11.69) (575.6,11.12) (579.7,10.58) (583.7,10.07) (587.7,9.57) (591.7,9.10) (595.7,8.66) (599.7,8.23) (603.7,7.82) (607.7,7.44) (611.7,7.07) (615.8,6.72) (619.8,6.38) (623.8,6.06) (627.8,5.76) (631.8,5.47) (635.8,5.19) (639.8,4.93) (643.8,4.68) (647.9,4.44) (651.9,4.22) (655.9,4.00) (659.9,3.80) (663.9,3.61) (667.9,3.42) (671.9,3.25) (675.9,3.08) (679.9,2.92) (684.0,2.77) (688.0,2.63) (692.0,2.49) (696.0,2.36) (700.0,2.24)};
+  \draw[ascink!50, dashed] (axis cs:158,0) -- (axis cs:158,384);
+  \node[font=\small, anchor=west] at (axis cs:188,420) {peak at $160\un{GHz}$ ($\lambda\approx2\un{mm}$)};
+\end{axis}
+\end{tikzpicture}
+
+{\small The spectrum of the cosmic microwave background: a blackbody at $2.725\un{K}$. COBE's measurements fell on this curve so precisely that their error bars would be invisible at this scale.}
+\end{minipage}
+\end{center}
+
+The CMB is not quite uniform. Its temperature varies by about one part in $10^5$ across the sky, and those ripples are a snapshot of the infant universe. Before recombination, photons and ordinary matter formed a single fluid, in which gravity pulled matter into the slightly denser regions while photon pressure pushed back: sound waves rang through the young universe. At recombination they froze. The pattern of hot and cold spots shows a characteristic angular scale of about one degree --- the distance sound could travel before recombination --- with harmonics at smaller scales (the \emph{acoustic peaks}). The angular size of that ruler measures the geometry of space (it is flat), and the heights of the peaks measure the amounts of ordinary matter, dark matter, and dark energy. The Planck satellite has pinned down the standard cosmological model to about a percent.
+
+\section{Dark matter}
+
+The evidence for dark matter is overwhelming and comes from many independent directions: the flat rotation curves of galaxies and the motions of galaxies in clusters (Chapter~\ref{ch:astro}); gravitational lensing by clusters, which weighs them directly (Chapter~\ref{ch:gr}); the \emph{Bullet Cluster}, where two clusters collided and their hot gas, slowed by the collision, separated from their mass, which passed through unimpeded; the acoustic peaks of the CMB; and the formation of galaxies, which could not have grown from the tiny CMB ripples in the available time without the extra gravity of matter that does not feel radiation pressure.
+
+Whatever dark matter is, it is not ordinary matter: Big Bang nucleosynthesis and the CMB both limit ordinary matter to about $5\%$. It must be cold (moving slowly), interacting with ordinary matter feebly if at all, except through gravity. Leading candidates include weakly interacting massive particles (WIMPs), the extremely light \emph{axion}, and primordial black holes. Enormous detectors deep underground, colliders, and astronomical searches have so far found nothing. This is one of the clearest signs that the Standard Model of particle physics is incomplete (Chapter~\ref{ch:particle}).
+
+\section{Dark energy}
+
+In 1998, two teams measuring distant Type Ia supernovae (Chapter~\ref{ch:astro}) found them fainter than expected: farther away than they should be if the expansion were slowing down. The expansion of the universe is \emph{accelerating} (Nobel Prize, 2011). Something with negative pressure, filling space uniformly, is pushing it apart. The simplest explanation is Einstein's cosmological constant $\Lambda$, a constant energy density of the vacuum.
+
+Here lies the worst prediction in physics. Quantum field theory (Chapter~\ref{ch:qft}) says the vacuum should have an energy density from the zero-point energies of all fields. Estimated naively, it exceeds the observed dark energy by about $120$ orders of magnitude. Why the vacuum energy is so small, yet not zero, is the \emph{cosmological constant problem}, and it is completely unsolved. Recent galaxy surveys have hinted that dark energy may change slowly with time, which would rule out a pure cosmological constant; this is being tested intensively.
+
+\section{Inflation}
+
+The hot Big Bang leaves puzzles. \textbf{The horizon problem}: the CMB has the same temperature, to one part in $10^5$, in opposite directions of the sky, but in the standard expansion those regions were never close enough to exchange light before recombination (Problem~\ref{prob:horizon}). How did they reach the same temperature? \textbf{The flatness problem}: any departure from flatness grows with time, so for the universe to be flat today it must have been flat to one part in $10^{60}$ at early times. Who tuned it?
+
+In 1980 Alan Guth proposed \textbf{inflation}: a brief period, within the first $10^{-32}$ seconds, when the universe expanded exponentially, by a factor of at least $e^{60}$, driven by the vacuum energy of a field called the \emph{inflaton}. Inflation stretches a tiny, causally connected region to a size larger than the observable universe (solving the horizon problem) and flattens any curvature, like inflating a balloon to the size of the Earth (solving the flatness problem). Most strikingly, it explains where the ripples came from: quantum fluctuations of the inflaton (Chapter~\ref{ch:qm}), stretched to astronomical size, became the seeds of all structure. The predicted pattern --- nearly, but not exactly, the same amplitude on all scales --- matches the CMB beautifully. The galaxies may be quantum fluctuations, blown up. Inflation's most distinctive remaining prediction, a background of primordial gravitational waves imprinted as a twisting ``B-mode'' polarization of the CMB, is the object of intense searches.
+
+\section{Structure and the cosmic web}
+
+From the tiny ripples, gravity did the rest. Denser regions pulled in more matter, growing slowly at first, then collapsing into dark matter halos, inside which gas cooled to form the first stars a few hundred million years after the Big Bang, and then galaxies. Computer simulations (Chapter~\ref{ch:comp}) of this process reproduce the observed \emph{cosmic web}: galaxies strung along filaments around vast empty voids, with clusters at the intersections. The James Webb Space Telescope is now seeing galaxies from the first few hundred million years, earlier and brighter than many expected.
+
+\section{Open questions}
+
+The standard model of cosmology fits an extraordinary range of data with six parameters. But it raises as many questions as it answers. What is dark matter? What is dark energy, and is it constant? Measurements of $H_0$ from the nearby universe ($73$) and from the CMB ($67$) disagree by more than their errors --- the \emph{Hubble tension} --- which may be an error, or a crack in the model. Why is there more matter than antimatter (Chapter~\ref{ch:particle})? What drove inflation? And what, if anything, came before?
+
+\section{Problems}
+
+\begin{problems}
+\prob{1}\core With $H_0 = 70\un{km\,s^{-1}\,Mpc^{-1}}$, find the Hubble time in years. How fast does a galaxy $100\un{Mpc}$ away recede? Galaxies beyond about $4300\un{Mpc}$ recede faster than light. Why doesn't this violate relativity?
+
+\prob{1}\core \label{prob:critical-density} Compute the critical density for $H_0 = 70\un{km\,s^{-1}\,Mpc^{-1}}$, in $\mathrm{kg/m^3}$ and in protons per cubic metre. Compare with the density of air and of interstellar gas in our galaxy (about $10^6$ protons per cubic metre).
+
+\prob{1} The CMB was released at $z\approx1100$. What was its temperature then? At what wavelength did it peak then, and at what wavelength does it peak now? What colour would the sky have been at recombination?
+
+\prob{2}\core In a flat universe containing only matter, $a\propto t^{2/3}$. Show that the age of such a universe is $t_0 = 2/(3H_0)$, and evaluate it. The oldest stars are about $13$ billion years old. What does this tell you?
+
+\prob{2}\core \label{prob:friedmann} Derive the Friedmann equation from Newtonian mechanics: write the energy per unit mass of a galaxy on the surface of a sphere of radius $R(t) = a(t)r$, with mass $M = \tfrac43\pi R^3\rho$ inside, and identify the constant of integration with the curvature term.
+
+\prob{2} Today, radiation has $\Omega_r\approx9\times10^{-5}$ and matter $\Omega_m\approx0.31$. At what redshift were their densities equal? How old was the universe then, roughly?
+
+\prob{2} The CMB contains about $411$ photons per cubic centimetre. The average density of ordinary matter is about $0.25$ protons per cubic metre. Find the ratio of baryons to photons. Why is this tiny number one of the most important in cosmology?
+
+\prob{2}\core \label{prob:horizon} \emph{(The horizon problem.)} At recombination, light could have travelled at most about $3ct$ since the Big Bang (a factor accounts for expansion), with $t = 380\,000$ years. That region has since been stretched by a factor of $1100$. Today, the surface of last scattering is about $46$ billion light-years away. Estimate the angle on the sky subtended by a causally connected patch at recombination. Why is it a puzzle that the whole sky has the same temperature?
+
+\prob{3}\core \label{prob:helium} \emph{(Why a quarter of the universe is helium.)} Neutrons and protons stay in equilibrium, with $n/p = e^{-\Delta mc^2/\kB T}$ ($\Delta mc^2 = 1.29\un{MeV}$), until the weak interactions freeze out at $\kB T\approx0.8\un{MeV}$. Find $n/p$ at freeze-out. Free neutrons then decay (lifetime $880\un{s}$) for about three minutes until nucleosynthesis begins. Find the final $n/p$, and assuming all surviving neutrons end up in helium-4, show that the helium mass fraction is $Y = 2(n/p)/(1+n/p)$, and compare with the observed $Y\approx0.25$.
+
+\prob{3} \emph{(How much inflation?)} During the radiation era, $\abs{\Omega - 1}$ grows as $a^2$, and during the matter era as $a$. Today $\abs{\Omega-1}<0.01$. Estimate how close to $1$ the density had to be at the time when the temperature was $10^{15}\un{GeV}$ (when $a$ was about $10^{-28}$). During inflation, $\abs{\Omega - 1}$ shrinks as $e^{-2N}$, where $N$ is the number of e-folds. How large must $N$ be to explain the flatness without fine-tuning?
+
+\prob{3}\core \emph{(Olbers' paradox.)} Suppose the universe were infinite, eternal, static, and uniformly filled with stars. Show that every line of sight would eventually end on the surface of a star, so the night sky would be as bright as the surface of the Sun. Explain why our night sky is dark. Which matters more, the finite age of the universe or its expansion?
+\end{problems}
+
+\begin{reading}
+\rd{Barbara Ryden, \emph{Introduction to Cosmology}}{The best undergraduate introduction: clear, concise, and physical.}
+\rd{Steven Weinberg, \emph{The First Three Minutes}}{The classic popular account of the early universe, still superb.}
+\rd{Daniel Baumann, \emph{Cosmology}}{A modern graduate text covering inflation, the CMB, and structure formation.}
+\rd{Dodelson and Schmidt, \emph{Modern Cosmology}}{The standard graduate reference on the CMB and large-scale structure.}
+\end{reading}

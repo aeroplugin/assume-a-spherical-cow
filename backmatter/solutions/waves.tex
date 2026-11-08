@@ -1,0 +1,28 @@
+\solchapter{waves}
+
+\sol{waves}{1} The fundamental has $\lambda = 2L = 1.3\un{m}$, so $v = \lambda f = 143\un{m/s}$. Then $T = \mu v^2 = 0.006\times143^2\approx123\un{N}$. Since $f\propto\sqrt T$, raising the pitch an octave (doubling $f$) needs four times the tension.
+
+\sol{waves}{2} You hear $3$ beats per second at a pitch of $441.5\un{Hz}$. Wax adds mass and lowers a fork's frequency. Lowering $443\un{Hz}$ toward $440\un{Hz}$ makes the beats slower, as observed, so the wax lowered it.
+
+\sol{waves}{3} The fixed end is a node; the free end (no transverse force, so $\partial y/\partial x = 0$) is an antinode. The string must hold an odd number of quarter wavelengths: $L = (2n-1)\lambda/4$, so $\lambda_n = 4L/(2n-1)$ and $f_n = (2n-1)v/4L$. Only odd multiples of the fundamental appear.
+
+\sol{waves}{4} Approaching: $f = 700\times343/(343-30) = 767\un{Hz}$. Receding: $700\times343/(343+30) = 644\un{Hz}$. The ratio $1.19$ is $12\log_2(1.19)\approx3$ semitones --- about a minor third.
+
+\sol{waves}{5} Write the incident, reflected, and transmitted waves as $Ae^{i(k_1x-\omega t)}$, $Be^{i(-k_1x-\omega t)}$, $Ce^{i(k_2x-\omega t)}$. Continuity at $x=0$ gives $A + B = C$. The transverse force $T\,\partial y/\partial x$ must also be continuous; since $Tk = Z\omega$, this gives $Z_1(A-B) = Z_2C$. Solving, $B/A = (Z_1-Z_2)/(Z_1+Z_2)$ and $C/A = 2Z_1/(Z_1+Z_2)$. With power $\tfrac12Z\omega^2\abs{\text{amplitude}}^2$,
+\[
+  \frac{Z_1B^2 + Z_2C^2}{Z_1A^2} = \frac{(Z_1-Z_2)^2 + 4Z_1Z_2}{(Z_1+Z_2)^2} = 1 .
+\]
+
+\sol{waves}{6} From $\omega = \sqrt{gk}$: $v_p = \omega/k = \sqrt{g/k}$ and $v_g = \dd\omega/\dd k = \tfrac12\sqrt{g/k}$. In terms of the period, $v_g = g/2\omega = gT/4\pi$: $15.6\un{m/s}$ for $T = 20\un{s}$ and $6.2\un{m/s}$ for $T = 8\un{s}$. Over $2000\un{km}$ these take $36$ and $89$ hours, so the short-period waves arrive about $53$ hours, or two days, later.
+
+\sol{waves}{7} $\int e^{-x^2/2\sigma^2}e^{-ikx}\dd x = \sqrt{2\pi}\,\sigma e^{-\sigma^2k^2/2}$, and the factor $\cos k_0x$ shifts copies to $\pm k_0$: $\tilde y(k) = \sqrt{\pi/2}\,\sigma\,[e^{-\sigma^2(k-k_0)^2/2} + e^{-\sigma^2(k+k_0)^2/2}]$, Gaussians of width $1/\sigma$. Measuring widths as standard deviations of $\abs y^2$ and $\abs{\tilde y}^2$ gives $\Delta x = \sigma/\sqrt2$ and $\Delta k = 1/\sqrt2\sigma$, so $\Delta x\,\Delta k = \tfrac12$. For any packet, the Cauchy--Schwarz inequality (the same argument that proves Heisenberg's principle) gives $\Delta x\,\Delta k\ge\tfrac12$; the Gaussian is the unique minimizer.
+
+\sol{waves}{8} Substituting $y_j = Ae^{i(kja-\omega t)}$ into $m\ddot y_j = K(y_{j+1}-2y_j+y_{j-1})$ gives $-m\omega^2 = K(e^{ika}-2+e^{-ika}) = -4K\sin^2(ka/2)$, so $\omega = 2\sqrt{K/m}\abs{\sin(ka/2)}$. Then $v_g = a\sqrt{K/m}\cos(ka/2)$ for $0<k<\pi/a$, which vanishes at $k = \pi/a$. There, $y_j\propto(-1)^j$: neighbouring beads move exactly opposite, the pattern does not travel, and the chain vibrates at its maximum frequency.
+
+\sol{waves}{9} $\sin\theta = 1/2$, so $\theta = 30^\circ$. You hear the boom when the cone reaches you, when the jet is a horizontal distance $h/\tan30^\circ = 17\un{km}$ past you. At altitude the sound speed is about $300\un{m/s}$, so the jet flies at $600\un{m/s}$, and the delay is about $29\un{s}$.
+
+\sol{waves}{10} The energy per unit area of surface goes as $a^2$, and in shallow water the energy travels at the group velocity $\sqrt{gh}$ (equal to the phase velocity). The period is unchanged as the wave moves, so conservation of energy flux per unit crest length gives $a^2\sqrt{h} = $ constant, i.e.\ $a\propto h^{-1/4}$. From $4000\un{m}$ to $10\un{m}$ the amplitude grows by $400^{1/4} = 4.5$, from $0.5\un{m}$ to about $2.2\un{m}$ (and more as it runs up the shore). In the open ocean, $v = \sqrt{9.8\times4000} = 200\un{m/s}$, about $700\un{km/h}$.
+
+\sol{waves}{11} Each point of the profile moves at its local speed $\sqrt{g(h+\eta)}$, so crests ($\eta>0$) outrun troughs ($\eta<0$). The front face, where the surface rises from a trough ahead to a crest behind, is compressed: the crest catches up with the trough in front of it. Following points as they move (along \emph{characteristics}), the paths from crest and trough cross in a finite time, at which point the profile would be multivalued: before that, its front becomes vertical, and it breaks. Approaching a beach, $h$ shrinks and $\eta$ grows (Problem~\ref{ch:waves}.10), so $\eta/h$ rises and breaking is inevitable; waves typically break when their height is about $0.8$ of the depth.
+
+\sol{waves}{12} Let the boat move at speed $u$. A wave pattern that is steady relative to the boat, with crest normal at angle $\theta$ to the path, must have phase velocity $u\cos\theta$. Consider waves emitted when the boat was at $P$, a distance $D = ut$ behind its current position. Their energy has moved at the group velocity, half the phase velocity, a distance $\tfrac12D\cos\theta$ in direction $\theta$. With the boat at the origin and $P = (-D,0)$, these points are $(-D + \tfrac14D(1+\cos2\theta),\,\tfrac14D\sin2\theta)$: a circle of radius $D/4$ centred at $(-\tfrac34D,0)$. All the energy from all earlier times therefore lies inside a cone from the boat tangent to these circles, with half-angle $\arcsin\frac{D/4}{3D/4} = \arcsin\frac13 = 19.47^\circ$. Both $u$ and $D$ cancel.

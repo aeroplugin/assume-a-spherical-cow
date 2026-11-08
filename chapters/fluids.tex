@@ -1,0 +1,211 @@
+\chapter{Fluid dynamics}
+\label{ch:fluids}
+
+\buildson{Newtonian mechanics (Chapter~\ref{ch:newton})}
+
+\chapterdek{The unreasonably hard physics of everything that flows --- rivers, blood, weather, wings --- governed by an equation nobody can fully solve.}
+
+\begin{prototype}
+A sphere moving through a fluid. Move it slowly through honey and the flow is smooth, symmetric, and reversible. Move it fast through air and a wake forms, vortices peel off in alternating rows, and finally the wake dissolves into turbulence. One equation describes all of it, and one dimensionless number --- the Reynolds number --- tells you which regime you are in.
+\end{prototype}
+
+A fluid is a substance that cannot resist a shearing force at rest: push sideways on a layer of water and it flows, however gently you push. That includes liquids, gases, and on long enough timescales, glaciers and the Earth's mantle. Fluid dynamics is Newton's second law applied to a continuous medium, and its central equation, the Navier--Stokes equation, has been known since the 1840s. It is still not understood. Whether its solutions always stay smooth is one of the seven Millennium Prize Problems, with a million dollars attached.
+
+\section{The continuum}
+
+A glass of water contains $10^{25}$ molecules. We do not track them. Instead we treat the fluid as a \emph{continuum} with a density $\rho(\vb r,t)$, a velocity field $\vb v(\vb r,t)$, and a pressure $P(\vb r,t)$, defined by averaging over regions large compared to the molecular spacing but small compared to anything we care about. This is a spherical cow that works superbly for water in pipes and fails for gas in a near-vacuum, where molecules travel macroscopic distances between collisions.
+
+Pressure in a fluid at rest acts equally in all directions --- it is a scalar --- and always perpendicular to any surface.
+
+\section{Fluids at rest}
+
+A thin horizontal slab of fluid must support the weight of the fluid above it. Balancing forces gives $\dd P/\dd z = -\rho g$, so in a liquid of constant density,
+\[
+  P = P_0 + \rho g h
+\]
+at depth $h$. Every $10\un{m}$ of water adds about one atmosphere. Pressure depends only on depth, not on the shape of the container: a narrow tube of water $10\un{m}$ tall exerts the same pressure on its base as a lake $10\un{m}$ deep. \emph{Pascal's principle} says pressure applied anywhere in an enclosed fluid is transmitted everywhere, which is how hydraulic brakes and jacks multiply force.
+
+\begin{law}[Archimedes' principle]
+A body immersed in a fluid feels an upward buoyant force equal to the weight of the fluid it displaces.
+\end{law}
+The proof is beautiful: replace the body by the fluid it displaced. That fluid was in equilibrium, so the surrounding pressure must have pushed up on it with exactly its weight --- and the surrounding pressure does not know what has replaced it. A steel ship floats because its hull displaces a large volume of water; an iceberg floats with about $89\%$ submerged because ice is $89\%$ as dense as seawater.
+
+\section{Describing flow}
+
+A flowing fluid has a velocity field $\vb v(\vb r,t)$. The curves everywhere tangent to it are \emph{streamlines}. There are two ways to describe change: at a fixed point (the \emph{Eulerian} view, $\partial/\partial t$) or following a parcel of fluid as it moves (the \emph{Lagrangian} view). They are related by the \textbf{material derivative}
+\[
+  \frac{D}{Dt} = \pdv{}{t} + \vb v\cdot\grad .
+\]
+Even in a steady flow, a parcel accelerates as it is carried into faster or slower regions; the term $\vb v\cdot\grad\vb v$ captures this, and because it is quadratic in $\vb v$, it is the source of nearly everything difficult about fluids.
+
+Mass is conserved, which gives the \textbf{continuity equation}
+\[
+  \pdv{\rho}{t} + \grad\cdot(\rho\vb v) = 0 .
+\]
+Liquids, and gases moving much slower than sound, are nearly \emph{incompressible}, and then simply $\grad\cdot\vb v = 0$. In a pipe of varying cross-section $A$, this means $Av$ is constant: squeeze the end of a garden hose and the water speeds up.
+
+\section{Ideal flow and Bernoulli}
+
+Ignore viscosity for a moment. Newton's second law for a fluid parcel, pushed by pressure differences and pulled by gravity, is \textbf{Euler's equation},
+\[
+  \rho\,\frac{D\vb v}{Dt} = -\grad P + \rho\vb g .
+\]
+For steady, incompressible flow, integrating along a streamline gives
+
+\begin{law}[Bernoulli's equation]
+Along a streamline of steady, incompressible, inviscid flow,
+\[
+  P + \tfrac12\rho v^2 + \rho g h = \text{constant}.
+\]
+\end{law}
+
+It is energy conservation per unit volume: where the fluid speeds up, its pressure drops. Water escaping from a hole at depth $h$ in a tank leaves at $v = \sqrt{2gh}$ (\emph{Torricelli's law}), exactly the speed of something dropped from height $h$. A Venturi meter measures flow speed from the pressure drop in a constriction. A shower curtain billows inward because the moving air and water inside lower the pressure.
+
+\begin{center}
+\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}[scale=1.05]
+  \clip (-3.4,-2.3) rectangle (3.6,2.3);
+  \draw[ascblue, thick] (-3.4,0) -- (-1,0) (1,0) -- (3.4,0);
+  \draw[ascblue, thick] plot[smooth] coordinates {(-3.312,0.132) (-2.747,0.138) (-2.146,0.153) (-1.839,0.170) (-1.654,0.188) (-1.532,0.206) (-1.445,0.225) (-1.379,0.245) (-1.327,0.264) (-1.285,0.284) (-1.250,0.304) (-1.219,0.323) (-1.192,0.343) (-1.168,0.363) (-1.125,0.402) (-1.087,0.440) (-1.052,0.478) (-1.019,0.515) (-0.987,0.552) (-0.955,0.588) (-0.923,0.623) (-0.890,0.657) (-0.857,0.690) (-0.824,0.721) (-0.790,0.752) (-0.755,0.782) (-0.720,0.810) (-0.683,0.837) (-0.646,0.863) (-0.608,0.887) (-0.569,0.910) (-0.530,0.931) (-0.490,0.951) (-0.449,0.969) (-0.408,0.986) (-0.366,1.001) (-0.323,1.015) (-0.280,1.027) (-0.237,1.037) (-0.193,1.045) (-0.149,1.052) (-0.105,1.057) (-0.061,1.060) (-0.017,1.062) (0.028,1.061) (0.072,1.059) (0.116,1.056) (0.160,1.050) (0.204,1.043) (0.248,1.034) (0.291,1.024) (0.334,1.012) (0.376,0.998) (0.418,0.982) (0.459,0.965) (0.500,0.946) (0.540,0.926) (0.579,0.904) (0.618,0.881) (0.655,0.856) (0.692,0.830) (0.729,0.803) (0.764,0.774) (0.799,0.745) (0.832,0.714) (0.866,0.681) (0.898,0.648) (0.931,0.614) (0.963,0.579) (0.995,0.543) (1.027,0.506) (1.061,0.469) (1.096,0.430) (1.135,0.392) (1.179,0.353) (1.205,0.333) (1.234,0.313) (1.267,0.294) (1.305,0.274) (1.352,0.255) (1.410,0.235) (1.485,0.216) (1.588,0.197) (1.736,0.179) (1.971,0.161) (2.390,0.145) (3.312,0.132)};
+  \draw[ascblue, thick] plot[smooth] coordinates {(-3.312,-0.132) (-2.747,-0.138) (-2.146,-0.153) (-1.839,-0.170) (-1.654,-0.188) (-1.532,-0.206) (-1.445,-0.225) (-1.379,-0.245) (-1.327,-0.264) (-1.285,-0.284) (-1.250,-0.304) (-1.219,-0.323) (-1.192,-0.343) (-1.168,-0.363) (-1.125,-0.402) (-1.087,-0.440) (-1.052,-0.478) (-1.019,-0.515) (-0.987,-0.552) (-0.955,-0.588) (-0.923,-0.623) (-0.890,-0.657) (-0.857,-0.690) (-0.824,-0.721) (-0.790,-0.752) (-0.755,-0.782) (-0.720,-0.810) (-0.683,-0.837) (-0.646,-0.863) (-0.608,-0.887) (-0.569,-0.910) (-0.530,-0.931) (-0.490,-0.951) (-0.449,-0.969) (-0.408,-0.986) (-0.366,-1.001) (-0.323,-1.015) (-0.280,-1.027) (-0.237,-1.037) (-0.193,-1.045) (-0.149,-1.052) (-0.105,-1.057) (-0.061,-1.060) (-0.017,-1.062) (0.028,-1.061) (0.072,-1.059) (0.116,-1.056) (0.160,-1.050) (0.204,-1.043) (0.248,-1.034) (0.291,-1.024) (0.334,-1.012) (0.376,-0.998) (0.418,-0.982) (0.459,-0.965) (0.500,-0.946) (0.540,-0.926) (0.579,-0.904) (0.618,-0.881) (0.655,-0.856) (0.692,-0.830) (0.729,-0.803) (0.764,-0.774) (0.799,-0.745) (0.832,-0.714) (0.866,-0.681) (0.898,-0.648) (0.931,-0.614) (0.963,-0.579) (0.995,-0.543) (1.027,-0.506) (1.061,-0.469) (1.096,-0.430) (1.135,-0.392) (1.179,-0.353) (1.205,-0.333) (1.234,-0.313) (1.267,-0.294) (1.305,-0.274) (1.352,-0.255) (1.410,-0.235) (1.485,-0.216) (1.588,-0.197) (1.736,-0.179) (1.971,-0.161) (2.390,-0.145) (3.312,-0.132)};
+  \draw[ascblue, thick] plot[smooth] coordinates {(-3.377,0.383) (-3.135,0.389) (-2.763,0.402) (-2.490,0.415) (-2.282,0.430) (-2.118,0.445) (-1.987,0.461) (-1.878,0.477) (-1.786,0.494) (-1.708,0.511) (-1.639,0.528) (-1.579,0.545) (-1.526,0.563) (-1.478,0.580) (-1.433,0.598) (-1.393,0.615) (-1.355,0.633) (-1.320,0.650) (-1.287,0.668) (-1.255,0.685) (-1.225,0.702) (-1.196,0.719) (-1.168,0.736) (-1.141,0.753) (-1.115,0.769) (-1.089,0.786) (-1.039,0.818) (-0.990,0.849) (-0.943,0.879) (-0.896,0.908) (-0.849,0.936) (-0.803,0.963) (-0.756,0.988) (-0.710,1.012) (-0.663,1.035) (-0.616,1.056) (-0.569,1.076) (-0.521,1.095) (-0.473,1.112) (-0.425,1.127) (-0.376,1.141) (-0.328,1.153) (-0.279,1.163) (-0.229,1.172) (-0.180,1.179) (-0.130,1.184) (-0.081,1.188) (-0.031,1.190) (0.019,1.190) (0.068,1.189) (0.118,1.185) (0.168,1.180) (0.217,1.174) (0.266,1.165) (0.315,1.155) (0.364,1.144) (0.413,1.131) (0.461,1.116) (0.509,1.099) (0.557,1.081) (0.604,1.062) (0.651,1.041) (0.698,1.018) (0.745,0.994) (0.791,0.969) (0.837,0.943) (0.884,0.915) (0.931,0.886) (0.978,0.857) (1.027,0.826) (1.076,0.794) (1.102,0.778) (1.128,0.761) (1.154,0.745) (1.182,0.728) (1.210,0.711) (1.240,0.694) (1.271,0.676) (1.303,0.659) (1.337,0.642) (1.374,0.624) (1.413,0.607) (1.455,0.589) (1.501,0.572) (1.552,0.554) (1.609,0.537) (1.672,0.519) (1.745,0.502) (1.830,0.485) (1.930,0.469) (2.049,0.453) (2.195,0.437) (2.379,0.422) (2.616,0.408) (2.933,0.395) (3.377,0.383)};
+  \draw[ascblue, thick] plot[smooth] coordinates {(-3.377,-0.383) (-3.135,-0.389) (-2.763,-0.402) (-2.490,-0.415) (-2.282,-0.430) (-2.118,-0.445) (-1.987,-0.461) (-1.878,-0.477) (-1.786,-0.494) (-1.708,-0.511) (-1.639,-0.528) (-1.579,-0.545) (-1.526,-0.563) (-1.478,-0.580) (-1.433,-0.598) (-1.393,-0.615) (-1.355,-0.633) (-1.320,-0.650) (-1.287,-0.668) (-1.255,-0.685) (-1.225,-0.702) (-1.196,-0.719) (-1.168,-0.736) (-1.141,-0.753) (-1.115,-0.769) (-1.089,-0.786) (-1.039,-0.818) (-0.990,-0.849) (-0.943,-0.879) (-0.896,-0.908) (-0.849,-0.936) (-0.803,-0.963) (-0.756,-0.988) (-0.710,-1.012) (-0.663,-1.035) (-0.616,-1.056) (-0.569,-1.076) (-0.521,-1.095) (-0.473,-1.112) (-0.425,-1.127) (-0.376,-1.141) (-0.328,-1.153) (-0.279,-1.163) (-0.229,-1.172) (-0.180,-1.179) (-0.130,-1.184) (-0.081,-1.188) (-0.031,-1.190) (0.019,-1.190) (0.068,-1.189) (0.118,-1.185) (0.168,-1.180) (0.217,-1.174) (0.266,-1.165) (0.315,-1.155) (0.364,-1.144) (0.413,-1.131) (0.461,-1.116) (0.509,-1.099) (0.557,-1.081) (0.604,-1.062) (0.651,-1.041) (0.698,-1.018) (0.745,-0.994) (0.791,-0.969) (0.837,-0.943) (0.884,-0.915) (0.931,-0.886) (0.978,-0.857) (1.027,-0.826) (1.076,-0.794) (1.102,-0.778) (1.128,-0.761) (1.154,-0.745) (1.182,-0.728) (1.210,-0.711) (1.240,-0.694) (1.271,-0.676) (1.303,-0.659) (1.337,-0.642) (1.374,-0.624) (1.413,-0.607) (1.455,-0.589) (1.501,-0.572) (1.552,-0.554) (1.609,-0.537) (1.672,-0.519) (1.745,-0.502) (1.830,-0.485) (1.930,-0.469) (2.049,-0.453) (2.195,-0.437) (2.379,-0.422) (2.616,-0.408) (2.933,-0.395) (3.377,-0.383)};
+  \draw[ascblue, thick] plot[smooth] coordinates {(-3.378,0.710) (-3.236,0.715) (-2.991,0.727) (-2.786,0.739) (-2.612,0.752) (-2.463,0.765) (-2.334,0.779) (-2.220,0.793) (-2.119,0.807) (-2.029,0.821) (-1.947,0.836) (-1.873,0.851) (-1.805,0.866) (-1.742,0.881) (-1.684,0.896) (-1.629,0.912) (-1.578,0.927) (-1.530,0.942) (-1.484,0.957) (-1.440,0.972) (-1.398,0.987) (-1.358,1.002) (-1.319,1.016) (-1.282,1.031) (-1.246,1.045) (-1.210,1.060) (-1.176,1.074) (-1.142,1.087) (-1.109,1.101) (-1.076,1.114) (-1.044,1.127) (-1.013,1.140) (-0.982,1.153) (-0.951,1.165) (-0.920,1.177) (-0.890,1.189) (-0.860,1.200) (-0.830,1.212) (-0.801,1.222) (-0.771,1.233) (-0.742,1.243) (-0.713,1.253) (-0.684,1.262) (-0.655,1.272) (-0.626,1.280) (-0.597,1.289) (-0.539,1.305) (-0.482,1.319) (-0.424,1.332) (-0.367,1.343) (-0.309,1.353) (-0.252,1.361) (-0.194,1.367) (-0.137,1.372) (-0.079,1.375) (-0.022,1.376) (0.036,1.376) (0.093,1.374) (0.151,1.371) (0.209,1.366) (0.266,1.359) (0.323,1.350) (0.381,1.340) (0.438,1.329) (0.496,1.316) (0.554,1.301) (0.611,1.285) (0.640,1.276) (0.669,1.267) (0.698,1.258) (0.727,1.248) (0.757,1.238) (0.786,1.228) (0.816,1.217) (0.845,1.206) (0.875,1.195) (0.905,1.183) (0.936,1.171) (0.966,1.159) (0.997,1.147) (1.029,1.134) (1.060,1.121) (1.093,1.108) (1.125,1.094) (1.159,1.080) (1.193,1.067) (1.228,1.052) (1.264,1.038) (1.301,1.024) (1.339,1.009) (1.378,0.994) (1.419,0.979) (1.462,0.964) (1.506,0.949) (1.554,0.934) (1.603,0.919) (1.656,0.904) (1.712,0.889) (1.773,0.874) (1.838,0.859) (1.909,0.844) (1.987,0.829) (2.073,0.814) (2.168,0.800) (2.275,0.786) (2.397,0.772) (2.535,0.758) (2.696,0.745) (2.884,0.733) (3.107,0.721) (3.378,0.710)};
+  \draw[ascblue, thick] plot[smooth] coordinates {(-3.378,-0.710) (-3.236,-0.715) (-2.991,-0.727) (-2.786,-0.739) (-2.612,-0.752) (-2.463,-0.765) (-2.334,-0.779) (-2.220,-0.793) (-2.119,-0.807) (-2.029,-0.821) (-1.947,-0.836) (-1.873,-0.851) (-1.805,-0.866) (-1.742,-0.881) (-1.684,-0.896) (-1.629,-0.912) (-1.578,-0.927) (-1.530,-0.942) (-1.484,-0.957) (-1.440,-0.972) (-1.398,-0.987) (-1.358,-1.002) (-1.319,-1.016) (-1.282,-1.031) (-1.246,-1.045) (-1.210,-1.060) (-1.176,-1.074) (-1.142,-1.087) (-1.109,-1.101) (-1.076,-1.114) (-1.044,-1.127) (-1.013,-1.140) (-0.982,-1.153) (-0.951,-1.165) (-0.920,-1.177) (-0.890,-1.189) (-0.860,-1.200) (-0.830,-1.212) (-0.801,-1.222) (-0.771,-1.233) (-0.742,-1.243) (-0.713,-1.253) (-0.684,-1.262) (-0.655,-1.272) (-0.626,-1.280) (-0.597,-1.289) (-0.539,-1.305) (-0.482,-1.319) (-0.424,-1.332) (-0.367,-1.343) (-0.309,-1.353) (-0.252,-1.361) (-0.194,-1.367) (-0.137,-1.372) (-0.079,-1.375) (-0.022,-1.376) (0.036,-1.376) (0.093,-1.374) (0.151,-1.371) (0.209,-1.366) (0.266,-1.359) (0.323,-1.350) (0.381,-1.340) (0.438,-1.329) (0.496,-1.316) (0.554,-1.301) (0.611,-1.285) (0.640,-1.276) (0.669,-1.267) (0.698,-1.258) (0.727,-1.248) (0.757,-1.238) (0.786,-1.228) (0.816,-1.217) (0.845,-1.206) (0.875,-1.195) (0.905,-1.183) (0.936,-1.171) (0.966,-1.159) (0.997,-1.147) (1.029,-1.134) (1.060,-1.121) (1.093,-1.108) (1.125,-1.094) (1.159,-1.080) (1.193,-1.067) (1.228,-1.052) (1.264,-1.038) (1.301,-1.024) (1.339,-1.009) (1.378,-0.994) (1.419,-0.979) (1.462,-0.964) (1.506,-0.949) (1.554,-0.934) (1.603,-0.919) (1.656,-0.904) (1.712,-0.889) (1.773,-0.874) (1.838,-0.859) (1.909,-0.844) (1.987,-0.829) (2.073,-0.814) (2.168,-0.800) (2.275,-0.786) (2.397,-0.772) (2.535,-0.758) (2.696,-0.745) (2.884,-0.733) (3.107,-0.721) (3.378,-0.710)};
+  \draw[ascblue, thick] plot[smooth] coordinates {(-3.374,1.086) (-3.273,1.092) (-3.088,1.103) (-2.925,1.114) (-2.779,1.125) (-2.648,1.137) (-2.529,1.149) (-2.420,1.161) (-2.320,1.174) (-2.228,1.186) (-2.143,1.199) (-2.063,1.212) (-1.989,1.224) (-1.919,1.237) (-1.853,1.250) (-1.790,1.263) (-1.730,1.276) (-1.673,1.289) (-1.619,1.302) (-1.566,1.314) (-1.516,1.327) (-1.467,1.339) (-1.420,1.352) (-1.374,1.364) (-1.329,1.376) (-1.286,1.388) (-1.243,1.399) (-1.201,1.411) (-1.161,1.422) (-1.120,1.433) (-1.081,1.444) (-1.042,1.454) (-1.004,1.465) (-0.966,1.475) (-0.929,1.484) (-0.892,1.494) (-0.855,1.503) (-0.819,1.512) (-0.783,1.520) (-0.747,1.528) (-0.711,1.536) (-0.676,1.544) (-0.641,1.551) (-0.606,1.558) (-0.571,1.564) (-0.536,1.570) (-0.502,1.576) (-0.467,1.582) (-0.433,1.587) (-0.399,1.591) (-0.365,1.596) (-0.331,1.600) (-0.296,1.603) (-0.262,1.606) (-0.229,1.609) (-0.195,1.612) (-0.161,1.614) (-0.127,1.615) (-0.093,1.617) (-0.059,1.617) (-0.025,1.618) (0.008,1.618) (0.042,1.618) (0.076,1.617) (0.110,1.616) (0.144,1.615) (0.178,1.613) (0.212,1.610) (0.246,1.608) (0.279,1.605) (0.314,1.601) (0.348,1.598) (0.382,1.593) (0.416,1.589) (0.450,1.584) (0.485,1.579) (0.519,1.573) (0.554,1.567) (0.588,1.561) (0.623,1.554) (0.658,1.547) (0.694,1.540) (0.729,1.532) (0.765,1.524) (0.801,1.516) (0.837,1.507) (0.873,1.498) (0.910,1.489) (0.947,1.479) (0.985,1.470) (1.023,1.459) (1.062,1.449) (1.101,1.438) (1.140,1.428) (1.181,1.416) (1.222,1.405) (1.264,1.394) (1.307,1.382) (1.351,1.370) (1.397,1.358) (1.443,1.346) (1.491,1.333) (1.541,1.321) (1.592,1.308) (1.646,1.295) (1.701,1.283) (1.760,1.270) (1.821,1.257) (1.885,1.244) (1.953,1.231) (2.025,1.218) (2.102,1.205) (2.185,1.192) (2.273,1.180) (2.369,1.167) (2.473,1.155) (2.587,1.143) (2.712,1.131) (2.850,1.119) (3.004,1.108) (3.178,1.097) (3.374,1.086)};
+  \draw[ascblue, thick] plot[smooth] coordinates {(-3.374,-1.086) (-3.273,-1.092) (-3.088,-1.103) (-2.925,-1.114) (-2.779,-1.125) (-2.648,-1.137) (-2.529,-1.149) (-2.420,-1.161) (-2.320,-1.174) (-2.228,-1.186) (-2.143,-1.199) (-2.063,-1.212) (-1.989,-1.224) (-1.919,-1.237) (-1.853,-1.250) (-1.790,-1.263) (-1.730,-1.276) (-1.673,-1.289) (-1.619,-1.302) (-1.566,-1.314) (-1.516,-1.327) (-1.467,-1.339) (-1.420,-1.352) (-1.374,-1.364) (-1.329,-1.376) (-1.286,-1.388) (-1.243,-1.399) (-1.201,-1.411) (-1.161,-1.422) (-1.120,-1.433) (-1.081,-1.444) (-1.042,-1.454) (-1.004,-1.465) (-0.966,-1.475) (-0.929,-1.484) (-0.892,-1.494) (-0.855,-1.503) (-0.819,-1.512) (-0.783,-1.520) (-0.747,-1.528) (-0.711,-1.536) (-0.676,-1.544) (-0.641,-1.551) (-0.606,-1.558) (-0.571,-1.564) (-0.536,-1.570) (-0.502,-1.576) (-0.467,-1.582) (-0.433,-1.587) (-0.399,-1.591) (-0.365,-1.596) (-0.331,-1.600) (-0.296,-1.603) (-0.262,-1.606) (-0.229,-1.609) (-0.195,-1.612) (-0.161,-1.614) (-0.127,-1.615) (-0.093,-1.617) (-0.059,-1.617) (-0.025,-1.618) (0.008,-1.618) (0.042,-1.618) (0.076,-1.617) (0.110,-1.616) (0.144,-1.615) (0.178,-1.613) (0.212,-1.610) (0.246,-1.608) (0.279,-1.605) (0.314,-1.601) (0.348,-1.598) (0.382,-1.593) (0.416,-1.589) (0.450,-1.584) (0.485,-1.579) (0.519,-1.573) (0.554,-1.567) (0.588,-1.561) (0.623,-1.554) (0.658,-1.547) (0.694,-1.540) (0.729,-1.532) (0.765,-1.524) (0.801,-1.516) (0.837,-1.507) (0.873,-1.498) (0.910,-1.489) (0.947,-1.479) (0.985,-1.470) (1.023,-1.459) (1.062,-1.449) (1.101,-1.438) (1.140,-1.428) (1.181,-1.416) (1.222,-1.405) (1.264,-1.394) (1.307,-1.382) (1.351,-1.370) (1.397,-1.358) (1.443,-1.346) (1.491,-1.333) (1.541,-1.321) (1.592,-1.308) (1.646,-1.295) (1.701,-1.283) (1.760,-1.270) (1.821,-1.257) (1.885,-1.244) (1.953,-1.231) (2.025,-1.218) (2.102,-1.205) (2.185,-1.192) (2.273,-1.180) (2.369,-1.167) (2.473,-1.155) (2.587,-1.143) (2.712,-1.131) (2.850,-1.119) (3.004,-1.108) (3.178,-1.097) (3.374,-1.086)};
+  \draw[ascblue, thick] plot[smooth] coordinates {(-3.385,1.510) (-3.199,1.521) (-3.054,1.531) (-2.920,1.541) (-2.796,1.552) (-2.682,1.562) (-2.574,1.573) (-2.474,1.584) (-2.380,1.594) (-2.291,1.605) (-2.207,1.616) (-2.127,1.627) (-2.051,1.638) (-1.978,1.649) (-1.909,1.659) (-1.842,1.670) (-1.778,1.681) (-1.716,1.691) (-1.656,1.702) (-1.597,1.712) (-1.541,1.723) (-1.486,1.733) (-1.432,1.743) (-1.380,1.752) (-1.329,1.762) (-1.279,1.771) (-1.229,1.780) (-1.181,1.789) (-1.134,1.798) (-1.087,1.806) (-1.041,1.815) (-0.995,1.823) (-0.950,1.830) (-0.906,1.838) (-0.862,1.845) (-0.819,1.852) (-0.776,1.858) (-0.733,1.865) (-0.690,1.871) (-0.648,1.876) (-0.606,1.881) (-0.565,1.886) (-0.523,1.891) (-0.482,1.896) (-0.441,1.900) (-0.400,1.903) (-0.359,1.907) (-0.319,1.909) (-0.278,1.912) (-0.238,1.914) (-0.198,1.916) (-0.157,1.918) (-0.117,1.919) (-0.077,1.920) (-0.037,1.921) (0.003,1.921) (0.043,1.920) (0.084,1.920) (0.124,1.919) (0.164,1.918) (0.204,1.916) (0.245,1.914) (0.285,1.912) (0.326,1.909) (0.366,1.906) (0.407,1.903) (0.448,1.899) (0.489,1.895) (0.530,1.890) (0.572,1.886) (0.613,1.881) (0.655,1.875) (0.697,1.870) (0.740,1.864) (0.783,1.857) (0.826,1.851) (0.869,1.844) (0.913,1.837) (0.958,1.829) (1.003,1.821) (1.048,1.813) (1.095,1.805) (1.142,1.797) (1.189,1.788) (1.238,1.779) (1.287,1.770) (1.337,1.760) (1.389,1.751) (1.441,1.741) (1.495,1.731) (1.550,1.721) (1.607,1.711) (1.665,1.700) (1.726,1.690) (1.788,1.679) (1.853,1.668) (1.920,1.658) (1.990,1.647) (2.063,1.636) (2.140,1.625) (2.221,1.614) (2.306,1.603) (2.395,1.592) (2.490,1.582) (2.592,1.571) (2.700,1.560) (2.816,1.550) (2.941,1.540) (3.077,1.530) (3.224,1.520) (3.385,1.510)};
+  \draw[ascblue, thick] plot[smooth] coordinates {(-3.385,-1.510) (-3.199,-1.521) (-3.054,-1.531) (-2.920,-1.541) (-2.796,-1.552) (-2.682,-1.562) (-2.574,-1.573) (-2.474,-1.584) (-2.380,-1.594) (-2.291,-1.605) (-2.207,-1.616) (-2.127,-1.627) (-2.051,-1.638) (-1.978,-1.649) (-1.909,-1.659) (-1.842,-1.670) (-1.778,-1.681) (-1.716,-1.691) (-1.656,-1.702) (-1.597,-1.712) (-1.541,-1.723) (-1.486,-1.733) (-1.432,-1.743) (-1.380,-1.752) (-1.329,-1.762) (-1.279,-1.771) (-1.229,-1.780) (-1.181,-1.789) (-1.134,-1.798) (-1.087,-1.806) (-1.041,-1.815) (-0.995,-1.823) (-0.950,-1.830) (-0.906,-1.838) (-0.862,-1.845) (-0.819,-1.852) (-0.776,-1.858) (-0.733,-1.865) (-0.690,-1.871) (-0.648,-1.876) (-0.606,-1.881) (-0.565,-1.886) (-0.523,-1.891) (-0.482,-1.896) (-0.441,-1.900) (-0.400,-1.903) (-0.359,-1.907) (-0.319,-1.909) (-0.278,-1.912) (-0.238,-1.914) (-0.198,-1.916) (-0.157,-1.918) (-0.117,-1.919) (-0.077,-1.920) (-0.037,-1.921) (0.003,-1.921) (0.043,-1.920) (0.084,-1.920) (0.124,-1.919) (0.164,-1.918) (0.204,-1.916) (0.245,-1.914) (0.285,-1.912) (0.326,-1.909) (0.366,-1.906) (0.407,-1.903) (0.448,-1.899) (0.489,-1.895) (0.530,-1.890) (0.572,-1.886) (0.613,-1.881) (0.655,-1.875) (0.697,-1.870) (0.740,-1.864) (0.783,-1.857) (0.826,-1.851) (0.869,-1.844) (0.913,-1.837) (0.958,-1.829) (1.003,-1.821) (1.048,-1.813) (1.095,-1.805) (1.142,-1.797) (1.189,-1.788) (1.238,-1.779) (1.287,-1.770) (1.337,-1.760) (1.389,-1.751) (1.441,-1.741) (1.495,-1.731) (1.550,-1.721) (1.607,-1.711) (1.665,-1.700) (1.726,-1.690) (1.788,-1.679) (1.853,-1.668) (1.920,-1.658) (1.990,-1.647) (2.063,-1.636) (2.140,-1.625) (2.221,-1.614) (2.306,-1.603) (2.395,-1.592) (2.490,-1.582) (2.592,-1.571) (2.700,-1.560) (2.816,-1.550) (2.941,-1.540) (3.077,-1.530) (3.224,-1.520) (3.385,-1.510)};
+  \draw[ascblue, thick] plot[smooth] coordinates {(-3.395,1.978) (-3.275,1.985) (-3.140,1.994) (-3.013,2.003) (-2.893,2.012) (-2.780,2.021) (-2.674,2.030) (-2.572,2.039) (-2.476,2.048) (-2.383,2.058) (-2.295,2.067) (-2.211,2.076) (-2.129,2.085) (-2.051,2.094) (-1.975,2.103) (-1.902,2.111) (-1.831,2.120) (-1.762,2.129) (-1.695,2.137) (-1.630,2.146) (-1.566,2.154) (-1.504,2.162) (-1.443,2.170) (-1.383,2.177) (-1.325,2.185) (-1.267,2.192) (-1.211,2.199) (-1.155,2.206) (-1.100,2.212) (-1.046,2.219) (-0.993,2.225) (-0.940,2.231) (-0.888,2.236) (-0.836,2.242) (-0.785,2.247) (-0.734,2.251) (-0.684,2.256) (-0.634,2.260) (-0.584,2.264) (-0.535,2.268) (-0.486,2.271) (-0.437,2.274) (-0.388,2.277) (-0.340,2.279) (-0.292,2.281) (-0.243,2.283) (-0.195,2.285) (-0.148,2.286) (-0.100,2.287) (-0.052,2.287) (-0.004,2.287) (0.044,2.287) (0.092,2.287) (0.140,2.286) (0.187,2.285) (0.235,2.283) (0.284,2.282) (0.332,2.280) (0.380,2.277) (0.429,2.275) (0.478,2.272) (0.527,2.268) (0.576,2.265) (0.626,2.261) (0.676,2.257) (0.726,2.252) (0.777,2.247) (0.828,2.242) (0.879,2.237) (0.931,2.232) (0.984,2.226) (1.037,2.220) (1.091,2.213) (1.146,2.207) (1.202,2.200) (1.258,2.193) (1.315,2.186) (1.374,2.178) (1.433,2.171) (1.494,2.163) (1.556,2.155) (1.619,2.147) (1.684,2.139) (1.751,2.130) (1.819,2.122) (1.890,2.113) (1.963,2.104) (2.038,2.095) (2.116,2.086) (2.197,2.077) (2.281,2.068) (2.369,2.059) (2.460,2.050) (2.556,2.041) (2.656,2.032) (2.762,2.023) (2.874,2.014) (2.992,2.005) (3.118,1.996) (3.252,1.987) (3.395,1.978)};
+  \draw[ascblue, thick] plot[smooth] coordinates {(-3.395,-1.978) (-3.275,-1.985) (-3.140,-1.994) (-3.013,-2.003) (-2.893,-2.012) (-2.780,-2.021) (-2.674,-2.030) (-2.572,-2.039) (-2.476,-2.048) (-2.383,-2.058) (-2.295,-2.067) (-2.211,-2.076) (-2.129,-2.085) (-2.051,-2.094) (-1.975,-2.103) (-1.902,-2.111) (-1.831,-2.120) (-1.762,-2.129) (-1.695,-2.137) (-1.630,-2.146) (-1.566,-2.154) (-1.504,-2.162) (-1.443,-2.170) (-1.383,-2.177) (-1.325,-2.185) (-1.267,-2.192) (-1.211,-2.199) (-1.155,-2.206) (-1.100,-2.212) (-1.046,-2.219) (-0.993,-2.225) (-0.940,-2.231) (-0.888,-2.236) (-0.836,-2.242) (-0.785,-2.247) (-0.734,-2.251) (-0.684,-2.256) (-0.634,-2.260) (-0.584,-2.264) (-0.535,-2.268) (-0.486,-2.271) (-0.437,-2.274) (-0.388,-2.277) (-0.340,-2.279) (-0.292,-2.281) (-0.243,-2.283) (-0.195,-2.285) (-0.148,-2.286) (-0.100,-2.287) (-0.052,-2.287) (-0.004,-2.287) (0.044,-2.287) (0.092,-2.287) (0.140,-2.286) (0.187,-2.285) (0.235,-2.283) (0.284,-2.282) (0.332,-2.280) (0.380,-2.277) (0.429,-2.275) (0.478,-2.272) (0.527,-2.268) (0.576,-2.265) (0.626,-2.261) (0.676,-2.257) (0.726,-2.252) (0.777,-2.247) (0.828,-2.242) (0.879,-2.237) (0.931,-2.232) (0.984,-2.226) (1.037,-2.220) (1.091,-2.213) (1.146,-2.207) (1.202,-2.200) (1.258,-2.193) (1.315,-2.186) (1.374,-2.178) (1.433,-2.171) (1.494,-2.163) (1.556,-2.155) (1.619,-2.147) (1.684,-2.139) (1.751,-2.130) (1.819,-2.122) (1.890,-2.113) (1.963,-2.104) (2.038,-2.095) (2.116,-2.086) (2.197,-2.077) (2.281,-2.068) (2.369,-2.059) (2.460,-2.050) (2.556,-2.041) (2.656,-2.032) (2.762,-2.023) (2.874,-2.014) (2.992,-2.005) (3.118,-1.996) (3.252,-1.987) (3.395,-1.978)};
+  \fill[ascgraybg] (0,0) circle (1);
+  \draw[thick] (0,0) circle (1);
+  \foreach \y in {-1.6,1.6} \draw[ascink, -{Stealth[length=6pt]}] (-3.35,\y) -- (-2.75,\y);
+\end{tikzpicture}
+
+{\small Ideal (frictionless) flow past a cylinder. Streamlines crowd together over the top and bottom, where the fluid is fastest and, by Bernoulli, the pressure is lowest. The pattern is the same in front and behind, so the pressure pushes equally on both sides: ideal flow predicts no drag at all. This is d'Alembert's paradox, and viscosity resolves it.}
+\end{minipage}
+\end{center}
+
+\begin{remark}
+Bernoulli's equation is often used to ``explain'' how wings make lift: air over the curved top travels farther, so must go faster, so has lower pressure. The second step is false --- there is no reason the air above and below must arrive at the trailing edge together, and in fact the upper air arrives first. The honest explanation is that a wing deflects air downward, and by Newton's third law the air pushes the wing up; the pressure differences are real but are the \emph{mechanism} of that deflection, not an independent cause. See \S\ref{sec:lift}.
+\end{remark}
+
+\section{Vorticity}
+
+The \emph{vorticity} $\boldsymbol\omega = \curl\vb v$ measures local spinning of the fluid (Chapter~\ref{ch:math}). A flow with zero vorticity is \emph{irrotational}, and for an ideal fluid, \textbf{Kelvin's circulation theorem} says vorticity can be neither created nor destroyed: it is carried along with the fluid, and vortex lines move as if frozen in. A smoke ring is a vortex ring that holds together for metres because of this. A tornado or a draining bathtub concentrates vorticity, spinning faster as it narrows, like a skater pulling in her arms (Chapter~\ref{ch:newton}). In real fluids, vorticity is born at solid boundaries, where viscosity acts.
+
+\section{Viscosity and the Navier--Stokes equation}
+
+Real fluids resist shearing. If adjacent layers slide past each other with a velocity gradient $\dd v/\dd y$, the shear stress between them is
+\[
+  \tau = \eta\,\dv{v}{y},
+\]
+where $\eta$ is the \emph{viscosity}: about $10^{-3}\un{Pa\,s}$ for water, $2\times10^{-5}$ for air, $10$ for honey, and $10^{21}$ for the Earth's mantle. At a solid surface, a viscous fluid does not slip: the fluid touching the wall moves with it. Adding viscous forces to Euler's equation gives
+
+\begin{law}[The Navier--Stokes equation]
+For an incompressible fluid,
+\[
+  \rho\left(\pdv{\vb v}{t} + \vb v\cdot\grad\vb v\right) = -\grad P + \eta\nabla^2\vb v + \rho\vb g,
+  \qquad \grad\cdot\vb v = 0 .
+\]
+\end{law}
+
+It is Newton's second law, nothing more: mass times acceleration on the left, pressure, viscous, and gravitational forces on the right. The trouble is the nonlinear term $\vb v\cdot\grad\vb v$.
+
+\section{The Reynolds number}
+
+Compare the two forces that fight over a flow of speed $v$ around an object of size $L$. Inertia (the nonlinear term) scales as $\rho v^2/L$; viscous force scales as $\eta v/L^2$. Their ratio is the \textbf{Reynolds number}:
+\[
+  \mathrm{Re} = \frac{\rho vL}{\eta} = \frac{vL}{\nu},
+\]
+where $\nu = \eta/\rho$ is the \emph{kinematic viscosity}.
+
+\begin{keyidea}
+Two flows with the same Reynolds number and the same geometry are the same flow, just rescaled. A model plane in a wind tunnel, a real plane in the sky, and a model in a water tank all behave alike if their Reynolds numbers match. This \emph{dynamic similarity} is dimensional analysis (Chapter~\ref{ch:math}) at its most profitable, and it is why engineers can design aircraft at all.
+\end{keyidea}
+
+The range of Reynolds numbers in nature is staggering:
+\begin{itemize}[itemsep=2pt]
+  \item a swimming bacterium: $\mathrm{Re}\sim10^{-5}$;
+  \item a sperm cell: $10^{-2}$;
+  \item a falling raindrop: $10^{3}$;
+  \item a human swimmer: $10^{6}$;
+  \item an airliner wing: $10^{8}$;
+  \item the atmosphere: $10^{10}$ and beyond.
+\end{itemize}
+
+\textbf{Low Reynolds number} ($\mathrm{Re}\ll1$): inertia is irrelevant, and the Navier--Stokes equation becomes linear. Drag on a sphere is \emph{Stokes' law}, $F = 6\pi\eta rv$. Flows are smooth and, remarkably, \emph{reversible}: stir dye into corn syrup carefully, then unstir it, and the dye blob reassembles. A bacterium that stops swimming coasts for about a tenth of an atomic diameter. Life at low Reynolds number is so alien that swimming by any reciprocal motion, like a scallop opening and closing, gets you nowhere (Problem~\ref{prob:scallop}). Bacteria swim by rotating corkscrew flagella (Chapter~\ref{ch:bio}).
+
+\textbf{High Reynolds number}: inertia dominates, viscosity matters only in thin layers near surfaces, and flows become unstable --- they shed vortices, form wakes, and eventually go turbulent.
+
+\section{Flow in pipes}
+
+Steady viscous flow through a pipe of radius $R$ and length $\ell$ has a parabolic velocity profile, fastest in the middle and zero at the walls. The volume flow rate under a pressure difference $\Delta P$ is \textbf{Poiseuille's law}:
+\[
+  Q = \frac{\pi R^4\,\Delta P}{8\eta\ell} .
+\]
+That fourth power is dramatic. Halve the radius of a pipe and, at fixed pressure, the flow drops sixteenfold. This is why narrowing of the arteries is so dangerous, and why your body regulates blood flow by small changes in the radius of arterioles (Chapter~\ref{ch:bio}). Above $\mathrm{Re}\approx2000$, pipe flow becomes turbulent and the drag rises sharply.
+
+\section{Drag, wakes, and lift}
+\label{sec:lift}
+
+At high Reynolds number, viscosity is confined to a thin \emph{boundary layer} on an object's surface, of thickness $\sim L/\sqrt{\mathrm{Re}}$. Outside it, the flow is nearly ideal. The boundary layer can \emph{separate} from the surface, leaving a broad, low-pressure wake behind the object, and the pressure difference between front and back is what causes most drag: $F\approx\tfrac12C_D\rho Av^2$ with $C_D$ of order one (Chapter~\ref{ch:newton}).
+
+A golf ball's dimples are a clever trick. They trip the boundary layer into turbulence, which clings to the ball longer before separating, shrinking the wake and roughly halving the drag. A smooth golf ball would travel about half as far.
+
+\textbf{Lift} on a wing comes from \emph{circulation}, a net swirl $\Gamma = \oint\vb v\cdot\dd\vb l$ around the wing. The sharp trailing edge forces the flow to leave smoothly from it (the \emph{Kutta condition}), which fixes the circulation, and the lift per unit span is
+\[
+  L' = \rho v\Gamma \qquad\text{(Kutta--Joukowski theorem)}.
+\]
+Equivalently, the wing turns a large mass of air downward. A spinning ball has circulation too, and so feels a sideways force --- the \emph{Magnus effect} that curves a football free kick or a tennis topspin shot.
+
+\section{Turbulence}
+
+At high enough Reynolds number, flow becomes \emph{turbulent}: chaotic, three-dimensional, full of eddies of every size, and far better at mixing than smooth flow. Turbulence is everywhere --- in rivers, chimney smoke, the atmosphere, the Sun, the coffee you stir --- and it is the great unsolved problem of classical physics.
+
+The best partial understanding comes from a picture of Richardson: big eddies break into smaller ones, which break into smaller ones still, passing energy down a \emph{cascade} until, at small enough scales, viscosity turns it into heat. In 1941 Kolmogorov argued that in the middle of the cascade, the statistics can depend only on the rate of energy transfer per unit mass, $\varepsilon$. Dimensional analysis then fixes the energy spectrum,
+\[
+  E(k)\propto \varepsilon^{2/3}k^{-5/3},
+\]
+and the smallest eddies have size $\eta_K = (\nu^3/\varepsilon)^{1/4}$. Both predictions are remarkably close to measurements, though not exactly right, and the corrections are a subject of active research.
+
+\section{Surface tension}
+
+Molecules at a liquid's surface are missing neighbours on one side, so creating surface costs energy: the \emph{surface tension} $\gamma$, about $0.072\un{N/m}$ for water. A curved surface therefore has a pressure jump across it, the \emph{Laplace pressure}, $\Delta P = 2\gamma/R$ for a sphere of radius $R$. Small drops are spherical, water striders walk on ponds, water climbs narrow glass tubes (\emph{capillarity}), and a falling stream of water breaks into droplets. Whether gravity or surface tension wins is set by the \emph{capillary length} $\sqrt{\gamma/\rho g}\approx2.7\un{mm}$ for water: drops smaller than this are round, puddles larger than this are flat.
+
+\section{Problems}
+
+\begin{problems}
+\prob{1}\core Find the pressure at the bottom of the Mariana Trench, $11\un{km}$ deep. Express it in atmospheres. How much does the density of water increase there, given its bulk modulus of $2.2\un{GPa}$?
+
+\prob{1} Show that an iceberg floats with $\rho_{\text{ice}}/\rho_{\text{sea}}\approx 89\%$ of its volume submerged. When it melts, does the sea level rise? (For a floating cube of ice in a glass of fresh water? For an iceberg in seawater?)
+
+\prob{1} Estimate the Reynolds numbers of a bacterium ($2\un{\mu m}$, $30\un{\mu m/s}$), a person swimming, a car on a motorway, and blood in the human aorta (diameter $2.5\un{cm}$, speed $0.3\un{m/s}$, $\nu\approx3\times10^{-6}\un{m^2/s}$). Which flows are turbulent?
+
+\prob{2}\core A cylindrical tank of cross-section $A$, filled to height $h_0$, drains through a small hole of area $a$ at the bottom. Using Torricelli's law, show that the time to empty is $(A/a)\sqrt{2h_0/g}$. Why does the water level fall faster at the beginning?
+
+\prob{2} Fog droplets have radius about $10\un{\mu m}$. Find their terminal velocity in air using Stokes' law, and check that the Reynolds number is small. Why do clouds appear to float?
+
+\prob{2} A coronary artery narrows by $20\%$ in radius due to plaque. At fixed pressure difference, by what factor does the blood flow fall? By how much must the heart raise the pressure difference to restore the flow?
+
+\prob{2}\core \emph{(Newton's bucket.)} A bucket of water rotates steadily at angular velocity $\Omega$. Show that the water's surface is a paraboloid, $z = \Omega^2r^2/2g$. (Newton used this experiment to argue for absolute space: how does the water ``know'' it is rotating? Einstein later took the question seriously; see Chapter~\ref{ch:gr}.) Rotating liquid mercury makes perfect parabolic telescope mirrors.
+
+\prob{2} Water rises to height $h = 2\gamma/(\rho gr)$ in a clean glass tube of radius $r$. Derive this, and evaluate it for $r = 0.1\un{mm}$. Xylem vessels in trees are about $20\un{\mu m}$ in radius. Can capillarity alone lift water to the top of a $100\un{m}$ redwood? (It cannot; trees pull water up by evaporation creating tension, a negative pressure, in the water column.)
+
+\prob{2} Stirring a cup of tea dissipates about $10^{-2}\un{W}$ in $0.3\un{kg}$ of water. Estimate the Kolmogorov scale, the size of the smallest eddies. Repeat for the atmosphere, which dissipates about $10^{-3}\un{W/kg}$.
+
+\prob{3}\core \label{prob:scallop} \emph{(The scallop theorem.)} At $\mathrm{Re}\ll1$ the Navier--Stokes equation becomes the Stokes equation $\eta\nabla^2\vb v = \grad P$, which contains no time derivative. Argue that the flow at each instant is determined entirely by the body's instantaneous shape and velocity of deformation, not by its history. Conclude that a swimmer whose stroke is reciprocal --- the same sequence of shapes forwards and then backwards, at any speeds --- returns exactly to its starting point. How does a bacterium with a rotating helical flagellum evade the theorem?
+
+\prob{3} \emph{(The Magnus effect.)} A football is kicked at $25\un{m/s}$ with a spin of $10$ revolutions per second about a vertical axis. Argue that the sideways force should scale as $F\sim\rho\,(\omega r)\,v\,\pi r^2$, up to a factor of order one, with ball radius $11\un{cm}$ and mass $0.43\un{kg}$. Estimate how far the ball bends sideways over a $25\un{m}$ free kick, taking the prefactor to be about $\tfrac12$. Is the effect large enough to matter?
+
+\prob{3} \emph{(Why a stream breaks into drops.)} A long cylinder of liquid of radius $R$ is perturbed so its radius varies as $R + \delta\cos kz$. Keeping the volume fixed, show that the surface area \emph{decreases} if the wavelength is longer than the cylinder's circumference, $2\pi/k > 2\pi R$. Since surface tension acts to reduce area, such perturbations grow, and the stream breaks into drops. This is the \emph{Rayleigh--Plateau instability}; the fastest-growing wavelength is about $9R$.
+\end{problems}
+
+\begin{reading}
+\rd{T.\ E.\ Faber, \emph{Fluid Dynamics for Physicists}}{A careful, physical introduction written for physicists rather than engineers.}
+\rd{D.\ J.\ Acheson, \emph{Elementary Fluid Dynamics}}{A clear mathematical introduction with excellent treatment of vorticity and stability.}
+\rd{Benny Lautrup, \emph{Physics of Continuous Matter}}{Fluids and solids together, with exotic and everyday applications.}
+\rd{E.\ M.\ Purcell, ``Life at Low Reynolds Number''}{A famous 1976 lecture, short and delightful, freely available online.}
+\rd{\emph{The Feynman Lectures on Physics}, Volume II, Chapters~40--41}{``The Flow of Dry Water'' and ``The Flow of Wet Water.''}
+\end{reading}

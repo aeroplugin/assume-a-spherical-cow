@@ -1,0 +1,152 @@
+\chapter{Plasma physics}
+\label{ch:plasma}
+
+\buildson{electromagnetism (Chapter~\ref{ch:em}), statistical mechanics (Chapter~\ref{ch:statmech}), fluid dynamics (Chapter~\ref{ch:fluids})}
+
+\chapterdek{The fourth state of matter --- the stuff of stars, lightning, auroras, and fusion reactors --- and most of the visible universe.}
+
+\begin{prototype}
+A magnetized plasma: a gas of free electrons and ions threaded by a magnetic field. Each particle spirals tightly around a field line, free to slide along it but unable to cross. The field lines behave like wires on which the plasma is strung, and the plasma in turn drags the field lines along with it.
+\end{prototype}
+
+Heat a solid and it melts; heat the liquid and it boils; heat the gas enough and its atoms lose their electrons. The result is a \emph{plasma}: a gas of charged particles, overall neutral, in which electromagnetic forces dominate. On Earth plasmas are exotic --- lightning, neon signs, flames at their hottest. In the universe they are the norm: stars, the solar wind, the interstellar medium, and accretion disks are all plasma, and over $99\%$ of the visible matter in the universe is in this state. Plasma physics is electromagnetism and statistical mechanics working together, and its central practical goal, controlled fusion, is one of the great engineering challenges of the century.
+
+\section{When does a gas become a plasma?}
+
+Ionizing hydrogen takes $13.6\un{eV}$, which corresponds to a temperature of about $160\,000\un{K}$. Yet hydrogen in stellar atmospheres is half ionized at only about $10\,000\un{K}$. Why so low? Because of entropy. A free electron has a vast amount of phase space available to it, while a bound one is confined to a single state. The balance is described by the \emph{Saha equation}, which, like every phase transition, weighs energy against entropy (Chapter~\ref{ch:thermo}): in a dilute gas the free-electron entropy wins at temperatures well below $E_{\text{ion}}/\kB$. The same reasoning tells cosmologists when the early universe became transparent (Chapter~\ref{ch:cosmo}).
+
+\section{Debye shielding}
+
+The defining property of a plasma is that it screens electric fields. Place a positive charge in a plasma: electrons crowd around it and ions are pushed away, and from a distance the charge is hidden. Solving Poisson's equation with Boltzmann-distributed electrons gives a screened potential
+\[
+  \phi(r) = \frac{q}{4\pi\epsilon_0 r}\,e^{-r/\lambda_D}, \qquad \lambda_D = \sqrt{\frac{\epsilon_0\kB T}{ne^2}} ,
+\]
+where $\lambda_D$ is the \emph{Debye length}. Beyond a few Debye lengths, any charge imbalance is wiped out: the plasma is \emph{quasi-neutral}. Hotter plasmas screen less effectively (fast electrons are hard to corral); denser ones screen better.
+
+\begin{center}
+\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}
+\begin{axis}[asc, width=0.66\linewidth, height=0.42\linewidth, xmin=0, xmax=4.2, ymin=0, ymax=4.3,
+  xlabel={distance $r/\lambda_D$}, ylabel={potential}, ytick=\empty, xtick={0,1,2,3,4}, samples=150, domain=0.2:4.2, legend pos=north east, legend cell align=left]
+  \addplot[ascink!60, thick, dashed] {1/x};
+  \addplot[ascblue, thick] {exp(-x)/x};
+  \legend{in a vacuum ($\propto 1/r$), in a plasma}
+\end{axis}
+\end{tikzpicture}
+
+{\small The potential around a charge in a vacuum (dashed) and in a plasma (solid). In the plasma, a cloud of opposite charge gathers round and cancels the field beyond a few Debye lengths.}
+\end{minipage}
+\end{center}
+
+A gas of charged particles behaves as a plasma, rather than a collection of individual charges, when it is much larger than $\lambda_D$ and when there are many particles within a Debye sphere, $n\lambda_D^3\gg1$. Then collective behaviour dominates over individual collisions.
+
+\section{The plasma frequency}
+
+Displace all the electrons in a slab of plasma slightly relative to the ions. The resulting charge separation creates an electric field that pulls them back; they overshoot, and oscillate. A short calculation using Gauss's law gives the \emph{plasma frequency}
+\[
+  \omega_p = \sqrt{\frac{ne^2}{\epsilon_0 m_e}} .
+\]
+It depends only on the electron density: numerically, $f_p\approx9\sqrt{n}\un{Hz}$ with $n$ in $\mathrm{m^{-3}}$.
+
+The plasma frequency is a cutoff for electromagnetic waves. Light in a plasma obeys
+\[
+  \omega^2 = \omega_p^2 + c^2k^2 .
+\]
+Waves below $\omega_p$ cannot propagate and are reflected. The ionosphere, with $f_p$ of a few megahertz, reflects AM and shortwave radio back to the ground, which is how radio signals reach over the horizon at night; FM and TV signals, at higher frequencies, pass straight through to space. Metals are plasmas of conduction electrons with $\hbar\omega_p\sim10\un{eV}$, in the ultraviolet: they reflect visible light, which is why they are shiny, but are transparent to X-rays.
+
+\begin{keyidea}
+The dispersion relation $\omega^2 = \omega_p^2 + c^2k^2$ has exactly the form of $E^2 = m^2c^4 + p^2c^2$ for a massive particle (Chapter~\ref{ch:sr}). Inside a plasma, the photon behaves as if it had a mass $\hbar\omega_p/c^2$. Philip Anderson noticed in 1963 that this mechanism, generalized, could give mass to the carriers of a force. It became the Higgs mechanism (Chapter~\ref{ch:particle}).
+\end{keyidea}
+
+\section{Particles in magnetic fields}
+
+A charged particle in a uniform magnetic field gyrates around a field line at the cyclotron frequency $\omega_c = qB/m$ (Chapter~\ref{ch:em}) with \emph{Larmor radius} $r_L = mv_\perp/qB$, while moving freely along the field. Its path is a helix. Electrons spiral tightly and fast; ions loosely and slowly.
+
+Add other forces and the guiding centre of the helix \emph{drifts}. With an electric field perpendicular to $\vb B$, the particle speeds up on one half of its orbit and slows on the other, so its orbit is larger on one side, and it walks sideways at
+\[
+  \vb v_E = \frac{\vb E\times\vb B}{B^2}.
+\]
+Remarkably, this drift is the same for every particle, whatever its charge or mass, so electrons and ions drift together and no current flows. Gradients and curvature of $\vb B$ produce other drifts that \emph{do} depend on charge, separating electrons from ions --- which, as we will see, is the root of the difficulty of confining a plasma.
+
+\subsection{Magnetic mirrors}
+A gyrating particle has a magnetic moment $\mu = mv_\perp^2/2B$, which is an adiabatic invariant (Chapter~\ref{ch:analytical}): it is conserved as the particle moves into regions of slowly changing field. As the particle spirals into a stronger field, $v_\perp$ must increase to keep $\mu$ fixed, and since a magnetic field does no work, $v_\parallel$ must decrease. If the field becomes strong enough, the particle stops and is reflected. This is a \emph{magnetic mirror}. The Earth's dipole field forms a natural magnetic bottle: particles bounce back and forth between the polar regions, forming the \emph{Van Allen radiation belts}. Those whose velocity is aimed too closely along the field escape through the \emph{loss cone} and hit the atmosphere near the poles, producing the aurora.
+
+\section{Plasma as a fluid: magnetohydrodynamics}
+
+On large scales, a plasma can be treated as a single conducting fluid coupled to the magnetic field. This is \emph{magnetohydrodynamics} (MHD). In a perfectly conducting plasma, the electric field in the fluid's own frame must vanish, $\vb E + \vb v\times\vb B = 0$. Combined with Faraday's law, this gives
+
+\begin{theorem}[Alfv\'en's frozen-flux theorem]
+In a perfectly conducting fluid, magnetic field lines move with the fluid: the magnetic flux through any surface moving with the fluid is constant.
+\end{theorem}
+
+The field is frozen into the plasma. When the Sun's plasma flows out as the solar wind, it drags the Sun's magnetic field into a spiral filling the solar system. When a star collapses into a neutron star, its field is squeezed and amplified to $10^{8}\un{T}$ or more.
+
+The magnetic field exerts forces on the plasma that can be split into a \emph{magnetic pressure} $B^2/2\mu_0$, pushing perpendicular to field lines, and a \emph{magnetic tension} along them, as if field lines were stretched elastic bands. Pluck a field line and a wave travels along it, the \emph{Alfv\'en wave}, at speed
+\[
+  v_A = \frac{B}{\sqrt{\mu_0\rho}} ,
+\]
+exactly analogous to a wave on a string with tension $B^2/\mu_0$ (Chapter~\ref{ch:waves}). The ratio of plasma pressure to magnetic pressure, $\beta = nk_BT/(B^2/2\mu_0)$, says who is in charge: at low $\beta$ the field shapes the plasma; at high $\beta$ the plasma carries the field around.
+
+When the plasma is not perfectly conducting, field lines can break and reconnect into new configurations, releasing stored magnetic energy explosively. \emph{Magnetic reconnection} powers solar flares, drives magnetic storms in the Earth's magnetosphere, and disrupts fusion plasmas.
+
+\section{Instabilities}
+
+Confining a hot plasma with magnetic fields has been compared to holding jelly with rubber bands. Plasmas are prone to an enormous variety of \emph{instabilities}. Wherever a heavy fluid sits on a light one --- or a plasma pushes against a magnetic field curving away from it --- the interface ripples and fingers (the \emph{Rayleigh--Taylor} or \emph{interchange} instability). A plasma column carrying current kinks like a twisted garden hose, or pinches off like a string of sausages. Turbulence driven by small-scale instabilities leaks heat out of fusion devices far faster than simple collisions would. Much of the history of fusion research is the history of discovering and taming instabilities.
+
+\section{Kinetic theory and Landau damping}
+
+The fluid picture misses effects that depend on the detailed distribution of particle velocities. The most famous is \textbf{Landau damping}. In 1946 Landau showed that waves in a plasma damp away even with no collisions at all. Particles moving slightly slower than the wave are pushed forward by it and gain energy; particles moving slightly faster are held back and give energy to the wave. In thermal equilibrium there are more slower particles than faster ones at any speed above the peak of the distribution, so the wave loses energy on balance. It is a subtle, collisionless, essentially kinetic effect --- like surfers catching a wave --- and it was controversial for years until confirmed experimentally in 1965. Run backwards, with more fast particles than slow, the same mechanism makes waves \emph{grow}: an electron beam in a plasma amplifies waves.
+
+\section{Fusion}
+
+The Sun is powered by fusing hydrogen into helium (Chapter~\ref{ch:nuclear}), slowly, over billions of years. On Earth we need something faster, and the easiest reaction is deuterium with tritium:
+\[
+  \mathrm{D} + \mathrm{T}\to{}^4\mathrm{He}\,(3.5\un{MeV}) + n\,(14.1\un{MeV}).
+\]
+The ions must collide with enough energy to tunnel through their Coulomb repulsion (Problem~\ref{prob:gamow}), which requires temperatures around $150$ million kelvin, ten times hotter than the Sun's core. A reactor produces net energy only if the plasma is dense enough and holds its heat long enough. The condition is the \textbf{Lawson criterion}, usually stated as the \emph{triple product}
+\[
+  n\,T\,\tau_E\gtrsim3\times10^{21}\un{keV\,s/m^3},
+\]
+where $\tau_E$ is the energy confinement time. There are two main strategies:
+\begin{itemize}[itemsep=3pt]
+  \item \textbf{Magnetic confinement}: hold a low-density plasma ($n\sim10^{20}\un{m^{-3}}$) for seconds in a magnetic bottle. The leading design is the \emph{tokamak}, a doughnut-shaped chamber with a strong toroidal field and a current flowing in the plasma itself; ITER, under construction in France, is designed to produce ten times more fusion power than the heating power put in. \emph{Stellarators} achieve the necessary twist of the field lines with intricately shaped coils instead.
+  \item \textbf{Inertial confinement}: crush a tiny pellet of fuel with lasers so quickly that it fuses before it flies apart, for a fraction of a nanosecond at enormous density. In December 2022 the National Ignition Facility in California produced more fusion energy than the laser energy delivered to the target --- the first ignition in the laboratory.
+\end{itemize}
+
+\section{Space and astrophysical plasmas}
+
+The Sun's corona is a plasma at over a million kelvin, mysteriously hotter than the $5800\un{K}$ surface beneath it --- the \emph{coronal heating problem}, still not fully solved, though Alfv\'en waves and countless small reconnection events are prime suspects. The corona expands continually as the \emph{solar wind}, streaming past the Earth at about $400\un{km/s}$. The Earth's magnetic field deflects it, carving out a cavity called the \emph{magnetosphere}, compressed on the sunward side and stretched into a long tail on the night side. When gusts of solar wind reconnect with the Earth's field, energy is dumped into the magnetosphere, driving geomagnetic storms that can damage satellites and power grids --- and lighting the aurora. In accretion disks around black holes (Chapter~\ref{ch:astro}), a magnetic instability drives the turbulence that lets matter lose angular momentum and fall in.
+
+\section{Problems}
+
+\begin{problems}
+\prob{1}\core Compute the Debye length and the number of particles in a Debye sphere for (a) the ionosphere ($n = 10^{12}\un{m^{-3}}$, $T = 1000\un{K}$), (b) a fusion plasma ($n = 10^{20}\un{m^{-3}}$, $T = 10^8\un{K}$), and (c) the Sun's core ($n = 10^{32}\un{m^{-3}}$, $T = 1.5\times10^7\un{K}$). Which are good plasmas in the sense $n\lambda_D^3\gg1$?
+
+\prob{1}\core The ionosphere's peak electron density is about $10^{12}\un{m^{-3}}$. Find its plasma frequency. Explain why AM radio ($1\un{MHz}$) can be received far beyond the horizon at night, while FM ($100\un{MHz}$) cannot.
+
+\prob{1} Find the Larmor radius of a solar wind proton moving at $400\un{km/s}$ perpendicular to the interplanetary magnetic field of $5\un{nT}$. Compare with an electron of the same speed, and with the size of the Earth.
+
+\prob{2}\core Derive the $\vb E\times\vb B$ drift by transforming to a frame moving with velocity $\vb v_E$ and showing that the electric field vanishes there (for $v\ll c$). Explain physically why the drift is independent of charge and mass.
+
+\prob{2} Copper has $8.5\times10^{28}$ free electrons per cubic metre. Find its plasma frequency and the corresponding photon energy. Explain why copper reflects visible light but is transparent to X-rays, and why gold looks yellow (hint: a bound-electron resonance takes a bite out of the blue).
+
+\prob{2} A magnetic mirror has field strength $B_{\min}$ at its centre and $B_{\max}$ at its ends. Show that a particle at the centre is trapped if its pitch angle $\theta$ (between velocity and field) satisfies $\sin^2\theta > B_{\min}/B_{\max}$. For a mirror ratio of $4$ and an isotropic velocity distribution, what fraction of particles escapes?
+
+\prob{2} Estimate the Alfv\'en speed in the solar corona, with $B = 10^{-3}\un{T}$ and a proton density of $10^{15}\un{m^{-3}}$. How long does an Alfv\'en wave take to cross a coronal loop $10^{8}\un{m}$ long?
+
+\prob{2}\core ITER is designed to run with $n\approx10^{20}\un{m^{-3}}$ and $T\approx15\un{keV}$. What energy confinement time does the Lawson criterion require? Why does it help to build the reactor bigger?
+
+\prob{3}\core \emph{(The photon with mass.)} For waves obeying $\omega^2 = \omega_p^2+c^2k^2$, compute the phase and group velocities and show that $v_{\text{phase}}v_{\text{group}} = c^2$. Which one exceeds $c$, and why doesn't that violate relativity? Show that the energy--momentum relation of the corresponding quanta is exactly that of a particle of mass $\hbar\omega_p/c^2$.
+
+\prob{3} \emph{(Why fusion reactors are doughnuts.)} A purely toroidal magnetic field (field lines running the long way around a doughnut) is weaker on the outer side than the inner side. Show that the gradient drift then pushes ions up and electrons down (or vice versa), creating a vertical electric field, and that the resulting $\vb E\times\vb B$ drift carries the whole plasma outward into the wall. Explain how twisting the field lines helically --- with a current in the plasma (tokamak) or twisted coils (stellarator) --- cancels the effect on average. Why can't a magnetic bottle be a sphere instead?
+\hint{You cannot comb the hair on a sphere flat without leaving a cowlick (the hairy ball theorem).}
+
+\prob{3} \emph{(Landau's surfers.)} Consider a wave with phase velocity $v_\phi$ in a plasma with electron velocity distribution $f(v)$. Argue that electrons with $v$ slightly below $v_\phi$ are accelerated by the wave and those slightly above are decelerated. Conclude that the wave is damped if $f'(v_\phi)<0$ and amplified if $f'(v_\phi)>0$. Sketch a distribution with a ``bump on the tail'' and explain why such a beam--plasma system is unstable.
+\end{problems}
+
+\begin{reading}
+\rd{Francis F.\ Chen, \emph{Introduction to Plasma Physics and Controlled Fusion}}{The standard introduction, clear and physical. Start here.}
+\rd{Paul M.\ Bellan, \emph{Fundamentals of Plasma Physics}}{A more complete and modern graduate-level treatment.}
+\rd{Kivelson and Russell, \emph{Introduction to Space Physics}}{The solar wind, magnetospheres, and the aurora.}
+\rd{Goldston and Rutherford, \emph{Introduction to Plasma Physics}}{Strong on fusion-relevant physics.}
+\end{reading}

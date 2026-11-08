@@ -1,0 +1,199 @@
+\chapter{Computational physics}
+\label{ch:comp}
+
+\buildson{mathematical methods (Chapter~\ref{ch:math}), the harmonic oscillator (Chapter~\ref{ch:sho})}
+
+\chapterdek{When the equations won't solve, make the computer play them out --- and learn the surprising ways a computer can lie to you.}
+
+\begin{prototype}
+Euler's method applied to the harmonic oscillator. Step forward in time with $x_{n+1} = x_n + hv_n$ and $v_{n+1} = v_n - h\omega^2x_n$. The obvious method, applied to the simplest system in physics, spirals \emph{outward}: the energy grows every step, and a simulated planet escapes its star. Understanding why --- and how to fix it --- is the beginning of computational wisdom.
+\end{prototype}
+
+Most of the equations of physics cannot be solved with pen and paper. The three-body problem has no closed-form solution (Chapter~\ref{ch:chaos}); the Navier--Stokes equation is barely understood (Chapter~\ref{ch:fluids}); the Schr\"odinger equation for anything bigger than hydrogen is hopeless analytically (Chapter~\ref{ch:chem}). Computation has become a third way of doing physics, alongside theory and experiment. It is used to simulate galaxies, design aircraft, predict the weather, fold proteins, and compute the mass of the proton from first principles. But a computer is a very fast idiot, and doing it well requires knowing exactly how numerical methods fail.
+
+\section{Numbers in a computer}
+
+Computers store real numbers in \emph{floating point}: a sign, about 16 significant decimal digits, and an exponent. The smallest number $\epsilon$ with $1 + \epsilon\ne1$ is the \emph{machine epsilon}, about $2.2\times10^{-16}$ for standard double precision. Every arithmetic operation can introduce a relative error of this size.
+
+Usually this is harmless. But subtracting two nearly equal numbers destroys significant digits: if $a$ and $b$ agree to 12 digits, $a-b$ has only 4 correct ones. This \emph{catastrophic cancellation} is the most common way numerical calculations silently go wrong. Even $0.1+0.2$ is not exactly $0.3$ in a computer, because $0.1$ has no finite binary expansion.
+
+\begin{example}[A cancellation, and its cure]
+Evaluate $(1-\cos x)/x^2$ at $x = 10^{-8}$. The true answer is very close to $\tfrac12$. But $\cos(10^{-8}) = 1 - 5\times10^{-17}$, which rounds to exactly $1$ in double precision, so the computer returns $0$. Rewriting with the identity $1-\cos x = 2\sin^2(x/2)$ avoids the subtraction and gives $0.5$ to full precision. Algebra that is trivial on paper can matter enormously in a computer.
+\end{example}
+
+\section{Derivatives, integrals, and roots}
+
+The derivative $f'(x)$ can be approximated by the \emph{central difference}
+\[
+  f'(x)\approx\frac{f(x+h) - f(x-h)}{2h},
+\]
+with a \emph{truncation error} of order $h^2$ (Taylor-expand to check). Smaller $h$ reduces truncation error but increases round-off error, since $f(x+h)$ and $f(x-h)$ nearly cancel. The best $h$ balances the two, around $h\sim\epsilon^{1/3}\approx10^{-5}$, giving about ten correct digits rather than sixteen.
+
+Integrals are approximated by sums. The trapezoid rule has error $\order{h^2}$; Simpson's rule, fitting parabolas, has error $\order{h^4}$; Gaussian quadrature chooses the sample points cleverly and is exact for polynomials of high degree.
+
+To solve $f(x)=0$, \emph{Newton's method} iterates
+\[
+  x_{n+1} = x_n - \frac{f(x_n)}{f'(x_n)},
+\]
+following the tangent line to its root. Near a simple root it converges \emph{quadratically}: the number of correct digits roughly doubles each step. Far from a root it can wander off, so it is often combined with the slow but safe \emph{bisection} method.
+
+\section{Ordinary differential equations}
+
+Newton's laws, circuits, chemical kinetics, and population dynamics are all ordinary differential equations $\dot{\vb y} = \vb f(\vb y,t)$. The simplest method, \textbf{Euler's method}, steps forward along the tangent:
+\[
+  \vb y_{n+1} = \vb y_n + h\,\vb f(\vb y_n, t_n).
+\]
+Its error per step is $\order{h^2}$, so its accumulated error over a fixed time is $\order{h}$: a \emph{first-order} method. Worse, it can be qualitatively wrong. For the oscillator, each Euler step multiplies the energy by exactly $1+\omega^2h^2$ (Problem~\ref{prob:euler-energy}). Over many periods the orbit spirals out. For a planet, the simulated orbit would steadily expand.
+
+The workhorse for general problems is the \textbf{fourth-order Runge--Kutta method} (RK4), which samples $\vb f$ four times per step and combines the samples so that errors cancel up to fourth order. Its accumulated error is $\order{h^4}$: halving the step improves the answer sixteenfold.
+
+But for long simulations of conservative systems --- planets, molecules, particle beams --- even RK4 slowly drifts in energy. The fix is a \textbf{symplectic integrator}, one that respects the geometry of Hamiltonian mechanics and preserves phase-space volume exactly (Liouville's theorem, Chapter~\ref{ch:analytical}). The simplest is \emph{velocity Verlet} (also called leapfrog):
+
+\begin{lstlisting}
+import numpy as np
+
+def verlet(x, v, accel, h, steps):
+    a = accel(x)
+    for _ in range(steps):
+        x = x + h*v + 0.5*h*h*a        # drift, using current acceleration
+        a_new = accel(x)
+        v = v + 0.5*h*(a + a_new)      # kick, using the average acceleration
+        a = a_new
+    return x, v
+
+# The Earth around the Sun, in AU and years (so GM = 4 pi^2)
+accel = lambda r: -4*np.pi**2 * r / np.linalg.norm(r)**3
+x, v = verlet(np.array([1.0, 0.0]), np.array([0.0, 2*np.pi]), accel, 1e-3, 100000)
+\end{lstlisting}
+
+Verlet is only second order, but its energy error does not grow: it oscillates within a fixed band forever, because the method exactly conserves a slightly modified ``shadow'' Hamiltonian (Problem~\ref{prob:shadow}). For long-time behaviour, respecting the structure of the physics beats raw accuracy.
+
+\begin{center}
+\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}
+  \draw[-{Stealth[length=6pt]}] (-2.75,0) -- (2.9,0) node[right] {$x$};
+  \draw[-{Stealth[length=6pt]}] (0,-2.6) -- (0,2.75) node[above] {$v$};
+  \draw[ascwarm, thick] plot coordinates {(1.250,0.000) (1.250,-0.125) (1.238,-0.250) (1.212,-0.374) (1.175,-0.495) (1.126,-0.613) (1.064,-0.725) (0.992,-0.832) (0.909,-0.931) (0.816,-1.022) (0.713,-1.103) (0.603,-1.174) (0.486,-1.235) (0.362,-1.283) (0.234,-1.320) (0.102,-1.343) (-0.032,-1.353) (-0.168,-1.350) (-0.303,-1.333) (-0.436,-1.303) (-0.566,-1.259) (-0.692,-1.203) (-0.812,-1.133) (-0.926,-1.052) (-1.031,-0.960) (-1.127,-0.857) (-1.213,-0.744) (-1.287,-0.623) (-1.349,-0.494) (-1.399,-0.359) (-1.435,-0.219) (-1.456,-0.076) (-1.464,0.070) (-1.457,0.216) (-1.435,0.362) (-1.399,0.506) (-1.349,0.646) (-1.284,0.780) (-1.206,0.909) (-1.115,1.029) (-1.012,1.141) (-0.898,1.242) (-0.774,1.332) (-0.641,1.409) (-0.500,1.473) (-0.352,1.523) (-0.200,1.559) (-0.044,1.579) (0.114,1.583) (0.272,1.572) (0.429,1.545) (0.584,1.502) (0.734,1.443) (0.878,1.370) (1.015,1.282) (1.143,1.181) (1.261,1.066) (1.368,0.940) (1.462,0.803) (1.542,0.657) (1.608,0.503) (1.658,0.342) (1.693,0.176) (1.710,0.007) (1.711,-0.164) (1.694,-0.335) (1.661,-0.505) (1.610,-0.671) (1.543,-0.832) (1.460,-0.986) (1.362,-1.132) (1.248,-1.268) (1.122,-1.393) (0.982,-1.505) (0.832,-1.603) (0.671,-1.687) (0.503,-1.754) (0.327,-1.804) (0.147,-1.837) (-0.037,-1.851) (-0.222,-1.848) (-0.407,-1.826) (-0.589,-1.785) (-0.768,-1.726) (-0.940,-1.649) (-1.105,-1.555) (-1.261,-1.445) (-1.405,-1.319) (-1.537,-1.178) (-1.655,-1.024) (-1.757,-0.859) (-1.843,-0.683) (-1.912,-0.499) (-1.961,-0.308) (-1.992,-0.112) (-2.003,0.088) (-1.995,0.288) (-1.966,0.487) (-1.917,0.684) (-1.849,0.876) (-1.761,1.061) (-1.655,1.237) (-1.531,1.402) (-1.391,1.555) (-1.236,1.694) (-1.066,1.818) (-0.884,1.925) (-0.692,2.013) (-0.491,2.082) (-0.282,2.131) (-0.069,2.160) (0.147,2.166) (0.363,2.152) (0.579,2.115) (0.790,2.058) (0.996,1.979) (1.194,1.879) (1.382,1.760) (1.558,1.621) (1.720,1.466) (1.866,1.294) (1.996,1.107) (2.106,0.907) (2.197,0.697) (2.267,0.477) (2.315,0.250) (2.340,0.019)};
+  \draw[ascblue, line width=1.3pt] plot coordinates {(1.250,0.000) (1.244,-0.125) (1.225,-0.248) (1.194,-0.369) (1.151,-0.486) (1.097,-0.599) (1.031,-0.705) (0.956,-0.805) (0.871,-0.896) (0.777,-0.978) (0.675,-1.051) (0.566,-1.113) (0.452,-1.164) (0.334,-1.203) (0.212,-1.230) (0.088,-1.245) (-0.037,-1.248) (-0.162,-1.238) (-0.285,-1.216) (-0.405,-1.181) (-0.521,-1.135) (-0.632,-1.077) (-0.737,-1.009) (-0.834,-0.930) (-0.923,-0.842) (-1.002,-0.746) (-1.072,-0.642) (-1.131,-0.532) (-1.178,-0.417) (-1.214,-0.297) (-1.238,-0.175) (-1.249,-0.050) (-1.248,0.075) (-1.234,0.199) (-1.208,0.321) (-1.170,0.440) (-1.120,0.554) (-1.059,0.663) (-0.987,0.765) (-0.906,0.860) (-0.815,0.946) (-0.717,1.023) (-0.611,1.089) (-0.499,1.145) (-0.382,1.189) (-0.261,1.221) (-0.138,1.241) (-0.013,1.248) (0.112,1.243) (0.236,1.226) (0.357,1.196) (0.475,1.155) (0.588,1.102) (0.695,1.038) (0.796,0.963) (0.888,0.879) (0.971,0.786) (1.045,0.685) (1.108,0.577) (1.160,0.464) (1.201,0.346) (1.230,0.224) (1.246,0.101) (1.250,-0.024) (1.241,-0.149) (1.220,-0.272) (1.187,-0.392) (1.142,-0.509) (1.085,-0.620) (1.018,-0.725) (0.940,-0.823) (0.853,-0.913) (0.757,-0.993) (0.654,-1.064) (0.545,-1.124) (0.430,-1.172) (0.310,-1.209) (0.188,-1.234) (0.063,-1.247) (-0.062,-1.247) (-0.186,-1.235) (-0.309,-1.210) (-0.428,-1.173) (-0.543,-1.124) (-0.653,-1.065) (-0.756,-0.994) (-0.852,-0.914) (-0.939,-0.824) (-1.017,-0.727) (-1.084,-0.621) (-1.141,-0.510) (-1.186,-0.394) (-1.220,-0.274) (-1.241,-0.151) (-1.250,-0.026) (-1.246,0.099) (-1.230,0.223) (-1.202,0.344) (-1.161,0.462) (-1.109,0.576) (-1.046,0.684) (-0.972,0.784) (-0.889,0.878) (-0.797,0.962) (-0.697,1.037) (-0.590,1.101) (-0.477,1.154) (-0.359,1.196) (-0.237,1.226) (-0.114,1.243) (0.011,1.248) (0.136,1.241) (0.259,1.221) (0.380,1.189) (0.497,1.145) (0.609,1.090) (0.715,1.024) (0.814,0.947) (0.905,0.861) (0.986,0.767) (1.058,0.665) (1.119,0.556) (1.169,0.441) (1.208,0.322) (1.234,0.200) (1.248,0.076) (1.249,-0.049)};
+  \fill[ascink] (1.250,0) circle (2pt) node[below right, font=\small] {start};
+  \node[ascwarm, font=\small, anchor=west] at (1.75,1.85) {Euler};
+  \node[ascblue, font=\small, anchor=west, fill=white, inner sep=1pt] at (0.62,0.62) {Verlet};
+\end{tikzpicture}
+
+{\small Two orbits of the harmonic oscillator in phase space, with the same step size $h = 0.1/\omega$. Euler's method spirals outward, gaining energy every step; velocity Verlet stays on its loop indefinitely.}
+\end{minipage}
+\end{center}
+
+\begin{keyidea}
+Build the physics into the algorithm. A method that respects a conservation law or a symmetry of the true dynamics will remain qualitatively right long after a more ``accurate'' method has drifted into nonsense.
+\end{keyidea}
+
+\section{Matrices and eigenvalues}
+
+Many problems become linear algebra once space is discretized. Replace a continuous function by its values at $N$ grid points, and derivatives become matrices. The Schr\"odinger equation for a particle in a box (Chapter~\ref{ch:qm}), with $\hbar = m = 1$, becomes a matrix eigenvalue problem, which a library solves in one line:
+
+\begin{lstlisting}
+import numpy as np
+N = 1000                       # interior grid points
+h = 1.0 / (N + 1)              # box of length 1
+# -(1/2) psi'' as a tridiagonal matrix
+H = (np.diag(np.full(N, 1.0)) - 0.5*np.diag(np.ones(N-1), 1)
+     - 0.5*np.diag(np.ones(N-1), -1)) / h**2
+E = np.linalg.eigvalsh(H)[:4]
+print(E / (np.pi**2 / 2))      # close to 1, 4, 9, 16
+\end{lstlisting}
+
+Change the diagonal to include a potential $V(x_i)$ and you can find the energy levels of any one-dimensional potential. Dense linear algebra costs $\order{N^3}$, so exploiting structure --- sparsity, symmetry, bandedness --- is the difference between a calculation that takes a second and one that takes a year.
+
+\section{Partial differential equations}
+
+Fields evolving in space and time --- heat, waves, fluids, quantum wavefunctions --- obey partial differential equations. Discretize space with spacing $\Delta x$ and time with step $\Delta t$. For the heat equation $\partial_t u = D\,\partial_x^2u$, the simplest explicit scheme updates each point from its neighbours. It is \emph{stable} only if
+\[
+  \frac{D\,\Delta t}{\Delta x^2}\le\frac12 ;
+\]
+otherwise round-off errors grow exponentially and the solution explodes into a checkerboard of enormous numbers (Problem~\ref{prob:heat-stability}). For the wave equation, stability requires the \emph{Courant--Friedrichs--Lewy} (CFL) condition $c\,\Delta t/\Delta x\le1$: information cannot travel more than one grid cell per time step. Implicit methods, which solve a linear system at each step, are stable for any time step and are used when the explicit limit is too restrictive.
+
+Another powerful approach expands the field in Fourier modes, where derivatives become multiplication. This is practical because of the \textbf{fast Fourier transform}, which computes a discrete Fourier transform of $N$ points in $\order{N\log N}$ operations instead of $\order{N^2}$. It is one of the most important algorithms ever devised: it runs inside every phone, MRI scanner (Chapter~\ref{ch:medical}), and spectral simulation.
+
+\section{Monte Carlo methods}
+
+Some problems are best solved by gambling. To estimate $\pi$, throw random points into a unit square and count the fraction landing inside the quarter circle: it approaches $\pi/4$. The statistical error falls as $1/\sqrt N$ (Chapter~\ref{ch:math}), which is slow --- a million points give only three digits. But the error is $1/\sqrt N$ \emph{in any number of dimensions}. A grid-based integral in $d$ dimensions needs exponentially many points as $d$ grows, so for the very high-dimensional integrals of statistical mechanics and quantum field theory, Monte Carlo is the only option.
+
+The \textbf{Metropolis algorithm} (1953) samples configurations with Boltzmann probabilities $e^{-E/\kB T}$ (Chapter~\ref{ch:statmech}) without ever computing the partition function. Propose a small random change; if it lowers the energy, accept it; if it raises the energy by $\Delta E$, accept it with probability $e^{-\Delta E/\kB T}$. Repeated many times, this visits states with exactly the right probabilities. Here is the Ising model:
+
+\begin{lstlisting}
+import numpy as np
+rng = np.random.default_rng()
+L, T = 32, 2.3                     # lattice size, temperature (J = k_B = 1)
+s = rng.choice([-1, 1], size=(L, L))
+for sweep in range(2000):
+    for _ in range(L*L):
+        i, j = rng.integers(L, size=2)
+        nb = s[(i+1) % L, j] + s[i-1, j] + s[i, (j+1) % L] + s[i, j-1]
+        dE = 2 * s[i, j] * nb      # energy cost of flipping spin (i, j)
+        if dE <= 0 or rng.random() < np.exp(-dE / T):
+            s[i, j] = -s[i, j]
+print(abs(s.mean()))               # magnetization per spin
+\end{lstlisting}
+
+Run it at several temperatures, and the magnetization collapses near $T_c = 2.269$, the exact value found by Onsager in 1944 --- noticeably below the mean-field estimate of $4$. Monte Carlo methods compute the properties of materials, the behaviour of neutrons in reactors (where the method was born, at Los Alamos), the pricing of financial options, and, on the world's largest computers, the masses of the proton and neutron from the theory of quarks and gluons (\emph{lattice QCD}, Chapter~\ref{ch:particle}).
+
+\section{Many bodies}
+
+Simulating $N$ particles that all interact requires computing $N^2$ pairwise forces per step, which becomes impossible for large $N$. \emph{Tree codes} group distant particles together and treat a cluster as a single mass, reducing the cost to $\order{N\log N}$ --- a spherical cow inside a computer. Simulations of the universe now follow $10^{12}$ particles from shortly after the Big Bang to today, and reproduce the cosmic web of galaxies and voids (Chapter~\ref{ch:cosmo}).
+
+\emph{Molecular dynamics} applies the same idea to atoms, with forces from potentials like Lennard-Jones (Chapter~\ref{ch:sho}) integrated by Verlet's method. Its curse is the time step: bonds vibrate every $10^{-14}\un{s}$, so the time step must be a femtosecond, and simulating one millisecond of a protein's life takes $10^{12}$ steps.
+
+\section{Data, fitting, and learning}
+
+Experiments produce data with noise, and computers turn data into knowledge. The basic tool is the \emph{least-squares fit}: choose the parameters of a model to minimize
+\[
+  \chi^2 = \sum_i\frac{(y_i - f(x_i))^2}{\sigma_i^2},
+\]
+the squared deviations weighted by the measurement errors. A good fit has $\chi^2$ roughly equal to the number of data points; much larger means the model is wrong, much smaller means the errors were overestimated. The uncertainties of the fitted parameters come from how fast $\chi^2$ rises as you move them away from the best fit.
+
+\emph{Machine learning} extends this to models with millions of parameters. Neural networks are flexible function approximators trained by minimizing a loss function, like $\chi^2$ on steroids. In physics they classify particle collisions at the LHC (Chapter~\ref{ch:particle}), emulate expensive simulations, find gravitational-wave signals (Chapter~\ref{ch:gw}), and --- in AlphaFold --- predict protein structures (Chapter~\ref{ch:bio}). They are powerful, but they interpolate better than they extrapolate, and they do not by themselves explain anything.
+
+\section{How not to fool yourself}
+
+Every simulation should be checked. Test the code on a problem with a known answer. Halve the step size and confirm the answer converges at the expected rate. Monitor conserved quantities --- energy, momentum, probability --- as diagnostics. And always ask whether the result makes physical sense. The spherical cow is not only a way of thinking; it is the best way to test code.
+
+\section{Problems}
+
+\begin{problems}
+\prob{1} In a programming language of your choice, check whether \texttt{0.1 + 0.2 == 0.3}. Then find the machine epsilon by starting with $\epsilon = 1$ and halving it until $1 + \epsilon$ equals $1$. Explain both results.
+
+\prob{1} Evaluate $(1-\cos x)/x^2$ for $x = 10^{-1}, 10^{-3},\dots,10^{-9}$ directly and using $2\sin^2(x/2)/x^2$. At what $x$ does the direct formula fail, and why there?
+
+\prob{2}\core \label{prob:euler-energy} Show that one step of Euler's method applied to $\dot x = v$, $\dot v = -\omega^2x$ multiplies $E = \tfrac12v^2 + \tfrac12\omega^2x^2$ by exactly $1+\omega^2h^2$. If you take $100$ steps per period, by what factor does the energy grow each period? How many steps per period would you need to keep the energy within $1\%$ over $100$ periods?
+
+\prob{2}\core Show that the error of the central-difference derivative is about $h^2\abs{f'''}/6 + \epsilon\abs{f}/h$, and that this is minimized for $h\sim\epsilon^{1/3}$. Verify numerically for $f = \sin$ at $x=1$ by plotting the error against $h$ on log-log axes. Explain the V shape.
+
+\prob{2} Apply Newton's method to $f(x) = x^2-2$ starting from $x_0 = 1$. Show that the iteration is $x_{n+1} = \tfrac12(x_n + 2/x_n)$ (the Babylonian method) and that the number of correct digits roughly doubles each step.
+
+\prob{2}\core Simulate the Earth's orbit for 100 years with Euler's method, RK4, and velocity Verlet, using the same step size. Plot the energy against time for each. Describe the long-term behaviour of each energy error.
+
+\prob{2} Use the finite-difference code in this chapter to compute the four lowest energy levels of a particle in a box with $N = 10, 100, 1000$ grid points. Show that the error falls as $h^2$. Then add a harmonic potential $V = \tfrac12x^2$ (centred in a wider box) and check that the levels approach $n+\tfrac12$.
+
+\prob{2} \label{prob:heat-stability} For the explicit scheme $u_j^{n+1} = u_j^n + r(u_{j+1}^n - 2u_j^n + u_{j-1}^n)$ with $r = D\Delta t/\Delta x^2$, substitute a Fourier mode $u_j^n = g^ne^{ikj\Delta x}$ and find the growth factor $g$. Show that $\abs{g}\le1$ for all $k$ only if $r\le\tfrac12$. Which mode goes unstable first?
+
+\prob{2} Estimate $\pi$ by Monte Carlo with $N = 10^2, 10^4, 10^6$ points and confirm that the error falls as $1/\sqrt N$. Then explain why integrating a smooth function over a $10$-dimensional cube with $10$ grid points per dimension would need $10^{10}$ evaluations, while Monte Carlo gets $1\%$ accuracy with $10^4$.
+
+\prob{2}\core Run the Metropolis Ising code at temperatures from $1.5$ to $3.5$. Plot the magnetization and estimate $T_c$. Compare with Onsager's exact result, $2/\ln(1+\sqrt2) = 2.269$, and with mean-field theory. Why is the transition rounded in a finite lattice?
+
+\prob{3}\core \label{prob:shadow} \emph{(Why Verlet doesn't drift.)} For the oscillator $\ddot x = -\omega^2x$ with unit mass, write one step of velocity Verlet as a linear map $(x_n,v_n)\mapsto(x_{n+1},v_{n+1})$. Show that its matrix has determinant exactly $1$ (it preserves phase-space area), and that it exactly conserves the ``shadow energy''
+\[
+  \tilde H = \tfrac12 v^2 + \tfrac12\omega^2x^2\Big(1 - \frac{\omega^2h^2}{4}\Big).
+\]
+Conclude that the true energy error stays bounded for all time if $\omega h<2$. What happens if $\omega h>2$?
+\hint{Check that $M^{T}SM = S$ for $S = \mathrm{diag}\big(\omega^2(1-\omega^2h^2/4),\,1\big)$.}
+
+\prob{3} \emph{(Trusting chaos.)} Integrate the Lorenz equations twice from the same initial condition, once with step $h = 10^{-3}$ and once with $h = 10^{-3}(1+10^{-12})$. Show that the two trajectories diverge completely within a few dozen time units. In what sense, then, is \emph{any} simulation of a chaotic system ``correct''? Look up the \emph{shadowing lemma}, and explain why statistical properties of the attractor can still be computed reliably.
+\end{problems}
+
+\begin{reading}
+\rd{Mark Newman, \emph{Computational Physics}}{An excellent, friendly introduction in Python, covering everything in this chapter. Much of it is free online.}
+\rd{Press, Teukolsky, Vetterling, and Flannery, \emph{Numerical Recipes}}{The classic practical reference: what algorithms exist, when they fail, and why.}
+\rd{Werner Krauth, \emph{Statistical Mechanics: Algorithms and Computations}}{Monte Carlo and molecular dynamics, beautifully explained.}
+\rd{Hairer, Lubich, and Wanner, \emph{Geometric Numerical Integration}}{The advanced reference on symplectic and structure-preserving methods.}
+\end{reading}

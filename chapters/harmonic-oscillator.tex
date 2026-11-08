@@ -1,0 +1,207 @@
+\chapter{The harmonic oscillator}
+\label{ch:sho}
+
+\buildson{Newtonian mechanics (Chapter~\ref{ch:newton})}
+
+\chapterdek{The most important toy model in physics --- and a case study in why throwing almost everything away is the right move.}
+
+\begin{prototype}
+A mass $m$ on a spring of stiffness $k$: $m\ddot{x}=-kx$. Keep it in mind for every equation in this chapter. You will meet it again in nearly every chapter of this book.
+\end{prototype}
+
+\section{One equation}
+
+A system is a \emph{simple harmonic oscillator} when the force pulling it back to equilibrium grows in exact proportion to how far it has strayed: $F=-kx$. Fed into Newton's second law, that single line is the whole chapter in compressed form:
+\[
+  m\ddot{x}=-kx \qquad\Longleftrightarrow\qquad \ddot{x}=-\omega^{2}x,\qquad \omega=\sqrt{\frac{k}{m}}.
+\]
+You do not need to grind through the differential equation to guess its solution. What function is its own second derivative, up to a negative constant? A sinusoid. So
+\[
+  x(t)=A\cos(\omega t+\varphi),
+\]
+where the amplitude $A$ and phase $\varphi$ are fixed by how the motion started. The \emph{period} is $T = 2\pi/\omega$ and the frequency is $f = 1/T = \omega/2\pi$.
+
+The striking fact, hiding in plain sight, is that $\omega$ does not depend on $A$: a large swing and a tiny one take \emph{exactly} the same time. This property is called \emph{isochronism}. Hold onto it --- it is special, it is the reason clocks work, and it is fragile.
+
+\begin{example}[Orders of magnitude]
+A car's suspension: $m\sim 300\un{kg}$ per wheel, $k\sim 3\times10^{4}\un{N/m}$, so $f\sim 1.6\un{Hz}$ --- the gentle bounce you feel over a speed bump. A quartz crystal in a watch is engineered to ring at exactly $32768\un{Hz} = 2^{15}\un{Hz}$, so that fifteen halvings give one tick per second. A carbon--oxygen bond in a CO molecule vibrates at about $6.4\times10^{13}\un{Hz}$. Same equation, eighteen orders of magnitude.
+\end{example}
+
+\begin{keyidea}
+The defining feature is not the spring, the sine, or the energy. It is \emph{linearity}: restoring influence proportional to displacement. Every system that shares this property is, mathematically, the same system.
+\end{keyidea}
+
+\section{Why it is everywhere}
+
+Here is the reason one model earns a whole chapter. Take \emph{any} system sitting in a smooth potential energy $U(x)$, resting at a stable equilibrium $x_{0}$. Zoom in close, and ask what the potential looks like. Taylor expansion answers:
+\[
+  U(x)=U(x_{0})+U'(x_{0})\,(x-x_{0})+\tfrac12 U''(x_{0})\,(x-x_{0})^{2}+\tfrac16 U'''(x_0)\,(x-x_0)^3+\cdots
+\]
+The constant term only sets the zero of energy. The linear term vanishes, because $U'(x_{0})=0$ is what ``equilibrium'' means. So the first term that does any physics is the quadratic one. Keep it, throw the rest away:
+\[
+  U(x)\approx \tfrac12\,k_{\mathrm{eff}}\,(x-x_{0})^{2},\qquad k_{\mathrm{eff}}=U''(x_{0}).
+\]
+That is a spring --- not \emph{like} a spring; a spring, with a stiffness you compute by differentiating twice. Stability requires $U''(x_0) > 0$ (a minimum, not a maximum), and then
+\[
+  \omega = \sqrt{\frac{U''(x_0)}{m}}.
+\]
+This is the single most reused approximation in physics, and it is exactly the spirit of this book. A real potential is a mess. Near the bottom, we assume a spherical cow.
+
+\begin{prototype}[PROTOTYPE, GENERALIZED]
+A bead in a bowl, the length of a chemical bond, an atom in a crystal, a buoy bobbing on water, the current in a circuit, a planet nudged off its orbit, the electromagnetic field in a cavity --- all the same oscillator, all with $\omega=\sqrt{k_{\mathrm{eff}}/m_{\mathrm{eff}}}$. Learn it once and you have met it a hundred times.
+\end{prototype}
+
+\begin{example}[The pendulum]
+A pendulum of length $L$ has potential $U(\theta)=-mgL\cos\theta$, with a minimum at $\theta=0$. Then $U''(0)=mgL$, and the ``mass'' for the angle coordinate is the moment of inertia $mL^{2}$, since the kinetic energy is $\tfrac12 mL^2\dot\theta^2$. So
+\[
+  \omega=\sqrt{\frac{U''(0)}{mL^{2}}}=\sqrt{\frac{g}{L}}, \qquad T = 2\pi\sqrt{\frac{L}{g}}.
+\]
+Notice what vanished: the mass, and the amplitude. A one-metre pendulum has a period of almost exactly two seconds, which is not a coincidence: the metre was once proposed to be defined this way. A pendulum clock keeps time \emph{because} its frequency ignores how hard it is pushed --- until the swing is no longer small, and the terms we discarded come back to bite (Problem~\ref{prob:pendulum-anharmonic}).
+\end{example}
+
+\begin{exercise}
+Two atoms interact through the Lennard--Jones potential $U(r)=U_{0}\big[(a/r)^{12}-2(a/r)^{6}\big]$. Show that the equilibrium separation is $r=a$, and that small vibrations have angular frequency $\omega=\sqrt{72\,U_{0}/(\mu a^{2})}$, where $\mu$ is the reduced mass. This is, to a first approximation, the ``note'' a molecule rings at.
+\end{exercise}
+
+\section{Energy, and a picture worth more than the algebra}
+
+The total energy is kinetic plus potential,
+\[
+  E=\tfrac12 m\dot{x}^{2}+\tfrac12 kx^{2} = \tfrac12 kA^2,
+\]
+and it is constant: energy sloshes back and forth between motion and stretch, twice per period. On average the two are equal, $\langle K\rangle = \langle U\rangle = E/2$. (This equal split is the seed of the \emph{equipartition theorem} of Chapter~\ref{ch:statmech}.)
+
+Now plot the state of the oscillator not as a function of time, but as a point $(x,p)$ with $p=m\dot{x}$. This plane is called \emph{phase space}, and drawing it is the single most useful habit you can carry into the rest of physics. Fixed energy means
+\[
+  \frac{x^2}{2E/k} + \frac{p^2}{2mE} = 1,
+\]
+an ellipse. The state goes around the ellipse, clockwise, at a constant rate.
+
+\begin{center}
+\begin{tikzpicture}[scale=1.05]
+  \draw[-{Stealth[length=6pt]}] (-2.7,0) -- (2.9,0) node[right] {$x$};
+  \draw[-{Stealth[length=6pt]}] (0,-1.75) -- (0,2.0) node[above] {$p$};
+  \draw[ascblue!45,thick] (0,0) ellipse [x radius=1.35,y radius=0.88];
+  \draw[ascblue,thick] (0,0) ellipse [x radius=2,y radius=1.3];
+  \draw[ascblue,thick,-{Stealth[length=7pt]}] (0,0) ++(108:2 and 1.3) arc[start angle=108,end angle=78,x radius=2,y radius=1.3];
+  \fill[ascwarm] (40:2 and 1.3) circle (2.4pt);
+  \node[ascwarm,font=\small,anchor=south west] at (40:2 and 1.3) {state now};
+  \node[ascblue,font=\small] at (2.45,-1.25) {larger $E$};
+  \node[ascblue!70,font=\scriptsize] at (-0.62,-0.33) {smaller $E$};
+\end{tikzpicture}
+\end{center}
+
+Rescale the axes so the ellipse becomes a circle, and you see what simple harmonic motion really is: \emph{uniform circular motion seen edge-on}. The projection of a point moving steadily around a circle is a sinusoid. Every fact about the oscillator --- the amplitude-independent period, the sinusoidal shape, the quarter-cycle lag between $x$ and $p$ --- is obvious the moment you see the circle, and mysterious if you only see the sine.
+
+This picture also explains why physicists write oscillations as complex exponentials. A point going around a circle is $e^{i\omega t}$ in the complex plane, and its real part is $\cos\omega t$. Writing $x(t) = \mathrm{Re}\,[\tilde A e^{i\omega t}]$, with a complex amplitude $\tilde A = Ae^{i\varphi}$ carrying both size and phase, turns differentiation into multiplication by $i\omega$. Calculus becomes algebra. (See Chapter~\ref{ch:math}.)
+
+\begin{exercise}
+Using the circle picture and no integrals, explain why the oscillator spends more of its time near the turning points than near the centre. The quantum oscillator of Chapter~\ref{ch:qm} agrees, at least for highly excited states.
+\end{exercise}
+
+\section{Damping}
+
+Real oscillators lose energy. The simplest model of friction is a drag force proportional to velocity, $-b\dot x$. Writing $b = 2m\gamma$,
+\[
+  \ddot x + 2\gamma \dot x + \omega_0^2 x = 0 .
+\]
+Try $x = e^{\lambda t}$. Then $\lambda^2 + 2\gamma\lambda + \omega_0^2 = 0$, so $\lambda = -\gamma \pm \sqrt{\gamma^2 - \omega_0^2}$. Three regimes appear, depending on which is bigger, $\gamma$ or $\omega_0$:
+\begin{itemize}[itemsep=3pt]
+  \item \textbf{Underdamped} ($\gamma < \omega_0$): $x(t) = Ae^{-\gamma t}\cos(\omega_d t + \varphi)$ with $\omega_d = \sqrt{\omega_0^2-\gamma^2}$. It still rings, inside a decaying envelope. A plucked guitar string.
+  \item \textbf{Critically damped} ($\gamma = \omega_0$): $x(t) = (A + Bt)e^{-\omega_0 t}$. The fastest possible return to rest without overshoot. A well-designed car suspension, or a door closer.
+  \item \textbf{Overdamped} ($\gamma > \omega_0$): a sum of two decaying exponentials; it oozes back to equilibrium without oscillating. A spring immersed in honey.
+\end{itemize}
+The energy of a weakly damped oscillator decays as $e^{-2\gamma t}$. A useful single number for ``how good an oscillator is'' is the \emph{quality factor}
+\[
+  Q = \frac{\omega_0}{2\gamma} \approx 2\pi\times\frac{\text{energy stored}}{\text{energy lost per cycle}}.
+\]
+Roughly, $Q$ is the number of radians the oscillator rings before it has lost most of its energy. A pendulum clock has $Q\sim 10^4$, a quartz crystal $\sim 10^5$, the atomic transition in a modern optical clock $\sim 10^{17}$.
+
+\section{Driving, and resonance}
+
+Now push. Add a sinusoidal driving force $F_0\cos\omega t$:
+\[
+  \ddot x + 2\gamma \dot x + \omega_0^2 x = \frac{F_0}{m}\cos\omega t .
+\]
+Whatever the initial condition, the damped free motion dies away and the system settles into a \emph{steady state} oscillating at the \emph{drive's} frequency $\omega$, not its own. The complex-exponential trick makes this a two-line calculation: try $x = \mathrm{Re}[\tilde A e^{i\omega t}]$ and find
+\[
+  \tilde A = \frac{F_0/m}{\omega_0^2 - \omega^2 + 2i\gamma\omega},
+  \qquad
+  A = |\tilde A| = \frac{F_0/m}{\sqrt{(\omega_0^2-\omega^2)^2 + 4\gamma^2\omega^2}} .
+\]
+Read the formula in its limits --- this is always the first thing to do with a formula.
+\begin{itemize}[itemsep=3pt]
+  \item \textbf{Slow drive} ($\omega \ll \omega_0$): $A \approx F_0/k$. The mass just follows the force, as if the spring were being stretched statically. In phase.
+  \item \textbf{Fast drive} ($\omega \gg \omega_0$): $A\approx F_0/(m\omega^2)$. The spring is irrelevant; the mass is too heavy to respond much. Exactly out of phase: the mass moves opposite the force.
+  \item \textbf{Resonance} ($\omega \approx \omega_0$): $A\approx F_0/(2m\gamma\omega_0)$, which can be enormous when the damping is small. The response lags the force by exactly a quarter cycle, which is precisely the phase at which the force does the most work.
+\end{itemize}
+The resonance peak has width $\Delta\omega\approx 2\gamma = \omega_0/Q$. High-$Q$ systems respond enormously, but only in a narrow band. That is why a radio tuned to one station ignores the others, and why a singer can shatter a wine glass ($Q\sim 10^3$) but not a paper cup.
+
+\begin{keyidea}
+Linearity bought us resonance for free. Because the equation is linear, a complicated push can be split into pure tones --- this is Fourier's whole program --- each tone answered separately, and the answers added back up. The oscillator is where you first see \emph{why} decomposing into frequencies is the natural language of physics.
+\end{keyidea}
+
+\begin{example}[Why the sky is blue, in one line]
+An electron bound in an air molecule is, to a first approximation, a damped oscillator with $\omega_0$ in the ultraviolet. Visible light drives it far below resonance, where $A\approx F_0/k$ is independent of frequency. But the power it re-radiates goes like $\ddot x^2 \propto \omega^4 A^2$ (Chapter~\ref{ch:em}). Blue light is scattered $(700/450)^4\approx 6$ times more strongly than red. Look away from the Sun and you see the scattered blue.
+\end{example}
+
+\section{Beyond the spherical cow: nonlinearity}
+
+Two ways an oscillator can stop being simple are worth meeting now.
+
+\subsection{Anharmonicity}
+If you keep the cubic and quartic terms in the Taylor expansion, the frequency starts to depend on the amplitude: isochronism breaks. For a pendulum the period lengthens with amplitude, $T\approx T_0(1+\theta_0^2/16)$. Large anharmonicity, as we will see in Chapter~\ref{ch:chaos}, is one road to chaos.
+
+\subsection{Parametric resonance}
+Here is a different way to pump energy in: instead of pushing the oscillator, wiggle one of its \emph{parameters}. A child on a swing stands up at the bottom of each swing and squats at the top, changing the effective length of the pendulum twice per period. The equation becomes
+\[
+  \ddot x + \omega_0^2\,\big[1 + h\cos(2\omega_0 t)\big]\,x = 0,
+\]
+the \emph{Mathieu equation}, and for modulation at twice the natural frequency the amplitude grows \emph{exponentially}, roughly as $e^{h\omega_0 t/4}$. Unlike ordinary resonance, the growth needs some initial wiggle to amplify: a swing exactly at rest cannot be pumped this way. Parametric amplifiers are used in quantum optics and in the readout of superconducting qubits (Chapter~\ref{ch:qinfo}).
+
+\section{Where this goes}
+
+The reason to spend real time here is the payoff downstream. The same model, with almost no new ideas, is waiting in chapter after chapter.
+\begin{itemize}[itemsep=3pt]
+  \item \textbf{Waves} (Chapter~\ref{ch:waves}) are coupled oscillators, infinitely many of them, and their normal modes are oscillators in disguise.
+  \item \textbf{Quantum mechanics} (Chapter~\ref{ch:qm}): quantize the oscillator and its energy comes in evenly spaced rungs, $E_n = (n+\tfrac12)\hbar\omega$, including a zero-point energy that can never be removed.
+  \item \textbf{Statistical mechanics} and \textbf{condensed matter} (Chapters~\ref{ch:statmech} and~\ref{ch:condmat}): a solid is a lattice of atomic oscillators, and counting their quanta explains why heat capacities vanish at low temperatures.
+  \item \textbf{Electromagnetism} (Chapter~\ref{ch:em}): an inductor and capacitor form an oscillator; so does each mode of the field in a box.
+  \item \textbf{Quantum field theory} (Chapter~\ref{ch:qft}): a free field is nothing but infinitely many oscillators, one per wavelength, and their quanta \emph{are} particles. A photon is one rung of excitation of one mode of the electromagnetic field.
+\end{itemize}
+Much of the rest of physics is this chapter, repeated.
+
+\section{Problems}
+
+\begin{problems}
+\prob{1}\core A mass $m$ hangs from a vertical spring and stretches it by $d$ at rest. Show that it oscillates about its new equilibrium with $\omega=\sqrt{g/d}$, and explain in one sentence why gravity dropped out of the frequency.
+
+\prob{1}\aside An $LC$ circuit has charge obeying $L\ddot{Q}+Q/C=0$. Read off its frequency, and give the dictionary between this circuit and the mass on a spring: what plays the role of mass? Of stiffness? Of velocity? Of kinetic energy?
+
+\prob{1} A $0.5\un{kg}$ mass on a spring with $k=200\un{N/m}$ is pulled $4\un{cm}$ from equilibrium and released. Find the period, the total energy, and the maximum speed.
+
+\prob{2} A uniform solid ball of radius $r$ rolls without slipping inside a large spherical bowl of radius $R \gg r$. Show that small oscillations about the bottom have $\omega = \sqrt{5g/7R}$. Where did the factor $5/7$ come from, and why does a sliding (frictionless) ball give $\sqrt{g/R}$ instead?
+
+\prob{2}\core \label{prob:pendulum-anharmonic} Keep the quartic term you discarded in the pendulum potential. Show that the period grows with amplitude as $T\approx T_{0}\left(1+\theta_{0}^{2}/16\right)$ for small $\theta_{0}$. How much does a grandfather clock with a $5^\circ$ swing lose per day relative to an ideal one?
+\hint{Write the period as an integral using energy conservation, $T = 4\int_0^{\theta_0} \dd\theta/\dot\theta$, and expand.}
+
+\prob{2}\label{prob:tunnel} Imagine a straight tunnel drilled through the Earth (assumed uniform) between any two points, not necessarily through the centre. Show that an object dropped into the frictionless tunnel undergoes simple harmonic motion, and that the one-way trip takes about $42$ minutes regardless of the tunnel's length. Compare with the period of a satellite skimming the surface.
+
+\prob{2}\core For the driven damped oscillator, show that the steady-state amplitude peaks not exactly at $\omega_0$ but at $\omega_{\max} = \sqrt{\omega_0^2 - 2\gamma^2}$, and that the peak amplitude divided by the static response $F_0/k$ is approximately $Q$ for large $Q$. Show also that the average power absorbed peaks exactly at $\omega_0$.
+
+\prob{2}\aside A car's suspension is critically damped. The car is loaded with four passengers, increasing its mass by $25\%$. Is the suspension now underdamped or overdamped? Estimate the new $Q$.
+
+\prob{3}\core The quantum oscillator's ground state has energy $\tfrac12\hbar\omega$, not zero. Using only the uncertainty principle $\Delta x\,\Delta p\gtrsim\hbar/2$, show that the energy of a quantum oscillator cannot be less than about $\tfrac12\hbar\omega$, so this zero-point energy cannot be removed. You have just done real physics with one inequality.
+
+\prob{3}\label{prob:tautochrone} \emph{(Huygens' tautochrone.)} The pendulum is not isochronous because its bob moves on a circle. Find the curve on which a bead sliding without friction under gravity has a period \emph{exactly} independent of amplitude.
+\hint{Isochronism means the restoring force is exactly proportional to the distance $s$ measured \emph{along} the curve. If the slope angle is $\phi$, you need $\sin\phi\propto s$. The answer is a cycloid, and Huygens built clocks around it in 1673.}
+
+\prob{3} \emph{(Pumping a swing.)} Model a child pumping a swing as a pendulum whose length changes abruptly: from $L+\delta$ to $L-\delta$ at the bottom of each swing (standing up) and back at each turning point (squatting). Using conservation of angular momentum through the sudden shortening at the bottom, show that the energy is multiplied by a fixed factor $\approx 1+6\delta/L$ every half period, so the amplitude grows exponentially. Why can't the child start the swing from rest this way?
+\end{problems}
+
+\begin{reading}
+\rd{John R.\ Taylor, \emph{Classical Mechanics}}{Chapter~5 is the definitive undergraduate treatment of oscillations, damping, resonance, and Fourier series, with a superb problem set.}
+\rd{A.\ P.\ French, \emph{Vibrations and Waves}}{A whole short book on this chapter and the next, written with great physical care.}
+\rd{David Morin, \emph{Introduction to Classical Mechanics}}{Chapter~4. Harder problems, beautifully solved.}
+\rd{Griffiths and Schroeter, \emph{Introduction to Quantum Mechanics}}{Section~2.3 does the quantum oscillator twice, by brute force and with ladder operators. Do both.}
+\end{reading}

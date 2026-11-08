@@ -1,0 +1,158 @@
+\chapter{Geophysics and climate}
+\label{ch:geo}
+
+\buildson{fluid dynamics (Chapter~\ref{ch:fluids}), continuum mechanics (Chapter~\ref{ch:continuum})}
+
+\chapterdek{The physics of the planet we actually live on: its molten heart, its drifting skin, its spinning air and ocean, and the energy balance that sets its temperature.}
+
+\begin{prototype}
+The Earth as a single sphere in balance: sunlight in, infrared out. Equate the two and you get the temperature the Earth would have without an atmosphere --- $255\un{K}$, a frozen world. The real surface is $33\un{K}$ warmer. Explaining that difference is the physics of the greenhouse effect, and of climate.
+\end{prototype}
+
+Geophysics applies every branch of classical physics to one particular object: the Earth. It is a spinning, layered ball of rock and iron, wrapped in a thin skin of rock plates floating on a slowly churning mantle, covered by an ocean and an atmosphere that are turbulent rotating fluids, and heated from inside by radioactivity and from outside by the Sun. Almost nothing about it can be put in a laboratory, and almost nothing about it can be seen directly. Yet physicists have mapped its core, measured its age, explained its magnetic field, and built models of its climate that predicted, decades in advance, the warming now being measured.
+
+\section{Weighing the Earth}
+
+Eratosthenes measured the Earth's radius around $240$~BCE from shadow lengths in two Egyptian cities, getting within a few percent of $6371\un{km}$. Once Cavendish measured $G$ in 1798 (Chapter~\ref{ch:newton}), $g = GM/R^2$ gave the mass, $6.0\times10^{24}\un{kg}$, and hence the mean density, $5.5\un{g/cm^3}$. Surface rocks have only about half that. The interior must be much denser. The Earth's rotation gives a second clue: its moment of inertia is $0.33\,MR^2$, below the $0.4\,MR^2$ of a uniform sphere, so mass is concentrated toward the centre.
+
+\section{Seeing inside with earthquakes}
+
+Earthquakes are the Earth's X-rays. They send P waves (compressional) and S waves (shear) through the interior (Chapter~\ref{ch:continuum}), and because the wave speeds increase with depth, the rays curve back up to the surface, where seismometers around the world record them. Their arrival times map the interior.
+
+In 1906 Richard Oldham noticed that seismic waves arriving on the far side of the Earth were delayed. By 1914 Beno Gutenberg had found a \emph{shadow zone}: between about $104^\circ$ and $140^\circ$ from an earthquake, no direct P waves arrive, and beyond $104^\circ$ no direct S waves arrive at all. P waves are bent by a central core where their speed suddenly drops; S waves are stopped by it. Since shear waves cannot travel through liquids, the outer core is molten (Problem~\ref{prob:core-shadow}). In 1936 Inge Lehmann, studying faint P waves that appeared inside the shadow, deduced a solid \emph{inner core}.
+
+\begin{center}
+\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}
+  \fill[ascwarmbg] (0,0) circle (2.700);
+  \fill[ascwarm!32] (0,0) circle (1.475);
+  \fill[ascwarm!60] (0,0) circle (0.517);
+  \draw (0,0) circle (2.700);
+  \draw[ascwarm!80!black] (0,0) circle (1.475);
+  \draw[ascblue, thick] (0,2.700) to[bend right=9] (1.549,2.212);
+  \draw[ascpurple, thick] (0,2.700) to[bend left=9] (-1.549,2.212);
+  \draw[ascblue, thick] (0,2.700) to[bend right=11] (2.537,0.923);
+  \draw[ascpurple, thick] (0,2.700) to[bend left=11] (-2.537,0.923);
+  \draw[ascblue, thick] (0,2.700) to[bend right=13] (2.620,-0.653);
+  \draw[ascpurple, thick] (0,2.700) to[bend left=13] (-2.620,-0.653);
+  \draw[ascblue, thick] plot[smooth] coordinates {(0.000,2.700) (0.200,2.050) (0.420,1.420) (0.620,0.300) (0.920,-0.850) (1.350,-2.338)};
+  \draw[ascblue, thick] (0,2.700) -- (0,-2.700);
+  \draw[ascpurple, thick] (0,2.700) to[bend left=6] (-1.130,0.948) node[ascpurple, font=\small] {$\times$};
+  \draw[ascink, line width=2.4pt] (-14:2.790) arc[start angle=-14, end angle=-50, radius=2.790];
+  \draw[ascink, line width=2.4pt] (194:2.790) arc[start angle=194, end angle=270, radius=2.790];
+  \node[star, star points=5, star point ratio=2.2, fill=ascwarm, inner sep=1.6pt] at (0,2.700) {};
+  \node[font=\small, above] at (0,2.820) {earthquake};
+  \node[font=\small, ascblue, anchor=west] at (2.05,2.05) {P waves};
+  \node[font=\small, ascpurple, anchor=east] at (-2.05,2.05) {S waves};
+  \node[font=\small, anchor=west, align=left] at (2.9,-1.1) {no P waves\\($104^\circ$--$140^\circ$)};
+  \node[font=\small, anchor=east, align=right] at (-2.65,-1.6) {no S waves\\beyond $104^\circ$};
+  \node[font=\scriptsize] at (-0.62,-0.85) {liquid};
+  \node[font=\scriptsize] at (-0.62,-1.07) {outer core};
+  \node[font=\scriptsize, align=left, anchor=west, inner sep=0pt] at (0.06,-0.05) {inner\\core};
+  \node[font=\scriptsize] at (-0.95,-2.0) {solid mantle};
+\end{tikzpicture}
+
+{\small Seismic waves from an earthquake, sketched. They curve as they go, because they travel faster at depth. The liquid outer core stops S waves (left) and bends P waves (right) so sharply that it casts a shadow, a band of the surface that no direct P waves reach.}
+\end{minipage}
+\end{center}
+
+The Earth's structure, then:
+\begin{itemize}[itemsep=2pt]
+  \item \textbf{Crust}: $5$--$70\un{km}$ thick, light silicate rock.
+  \item \textbf{Mantle}: to $2900\un{km}$ depth, hot solid rock that flows slowly over millions of years.
+  \item \textbf{Outer core}: to $5150\un{km}$, liquid iron and nickel.
+  \item \textbf{Inner core}: a solid iron ball $1220\un{km}$ in radius, solid despite being as hot as the Sun's surface, because the pressure is so high.
+\end{itemize}
+Modern \emph{seismic tomography}, using millions of seismograms the way CT uses X-rays (Chapter~\ref{ch:medical}), images hot plumes rising and cold slabs sinking through the mantle.
+
+\section{Earthquakes and tsunamis}
+
+Earthquakes happen where rock, slowly strained by moving plates, suddenly slips along a fault, releasing stored elastic energy. Their sizes are measured on a logarithmic \emph{magnitude} scale: each step of one magnitude is about $32$ times more energy. They obey the Gutenberg--Richter power law (Chapter~\ref{ch:complex}): for every magnitude~6, about ten magnitude~5s. An earthquake under the ocean can lift the seafloor and launch a \emph{tsunami}. With wavelengths of hundreds of kilometres, tsunamis are shallow-water waves even in the deep ocean, travelling at $\sqrt{gh}\approx200\un{m/s}$ --- as fast as a jet --- with an amplitude of a metre or less. Approaching the coast they slow, and their amplitude grows (Chapter~\ref{ch:waves}).
+
+\section{The shape of the Earth and the tides}
+
+A rotating fluid ball bulges at its equator. Newton predicted the Earth's oblateness from its rotation; the equatorial radius exceeds the polar radius by $21\un{km}$. On smaller scales, the Earth's crust floats on the mantle like ice on water: mountains have deep roots of light crust, so that the weight of every column is balanced (\emph{isostasy}, Archimedes on a planetary scale; Chapter~\ref{ch:fluids}). Scandinavia is still rising, rebounding from the weight of ice-age glaciers that melted ten thousand years ago.
+
+\textbf{Tides} arise because gravity weakens with distance. The Moon pulls harder on the near side of the Earth than on its centre, and harder on the centre than on the far side, so the Earth is stretched along the Earth--Moon line, raising two bulges --- one facing the Moon and one opposite --- and producing two high tides a day. The tidal acceleration scales as $M/r^3$ rather than $M/r^2$, so the Moon, despite its smaller mass, beats the Sun by a factor of about two (Problem~\ref{prob:tides}). When Sun and Moon align, at full and new moon, tides are larger (\emph{spring tides}); at quarter moons, smaller (\emph{neap tides}).
+
+Tides dissipate energy, about $3.7\un{TW}$, mostly in shallow seas. The Earth's rotation drags its tidal bulges slightly ahead of the Moon, and their pull speeds the Moon up in its orbit while braking the Earth's spin. The day lengthens by about $2$ milliseconds per century, and the Moon recedes by $3.8\un{cm}$ per year, as measured by bouncing lasers off reflectors left by Apollo astronauts (Problem~\ref{prob:day-length}). The same process long ago locked the Moon's rotation to its orbit, so we always see the same face.
+
+\section{The Earth's heat and plate tectonics}
+
+The Earth is hot inside: the temperature rises about $25\un{K}$ per kilometre of depth, and $47\un{TW}$ of heat flows out through the surface, roughly half from the decay of uranium, thorium, and potassium (Chapter~\ref{ch:nuclear}), the rest primordial heat from the planet's formation. In the 1860s Lord Kelvin used the rate of cooling to estimate the Earth's age at around a hundred million years, too young for the geologists and Darwin. He had made two mistakes, neither of which he could have known: he did not know about radioactive heating, and he assumed heat leaves only by conduction. In fact the mantle convects.
+
+The mantle is solid but, over millions of years, flows like an extremely viscous fluid ($\eta\sim10^{21}\un{Pa\,s}$). The relevant dimensionless number is the \emph{Rayleigh number}, the ratio of buoyant driving to viscous and thermal damping, which for the mantle is about $10^7$, far above the threshold for convection. Hot rock rises, cold rock sinks, and the cool, rigid outer shell is broken into \emph{plates} that move at a few centimetres per year, about the speed your fingernails grow. Where they pull apart, new ocean floor forms; where they collide, mountains rise or one plate dives beneath the other. Alfred Wegener proposed continental drift in 1912 from the fit of the continents and their fossils; he was dismissed for decades because no one could imagine a mechanism, until the magnetic stripes on the seafloor proved it in the 1960s.
+
+\section{The geodynamo}
+
+The Earth has a magnetic field, roughly a dipole of about $50\un{\mu T}$ at the surface, generated by the convecting, rotating liquid iron of the outer core: a self-sustaining \emph{dynamo}, in which moving conductor and magnetic field continually regenerate each other (Chapter~\ref{ch:plasma}). The field is not steady. Every few hundred thousand years, irregularly, it reverses. Lava records the field direction as it cools, so the seafloor spreading away from mid-ocean ridges carries symmetric stripes of alternating magnetization, like a tape recording --- the evidence that convinced geologists of plate tectonics. The field also shields the Earth from the solar wind, carving out the magnetosphere (Chapter~\ref{ch:plasma}).
+
+\section{The atmosphere}
+
+The atmosphere is a thin film: half its mass lies below $5.5\un{km}$. In an isothermal atmosphere the pressure would fall exponentially with a scale height $\kB T/mg\approx8\un{km}$ (Chapter~\ref{ch:statmech}). In reality the lower atmosphere, the \emph{troposphere}, is heated from below by the warm ground and is stirred by convection. Rising air expands and cools adiabatically (Chapter~\ref{ch:thermo}) at the \emph{dry adiabatic lapse rate}
+\[
+  \Gamma = \frac{g}{c_p}\approx9.8\un{K/km}.
+\]
+Moist air cools more slowly, because condensing water releases latent heat, and the observed average is about $6.5\un{K/km}$. Where rising air cools to its dew point, clouds form. Above about $12\un{km}$, in the \emph{stratosphere}, temperature rises again, because ozone absorbs ultraviolet sunlight (Chapter~\ref{ch:chem}), and the inverted temperature profile suppresses convection --- which is why thunderstorms flatten into anvils at the top of the troposphere.
+
+\section{Spinning fluids: weather and ocean currents}
+
+On large scales, the atmosphere and ocean are dominated by the Earth's rotation. The importance of rotation is measured by the \emph{Rossby number}, $\mathrm{Ro} = U/(fL)$, where $U$ and $L$ are typical speeds and sizes and $f = 2\Omega\sin\lambda$ is the Coriolis parameter at latitude $\lambda$ (Chapter~\ref{ch:newton}). For a bathtub, $\mathrm{Ro}\sim10^3$: the Coriolis force is irrelevant, and the direction of the drain vortex is set by how you filled the tub. For a weather system a thousand kilometres across, $\mathrm{Ro}\sim0.1$: rotation dominates.
+
+At small Rossby number, a remarkable balance holds: the Coriolis force balances the pressure gradient, and the wind blows not from high pressure to low but \emph{along} the isobars. This \emph{geostrophic balance} is why weather maps show winds circling around lows --- counterclockwise in the northern hemisphere, clockwise in the southern --- and why hurricanes spin. The global circulation is shaped by it too: warm air rises at the equator and sinks around $30^\circ$ latitude (the \emph{Hadley cells}), the returning surface flow is deflected into the steady trade winds, and at mid-latitudes the jet streams meander around the globe. Weather is chaotic (Chapter~\ref{ch:chaos}), which limits forecasts to about two weeks --- but climate, the statistics of weather, is predictable, just as you cannot predict a single roll of a die but can predict the average of a million.
+
+The ocean is a second spinning fluid, a thousand times denser and with a heat capacity so large that its top three metres store as much heat as the entire atmosphere. Winds drive surface currents like the Gulf Stream; differences in temperature and salinity drive a slow, deep \emph{thermohaline circulation}, in which cold salty water sinks in the North Atlantic and around Antarctica and returns over about a thousand years.
+
+\section{Climate}
+
+\textbf{The energy balance.} The Sun delivers $S = 1361\un{W/m^2}$ at the Earth's distance. The Earth reflects a fraction $A\approx0.3$ (its \emph{albedo}) and intercepts sunlight over a disc of area $\pi R^2$, while radiating infrared from its whole surface, $4\pi R^2$. Balancing gives
+\[
+  (1-A)S\,\pi R^2 = 4\pi R^2\,\sigma T_e^4 \quad\Longrightarrow\quad T_e = \left(\frac{(1-A)S}{4\sigma}\right)^{1/4}\approx255\un{K} .
+\]
+That is $-18^\circ\text{C}$. The actual average surface temperature is about $288\un{K}$, $+15^\circ\text{C}$.
+
+\textbf{The greenhouse effect.} The atmosphere is nearly transparent to visible sunlight but absorbs strongly in parts of the infrared, where water vapour and carbon dioxide molecules vibrate and rotate (Chapter~\ref{ch:amo}). The Earth's surface radiates infrared upward; the atmosphere absorbs much of it and re-radiates, half back down. The planet as seen from space must still radiate at an effective $255\un{K}$ to balance the sunlight it absorbs, but that radiation now escapes mainly from high, cold layers of the atmosphere. Because temperature falls with height (the lapse rate), the surface beneath must be warmer. Adding greenhouse gases raises the altitude from which radiation escapes, and the surface warms. The basic physics has been known since Fourier (1824), Tyndall (1859), and Arrhenius (1896), who first estimated the warming from doubling CO$_2$; Syukuro Manabe's 1967 radiative--convective model, which got the numbers right, won a share of the 2021 Nobel Prize.
+
+\textbf{Forcing, feedbacks, and sensitivity.} Because the CO$_2$ absorption band is already saturated at its centre, adding more CO$_2$ widens it at the edges, and the extra trapped energy grows only logarithmically:
+\[
+  \Delta F\approx5.35\ln\frac{C}{C_0}\un{W/m^2}.
+\]
+Doubling CO$_2$ gives a forcing of about $3.7\un{W/m^2}$. On its own, this would warm the Earth by a little over $1\un{K}$ (Problem~\ref{prob:no-feedback}). But warming triggers \emph{feedbacks}. Warmer air holds more water vapour, itself a greenhouse gas, roughly doubling the effect. Melting ice exposes darker ground and ocean, lowering the albedo. Clouds respond in complicated ways that remain the largest uncertainty. The net result, the \emph{equilibrium climate sensitivity}, is about $3\un{K}$ per doubling, likely between $2.5$ and $4\un{K}$. Since 1850, CO$_2$ has risen from $280$ to over $420$ parts per million, and the Earth has warmed by about $1.2\un{K}$, consistent with these numbers once the slow warming of the ocean is accounted for.
+
+\textbf{Climate history.} Over the last million years, ice ages have come and gone roughly every $100\,000$ years, paced by small periodic changes in the Earth's orbit and tilt (\emph{Milankovitch cycles}) and amplified by the feedbacks of ice and CO$_2$. Further back, the Earth may have frozen over almost completely, at least twice, in ``snowball Earth'' episodes. Because the ice--albedo feedback can create multiple stable states, the climate can in principle show tipping points and hysteresis --- the bifurcations of Chapter~\ref{ch:chaos} on a planetary scale (Problem~\ref{prob:snowball}).
+
+\section{Problems}
+
+\begin{problems}
+\prob{1}\core From $g = 9.8\un{m/s^2}$, $R = 6371\un{km}$, and $G$, compute the Earth's mean density. Compare with the density of surface rock, $2.7\un{g/cm^3}$, and of iron, $7.9\un{g/cm^3}$. What do you conclude?
+
+\prob{1} Using a scale height of $8\un{km}$, at what altitude is the pressure half its sea-level value? What fraction of the atmosphere's mass lies above the summit of Everest ($8.85\un{km}$)?
+
+\prob{1} A tsunami crosses the Pacific Ocean (average depth $4\un{km}$) from Chile to Japan, about $17\,000\un{km}$. How long does it take? Why do tsunami warnings for distant coasts work?
+
+\prob{2}\core Derive the Earth's effective temperature $T_e\approx255\un{K}$ from the energy balance, with $S = 1361\un{W/m^2}$ and $A = 0.3$. Repeat for Venus ($S = 2600\un{W/m^2}$, $A = 0.77$) and compare with its actual surface temperature of $737\un{K}$. What does Venus tell you?
+
+\prob{2} \emph{(A one-layer greenhouse.)} Model the atmosphere as a single layer that is transparent to sunlight but absorbs all infrared, radiating equally up and down. Show that the surface temperature is $2^{1/4}T_e\approx303\un{K}$. Why is the real Earth cooler than this model predicts?
+
+\prob{2}\core \label{prob:no-feedback} If the Earth simply radiated more as a blackbody to balance an extra forcing $\Delta F$, show that its effective temperature would rise by $\Delta T = \Delta F/(4\sigma T_e^3)$. Evaluate this for a CO$_2$ doubling ($\Delta F = 3.7\un{W/m^2}$). Then, if water vapour feedback amplifies warming by a factor $1/(1-f)$ with $f\approx0.5$, what is the warming?
+
+\prob{2}\core \label{prob:tides} Show that the tidal acceleration across the Earth due to a body of mass $M$ at distance $r$ is about $2GMR/r^3$. Compute the ratio of the lunar to the solar tidal effect. Why is the Sun's tide weaker, even though the Sun's \emph{gravitational} pull on the Earth is about $180$ times stronger than the Moon's?
+
+\prob{2} Derive the dry adiabatic lapse rate $\Gamma = g/c_p$ by combining the hydrostatic equation $\dd P/\dd z = -\rho g$ with the adiabatic law for an ideal gas. Evaluate it for air, with $c_p\approx1000\un{J/(kg\,K)}$.
+
+\prob{2} Compute the Rossby number for draining a bathtub ($L\approx1\un{m}$, $U\approx0.1\un{m/s}$) and for a hurricane ($L\approx500\un{km}$, $U\approx30\un{m/s}$) at latitude $30^\circ$. Settle the bathtub question.
+
+\prob{3}\core \label{prob:core-shadow} \emph{(The size of the core.)} In a crude model, seismic rays travel in straight lines through the mantle, and the S-wave shadow begins at an angular distance of $104^\circ$ from the earthquake: this is the ray that just grazes the core. Find the core's radius in this model. (The true value is $3480\un{km}$; real rays curve, because seismic speeds increase with depth.)
+
+\prob{3} \label{prob:day-length} \emph{(The lengthening day.)} The Moon recedes from the Earth at $3.8\un{cm/yr}$. Using conservation of the total angular momentum of the Earth--Moon system (Earth's spin plus the Moon's orbit; take the Earth's moment of inertia as $0.33MR^2$), estimate how fast the length of the day is increasing, in milliseconds per century. Ancient eclipse records give about $2\un{ms}$ per century. How long was the day when the dinosaurs lived, $100$ million years ago?
+
+\prob{3} \label{prob:snowball} \emph{(Snowball Earth.)} Let the albedo depend on temperature: $A = 0.65$ for $T<250\un{K}$ (ice-covered), $A = 0.3$ for $T>280\un{K}$, and varying linearly in between. Plot the absorbed sunlight $(1-A(T))S/4$ and the emitted radiation $\epsilon\sigma T^4$ (with $\epsilon\approx0.6$ to mimic the greenhouse effect) on the same graph. Show that there can be three equilibria, two of them stable. Explain how the Earth could get stuck in a snowball state, and what it would take to get out (hint: volcanic CO$_2$ accumulating for millions of years).
+\end{problems}
+
+\begin{reading}
+\rd{Stacey and Davis, \emph{Physics of the Earth}}{A comprehensive physics-based treatment of the solid Earth.}
+\rd{William Lowrie, \emph{Fundamentals of Geophysics}}{A clear introduction to seismology, gravity, magnetism, and heat flow.}
+\rd{Raymond T.\ Pierrehumbert, \emph{Principles of Planetary Climate}}{The physics of climate, on Earth and other planets, from first principles.}
+\rd{Marshall and Plumb, \emph{Atmosphere, Ocean, and Climate Dynamics}}{An excellent introduction to geophysical fluid dynamics.}
+\rd{David Archer, \emph{Global Warming: Understanding the Forecast}}{A short, quantitative introduction to climate change for non-specialists.}
+\end{reading}

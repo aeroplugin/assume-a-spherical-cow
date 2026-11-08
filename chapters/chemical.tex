@@ -1,0 +1,154 @@
+\chapter{Chemical physics}
+\label{ch:chem}
+
+\buildson{quantum mechanics (Chapter~\ref{ch:qm})}
+
+\chapterdek{Where quantum mechanics turns into chemistry: why atoms stick together, why molecules have the shapes they do, and why reactions happen at the rates they do.}
+
+\begin{prototype}
+The hydrogen molecular ion, H$_2^+$: two protons and one electron. The electron's wave can be built from an orbital around each proton, added either in phase or out of phase. In phase, the two waves reinforce between the protons, the electron's charge piles up there, and it glues the protons together. That constructive interference \emph{is} the chemical bond.
+\end{prototype}
+
+``The underlying physical laws necessary for the mathematical theory of a large part of physics and the whole of chemistry are thus completely known,'' wrote Dirac in 1929, ``and the difficulty is only that the exact application of these laws leads to equations much too complicated to be soluble.'' Chemistry is quantum mechanics of electrons in the field of nuclei. But the difficulty Dirac mentioned is real: the Schr\"odinger equation for a molecule with $N$ electrons lives in $3N$ dimensions, and exact solutions are out of reach for anything bigger than a few atoms. Chemical physics is the art of approximations --- spherical cows of extraordinary power --- that turn the equations into understanding.
+
+\section{The chemical bond}
+
+Take H$_2^+$. With the protons far apart, the electron sits in a $1s$ orbital $\psi_A$ around proton $A$, or $\psi_B$ around $B$, with the same energy. Bring the protons together and the electron can hop between them, so --- exactly as for the tight-binding chain of Chapter~\ref{ch:condmat} or the coupled pendulums of Chapter~\ref{ch:math} --- the true states are the symmetric and antisymmetric combinations:
+\[
+  \psi_\pm = \frac{\psi_A\pm\psi_B}{\sqrt{2(1\pm S)}},
+\]
+where $S = \braket{\psi_A}{\psi_B}$ is their overlap. This is the method of \emph{linear combinations of atomic orbitals}, LCAO.
+
+In the symmetric \emph{bonding orbital} $\psi_+$, the two waves interfere constructively in the region between the protons. The electron spends more time there, where it is attracted by both nuclei at once, and its energy is lowered below that of a separated atom. In the antisymmetric \emph{antibonding orbital} $\psi_-$, there is a node between the protons, the electron is pushed to the outside, and the energy rises. Adding the repulsion of the protons gives a potential energy curve for $\psi_+$ with a minimum at a definite \emph{bond length} and \emph{bond energy}. A bond is a standing wave that has found a way to lower its energy.
+
+\begin{keyidea}
+Combining two orbitals always produces one that is lower in energy and one that is higher, and the antibonding orbital is raised slightly more than the bonding one is lowered. Two electrons (opposite spins) in a bonding orbital make a stable bond. Two more in the antibonding orbital cancel it --- which is why H$_2$ exists and He$_2$ does not.
+\end{keyidea}
+
+The \textbf{Born--Oppenheimer approximation} underlies all of this. Nuclei are thousands of times heavier than electrons, so electrons adjust instantly to wherever the nuclei are. Solve for the electrons with the nuclei clamped at positions $\vb R$; the electronic energy $E(\vb R)$ then serves as the potential energy surface on which the nuclei move. Molecular vibrations are small oscillations in this landscape (Chapters~\ref{ch:sho} and~\ref{ch:amo}), and a chemical reaction is a journey across it, from one valley to another, usually over a mountain pass called the \emph{transition state}.
+
+\section{A zoo of bonds}
+
+Chemists distinguish bonds by how the electrons are shared, but they are all electromagnetic in origin, and they span a factor of a thousand in strength.
+\begin{itemize}[itemsep=4pt]
+  \item \textbf{Covalent bonds} (a few eV): electrons shared in a bonding orbital, as in H$_2$, the C--C bonds of organic chemistry, and diamond.
+  \item \textbf{Ionic bonds} (a few eV): one atom gives up an electron entirely to another, and the resulting ions attract electrostatically. Forming Na$^+$Cl$^-$ costs $5.1\un{eV}$ to ionize sodium but recovers $3.6\un{eV}$ when chlorine accepts the electron and about $6\un{eV}$ from the Coulomb attraction at the bond length: net binding.
+  \item \textbf{Metallic bonds}: electrons delocalized over the whole crystal, a sea of shared electrons (Chapter~\ref{ch:condmat}).
+  \item \textbf{Hydrogen bonds} (about $0.2\un{eV}$): a hydrogen atom attached to a strongly electron-hungry atom (oxygen, nitrogen) is left slightly positive and attracts a lone pair of electrons on a neighbouring molecule. Hydrogen bonds hold the two strands of DNA together, fold proteins (Chapter~\ref{ch:bio}), and give water its anomalously high boiling point and the low density of ice.
+  \item \textbf{Van der Waals forces} (about $0.01$--$0.1\un{eV}$): even neutral, nonpolar atoms attract. The electron cloud of one atom fluctuates, creating a momentary dipole that polarizes its neighbour, and the two fluctuating dipoles attract with an energy falling as $1/r^6$ (Problem~\ref{prob:london}). These \emph{London dispersion forces} are why noble gases liquefy at all, and why a gecko can walk up a glass wall on millions of microscopic hairs.
+\end{itemize}
+At room temperature $\kB T\approx0.025\un{eV}$. Covalent and ionic bonds are far stronger, so molecules persist; hydrogen bonds are only about ten times stronger, so they constantly break and re-form. Life uses both: strong bonds for structure, weak bonds for function.
+
+\section{The shapes of molecules}
+
+Carbon has four electrons in its outer shell, in one $2s$ and three $2p$ orbitals. In methane, CH$_4$, all four bonds are identical and point to the corners of a tetrahedron, $109.5^\circ$ apart. The explanation is \emph{hybridization}: it is energetically favourable to mix the $2s$ and $2p$ orbitals into four equivalent $sp^3$ hybrids that point away from each other. Mixing $s$ with two $p$ orbitals gives three $sp^2$ hybrids in a plane, $120^\circ$ apart, leaving one $p$ orbital perpendicular; this is the geometry of ethylene, benzene, and graphene. Mixing with one gives two linear $sp$ hybrids.
+
+The leftover $p$ orbitals can overlap sideways to form $\pi$ bonds. In molecules with alternating single and double bonds, these $\pi$ electrons are delocalized along the whole chain --- they behave like particles in a box (Chapter~\ref{ch:qm}). The longer the box, the closer the energy levels, and the longer the wavelength of light absorbed. Short chains absorb in the ultraviolet and are colourless; $\beta$-carotene, with eleven conjugated double bonds, absorbs blue light and is orange, which is why carrots are (Problem~\ref{prob:carotene}). The retinal molecule in your eye is a close relative.
+
+Atoms differ in how strongly they pull on shared electrons (their \emph{electronegativity}), so bonds can be polar, and the molecule's shape decides whether the polarities cancel. Carbon dioxide is linear and has no dipole moment. Water is bent at $104.5^\circ$, with a large dipole moment, which makes it the universal solvent: it surrounds ions with oriented molecules that screen their charges (its dielectric constant is $80$; Chapter~\ref{ch:em}).
+
+\section{Spectroscopy}
+
+Molecules announce their structure through the light they absorb (Chapter~\ref{ch:amo}). Ultraviolet and visible spectra probe electronic transitions. Infrared spectra probe vibrations, and since each functional group (C--H, O--H, C=O) vibrates at a characteristic frequency, an infrared spectrum is a fingerprint. \emph{Raman} spectroscopy sees vibrations through the slight frequency shifts of scattered laser light. \emph{Nuclear magnetic resonance} (NMR) uses the precession of nuclear spins in a magnetic field (Chapter~\ref{ch:qm}); the precise frequency depends slightly on the electrons around each nucleus, shifting by a few parts per million, so NMR reveals which atoms are bonded to which. The same physics, spatially encoded, is MRI (Chapter~\ref{ch:medical}).
+
+\begin{center}
+\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}
+  \draw[-{Stealth[length=6pt]}] (0.75,0) -- (8.1,0) node[right] {$r$};
+  \draw[-{Stealth[length=6pt]}] (0.75,-2.55) -- (0.75,2.05) node[above] {$V(r)$};
+  \begin{scope}
+    \clip (0.75,-2.6) rectangle (8.1,2.0);
+    \draw[ascink!50, dashed] plot[smooth] coordinates {(0.798,-0.319) (0.841,-0.470) (0.884,-0.615) (0.926,-0.754) (0.969,-0.887) (1.012,-1.014) (1.055,-1.135) (1.098,-1.250) (1.141,-1.360) (1.183,-1.463) (1.226,-1.560) (1.269,-1.651) (1.312,-1.736) (1.355,-1.815) (1.398,-1.888) (1.440,-1.956) (1.483,-2.017) (1.526,-2.072) (1.569,-2.121) (1.612,-2.165) (1.655,-2.202) (1.697,-2.233) (1.740,-2.258) (1.783,-2.278) (1.826,-2.291) (1.869,-2.298) (1.912,-2.300) (1.954,-2.295) (1.997,-2.285) (2.040,-2.268) (2.083,-2.245) (2.126,-2.217) (2.169,-2.182) (2.211,-2.142) (2.254,-2.095) (2.297,-2.043) (2.340,-1.984) (2.383,-1.920) (2.426,-1.849) (2.468,-1.773) (2.511,-1.691) (2.554,-1.602) (2.597,-1.508) (2.640,-1.408) (2.683,-1.301) (2.725,-1.189) (2.768,-1.071) (2.811,-0.946) (2.854,-0.816) (2.897,-0.680) (2.940,-0.537) (2.982,-0.389) (3.025,-0.235) (3.068,-0.075) (3.111,0.091) (3.154,0.263) (3.197,0.442) (3.239,0.626) (3.282,0.816) (3.325,1.012)};
+  \end{scope}
+  \draw[ascblue] (1.599,-2.109) -- (2.304,-2.109);
+  \draw[ascblue] (1.428,-1.751) -- (2.696,-1.751);
+  \draw[ascblue] (1.330,-1.426) -- (3.038,-1.426);
+  \draw[ascblue] (1.262,-1.135) -- (3.377,-1.135);
+  \draw[ascblue] (1.211,-0.877) -- (3.734,-0.877);
+  \draw[ascblue] (1.172,-0.652) -- (4.125,-0.652);
+  \draw[ascblue] (1.141,-0.461) -- (4.568,-0.461);
+  \draw[ascblue] (1.118,-0.302) -- (5.092,-0.302);
+  \draw[ascblue] (1.100,-0.177) -- (5.744,-0.177);
+  \draw[ascblue] (1.088,-0.085) -- (6.625,-0.085);
+  \draw[ascblue] (1.080,-0.027) -- (8.017,-0.027);
+  \draw[ascink, line width=1.3pt] plot[smooth] coordinates {(0.893,1.799) (0.936,1.301) (0.980,0.851) (1.023,0.446) (1.067,0.081) (1.110,-0.245) (1.153,-0.537) (1.197,-0.798) (1.240,-1.029) (1.283,-1.234) (1.327,-1.415) (1.370,-1.573) (1.414,-1.710) (1.457,-1.830) (1.500,-1.932) (1.544,-2.018) (1.587,-2.091) (1.630,-2.151) (1.674,-2.199) (1.717,-2.236) (1.761,-2.264) (1.804,-2.284) (1.847,-2.295) (1.891,-2.300) (1.934,-2.298) (1.977,-2.291) (2.021,-2.278) (2.064,-2.262) (2.108,-2.241) (2.151,-2.217) (2.194,-2.189) (2.238,-2.159) (2.281,-2.127) (2.324,-2.092) (2.368,-2.056) (2.411,-2.019) (2.455,-1.980) (2.498,-1.940) (2.541,-1.899) (2.585,-1.858) (2.628,-1.817) (2.671,-1.775) (2.715,-1.733) (2.758,-1.691) (2.802,-1.649) (2.845,-1.607) (2.888,-1.566) (2.932,-1.525) (2.975,-1.484) (3.018,-1.444) (3.062,-1.404) (3.105,-1.365) (3.149,-1.327) (3.192,-1.289) (3.235,-1.251) (3.279,-1.215) (3.322,-1.179) (3.366,-1.144) (3.409,-1.110) (3.452,-1.076) (3.496,-1.044) (3.539,-1.011) (3.582,-0.980) (3.626,-0.950) (3.669,-0.920) (3.713,-0.891) (3.756,-0.863) (3.799,-0.835) (3.843,-0.809) (3.886,-0.783) (3.929,-0.757) (3.973,-0.733) (4.016,-0.709) (4.060,-0.686) (4.103,-0.663) (4.146,-0.641) (4.190,-0.620) (4.233,-0.600) (4.276,-0.580) (4.320,-0.560) (4.363,-0.542) (4.407,-0.523) (4.450,-0.506) (4.493,-0.489) (4.537,-0.472) (4.580,-0.456) (4.623,-0.441) (4.667,-0.426) (4.710,-0.411) (4.754,-0.397) (4.797,-0.384) (4.840,-0.370) (4.884,-0.358) (4.927,-0.345) (4.970,-0.334) (5.014,-0.322) (5.057,-0.311) (5.101,-0.300) (5.144,-0.290) (5.187,-0.280) (5.231,-0.270) (5.274,-0.261) (5.317,-0.251) (5.361,-0.243) (5.404,-0.234) (5.448,-0.226) (5.491,-0.218) (5.534,-0.211) (5.578,-0.203) (5.621,-0.196) (5.665,-0.189) (5.708,-0.182) (5.751,-0.176) (5.795,-0.170) (5.838,-0.164) (5.881,-0.158) (5.925,-0.153) (5.968,-0.147) (6.012,-0.142) (6.055,-0.137) (6.098,-0.132) (6.142,-0.127) (6.185,-0.123) (6.228,-0.119) (6.272,-0.114) (6.315,-0.110) (6.359,-0.106) (6.402,-0.103) (6.445,-0.099) (6.489,-0.095) (6.532,-0.092) (6.575,-0.089) (6.619,-0.086) (6.662,-0.083) (6.706,-0.080) (6.749,-0.077) (6.792,-0.074) (6.836,-0.071) (6.879,-0.069) (6.922,-0.066) (6.966,-0.064) (7.009,-0.062) (7.053,-0.060) (7.096,-0.058) (7.139,-0.055) (7.183,-0.053) (7.226,-0.052) (7.269,-0.050) (7.313,-0.048) (7.356,-0.046) (7.400,-0.045) (7.443,-0.043) (7.486,-0.041) (7.530,-0.040) (7.573,-0.039) (7.616,-0.037) (7.660,-0.036) (7.703,-0.035) (7.747,-0.033) (7.790,-0.032)};
+  \draw[ascwarm, {Stealth[length=5pt]}-{Stealth[length=5pt]}] (6.6,-2.300) -- (6.6,0) node[midway, right, font=\small] {bond energy};
+  \draw[ascink!50] (1.900,-2.350) -- (1.900,-2.500) node[below, font=\small] {$r_0$};
+  \node[ascblue, font=\small, anchor=west] at (2.432,-2.124) {$v=0$};
+  \node[ascink!60, font=\small, anchor=west] at (3.078,0.9) {parabola};
+\end{tikzpicture}
+
+{\small The potential energy of a diatomic molecule against the distance between its nuclei, with its vibrational levels. Near the bottom the well is almost a parabola (dashed), so the levels are evenly spaced, as for a harmonic oscillator. Higher up the well widens, the levels crowd together, and at the top the molecule falls apart.}
+\end{minipage}
+\end{center}
+
+\section{Will it react? Thermodynamics}
+
+Whether a reaction can happen is decided by the change in Gibbs free energy (Chapter~\ref{ch:thermo}),
+\[
+  \Delta G = \Delta H - T\Delta S .
+\]
+A reaction proceeds spontaneously when $\Delta G<0$. At equilibrium the ratio of products to reactants is fixed by the \emph{equilibrium constant}
+\[
+  K = e^{-\Delta G^\circ/RT},
+\]
+where $\Delta G^\circ$ is the free energy change under standard conditions. Every $5.7\un{kJ/mol}$ of $\Delta G^\circ$ at room temperature is a factor of ten in $K$. This is the Boltzmann factor (Chapter~\ref{ch:statmech}) applied to whole populations of molecules, and indeed $K$ can be computed from the partition functions of the reactants and products. Raising the temperature favours whichever direction absorbs heat (the \emph{van 't Hoff equation}, Problem~\ref{prob:vant-hoff}) --- one precise form of Le Chatelier's principle.
+
+\section{How fast? Kinetics}
+
+Thermodynamics says whether; kinetics says how fast. A mixture of hydrogen and oxygen can sit for years, though $\Delta G$ is hugely negative, until a spark sets it off. The molecules must first climb over an energy barrier, the \emph{activation energy} $E_a$, and the fraction with enough energy to do so is a Boltzmann factor. This gives the \textbf{Arrhenius law}:
+\[
+  k = A\,e^{-E_a/RT}.
+\]
+With a typical activation energy of $50\un{kJ/mol}$, reaction rates roughly double for every $10^\circ\text{C}$ rise in temperature --- which is why food keeps in the fridge, why fevers matter, and why cold-blooded animals slow down in the cold.
+
+\emph{Transition state theory} (Eyring, 1935) refines this by treating the molecules at the top of the barrier as a special species in equilibrium with the reactants. \emph{Catalysts} speed reactions by providing an alternative path with a lower barrier, without changing $\Delta G$ or the equilibrium. Enzymes, nature's catalysts, can speed reactions by factors of $10^{10}$ or more. And because nuclei are quantum particles, some reactions --- especially those moving hydrogen --- go partly by \emph{tunnelling} through the barrier rather than over it (Chapter~\ref{ch:qm}), which shows up as a large difference in rate between hydrogen and its heavier isotope deuterium (Problem~\ref{prob:kie}).
+
+\section{Computing chemistry}
+
+The many-electron Schr\"odinger equation cannot be solved exactly, so computational chemistry is a hierarchy of approximations.
+\begin{itemize}[itemsep=3pt]
+  \item \textbf{Hartree--Fock}: each electron moves in the average field of all the others, with antisymmetry built in. A mean-field theory (like Chapter~\ref{ch:statmech}'s Ising approximation), it gets about $99\%$ of the total energy --- but the missing $1\%$, the \emph{correlation energy}, is the same size as chemical bond energies, so it is not good enough on its own.
+  \item \textbf{Correlated methods} add back the correlations systematically, at rapidly growing cost.
+  \item \textbf{Density functional theory} (Kohn and Sham, 1965) proves that the ground-state energy is a functional of the electron density alone --- a function of three variables instead of $3N$. The exact functional is unknown, but good approximations make DFT accurate enough for most chemistry and materials science at reasonable cost. It is among the most widely used methods in all of science.
+\end{itemize}
+Machine learning is now changing the field again: AlphaFold predicts protein structures (Chapter~\ref{ch:bio}), and neural networks trained on quantum calculations can emulate them at a fraction of the cost (Chapter~\ref{ch:comp}). Quantum computers may eventually solve molecular problems that no classical computer can (Chapter~\ref{ch:qinfo}).
+
+\section{Light-driven chemistry}
+
+When a molecule absorbs a photon, an electron is promoted to an antibonding orbital, weakening a bond and sometimes changing the molecule's shape. In your eye, absorbing a single photon flips the retinal molecule from a bent to a straight form in about $200$ femtoseconds --- one of the fastest chemical reactions known --- and that change in shape triggers the nerve signal of vision. In photosynthesis, chlorophyll absorbs red and blue light (reflecting the green), and the excitation hops between pigment molecules to a reaction centre with nearly $100\%$ efficiency, where it drives the separation of charge that ultimately powers almost all life on Earth. High in the atmosphere, ozone absorbs ultraviolet light between $200$ and $300\un{nm}$, shielding the surface (Chapter~\ref{ch:geo}).
+
+\section{Problems}
+
+\begin{problems}
+\prob{1} The bond energy of H$_2$ is $4.5\un{eV}$. Convert this to kJ/mol. At what temperature would the Boltzmann factor $e^{-E/\kB T}$ for breaking the bond reach $10^{-10}$? Why is hydrogen gas stable at room temperature?
+
+\prob{1}\core A reaction has activation energy $50\un{kJ/mol}$. By what factor does its rate increase from $27^\circ\text{C}$ to $37^\circ\text{C}$? From $0^\circ\text{C}$ to $100^\circ\text{C}$?
+
+\prob{1} A reaction has $\Delta G^\circ = -20\un{kJ/mol}$ at $298\un{K}$. Find its equilibrium constant. How negative must $\Delta G^\circ$ be for the reaction to go $99.9\%$ to completion (with $K$ defined as a simple product-to-reactant ratio)?
+
+\prob{1} Estimate the binding energy of an NaCl molecule (bond length $0.236\un{nm}$) from the Coulomb attraction of the ions, the ionization energy of sodium ($5.1\un{eV}$), and the electron affinity of chlorine ($3.6\un{eV}$). Compare with the measured $4.2\un{eV}$. What does the difference represent?
+
+\prob{2}\core In the LCAO model of H$_2^+$, show that the energies of $\psi_\pm$ are $E_\pm = (H_{AA}\pm H_{AB})/(1\pm S)$, where $H_{AA} = \bra{\psi_A}\hat H\ket{\psi_A}$ and $H_{AB} = \bra{\psi_A}\hat H\ket{\psi_B}$. Since $H_{AB}<0$, show that $E_+<E_-$ and that the antibonding orbital is raised more than the bonding orbital is lowered.
+
+\prob{2}\core \label{prob:carotene} \emph{(The colour of carrots, and a failed cow.)} $\beta$-carotene has $22$ $\pi$ electrons delocalized over a conjugated chain about $2.9\un{nm}$ long. Model them as particles in a one-dimensional box, filling the lowest $11$ levels two at a time. Find the wavelength needed to promote an electron from the highest filled level to the lowest empty one. You should find it in the infrared --- but carrots are orange, because the true absorption peaks near $450\un{nm}$. The box model fails because the chain's bonds alternate between single and double, so the hopping alternates; use Problem~\ref{prob:dimer} to explain how this opens an extra gap that pushes the absorption into the visible. (For dyes whose bonds are all equivalent, the box model works well.)
+
+\prob{2} Water boils at $100^\circ\text{C}$, but hydrogen sulfide, a heavier molecule, boils at $-60^\circ\text{C}$. Trouton's rule says the entropy of vaporization is roughly the same, about $88\un{J/(mol\,K)}$, for many liquids. Use it to estimate the enthalpies of vaporization of both, and attribute the difference to hydrogen bonding. How many hydrogen bonds per water molecule does this suggest, at about $20\un{kJ/mol}$ each?
+
+\prob{2} Use the Born--Oppenheimer picture to show that the ratio of vibrational to electronic energy spacings in a molecule is about $\sqrt{m_e/M}$, and the ratio of rotational to vibrational spacings is about the same. Evaluate for a typical molecule.
+
+\prob{2} \label{prob:kie} \emph{(The kinetic isotope effect.)} A C--H bond vibrates at $3000\un{cm^{-1}}$. Replacing hydrogen with deuterium (twice the mass) lowers the frequency by a factor $\sqrt2$, and with it the zero-point energy. If the transition state has no zero-point energy along the reaction coordinate, the activation energy is larger for C--D by the difference in zero-point energies. Estimate the ratio of the rates at room temperature. (Observed ratios are typically about $7$; much larger ratios signal tunnelling.)
+
+\prob{2} \label{prob:vant-hoff} From $\ln K = -\Delta G^\circ/RT$ with $\Delta G^\circ = \Delta H^\circ - T\Delta S^\circ$, derive the van 't Hoff equation $\dd\ln K/\dd T = \Delta H^\circ/RT^2$. Explain why heating favours endothermic reactions, and why the Haber process for making ammonia (exothermic) faces a dilemma between yield and speed.
+
+\prob{3}\core \label{prob:london} \emph{(Why neutral atoms attract.)} Model two neutral atoms as two three-dimensional harmonic oscillators (an electron of mass $m$ bound to its nucleus with frequency $\omega_0$), separated by $r$. Their instantaneous dipoles interact with an energy of order $e^2x_1x_2/(4\pi\epsilon_0r^3)$. For simplicity, keep only one dimension: the coupled system has normal modes with $\omega_\pm^2 = \omega_0^2(1\pm\kappa)$, where $\kappa = 2e^2/(4\pi\epsilon_0 m\omega_0^2 r^3)$. Show that the total zero-point energy $\tfrac12\hbar(\omega_++\omega_-)$ is lowered by an amount proportional to $\kappa^2\propto1/r^6$. The attraction is a purely quantum effect: classically, at zero temperature, the atoms would not fluctuate at all.
+
+\prob{3} \emph{(Why helium doesn't bond.)} Use the molecular orbital picture to show that He$_2$, with four electrons, fills both the bonding and the antibonding orbitals, giving a net \emph{repulsion} because the antibonding orbital is more antibonding than the bonding one is bonding. Then explain why He$_2^+$, with three electrons, is bound. Generalize: define the \emph{bond order} as half the difference between the numbers of bonding and antibonding electrons, and use it to explain why O$_2$ has a double bond and N$_2$ a triple bond.
+\end{problems}
+
+\begin{reading}
+\rd{Peter Atkins and Julio de Paula, \emph{Physical Chemistry}}{The standard comprehensive text, covering quantum chemistry, spectroscopy, thermodynamics, and kinetics.}
+\rd{McQuarrie and Simon, \emph{Physical Chemistry: A Molecular Approach}}{Quantum mechanics first, with a physicist's rigour.}
+\rd{Linus Pauling, \emph{The Nature of the Chemical Bond}}{The classic that founded quantum chemistry as chemists practise it.}
+\rd{Szabo and Ostlund, \emph{Modern Quantum Chemistry}}{The clearest introduction to Hartree--Fock and beyond, for when you want to compute.}
+\end{reading}

@@ -1,0 +1,162 @@
+\chapter{Accelerators and detectors}
+\label{ch:accel}
+
+\buildson{electromagnetism (Chapter~\ref{ch:em}), special relativity (Chapter~\ref{ch:sr})}
+
+\chapterdek{The machines that make the fundamental visible --- by smashing particles together hard enough to see inside them and to make new ones, then catching what flies out.}
+
+\begin{prototype}
+A storage ring: a vacuum pipe bent into a circle, threaded by magnets that steer particles around it and radio-frequency cavities that kick them a little harder each lap. Particles circulate billions of times, gaining energy until, at the collision points, two counter-rotating beams are brought together.
+\end{prototype}
+
+To see small things you need short wavelengths, and by de~Broglie's relation $\lambda = h/p$ (Chapter~\ref{ch:qm}), short wavelengths mean high momenta. To resolve the inside of a proton ($\sim1\un{fm}$) you need momenta of order a GeV; the Large Hadron Collider probes distances a thousand times smaller. To create heavy particles you need energy, at least $mc^2$ of it (Chapter~\ref{ch:sr}): the Higgs boson needed $125\un{GeV}$ just for its mass. Particle accelerators are microscopes and factories at once. They are also the largest and most precise machines ever built --- and, through medicine, materials science, and industry, among the most useful. About thirty thousand accelerators are in use worldwide; only a few hundred are for particle physics.
+
+\section{Getting a push}
+
+A charge $q$ falling through a potential difference $V$ gains energy $qV$ (Chapter~\ref{ch:em}). The first accelerators were simply very high voltages. In 1932 Cockcroft and Walton used $700\,000$ volts to accelerate protons into lithium and split it --- the first nuclear reaction made by humans. Van de Graaff generators reach about $20\un{MV}$, limited by sparks. To go further, you must use the same voltage many times.
+
+\textbf{Linear accelerators} do this with radio-frequency (RF) electric fields oscillating in a series of metal cavities, timed so that a particle always arrives when the field points forward --- like a surfer riding a wave. The Stanford Linear Accelerator, three kilometres long, accelerated electrons to $50\un{GeV}$. Modern superconducting RF cavities sustain gradients of $30$--$40\un{MV/m}$. The linear accelerators in hospitals, a metre long, produce the X-rays of radiation therapy (Chapter~\ref{ch:medical}).
+
+\textbf{Circular accelerators} reuse the same cavities on every lap. In 1931 Ernest Lawrence realized that a charged particle in a uniform magnetic field circles at the cyclotron frequency $\omega = qB/m$, independent of its speed (Chapter~\ref{ch:em}). In his \emph{cyclotron}, particles spiral outward between two D-shaped electrodes, kicked by an alternating voltage at exactly this frequency each half-turn. It fails at high energy because relativity increases the effective mass and the particles fall out of step. The \emph{synchrotron} solves this by keeping the particles on a fixed circular orbit and ramping up the magnetic field as their momentum grows.
+
+\section{Steering and focusing}
+
+The field needed to bend a particle of momentum $p$ and charge $e$ into a circle of radius $\rho$ follows from $p = eB\rho$. In practical units,
+\[
+  p\,[\mathrm{GeV}/c] = 0.3\,B\,[\mathrm{T}]\;\rho\,[\mathrm{m}],
+\]
+and $B\rho$ is called the \emph{magnetic rigidity}. The LHC, in a $27\un{km}$ tunnel near Geneva, steers $6.8\un{TeV}$ protons with $1232$ superconducting dipole magnets operating at $8.3\un{T}$ and $1.9\un{K}$, colder than outer space. Higher energy needs either a bigger ring or stronger magnets.
+
+Particles must also be kept in a beam a fraction of a millimetre wide over billions of laps. \emph{Quadrupole} magnets focus the beam, but each one focuses in one direction while defocusing in the perpendicular one. The surprising discovery of 1952 was \emph{strong focusing}: alternating focusing and defocusing quadrupoles give net focusing in both directions (Problem~\ref{prob:strong-focusing}), the same mathematics as the Kapitza pendulum (Problem~\ref{prob:kapitza}). Longitudinally, particles that arrive early or late in the RF cavity get slightly different kicks that push them back toward the ideal timing, so they oscillate stably about it in bunches.
+
+\section{Synchrotron radiation}
+
+An accelerating charge radiates (Chapter~\ref{ch:em}), and a particle on a circle is always accelerating. For relativistic particles, the radiated power grows as $\gamma^4$, and the energy lost per turn is
+\[
+  \Delta E\propto\frac{\gamma^4}{\rho}\propto\frac{E^4}{m^4\rho}.
+\]
+For electrons this is brutal. The LEP collider, in the same tunnel that now houses the LHC, accelerated electrons to $104\un{GeV}$, at which point each electron lost about $3\un{GeV}$ per lap to synchrotron radiation, all of which had to be replaced by the RF cavities (Problem~\ref{prob:synchrotron}). Doubling the energy would multiply the loss by sixteen. This is why future high-energy electron colliders are either linear or enormous. Protons, $1836$ times heavier, lose $10^{13}$ times less at the same energy, which is why the LHC can reach $6.8\un{TeV}$ in the same tunnel.
+
+What is a curse for particle physics is a gift for everyone else. \emph{Synchrotron light sources} are storage rings built to produce intense, tightly collimated X-ray beams, used to determine the structures of proteins (Chapter~\ref{ch:bio}) and materials (Chapter~\ref{ch:condmat}). \emph{Free-electron lasers} pass electron bunches through rows of alternating magnets to produce X-ray laser pulses a few femtoseconds long, bright enough to image a single molecule before it explodes.
+
+\section{Colliders, energy, and luminosity}
+
+What matters for making new particles is the energy in the centre-of-mass frame (Chapter~\ref{ch:sr}). For a beam of energy $E$ hitting a stationary target of mass $m$, $\sqrt s\approx\sqrt{2Emc^2}$, growing only as the square root of the beam energy; for two beams of energy $E$ colliding head-on, $\sqrt s = 2E$. Firing the LHC's protons at a fixed target would waste all but $113\un{GeV}$ of the available energy; colliding them head-on gives $13.6\un{TeV}$ (Problem~\ref{prob:fixed-target}). That is why all energy-frontier machines since the 1970s have been colliders.
+
+The other figure of merit is how often collisions happen. The probability of a given process is described by its \emph{cross-section} $\sigma$, an effective target area, measured in \emph{barns} ($1\un{b} = 10^{-28}\un{m^2}$, roughly the size of a uranium nucleus --- ``as big as a barn''). The rate of events is
+\[
+  \text{rate} = \sigma\mathcal{L},
+\]
+where the \emph{luminosity} $\mathcal L$ measures how tightly packed the colliding beams are. The LHC reaches $\mathcal L\approx2\times10^{34}\un{cm^{-2}s^{-1}}$, with bunches of $10^{11}$ protons crossing $40$ million times a second, squeezed to $10\un{\mu m}$ at the collision points. Even so, the Higgs boson, with a cross-section of about $50$ picobarns, is produced only about once a second, among a billion other collisions (Problem~\ref{prob:higgs-rate}).
+
+\section{How particles lose energy in matter}
+
+Everything a detector does relies on how particles interact with matter.
+\begin{itemize}[itemsep=4pt]
+  \item \textbf{Charged particles} ionize atoms as they pass, losing energy at a rate described by the \emph{Bethe formula}: roughly proportional to the square of their charge and inversely proportional to the square of their speed. Fast particles lose energy slowly; as a particle slows, its losses rise sharply, producing the Bragg peak at the end of its track (Chapter~\ref{ch:medical}). Near the speed of light, every singly charged particle loses about $2\un{MeV}$ per gram per square centimetre of material traversed: a \emph{minimum ionizing particle}.
+  \item \textbf{Electrons and photons} at high energy produce \emph{showers}. An electron passing near a nucleus radiates a photon, a process called \emph{bremsstrahlung} (``braking radiation''), and a photon with more than $1.022\un{MeV}$ can convert into an electron--positron pair. Each generation doubles the number of particles and halves their energy, until the energy is absorbed. The characteristic length is the \emph{radiation length}, about $0.56\un{cm}$ in lead.
+  \item \textbf{Hadrons} (protons, pions, neutrons) hit nuclei and produce messier showers over a longer distance, the \emph{nuclear interaction length}.
+  \item \textbf{Muons} are heavy electrons that do not shower and do not feel the strong force, so they pass through metres of iron.
+  \item \textbf{Neutrinos} interact only by the weak force, and pass through essentially anything: a neutrino from a nuclear reactor would typically cross light-years of lead before interacting (Problem~\ref{prob:neutrino-mfp}).
+\end{itemize}
+
+\section{The anatomy of a detector}
+
+A modern collider detector like ATLAS or CMS is built like an onion around the collision point, each layer identifying different particles:
+\begin{enumerate}[itemsep=3pt]
+  \item \textbf{Silicon pixel and strip detectors} closest to the beam track charged particles to a few micrometres. They can see that some particles were born a few millimetres away from the collision --- the decay vertices of particles containing bottom quarks, which live about a picosecond.
+  \item A large \textbf{solenoid magnet} ($3.8\un{T}$ in CMS) bends the tracks. Measuring their curvature gives each particle's momentum, using $p = 0.3BR$, and the direction of bending gives its charge.
+  \item The \textbf{electromagnetic calorimeter} absorbs electrons and photons in showers and measures their energy. (CMS uses $75\,000$ lead tungstate crystals that scintillate.)
+  \item The \textbf{hadronic calorimeter}, thicker and denser, absorbs and measures hadrons.
+  \item \textbf{Muon chambers} on the outside catch the only charged particles that make it through everything.
+  \item Particles that escape everything --- neutrinos, or perhaps dark matter --- reveal themselves by \emph{missing momentum}: in the plane perpendicular to the beam, the momenta of everything seen must add to zero. An imbalance means something invisible carried momentum away.
+\end{enumerate}
+\begin{center}
+\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}
+  \fill[ascbluebg] (1.20,0) arc[start angle=0, end angle=180, radius=1.20] -- (-0.15,0) arc[start angle=180, end angle=0, radius=0.15] -- cycle;
+  \fill[ascwarm!22] (1.80,0) arc[start angle=0, end angle=180, radius=1.80] -- (-1.30,0) arc[start angle=180, end angle=0, radius=1.30] -- cycle;
+  \fill[ascpurple!18] (2.70,0) arc[start angle=0, end angle=180, radius=2.70] -- (-1.90,0) arc[start angle=180, end angle=0, radius=1.90] -- cycle;
+  \fill[ascink!55] (2.95,0) arc[start angle=0, end angle=180, radius=2.95] -- (-2.78,0) arc[start angle=180, end angle=0, radius=2.78] -- cycle;
+  \fill[ascblue!30] (3.25,0) arc[start angle=0, end angle=180, radius=3.25] -- (-3.10,0) arc[start angle=180, end angle=0, radius=3.10] -- cycle;
+  \fill[ascblue!30] (3.75,0) arc[start angle=0, end angle=180, radius=3.75] -- (-3.60,0) arc[start angle=180, end angle=0, radius=3.60] -- cycle;
+  \fill[ascblue!30] (4.25,0) arc[start angle=0, end angle=180, radius=4.25] -- (-4.10,0) arc[start angle=180, end angle=0, radius=4.10] -- cycle;
+  \fill[ascgraybg] (3.60,0) arc[start angle=0, end angle=180, radius=3.60] -- (-3.25,0) arc[start angle=180, end angle=0, radius=3.25] -- cycle;
+  \fill[ascgraybg] (4.10,0) arc[start angle=0, end angle=180, radius=4.10] -- (-3.75,0) arc[start angle=180, end angle=0, radius=3.75] -- cycle;
+  \draw[ascink!40] (-4.3,0) -- (4.3,0);
+  \draw[ascink, dashed, thick] (0,0) -- (-1.351,0.439);
+  \fill[ascwarm] (-1.474,0.479) circle (0.13);
+  \draw[ascink, thick] (0,0) to[bend left=10] (-1.021,0.986);
+  \fill[ascwarm] (-1.115,1.077) circle (0.13);
+  \draw[ascink, thick] (0,0) to[bend right=8] (-0.633,1.950);
+  \fill[ascpurple] (-0.711,2.187) circle (0.2);
+  \draw[ascink, dashed, thick] (0,0) -- (0.356,2.019);
+  \fill[ascpurple] (0.399,2.265) circle (0.2);
+  \draw[ascink, thick] (0,0) to[bend left=7] (1.845,2.199) to[bend right=4] (2.860,3.409);
+  \draw[ascink, dotted, thick] (0,0) -- (4.126,1.667);
+  \draw[ascink!30] (-1.617,0.525) -- (-4.232,1.375);
+  \draw[ascink!30] (-1.223,1.181) -- (-3.201,3.091);
+  \draw[ascink!30] (-0.779,2.397) -- (-1.375,4.232);
+  \draw[ascink!30] (0.438,2.482) -- (0.773,4.382);
+  \node[font=\small, anchor=east] at (-4.327,1.406) {photon};
+  \node[font=\small, anchor=east] at (-3.273,3.161) {electron};
+  \node[font=\small, anchor=south east] at (-1.406,4.327) {charged hadron};
+  \node[font=\small, anchor=south west] at (0.790,4.481) {neutral hadron};
+  \node[font=\small, anchor=west] at (2.925,3.486) {muon};
+  \node[font=\small, anchor=west] at (4.219,1.704) {neutrino};
+  \node[font=\scriptsize, rotate=90, anchor=east] at (0.67,-0.08) {tracker};
+  \node[font=\scriptsize, rotate=90, anchor=east] at (1.55,-0.08) {ECAL};
+  \node[font=\scriptsize, rotate=90, anchor=east] at (2.30,-0.08) {HCAL};
+  \node[font=\scriptsize, rotate=90, anchor=east] at (2.87,-0.08) {magnet};
+  \node[font=\scriptsize, rotate=90, anchor=east] at (3.7,-0.08) {muon chambers};
+  \fill[ascink] (0,0) circle (1.6pt);
+\end{tikzpicture}
+
+{\small Half of a slice through a collider detector like CMS, and how each particle shows up. Charged particles leave tracks, bent by the magnet. Electrons and photons stop in the electromagnetic calorimeter (ECAL), hadrons in the hadronic calorimeter (HCAL). Only muons reach the outer chambers, and neutrinos escape unseen, noticed only as missing momentum.}
+\end{minipage}
+\end{center}
+
+Other tools identify particles by their speed. Particles moving faster than light does in a medium emit \emph{Cherenkov radiation} in a cone of angle $\cos\theta = 1/n\beta$ (Chapter~\ref{ch:waves}), the optical sonic boom that makes nuclear reactor pools glow blue. Combining the measured speed with the measured momentum gives the mass.
+
+\section{Too much data}
+
+The LHC delivers a billion collisions per second, producing data at a rate far beyond what can be stored. A \emph{trigger}, a cascade of fast electronics and software, decides within microseconds which collisions look interesting and keeps about one in $40\,000$. Even so, the experiments record petabytes per year, analysed on a computing grid spanning hundreds of sites around the world. Machine learning (Chapter~\ref{ch:comp}) now pervades every stage, from triggering to reconstructing tracks and classifying events. (The World Wide Web itself was invented at CERN, in 1989, to share physics data.)
+
+\section{Listening for whispers}
+
+Not all detectors sit at colliders. To catch neutrinos, which almost never interact, you need enormous volumes. Super-Kamiokande in Japan is a tank of $50\,000$ tonnes of ultrapure water, a kilometre underground, lined with $11\,000$ photomultiplier tubes that see the Cherenkov rings of particles struck by neutrinos; it discovered that neutrinos have mass (Chapter~\ref{ch:particle}). IceCube instruments a cubic kilometre of Antarctic ice. Dark matter searches look for the tiny recoil of a xenon nucleus struck by a passing dark matter particle, in tonnes of liquid xenon so free of radioactivity that it is among the quietest places in the universe. These detectors live deep underground, where a kilometre of rock filters out the cosmic rays.
+
+\section{Problems}
+
+\begin{problems}
+\prob{1}\core To resolve a structure of size $0.1\un{fm}$ you need a de~Broglie wavelength comparable to it. What momentum does that require? What distance scale does the LHC, at a few TeV per parton, resolve?
+
+\prob{1} Find the cyclotron frequency of protons in a $1.5\un{T}$ field. If the magnet's pole pieces have a radius of $0.5\un{m}$, what is the maximum kinetic energy of the protons? At what energy would relativistic effects (a few percent) start to spoil the resonance?
+
+\prob{1}\core The LHC's dipoles fill about $2/3$ of its $26.7\un{km}$ circumference, giving an effective bending radius of about $2.8\un{km}$. Find the magnetic field needed to hold $6.8\un{TeV}$ protons. What field would be needed in a $100\un{km}$ ring to reach $50\un{TeV}$?
+
+\prob{2}\core \label{prob:fixed-target} Show that a beam of energy $E\gg mc^2$ hitting a stationary particle of mass $m$ has $\sqrt s\approx\sqrt{2Emc^2}$. Compare $\sqrt s$ for a $6.8\un{TeV}$ proton hitting a stationary proton, and for two $6.8\un{TeV}$ protons colliding head-on. How energetic would a fixed-target beam need to be to match the LHC?
+
+\prob{2}\core \label{prob:synchrotron} For electrons, the energy lost per turn to synchrotron radiation is $\Delta E\,[\mathrm{keV}] = 88.5\,E^4[\mathrm{GeV}]/\rho\,[\mathrm{m}]$. Evaluate it for LEP ($E = 104\un{GeV}$, $\rho = 3.1\un{km}$). Scale it to protons in the LHC (multiply by $(m_e/m_p)^4$, at $E = 6.8\un{TeV}$, $\rho = 2.8\un{km}$). Why are LHC protons nonetheless a problem for the magnets, which must absorb this radiation at $1.9\un{K}$?
+
+\prob{2} \label{prob:higgs-rate} The Higgs production cross-section at the LHC is about $55\un{pb}$, and the luminosity is $2\times10^{34}\un{cm^{-2}s^{-1}}$. How many Higgs bosons are made per second, and per year (taking $10^7$ seconds of running)? The Higgs decays to two photons only $0.23\%$ of the time. How many such events are produced per year? Why was the discovery still hard?
+
+\prob{2} Find the Cherenkov angle for a particle with $\beta\approx1$ in water ($n = 1.33$). What is the minimum speed for Cherenkov emission? Find the minimum momentum at which a muon ($106\un{MeV}/c^2$) and a proton radiate in water.
+
+\prob{2} In CMS's $3.8\un{T}$ field, a muon track has a radius of curvature of $10\un{m}$. What is its momentum? A $1\un{m}$-long track segment of this muon deviates from a straight line by its \emph{sagitta}, $s\approx L^2/8R$. Evaluate $s$. If the sagitta is measured to $50\un{\mu m}$, what is the momentum resolution?
+
+\prob{2}\core \label{prob:neutrino-mfp} A reactor antineutrino of a few MeV has an interaction cross-section of about $10^{-47}\un{m^2}$ per nucleon. Lead has about $7\times10^{30}$ nucleons per cubic metre. Find the mean free path, in light-years. How did Reines and Cowan detect reactor neutrinos in 1956? (Hint: the flux from a reactor is about $10^{17}\un{m^{-2}s^{-1}}$.)
+
+\prob{3}\core \label{prob:strong-focusing} \emph{(Strong focusing.)} A thin quadrupole acts as a lens of focal length $f$ in one plane and $-f$ in the other. Two such lenses, one focusing and one defocusing, separated by a distance $d$, have a combined focal length given by $1/F = 1/f_1 + 1/f_2 - d/(f_1f_2)$. Show that for $f_1 = f$, $f_2 = -f$, the combination is focusing ($F = f^2/d>0$) --- in \emph{both} planes. Explain the physical reason: where is the beam wide and where is it narrow as it passes through each lens?
+
+\prob{3} \emph{(The end of the circular road.)} Suppose you want to collide electrons at $\sqrt s = 1\un{TeV}$ in a circular ring, and you can afford to replace at most $100\un{MW}$ of synchrotron power with a beam current of $10\un{mA}$. Use the formula in Problem~\ref{prob:synchrotron} to find the minimum ring radius. Compare with a linear collider using cavities at $40\un{MV/m}$: how long would it be?
+
+\prob{3} \emph{(Accelerating on a plasma wave.)} In a plasma wakefield accelerator, a laser pulse or particle bunch pushes the electrons of a plasma aside, setting up a plasma oscillation (Chapter~\ref{ch:plasma}) that trails behind it like the wake of a boat. Argue that the maximum electric field is roughly $E\sim m_ec\,\omega_p/e$, where $\omega_p$ is the plasma frequency, and show that this is about $100\sqrt{n\,[\mathrm{cm^{-3}}]}\un{V/m}$. Evaluate it for $n = 10^{18}\un{cm^{-3}}$ and compare with conventional RF cavities. Why might this shrink future colliders from tens of kilometres to tens of metres?
+\end{problems}
+
+\begin{reading}
+\rd{Edmund Wilson, \emph{An Introduction to Particle Accelerators}}{A short, clear introduction to the physics of accelerators.}
+\rd{Klaus Wille, \emph{The Physics of Particle Accelerators}}{A more complete treatment of beam optics, RF, and synchrotron radiation.}
+\rd{Kolanoski and Wermes, \emph{Particle Detectors}}{A modern, comprehensive text on how detectors work.}
+\rd{Particle Data Group, \emph{Review of Particle Physics}}{Free online. Its review chapters on accelerators and on the passage of particles through matter are the field's handbook.}
+\end{reading}

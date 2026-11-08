@@ -1,0 +1,39 @@
+\solchapter{sho}
+
+\sol{sho}{1} At rest, $kd = mg$. For a displacement $y$ below equilibrium, $m\ddot y = mg - k(d+y) = -ky$, so $\omega = \sqrt{k/m} = \sqrt{g/d}$. Gravity is a constant force: it shifts the equilibrium but does not change how the restoring force varies with displacement, which is all the frequency depends on.
+
+\sol{sho}{2} $\omega = 1/\sqrt{LC}$. Charge $Q$ plays position, inductance $L$ plays mass, $1/C$ plays stiffness, current $I = \dot Q$ plays velocity, magnetic energy $\tfrac12LI^2$ plays kinetic energy, and electric energy $Q^2/2C$ plays spring energy. A resistor plays damping.
+
+\sol{sho}{3} $\omega = \sqrt{200/0.5} = 20\un{rad/s}$, so $T = 2\pi/\omega = 0.31\un{s}$. $E = \tfrac12kA^2 = \tfrac12(200)(0.04)^2 = 0.16\un{J}$. $v_{\max} = \omega A = 0.8\un{m/s}$.
+
+\sol{sho}{4} Let $s$ be the arc length travelled by the ball's centre, on a circle of radius $R - r\approx R$. Rolling means the ball spins at $\dot s/r$, so $T = \tfrac12m\dot s^2 + \tfrac12\cdot\tfrac25mr^2(\dot s/r)^2 = \tfrac{7}{10}m\dot s^2$. The potential is $V\approx mgs^2/2R$. The equation of motion $\tfrac75m\ddot s = -mgs/R$ gives $\omega^2 = 5g/7R$. The $5/7 = 1/(1+\tfrac25)$ is the extra inertia of spinning: the same restoring force must accelerate an effective mass $\tfrac75m$. A frictionless ball does not spin, so its effective mass is $m$ and $\omega = \sqrt{g/R}$.
+
+\sol{sho}{5} Energy conservation gives $\dot\theta^2 = (2g/L)(\cos\theta-\cos\theta_0)$, so $T = 4\int_0^{\theta_0}\dd\theta/\dot\theta$. Substituting $\sin(\theta/2) = k\sin\phi$ with $k = \sin(\theta_0/2)$ turns this into
+\[
+  T = 4\sqrt{\frac Lg}\int_0^{\pi/2}\frac{\dd\phi}{\sqrt{1-k^2\sin^2\phi}}\approx4\sqrt{\frac Lg}\cdot\frac\pi2\left(1 + \frac{k^2}{4}\right)\approx T_0\left(1+\frac{\theta_0^2}{16}\right).
+\]
+For $\theta_0 = 5^\circ = 0.087\un{rad}$, the correction is $4.8\times10^{-4}$, so the clock runs slow by about $41$ seconds a day compared with an ideal small-amplitude pendulum. (In practice clocks are regulated at their working amplitude; what hurts accuracy is the \emph{variation} of amplitude.)
+
+\sol{sho}{6} Inside a uniform Earth, the shell theorem gives a gravitational acceleration $-(g/R)\vb r$, proportional to the distance from the centre. Its component along any straight tunnel is $-(g/R)x$, where $x$ is measured from the tunnel's midpoint. So $\ddot x = -(g/R)x$: simple harmonic motion with $\omega = \sqrt{g/R}$, whatever the tunnel. The period is $2\pi\sqrt{R/g} = 84$ minutes, so the one-way trip takes $42$ minutes. A satellite skimming the surface has $v^2/R = g$ and the same $84$-minute period; the tunnel motion is the projection of that orbit onto a line.
+
+\sol{sho}{7} The amplitude is largest where $D(\omega) = (\omega_0^2-\omega^2)^2 + 4\gamma^2\omega^2$ is smallest. Setting $\dd D/\dd(\omega^2) = -2(\omega_0^2-\omega^2) + 4\gamma^2 = 0$ gives $\omega_{\max}^2 = \omega_0^2-2\gamma^2$. There $D = 4\gamma^2\omega_0^2 - 4\gamma^4\approx4\gamma^2\omega_0^2$, so $A_{\max}\approx F_0/2m\gamma\omega_0$; dividing by $F_0/k = F_0/m\omega_0^2$ gives $\omega_0/2\gamma = Q$. The average absorbed power is $P = \langle F\dot x\rangle = \gamma F_0^2\omega^2/(mD)$, and $D/\omega^2 = (\omega_0^2/\omega - \omega)^2 + 4\gamma^2$ is minimized exactly at $\omega = \omega_0$.
+
+\sol{sho}{8} With fixed spring and damper, $\gamma = b/2m\propto1/m$ and $\omega_0 = \sqrt{k/m}\propto m^{-1/2}$, so $\gamma/\omega_0\propto m^{-1/2}$. It starts at $1$ (critical) and becomes $1/\sqrt{1.25} = 0.89$: underdamped. The new $Q = \omega_0/2\gamma = \sqrt{1.25}/2\approx0.56$ --- just barely oscillatory, with one small overshoot.
+
+\sol{sho}{9} $\langle E\rangle = \langle p^2\rangle/2m + \tfrac12m\omega^2\langle x^2\rangle\ge(\Delta p)^2/2m + \tfrac12m\omega^2(\Delta x)^2$. With $\Delta p\ge\hbar/2\Delta x$,
+\[
+  \langle E\rangle\ge\frac{\hbar^2}{8m(\Delta x)^2} + \tfrac12m\omega^2(\Delta x)^2 .
+\]
+Minimizing over $\Delta x$ gives $(\Delta x)^2 = \hbar/2m\omega$ and $E\ge\tfrac14\hbar\omega + \tfrac14\hbar\omega = \tfrac12\hbar\omega$. The bound is achieved exactly by the true ground state, a minimum-uncertainty Gaussian.
+
+\sol{sho}{10} Isochronism requires the restoring acceleration along the curve to be exactly proportional to the arc length: $g\sin\phi = \omega^2s$, so $s = (g/\omega^2)\sin\phi$, where $\phi$ is the slope angle. Then $\dd y = \sin\phi\,\dd s = (g/2\omega^2)\sin2\phi\,\dd\phi$ and $\dd x = \cos\phi\,\dd s = (g/2\omega^2)(1+\cos2\phi)\,\dd\phi$. With $\psi = 2\phi$ and $a = g/4\omega^2$,
+\[
+  x = a(\psi + \sin\psi),\qquad y = a(1 - \cos\psi),
+\]
+a cycloid with its cusps pointing up, traced by a circle of radius $a$. The period, $2\pi/\omega = 4\pi\sqrt{a/g}$, is exactly independent of amplitude.
+
+\sol{sho}{11} Before standing, at the bottom, $v^2 = 2g(L+\delta)(1-\cos\theta_1)$. The sudden shortening is caused by a radial force, so the angular momentum $mrv$ about the pivot is conserved: $v' = v(L+\delta)/(L-\delta)$. The swing then rises to $\theta_2$ with $v'^2 = 2g(L-\delta)(1-\cos\theta_2)$, so
+\[
+  1-\cos\theta_2 = (1-\cos\theta_1)\left(\frac{L+\delta}{L-\delta}\right)^3\approx(1-\cos\theta_1)\left(1 + \frac{6\delta}{L}\right).
+\]
+Squatting at the turning point happens at zero speed, leaving the angle unchanged. So the energy (measured by $1-\cos\theta$ at fixed length) is multiplied by about $1+6\delta/L$ every half period: exponential growth. From rest there is no angular momentum to amplify: multiplying zero gives zero. Parametric pumping needs a seed, which is why children start by pushing off.

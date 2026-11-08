@@ -1,0 +1,183 @@
+\chapter{Condensed matter}
+\label{ch:condmat}
+
+\buildson{statistical mechanics (Chapter~\ref{ch:statmech}), quantum mechanics (Chapter~\ref{ch:qm})}
+
+\chapterdek{The emergent physics of matter in bulk --- why copper conducts and glass doesn't, why iron is magnetic, how a transistor works, and why a superconductor floats --- in the largest field in physics.}
+
+\begin{prototype}
+A one-dimensional chain of identical atoms. Its atoms can vibrate, and the quanta of those vibrations are \emph{phonons}. Its electrons can hop from atom to atom, and their allowed energies spread into \emph{bands} separated by gaps. Almost every idea in this chapter can first be seen on the chain.
+\end{prototype}
+
+There are about $10^{23}$ atoms in a sugar cube, and condensed matter physics is the study of what they do together. The fundamental laws --- the Schr\"odinger equation and Coulomb's law --- are known completely. Yet the collective behaviour they produce is endlessly surprising: metals, insulators, semiconductors, magnets, superconductors, superfluids, liquid crystals, and topological materials whose properties are quantized exactly. Condensed matter is the largest branch of physics, the source of nearly all modern technology, and the home of Anderson's ``more is different'' (Chapter~\ref{ch:complex}).
+
+\section{Crystals}
+
+Most solids are \emph{crystals}: the same unit of atoms repeated on a regular lattice. Symmetry restricts the possibilities severely --- in three dimensions there are only $14$ types of lattice (the \emph{Bravais lattices}) and $230$ space groups of full crystal symmetries. A crystal's regularity can be probed by diffraction (Chapter~\ref{ch:optics}). X-rays with wavelength comparable to the atomic spacing reflect strongly from planes of atoms when waves from successive planes add in phase:
+\[
+  2d\sin\theta = n\lambda \qquad\text{(Bragg's law)}.
+\]
+In 1912 von Laue first diffracted X-rays from a crystal, proving both that X-rays are waves and that crystals are lattices. Diffraction has since revealed the structures of salt, diamond, DNA, and hundreds of thousands of proteins.
+
+The mathematics of diffraction naturally lives in \emph{reciprocal space}, the space of wavevectors $\vb k$: the diffraction pattern of a lattice is itself a lattice, the \emph{reciprocal lattice}, the Fourier transform of the real one (Chapter~\ref{ch:math}). Its unit cell is the \emph{Brillouin zone}, which we met on the beaded string (Chapter~\ref{ch:waves}). Crystals were long believed to need translational symmetry; in 1982 Dan Shechtman found \emph{quasicrystals}, with sharp diffraction but fivefold symmetry no periodic lattice can have, and was ridiculed for a decade before winning the 2011 Nobel Prize.
+
+\section{Phonons}
+
+Atoms in a crystal vibrate about their equilibrium positions. For small vibrations the crystal is a set of coupled oscillators, and its normal modes (Chapter~\ref{ch:analytical}) are waves --- sound waves at long wavelengths, with the dispersion relation of the beaded chain, $\omega = 2\sqrt{K/m}\abs{\sin(ka/2)}$, as $k$ runs across the Brillouin zone. Crystals with more than one atom per unit cell also have \emph{optical} branches, in which neighbouring atoms move against each other.
+
+Each normal mode is a quantum harmonic oscillator with energies $(n+\tfrac12)\hbar\omega$ (Chapter~\ref{ch:qm}). A quantum of vibration is a \emph{phonon}, which behaves in almost every way like a particle: it carries energy and momentum, scatters, and is in thermal equilibrium a boson with a Bose--Einstein distribution. Phonons are the first example of a \emph{quasiparticle}: not a fundamental particle, but an excitation of a material that acts like one.
+
+Phonons explain the thermal properties of solids. At high temperatures every mode is excited and the heat capacity reaches the classical Dulong--Petit value $3N\kB$ (Chapter~\ref{ch:statmech}). At low temperatures, only modes with $\hbar\omega\lesssim\kB T$ can be excited, and since the number of such long-wavelength modes grows as $T^3$, so does the heat capacity --- the \textbf{Debye $T^3$ law} (Problem~\ref{prob:debye}). Phonons also carry heat (diamond, whose stiff light lattice has fast phonons, conducts heat five times better than copper), and the anharmonicity of the lattice, which lets phonons scatter, is why solids expand when heated.
+
+\section{Electrons in metals}
+
+\textbf{The Drude model.} In 1900, just three years after the electron's discovery, Paul Drude modelled a metal as a gas of free electrons bouncing off fixed ions. An electric field accelerates them; collisions every time $\tau$ randomize their velocities; the result is a drift velocity proportional to the field, and a conductivity
+\[
+  \sigma = \frac{ne^2\tau}{m}.
+\]
+Drude got Ohm's law, and the ratio of thermal to electrical conductivity right. But his model predicted a large electronic heat capacity that metals do not have, and it could not explain why the Hall effect (\S\ref{sec:hall-classic}) has the wrong sign in some metals.
+
+\textbf{The Sommerfeld model.} The fix was quantum statistics. Electrons are fermions, filling states up to the Fermi energy $E_F\sim5\un{eV}$ (Chapter~\ref{ch:statmech}). Only electrons within $\kB T$ of the \emph{Fermi surface} can be excited, which explains the small heat capacity. The electrons that carry current move at the \emph{Fermi velocity}, about $10^6\un{m/s}$, not at thermal speeds, so their mean free path between collisions is tens of nanometres. And in a perfect crystal, it turns out, electrons do not scatter off the ions at all; they scatter only off imperfections and phonons. To understand why, we need band theory.
+
+\section{Bands and gaps}
+
+\textbf{Bloch's theorem.} In a periodic potential, the electron eigenstates can be chosen as plane waves modulated by functions with the period of the lattice:
+\[
+  \psi_{\vb k}(\vb r) = e^{i\vb k\cdot\vb r}u_{\vb k}(\vb r),\qquad u_{\vb k}(\vb r + \vb a) = u_{\vb k}(\vb r).
+\]
+These \emph{Bloch waves} extend through the whole crystal. An electron in a perfect crystal moves without resistance; resistance comes only from departures from perfect periodicity.
+
+Two pictures show how \emph{bands} and \emph{gaps} appear.
+
+\textbf{Nearly free electrons.} Start with free electrons, $E = \hbar^2k^2/2m$, and turn on a weak periodic potential. Electrons with wavelengths satisfying the Bragg condition --- at the edges of the Brillouin zone --- are reflected by the lattice, forming standing waves. One standing wave piles electron density on the ions (lowering its energy), the other between them (raising it). An energy gap opens at the zone boundary.
+
+\begin{center}
+\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}
+  \fill[ascwarmbg] (-3.798,0.561) rectangle (3.798,0.865);
+  \fill[ascwarmbg] (-3.798,2.769) rectangle (3.798,3.001);
+  \draw[ascrule, dashed] (-3.100,-0.1) -- (-3.100,4.7);
+  \draw[ascrule, dashed] (-1.550,-0.1) -- (-1.550,4.7);
+  \draw[ascrule, dashed] (1.550,-0.1) -- (1.550,4.7);
+  \draw[ascrule, dashed] (3.100,-0.1) -- (3.100,4.7);
+  \draw[ascink!45, dashed, domain=-2.45:2.45, samples=60] plot ({\x*1.550}, {\x*\x*0.720});
+  \draw[ascblue, line width=1.3pt] plot[smooth] coordinates {(-1.550,0.561) (-1.497,0.554) (-1.445,0.535) (-1.392,0.509) (-1.340,0.478) (-1.287,0.446) (-1.235,0.412) (-1.182,0.379) (-1.130,0.346) (-1.077,0.315) (-1.025,0.284) (-0.972,0.254) (-0.919,0.226) (-0.867,0.200) (-0.814,0.174) (-0.762,0.150) (-0.709,0.128) (-0.657,0.107) (-0.604,0.088) (-0.552,0.070) (-0.499,0.054) (-0.447,0.040) (-0.394,0.027) (-0.342,0.016) (-0.289,0.006) (-0.236,-0.002) (-0.184,-0.009) (-0.131,-0.013) (-0.079,-0.017) (-0.026,-0.018) (0.026,-0.018) (0.079,-0.017) (0.131,-0.013) (0.184,-0.009) (0.236,-0.002) (0.289,0.006) (0.342,0.016) (0.394,0.027) (0.447,0.040) (0.499,0.054) (0.552,0.070) (0.604,0.088) (0.657,0.107) (0.709,0.128) (0.762,0.150) (0.814,0.174) (0.867,0.200) (0.919,0.226) (0.972,0.254) (1.025,0.284) (1.077,0.315) (1.130,0.346) (1.182,0.379) (1.235,0.412) (1.287,0.446) (1.340,0.478) (1.392,0.509) (1.445,0.535) (1.497,0.554) (1.550,0.561)};
+  \draw[ascblue, line width=1.3pt] plot[smooth] coordinates {(1.550,0.865) (1.603,0.874) (1.655,0.897) (1.681,0.913) (1.708,0.932) (1.734,0.952) (1.760,0.974) (1.786,0.997) (1.813,1.021) (1.839,1.046) (1.865,1.073) (1.892,1.100) (1.918,1.127) (1.944,1.156) (1.970,1.185) (1.997,1.214) (2.023,1.244) (2.049,1.275) (2.075,1.306) (2.102,1.338) (2.128,1.370) (2.154,1.403) (2.181,1.436) (2.207,1.470) (2.233,1.504) (2.259,1.539) (2.286,1.574) (2.312,1.609) (2.338,1.645) (2.364,1.682) (2.391,1.719) (2.417,1.756) (2.443,1.793) (2.469,1.832) (2.496,1.870) (2.522,1.909) (2.548,1.948) (2.575,1.988) (2.601,2.028) (2.627,2.069) (2.653,2.109) (2.680,2.151) (2.706,2.192) (2.732,2.234) (2.758,2.277) (2.785,2.319) (2.811,2.362) (2.837,2.405) (2.864,2.448) (2.890,2.492) (2.916,2.535) (2.942,2.578) (2.969,2.620) (2.995,2.661) (3.021,2.700) (3.047,2.734) (3.100,2.769)};
+  \draw[ascblue, line width=1.3pt] plot[smooth] coordinates {(-3.100,2.769) (-3.047,2.734) (-3.021,2.700) (-2.995,2.661) (-2.969,2.620) (-2.942,2.578) (-2.916,2.535) (-2.890,2.492) (-2.864,2.448) (-2.837,2.405) (-2.811,2.362) (-2.785,2.319) (-2.758,2.277) (-2.732,2.234) (-2.706,2.192) (-2.680,2.151) (-2.653,2.109) (-2.627,2.069) (-2.601,2.028) (-2.575,1.988) (-2.548,1.948) (-2.522,1.909) (-2.496,1.870) (-2.469,1.832) (-2.443,1.793) (-2.417,1.756) (-2.391,1.719) (-2.364,1.682) (-2.338,1.645) (-2.312,1.609) (-2.286,1.574) (-2.259,1.539) (-2.233,1.504) (-2.207,1.470) (-2.181,1.436) (-2.154,1.403) (-2.128,1.370) (-2.102,1.338) (-2.075,1.306) (-2.049,1.275) (-2.023,1.244) (-1.997,1.214) (-1.970,1.185) (-1.944,1.156) (-1.918,1.127) (-1.892,1.100) (-1.865,1.073) (-1.839,1.046) (-1.813,1.021) (-1.786,0.997) (-1.760,0.974) (-1.734,0.952) (-1.708,0.932) (-1.681,0.913) (-1.655,0.897) (-1.603,0.874) (-1.550,0.865)};
+  \draw[ascblue, line width=1.3pt] plot[smooth] coordinates {(3.100,3.001) (3.135,3.019) (3.159,3.045) (3.183,3.079) (3.206,3.117) (3.230,3.157) (3.254,3.200) (3.277,3.243) (3.301,3.287) (3.325,3.332) (3.348,3.378) (3.372,3.424) (3.396,3.471) (3.419,3.518) (3.443,3.566) (3.466,3.615) (3.490,3.663) (3.514,3.712) (3.537,3.762) (3.561,3.811) (3.585,3.862) (3.608,3.912) (3.632,3.963) (3.656,4.014) (3.679,4.066) (3.703,4.118) (3.727,4.170) (3.750,4.223) (3.774,4.276) (3.798,4.330)};
+  \draw[ascblue, line width=1.3pt] plot[smooth] coordinates {(-3.798,4.330) (-3.774,4.276) (-3.750,4.223) (-3.727,4.170) (-3.703,4.118) (-3.679,4.066) (-3.656,4.014) (-3.632,3.963) (-3.608,3.912) (-3.585,3.862) (-3.561,3.811) (-3.537,3.762) (-3.514,3.712) (-3.490,3.663) (-3.466,3.615) (-3.443,3.566) (-3.419,3.518) (-3.396,3.471) (-3.372,3.424) (-3.348,3.378) (-3.325,3.332) (-3.301,3.287) (-3.277,3.243) (-3.254,3.200) (-3.230,3.157) (-3.206,3.117) (-3.183,3.079) (-3.159,3.045) (-3.135,3.019) (-3.100,3.001)};
+  \draw[-{Stealth[length=6pt]}] (-4.030,0) -- (4.107,0) node[right] {$k$};
+  \draw[-{Stealth[length=6pt]}] (0,-0.1) -- (0,4.85) node[above] {$E$};
+  \node[font=\footnotesize, below] at (-3.100,-0.05) {$-\frac{2\pi}{a}$};
+  \node[font=\footnotesize, below] at (-1.550,-0.05) {$-\frac{\pi}{a}$};
+  \node[font=\footnotesize, below] at (1.550,-0.05) {$\frac{\pi}{a}$};
+  \node[font=\footnotesize, below] at (3.100,-0.05) {$\frac{2\pi}{a}$};
+  \node[ascwarm, font=\small, anchor=west] at (3.875,0.713) {gap};
+  \node[ascwarm, font=\small, anchor=west] at (3.875,2.885) {gap};
+\end{tikzpicture}
+
+{\small Nearly free electrons. The dashed parabola is a free electron's energy. A weak periodic potential splits it wherever an electron's wave would be Bragg-reflected, at $k = \pm n\pi/a$, opening forbidden bands of energy (shaded) between the allowed ones.}
+\end{minipage}
+\end{center}
+
+\textbf{Tight binding.} Start instead from isolated atoms, each with an electron in a level $E_0$, and let electrons hop between neighbours with amplitude $t$. On a chain with spacing $a$, the eigenstates are Bloch waves with energies
+\[
+  E(k) = E_0 - 2t\cos(ka).
+\]
+Each sharp atomic level broadens into a \emph{band} of width $4t$. Different atomic levels give different bands, with gaps between them.
+
+\begin{keyidea}
+Whether a material conducts depends on how its bands are filled. If the highest occupied band is partly filled, electrons can move into nearby empty states, and the material is a \textbf{metal}. If the bands are completely full, with a gap to the next empty band, no electron can change its state without a large energy jump, and the material is an \textbf{insulator}. If the gap is small, about $1\un{eV}$, a few electrons are thermally excited across it, and the material is a \textbf{semiconductor}.
+\end{keyidea}
+
+Band theory also explains colour. Photons with energy below the gap pass through: diamond, with a $5.5\un{eV}$ gap, is transparent; glass too. Photons above the gap are absorbed: silicon, with $1.1\un{eV}$, absorbs all visible light and looks grey and opaque.
+
+Near the bottom of a band, $E(k)$ is parabolic, so electrons behave like free particles with an \emph{effective mass} $m^*$ set by the band's curvature --- sometimes much lighter than a free electron. Near the top of a nearly full band, it is easier to track the few \emph{missing} electrons. These \emph{holes} act like particles of positive charge and positive mass, and explain the ``wrong-sign'' Hall effect that baffled Drude.
+
+\section{Semiconductors}
+
+Pure silicon at room temperature has only about $10^{16}$ free electrons per cubic metre --- a trillion times fewer than a metal --- because the number thermally excited across the gap goes as $e^{-E_g/2\kB T}$. The magic of semiconductors is that this can be controlled. \emph{Doping} with a few phosphorus atoms (five valence electrons) donates extra electrons, making $n$-type silicon; boron (three) creates holes, making $p$-type. One dopant atom per million can increase the conductivity a hundred-thousand-fold.
+
+Put $p$-type and $n$-type silicon in contact and electrons and holes diffuse across and annihilate, leaving a \emph{depletion region} with a built-in electric field. This \emph{p--n junction} conducts easily one way and hardly at all the other: a \emph{diode}. Run current through a junction of the right material and electrons falling across the gap emit light of energy $E_g$: an LED. Shine light on it and photons create electron--hole pairs that the field separates: a solar cell. And a \emph{transistor}, a junction whose conductivity is controlled by a voltage on a third terminal, is a switch with no moving parts. Several billion of them sit in your phone. The information age is band theory, engineered.
+
+\section{Magnetism}
+
+All matter responds to magnetic fields. \textbf{Diamagnetism} (weak repulsion) is universal: by Lenz's law, electron orbits adjust to oppose an applied field. \textbf{Paramagnetism} (weak attraction) occurs when atoms have permanent magnetic moments, which tend to align with a field against thermal agitation; the induced magnetization falls as $1/T$ (\emph{Curie's law}), a direct application of the Boltzmann factor.
+
+\textbf{Ferromagnetism} --- the spontaneous alignment of moments in iron, cobalt, and nickel --- is quite different, and cannot be explained by magnetic forces between atoms, which are thousands of times too weak. The cause is quantum mechanical: the \emph{exchange interaction}. Two electrons with parallel spins must have an antisymmetric spatial wavefunction (Chapter~\ref{ch:qm}), which keeps them apart and lowers their Coulomb repulsion. So electrostatics plus the Pauli principle makes aligned spins energetically favourable. Above the \emph{Curie temperature} ($1043\un{K}$ for iron) thermal agitation wins and the magnetism vanishes, in a phase transition well described by the Ising model (Chapter~\ref{ch:statmech}). A ferromagnet breaks into \emph{domains} of different magnetization to reduce its external field energy; magnetizing a piece of iron means growing the domains aligned with the field. Some materials prefer \emph{antiparallel} neighbours and become antiferromagnets. The low-energy excitations of a magnet are spin waves, quantized as \emph{magnons}.
+
+\section{Superconductivity}
+
+In 1911 Heike Kamerlingh Onnes, having just liquefied helium, cooled mercury to $4.2\un{K}$ and watched its resistance vanish. Not decrease: vanish. Currents in superconducting rings have flowed for years without measurable decay.
+
+Zero resistance is only half the story. In 1933 Meissner and Ochsenfeld found that a superconductor \emph{expels} magnetic fields: cool it in a field, and the field is pushed out. A superconductor is a perfect diamagnet, which is why a magnet floats above one. The field penetrates only a thin surface layer of depth $\lambda_L = \sqrt{m/\mu_0n e^2}$, tens of nanometres. Inside, it is as if the photon has acquired a mass, exactly as in a plasma (Chapter~\ref{ch:plasma}) --- the condensed matter ancestor of the Higgs mechanism (Chapter~\ref{ch:particle}).
+
+The explanation took until 1957. Bardeen, Cooper, and Schrieffer (BCS) showed that electrons near the Fermi surface feel a weak attraction mediated by phonons: an electron passing through the lattice pulls the positive ions toward it, and a second electron is attracted to the resulting positive wake. Electrons pair up into \emph{Cooper pairs}, which are bosons, and condense into a single coherent quantum state (Chapter~\ref{ch:statmech}), separated from excited states by an energy gap. Scattering a pair out of the condensate costs energy, so at low temperature it cannot happen: no resistance.
+
+The evidence for pairs is beautiful: the magnetic flux through a superconducting ring is quantized in units of
+\[
+  \Phi_0 = \frac{h}{2e} = 2.07\times10^{-15}\un{Wb},
+\]
+with $2e$, the charge of a pair. Two superconductors separated by a thin barrier exhibit the \emph{Josephson effect}, a supercurrent that tunnels across; Josephson junctions make SQUIDs, the most sensitive magnetic field detectors in existence, and the superconducting qubits of quantum computers (Chapter~\ref{ch:qinfo}).
+
+In 1986 Bednorz and M\"uller discovered superconductivity in copper oxides at $35\un{K}$, and within a year the record stood at $93\un{K}$, warmer than liquid nitrogen. These \emph{high-$T_c$} superconductors do not follow BCS theory, and nearly four decades later their mechanism is still not settled. Superconducting magnets run MRI scanners (Chapter~\ref{ch:medical}) and particle accelerators (Chapter~\ref{ch:accel}).
+
+\section{The quantum Hall effect and topology}
+\label{sec:hall-classic}
+
+Run a current along a conducting strip in a perpendicular magnetic field, and the Lorentz force pushes carriers to one side, producing a transverse voltage: the classical \emph{Hall effect}. Its sign reveals whether the carriers are electrons or holes, and its size gives their density.
+
+In 1980 Klaus von Klitzing measured the Hall effect in a two-dimensional layer of electrons at low temperature and high field, and found that the Hall resistance does not vary smoothly: it forms flat plateaus at exactly
+\[
+  R_H = \frac{h}{\nu e^2},\qquad\nu = 1,2,3,\dots
+\]
+``Exactly'' means to better than one part in a billion, in samples full of impurities and of irregular shape. Such precision demanded a deep explanation, and it was found in \emph{topology}. The Hall conductance turns out to be a topological invariant of the electrons' quantum states --- an integer, like the number of holes in a doughnut, which cannot change under small deformations. Dirt cannot change it any more than squeezing a doughnut can remove its hole. The value $h/e^2$ is now used as a resistance standard.
+
+At even higher fields, plateaus appear at \emph{fractional} $\nu$ like $\tfrac13$, where electrons interact so strongly that they collectively form a new state whose quasiparticles carry a fraction of an electron's charge and obey neither Bose nor Fermi statistics (\emph{anyons}). Since 2005, \emph{topological insulators} have been found: materials that are insulating inside but must conduct on their surfaces, protected by topology. The topological classification of phases of matter, recognized by the 2016 Nobel Prize, is one of the great conceptual advances of modern physics.
+
+\section{Soft matter}
+
+Not all condensed matter is crystalline. \emph{Soft matter} --- polymers, liquid crystals, colloids, gels, foams, and granular materials --- is held together by interactions comparable to $\kB T$, so it is easily deformed and strongly affected by thermal fluctuations and entropy. Rubber's elasticity is entropic (Chapter~\ref{ch:thermo}). Liquid crystals, whose rod-shaped molecules align in direction but not position, are in every LCD screen. Colloidal particles can crystallize purely because of entropy: at high density, ordered packing leaves each particle \emph{more} room to jiggle than disorder does. Sand flows like a liquid but piles like a solid. Living cells are soft matter (Chapter~\ref{ch:bio}).
+
+\section{Quasiparticles and emergence}
+
+The deepest lesson of condensed matter is that the low-energy excitations of a complex system often behave like simple particles in a new ``vacuum.'' Phonons, holes, magnons, Cooper pairs, and anyons are all quasiparticles. In \emph{graphene}, a single sheet of carbon atoms in a honeycomb isolated in 2004, the electrons near the Fermi level have a linear dispersion $E = \hbar v_F\abs{\vb k}$ --- they behave as massless relativistic particles moving at $c/300$, obeying a version of the Dirac equation (Chapter~\ref{ch:qft}). A pencil trace contains a toy universe. The same mathematics, quantum field theory, describes elementary particles and the excitations of solids, and ideas flow constantly in both directions.
+
+\section{Problems}
+
+\begin{problems}
+\prob{1}\core X-rays of wavelength $0.154\un{nm}$ reflect from planes of atoms $0.282\un{nm}$ apart in a salt crystal. At what angles do the first two Bragg reflections occur? Why can't visible light be used for this?
+
+\prob{1} Copper has conductivity $6\times10^7\un{S/m}$ and $8.5\times10^{28}$ free electrons per cubic metre. Using the Drude formula, find the collision time $\tau$. With the Fermi velocity $1.6\times10^{6}\un{m/s}$, find the mean free path. How many atomic spacings is it?
+
+\prob{1}\core Silicon, gallium nitride, cadmium sulfide, and diamond have band gaps of $1.1$, $3.4$, $2.4$, and $5.5\un{eV}$. Predict the appearance of each (transparent, coloured, or opaque), and what colour of LED each could make.
+
+\prob{2}\core For the tight-binding band $E(k) = E_0-2t\cos(ka)$, find the bandwidth and the group velocity $v = \hbar^{-1}\dd E/\dd k$. Near the band bottom, expand to find the effective mass $m^* = \hbar^2/(2ta^2)$. What happens to the group velocity at the zone boundary, and to the effective mass near the top of the band?
+
+\prob{2}\core \label{prob:debye} \emph{(The Debye $T^3$ law.)} At low temperature only phonons with $\hbar\omega\lesssim\kB T$ are excited. With $\omega = vk$, show that the number of such modes in a crystal of volume $V$ scales as $V(\kB T/\hbar v)^3$, each carrying energy $\sim\kB T$. Deduce that the heat capacity scales as $T^3$. Why does the same argument applied to photons give the Stefan--Boltzmann $T^4$ law?
+
+\prob{2} The intrinsic carrier density of a semiconductor scales roughly as $e^{-E_g/2\kB T}$. For silicon, by what factor does it increase between $300\un{K}$ and $350\un{K}$? Why do electronic devices need cooling, and why is doping essential?
+
+\prob{2} An electron spin in a $1\un{T}$ field at $300\un{K}$: compute the ratio $\mu_BB/\kB T$ and hence the fractional net alignment of a paramagnet. At what temperature would the alignment reach about $50\%$? (This is why magnetic resonance signals are so weak, Chapter~\ref{ch:medical}.)
+
+\prob{2}\core Compute the flux quantum $h/2e$. A SQUID can detect a thousandth of a flux quantum through a loop of area $1\un{mm^2}$. What magnetic field does this correspond to? Compare with the Earth's field and with the magnetic fields of the human brain, about $10^{-13}\un{T}$.
+
+\prob{2} Estimate the London penetration depth for a superconductor with a pair density of $10^{28}\un{m^{-3}}$ (treat pairs as particles of mass $2m_e$ and charge $2e$).
+
+\prob{2} A copper strip $1\un{cm}$ wide and $0.1\un{mm}$ thick carries $10\un{A}$ in a $1\un{T}$ field. Find the Hall voltage, using $n = 8.5\times10^{28}\un{m^{-3}}$. Why is the Hall effect much easier to measure in semiconductors?
+
+\prob{3}\core \label{prob:dimer} \emph{(A gap from a dimerized chain.)} In a chain of atoms whose hopping amplitudes alternate, $t_1, t_2, t_1, t_2,\dots$, the unit cell has two atoms. Write Bloch states with amplitudes $(a,b)$ on the two sublattices and show that the energies are
+\[
+  E(k) = \pm\abs{t_1 + t_2e^{ik\cdot 2a}} ,
+\]
+so a gap of size $2\abs{t_1 - t_2}$ opens. (Peierls showed a one-dimensional metal will spontaneously distort this way to open a gap and lower its energy. The two dimerized patterns, $t_1>t_2$ and $t_1<t_2$, turn out to be topologically distinct, and the boundary between them hosts a zero-energy state.)
+
+\prob{3} \emph{(Why the Hall conductance is quantized.)} Here is Laughlin's argument. Roll the electron layer into a cylinder, with the magnetic field through its surface, and slowly thread an extra magnetic flux $\Phi_0 = h/e$ through the cylinder's hollow. Argue that this returns the system to an equivalent state while transporting an integer number $\nu$ of electrons from one edge to the other. Using Faraday's law for the induced voltage around the cylinder, show that the Hall conductance is $\nu e^2/h$.
+\end{problems}
+
+\begin{reading}
+\rd{Steven H.\ Simon, \emph{The Oxford Solid State Basics}}{A short, clear, and funny introduction. The best place to start.}
+\rd{Charles Kittel, \emph{Introduction to Solid State Physics}}{The classic undergraduate text, encyclopaedic in scope.}
+\rd{Ashcroft and Mermin, \emph{Solid State Physics}}{The graduate standard for half a century, still unmatched for the single-electron theory of solids.}
+\rd{Girvin and Yang, \emph{Modern Condensed Matter Physics}}{A modern graduate text with topology, the quantum Hall effect, and superconductivity done properly.}
+\end{reading}

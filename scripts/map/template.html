@@ -1,0 +1,615 @@
+<title>Spherical Cow Chapter Map</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+@font-face { font-family: "ASC Pagella"; src: url(__FONT_REGULAR__) format("woff"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "ASC Pagella"; src: url(__FONT_ITALIC__) format("woff"); font-weight: 400; font-style: italic; font-display: swap; }
+
+/* Layout: a page from the book. The graph sits on plain paper; the chapter you pick
+   reads like that chapter's opening page, in a margin column beside it. */
+:root {
+  --paper: #FFFFFF; --ink: #20242A; --ink-2: #555A65; --ink-3: #868B96;
+  --rule: #DAD8D0; --edge: #C6C9D2; --wash: #F4F3EF;
+  --blue: #2B4EC0; --blue-wash: #EEF1FC;
+  --warm: #B23A2B; --warm-wash: #FAEEEB;
+  --purple: #7A3FB0; --purple-wash: #F2EAFA;
+  --shadow: rgba(32, 36, 42, .08);
+  --serif: "ASC Pagella", "TeX Gyre Pagella", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+  --sans: "TeX Gyre Heros", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --slot: 84px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #14161B; --ink: #E8E6E0; --ink-2: #ADB1BB; --ink-3: #7C818D;
+    --rule: #30333B; --edge: #3B3F4A; --wash: #1C1F25;
+    --blue: #93A8FF; --blue-wash: #1D2440;
+    --warm: #F08F80; --warm-wash: #3A211E;
+    --purple: #C9A6F2; --purple-wash: #2B2139;
+    --shadow: rgba(0, 0, 0, .4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #14161B; --ink: #E8E6E0; --ink-2: #ADB1BB; --ink-3: #7C818D;
+  --rule: #30333B; --edge: #3B3F4A; --wash: #1C1F25;
+  --blue: #93A8FF; --blue-wash: #1D2440;
+  --warm: #F08F80; --warm-wash: #3A211E;
+  --purple: #C9A6F2; --purple-wash: #2B2139;
+  --shadow: rgba(0, 0, 0, .4);
+  color-scheme: dark;
+}
+
+body { background: var(--paper); color: var(--ink); font: 15px/1.5 var(--sans); -webkit-font-smoothing: antialiased; }
+button { font: inherit; color: inherit; }
+[hidden] { display: none !important; }
+:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+
+.page {
+  max-width: 1260px; margin: 0 auto; padding-block: 28px 72px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+@media (min-width: 720px) {
+  .page { padding-left: max(32px, env(safe-area-inset-left, 0px)); padding-right: max(32px, env(safe-area-inset-right, 0px)); padding-block: 40px 80px; }
+}
+
+/* ---------- masthead ---------- */
+.eyebrow { margin: 0; font: 700 11px/1.2 var(--sans); letter-spacing: .14em; text-transform: uppercase; color: var(--blue); }
+h1 { margin: 8px 0 12px; font: 400 clamp(38px, 6vw, 56px)/1 var(--serif); letter-spacing: -.01em; text-wrap: balance; }
+.lede { margin: 0; max-width: 58ch; font: 18px/1.5 var(--serif); color: var(--ink-2); }
+.controls { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 28px; margin-top: 22px; }
+.search { position: relative; flex: 0 1 380px; min-width: 0; }
+.search svg { position: absolute; left: 12px; top: 50%; width: 16px; height: 16px; transform: translateY(-50%); color: var(--ink-3); pointer-events: none; }
+.search input {
+  width: 100%; box-sizing: border-box; padding: 10px 12px 10px 36px;
+  font: 15px/1.3 var(--sans); color: var(--ink); background: var(--paper);
+  border: 1px solid var(--rule); border-radius: 8px;
+}
+.search input::placeholder { color: var(--ink-3); }
+.search input:focus { outline: none; border-color: var(--blue); box-shadow: 0 0 0 3px var(--blue-wash); }
+.menus { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+.menus-label { margin-right: 6px; font: 700 10.5px/1 var(--sans); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); }
+.menus button {
+  padding: 6px 13px; font-size: 13.5px; line-height: 1.2; cursor: pointer;
+  background: var(--paper); border: 1px solid var(--rule); border-radius: 999px;
+}
+.menus button:hover { border-color: var(--ink-3); }
+.menus button[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+
+/* ---------- layout ---------- */
+.layout { display: grid; gap: 36px; margin-top: 30px; }
+@media (min-width: 1180px) {
+  .layout { grid-template-columns: minmax(0, 1fr) 340px; gap: 44px; align-items: start; }
+  .panel {
+    position: sticky; top: calc(env(safe-area-inset-top, 0px) + 16px);
+    max-height: calc(100dvh - 32px); overflow: auto; overscroll-behavior: contain;
+    border-left: 1px solid var(--rule); padding-left: 28px; padding-right: 12px; scrollbar-gutter: stable;
+  }
+  .to-map { display: none; }
+}
+
+/* ---------- the map ---------- */
+.map { min-width: 0; }
+.map-inner { position: relative; display: flex; flex-direction: column; gap: 8px; }
+#edges { position: absolute; left: 0; top: 0; overflow: visible; pointer-events: none; }
+#edges path { fill: none; stroke: var(--edge); stroke-width: 1.2; transition: opacity .18s, stroke .18s; }
+.map-inner.focus #edges path { opacity: .3; }
+#edges path.anc { stroke: var(--blue); stroke-width: 2; opacity: 1; }
+#edges path.desc { stroke: var(--warm); stroke-width: 1.6; stroke-dasharray: 4 3; opacity: 1; }
+
+.row { position: relative; display: flex; flex-direction: column; gap: 4px; }
+.row-label { display: flex; align-items: center; gap: 10px; font: 700 10px/1 var(--sans); letter-spacing: .13em; text-transform: uppercase; color: var(--ink-3); }
+.row-label::after { content: ""; flex: 1; border-top: 1px dotted var(--rule); }
+.row-nodes { display: flex; flex-wrap: wrap; justify-content: center; gap: 2px 6px; }
+
+.node {
+  position: relative; width: var(--slot); display: flex; flex-direction: column; align-items: center; gap: 5px;
+  padding: 4px 0 6px; background: none; border: 0; border-radius: 8px; cursor: pointer;
+  transition: opacity .18s;
+}
+.dot {
+  position: relative; width: 30px; height: 30px; box-sizing: border-box; border-radius: 50%;
+  display: grid; place-items: center; background: var(--paper); border: 1.5px solid var(--ink-3);
+  font: 400 14px/1 var(--serif); font-variant-numeric: lining-nums tabular-nums; color: var(--ink);
+  transition: background .18s, border-color .18s, color .18s;
+}
+.name {
+  max-width: 100%; box-sizing: border-box; padding: 1px 3px; border-radius: 3px; background: var(--paper);
+  font: 11.5px/1.2 var(--sans); color: var(--ink-2); text-align: center; hyphens: manual; overflow-wrap: break-word;
+}
+.node:hover .dot { border-color: var(--ink); }
+.node:hover .name { color: var(--ink); }
+.map-inner.focus .node { opacity: .3; }
+.map-inner.focus .node.on { opacity: 1; }
+.node.sel .dot { background: var(--blue); border-color: var(--blue); color: var(--paper); }
+.node.sel .name { color: var(--ink); font-weight: 700; }
+.node.anc .dot, .node.step .dot { background: var(--blue-wash); border-color: var(--blue); color: var(--blue); }
+.node.desc .dot { background: var(--warm-wash); border: 1.5px dashed var(--warm); color: var(--warm); }
+.node.lean .dot { border-style: dotted; border-color: var(--ink-2); }
+.node.hit .dot { background: var(--purple-wash); border-color: var(--purple); color: var(--purple); }
+.node.anc .name, .node.desc .name, .node.step .name, .node.hit .name { color: var(--ink); }
+.badge {
+  position: absolute; top: -8px; left: 20px; min-width: 17px; height: 17px; box-sizing: border-box; padding: 0 4px;
+  border-radius: 9px; background: var(--ink); color: var(--paper); box-shadow: 0 0 0 2px var(--paper);
+  font: 700 10px/17px var(--sans); text-align: center; font-variant-numeric: tabular-nums;
+}
+
+.legend { display: flex; flex-wrap: wrap; gap: 8px 18px; margin: 22px 0 0; padding: 0; list-style: none; font-size: 12.5px; color: var(--ink-2); }
+.legend li { display: flex; align-items: center; gap: 7px; }
+.key { width: 14px; height: 14px; box-sizing: border-box; border-radius: 50%; border: 1.5px solid; flex: none; }
+.key.sel { background: var(--blue); border-color: var(--blue); }
+.key.anc { background: var(--blue-wash); border-color: var(--blue); }
+.key.desc { background: var(--warm-wash); border: 1.5px dashed var(--warm); }
+.key.hit { background: var(--purple-wash); border-color: var(--purple); }
+.legend .how { flex-basis: 100%; color: var(--ink-3); }
+
+/* ---------- the panel ---------- */
+.panel { min-width: 0; }
+@media (max-width: 1179.98px) { .panel { border-top: 1px solid var(--rule); padding-top: 26px; scroll-margin-top: 12px; } }
+.panel h2 { margin: 6px 0 10px; font: 400 32px/1.1 var(--serif); text-wrap: balance; }
+.panel h3 { margin: 24px 0 9px; font: 700 10.5px/1.2 var(--sans); letter-spacing: .13em; text-transform: uppercase; color: var(--ink-3); }
+.panel p { margin: 0; }
+.dek { font: italic 17px/1.45 var(--serif); color: var(--ink-2); }
+.proto { margin-top: 16px; padding: 12px 14px; background: var(--warm-wash); font: 15px/1.5 var(--serif); }
+.tag { margin-right: 8px; font: 700 10px/1 var(--sans); letter-spacing: .12em; text-transform: uppercase; color: var(--warm); }
+.quiet { font-size: 13.5px; color: var(--ink-2); }
+.linkish { padding: 0; background: none; border: 0; cursor: pointer; font-size: 13px; color: var(--blue); text-decoration: underline; text-underline-offset: 3px; }
+.top-links { display: flex; flex-wrap: wrap; gap: 6px 16px; margin-bottom: 14px; }
+
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip {
+  display: inline-flex; align-items: center; gap: 7px; padding: 4px 11px 4px 4px; cursor: pointer;
+  font: 13px/1.2 var(--sans); background: var(--paper); border: 1px solid var(--rule); border-radius: 999px; text-align: left;
+}
+.chip:hover { border-color: var(--ink-3); }
+.n {
+  flex: none; width: 21px; height: 21px; box-sizing: border-box; border-radius: 50%; display: grid; place-items: center;
+  font: 400 12px/1 var(--serif); font-variant-numeric: lining-nums tabular-nums; border: 1.3px solid var(--ink-3); background: var(--paper);
+}
+.chip.anc .n, .route .n { color: var(--blue); border-color: var(--blue); background: var(--blue-wash); }
+.chip.desc .n { color: var(--warm); border: 1.3px dashed var(--warm); background: var(--warm-wash); }
+
+.route { margin: 0; padding: 10px 12px; list-style: none; background: var(--blue-wash); display: grid; gap: 1px; }
+.route button, .route .here { display: flex; align-items: center; gap: 9px; width: 100%; padding: 4px 0; background: none; border: 0; text-align: left; cursor: pointer; font-size: 14px; }
+.route button:hover span:last-child { text-decoration: underline; text-underline-offset: 3px; }
+.route .here { cursor: default; font-weight: 700; }
+.route .here .n { background: var(--blue); color: var(--paper); }
+.route li + li { position: relative; }
+.route li + li::before { content: ""; position: absolute; left: 10px; top: -5px; height: 8px; border-left: 1.3px solid var(--blue); opacity: .5; }
+
+.plate { margin: 0; padding-left: 18px; font: 15px/1.45 var(--serif); }
+.plate li + li { margin-top: 2px; }
+.plate li::marker { color: var(--ink-3); }
+
+.bar { display: flex; gap: 2px; height: 8px; margin-bottom: 10px; border-radius: 4px; overflow: hidden; }
+.bar span { display: block; }
+.c1 { color: var(--blue); } .c2 { color: var(--purple); } .c3 { color: var(--warm); }
+.b1 { background: var(--blue); } .b2 { background: var(--purple); } .b3 { background: var(--warm); }
+.levels { display: grid; grid-template-columns: 4.6em auto 1fr; gap: 3px 10px; align-items: baseline; font-size: 13.5px; }
+.levels .lv { font: italic 16px/1.2 var(--serif); }
+.levels .k { font-weight: 700; font-variant-numeric: tabular-nums; text-align: right; }
+.levels .what { color: var(--ink-2); }
+.named { margin: 12px 0 0; padding: 0; list-style: none; display: grid; gap: 4px; font: 14.5px/1.4 var(--serif); }
+.named .pn { font: 12px var(--sans); font-variant-numeric: tabular-nums; color: var(--ink-3); margin-right: 6px; }
+.shelf { margin: 0; padding: 0; list-style: none; display: grid; gap: 6px; font: 14.5px/1.4 var(--serif); }
+
+.steps { margin: 0; padding: 0; list-style: none; display: grid; gap: 12px; counter-reset: step; }
+.steps li { display: grid; grid-template-columns: 26px 1fr; gap: 2px 10px; }
+.steps .badge { position: static; justify-self: start; align-self: start; margin-top: 3px; box-shadow: none; }
+.steps button { justify-self: start; padding: 0; background: none; border: 0; cursor: pointer; text-align: left; font: 17px/1.3 var(--serif); color: var(--ink); }
+.steps button:hover { color: var(--blue); }
+.steps .pn { font: 12px var(--sans); color: var(--ink-3); margin-right: 6px; }
+.steps p { grid-column: 2; font: italic 14px/1.45 var(--serif); color: var(--ink-2); }
+
+.results { margin: 18px 0 0; padding: 0; list-style: none; display: grid; gap: 18px; }
+.res-head { display: flex; align-items: center; gap: 9px; width: 100%; padding: 0; background: none; border: 0; cursor: pointer; text-align: left; font: 18px/1.25 var(--serif); }
+.res-head:hover .t { text-decoration: underline; text-underline-offset: 3px; }
+.res-head .n { color: var(--purple); border-color: var(--purple); background: var(--purple-wash); }
+.res-head .count { margin-left: auto; font: 12px var(--sans); color: var(--ink-3); white-space: nowrap; }
+.hits { margin: 6px 0 0 30px; padding: 0; list-style: none; display: grid; gap: 6px; }
+.hits li { font: 14px/1.45 var(--serif); color: var(--ink-2); }
+.kind { display: block; font: 700 10px/1.4 var(--sans); letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); }
+mark { background: var(--purple-wash); color: var(--ink); border-radius: 2px; padding: 0 1px; }
+
+.foot { margin-top: 56px; padding-top: 16px; border-top: 1px solid var(--rule); font-size: 12.5px; color: var(--ink-3); max-width: 70ch; }
+
+/* ---------- phone: a bar that says what is selected ---------- */
+.peek {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; display: flex; align-items: center; gap: 12px;
+  padding: 10px max(16px, env(safe-area-inset-right, 0px)) calc(10px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px));
+  background: var(--paper); border-top: 1px solid var(--rule); box-shadow: 0 -8px 24px var(--shadow);
+}
+.peek-text { flex: 1; min-width: 0; display: flex; align-items: center; gap: 9px; font: 16px/1.25 var(--serif); }
+.peek-text span:last-child { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.peek button { flex: none; padding: 8px 14px; cursor: pointer; font-size: 14px; background: var(--ink); color: var(--paper); border: 0; border-radius: 999px; }
+
+.vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+@media (max-width: 520px) {
+  :root { --slot: 76px; }
+  .name { font-size: 11px; }
+  .lede { font-size: 16.5px; }
+  .panel h2 { font-size: 28px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; scroll-behavior: auto !important; }
+}
+</style>
+
+<div class="page">
+  <header>
+    <p class="eyebrow">Assume a Spherical Cow</p>
+    <h1>The map</h1>
+    <p class="lede">Thirty-three chapters, and nearly every one of them can be your first. Pick a chapter to see what it builds on and where it leads, or search for whatever you are curious about.</p>
+    <div class="controls">
+      <label class="search" for="q">
+        <span class="vh">Search the book</span>
+        <svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="7" cy="7" r="5.2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M11 11l3.6 3.6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        <input id="q" type="search" autocomplete="off" spellcheck="false" placeholder="Try “black holes”, “tides” or “entropy”">
+      </label>
+      <div class="menus" id="menus" role="group" aria-label="Tasting menus"><span class="menus-label">Tasting menus</span></div>
+    </div>
+  </header>
+
+  <main class="layout">
+    <section class="map" aria-label="Chapter map">
+      <div class="map-inner" id="map"><svg id="edges" aria-hidden="true"></svg></div>
+      <ul class="legend" id="legend">
+        <li><span class="key sel"></span>Selected</li>
+        <li><span class="key anc"></span>Read first</li>
+        <li><span class="key desc"></span>Leads to</li>
+        <li><span class="key hit"></span>Mentions your search</li>
+        <li class="how">A chapter sits one row below the deepest chapter it builds on. Lines run down from a chapter to the chapters that build on it.</li>
+      </ul>
+    </section>
+    <aside class="panel" id="panel" aria-label="Chapter details"></aside>
+  </main>
+
+  <p class="foot">Every chapter, prerequisite, section, problem and tasting menu on this page is read from the book’s own source, so the map and the book always agree. Problems are graded the book’s way, by order of perturbation theory.</p>
+</div>
+
+<div class="peek" id="peek" hidden>
+  <div class="peek-text" id="peek-text"></div>
+  <button type="button" id="peek-go">Details</button>
+</div>
+
+<script>
+(() => {
+  const DATA = /*__DATA__*/null;
+  const C = DATA.chapters;
+  const byId = Object.fromEntries(C.map(c => [c.id, c]));
+  C.forEach(c => { c.kids = []; });
+  C.forEach(c => c.pre.forEach(p => byId[p].kids.push(c.id)));
+  const closure = (id, key) => {
+    const out = new Set(), stack = [...byId[id][key]];
+    while (stack.length) { const x = stack.pop(); if (!out.has(x)) { out.add(x); stack.push(...byId[x][key]); } }
+    return out;
+  };
+  C.forEach(c => { c.anc = closure(c.id, 'pre'); c.desc = closure(c.id, 'kids'); });
+  const bookOrder = ids => [...ids].sort((a, b) => byId[a].n - byId[b].n);
+
+  const $ = id => document.getElementById(id);
+  const esc = s => String(s).replace(/[&<>"]/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[ch]));
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+  const wide = matchMedia('(min-width: 1180px)');
+  const map = $('map'), svg = $('edges'), panel = $('panel'), input = $('q');
+  const NS = 'http://www.w3.org/2000/svg';
+
+  /* ---------------- build the map ---------------- */
+  const nodes = {};
+  DATA.rows.forEach((row, d) => {
+    const r = document.createElement('div');
+    r.className = 'row';
+    r.innerHTML = `<div class="row-label">${d === 0 ? 'Start here' : d === 1 ? '1 step in' : d + ' steps in'}</div><div class="row-nodes"></div>`;
+    row.forEach(id => {
+      const c = byId[id], b = document.createElement('button');
+      b.type = 'button'; b.className = 'node'; b.id = 'node-' + id; b.dataset.id = id;
+      b.setAttribute('aria-label', `Chapter ${c.n}, ${c.title}`);
+      b.innerHTML = `<span class="dot">${c.n}<span class="badge" hidden></span></span><span class="name">${esc(c.short)}</span>`;
+      b.addEventListener('click', () => select(id));
+      b.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse') { hoverId = id; paint(); } });
+      b.addEventListener('pointerleave', e => { if (e.pointerType === 'mouse') { hoverId = null; paint(); } });
+      nodes[id] = b;
+      r.lastChild.append(b);
+    });
+    map.append(r);
+  });
+
+  const edges = [];
+  C.forEach(c => c.pre.forEach(p => {
+    const path = document.createElementNS(NS, 'path');
+    path.setAttribute('fill', 'none');
+    svg.append(path);
+    edges.push({ from: p, to: c.id, path });
+  }));
+
+  function drawEdges() {
+    const box = map.getBoundingClientRect();
+    svg.setAttribute('width', box.width); svg.setAttribute('height', box.height);
+    svg.setAttribute('viewBox', `0 0 ${box.width} ${box.height}`);
+    const dot = id => nodes[id].firstChild.getBoundingClientRect();
+    edges.forEach(e => {
+      const a = dot(e.from), b = dot(e.to);
+      const x1 = a.left + a.width / 2 - box.left, y1 = a.bottom - box.top;
+      const x2 = b.left + b.width / 2 - box.left, y2 = b.top - box.top;
+      const k = Math.max(18, (y2 - y1) * 0.45);
+      e.path.setAttribute('d', `M${x1.toFixed(1)},${y1.toFixed(1)} C${x1.toFixed(1)},${(y1 + k).toFixed(1)} ${x2.toFixed(1)},${(y2 - k).toFixed(1)} ${x2.toFixed(1)},${y2.toFixed(1)}`);
+    });
+  }
+  let frame = 0;
+  const redraw = () => { cancelAnimationFrame(frame); frame = requestAnimationFrame(drawEdges); };
+  new ResizeObserver(redraw).observe(map);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(redraw);
+
+  /* ---------------- tasting menus ---------------- */
+  const menuBox = $('menus');
+  DATA.menus.forEach(m => {
+    const b = document.createElement('button');
+    b.type = 'button'; b.dataset.menu = m.id; b.textContent = m.name; b.setAttribute('aria-pressed', 'false');
+    b.addEventListener('click', () => {
+      if (state.mode === 'menu' && state.menu === m.id) select(lastChapter);
+      else { input.value = ''; show({ mode: 'menu', menu: m.id }); setHash('menu-' + m.id); }
+    });
+    menuBox.append(b);
+  });
+  const menuById = Object.fromEntries(DATA.menus.map(m => [m.id, m]));
+
+  /* ---------------- search ---------------- */
+  const normChar = ch => { const n = ch.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase(); return n ? n[0] : ' '; };
+  const norm = s => { let o = ''; for (let i = 0; i < s.length; i++) o += s[i] === '’' ? "'" : normChar(s[i]); return o; };
+  const STOP = new Set('a an and are as at be by do does for from how in into is it its of on or the to what when where which why with about'.split(' '));
+  const INDEX = C.map(c => {
+    const items = [];
+    const add = (kind, text, w, extra) => { if (text) items.push(Object.assign({ kind, text, n: norm(text), w }, extra)); };
+    add('title', c.title, 12);
+    add('dek', c.dek, 5);
+    add('proto', c.proto, 5);
+    c.sec.forEach(s => {
+      add('section', s.t, 8, { sec: s.t });
+      s.sub.forEach(t => add('section', t, 7, { sec: s.t }));
+      s.box.forEach(t => add('box', t, 6, { sec: s.t }));
+      s.p.forEach(t => add('para', t, 1, { sec: s.t }));
+    });
+    c.prob.forEach(p => add('prob', (p.t ? p.t + '. ' : '') + p.x, p.t ? 3 : 2, { num: c.n + '.' + p.n }));
+    c.read.forEach(t => add('read', t, 2));
+    return items;
+  });
+  const alnum = ch => /[a-z0-9α-ω]/.test(ch);
+  function findWord(n, t, from = 0) {
+    for (let i = n.indexOf(t, from); i >= 0; i = n.indexOf(t, i + 1)) if (i === 0 || !alnum(n[i - 1])) return i;
+    return -1;
+  }
+  function tokens(q) {
+    return norm(q).split(/[^a-z0-9α-ω']+/).map(t => t.replace(/^'+|'+$/g, '')).filter(t => t && !STOP.has(t))
+      .map(t => (t.length > 4 && t.endsWith('s') && !t.endsWith('ss')) ? t.slice(0, -1) : t);
+  }
+  function search(q) {
+    const toks = tokens(q);
+    if (!toks.length) return { toks, res: [] };
+    const phrase = toks.join(' ');
+    const res = [];
+    INDEX.forEach((items, ci) => {
+      const hits = [];
+      items.forEach(it => {
+        if (toks.every(t => findWord(it.n, t) >= 0)) hits.push({ it, s: it.w * (toks.length > 1 && it.n.includes(phrase) ? 1.6 : 1) });
+      });
+      if (hits.length) res.push({ c: C[ci], hits, score: hits.reduce((a, h) => a + h.s, 0) });
+    });
+    res.sort((a, b) => b.score - a.score || a.c.n - b.c.n);
+    return { toks, res };
+  }
+  function marked(text, n, toks, start = 0, end = text.length) {
+    const spans = [];
+    toks.forEach(t => {
+      for (let i = findWord(n, t, start); i >= 0 && i < end; i = findWord(n, t, i + 1)) {
+        let j = i + t.length;
+        while (j < end && alnum(n[j])) j++;
+        spans.push([i, j]);
+      }
+    });
+    spans.sort((a, b) => a[0] - b[0]);
+    let out = '', at = start;
+    spans.forEach(([a, b]) => { if (a < at) return; out += esc(text.slice(at, a)) + '<mark>' + esc(text.slice(a, b)) + '</mark>'; at = b; });
+    return out + esc(text.slice(at, end));
+  }
+  function snippet(it, toks) {
+    const { text, n } = it;
+    if (text.length <= 150) return marked(text, n, toks);
+    const first = Math.min(...toks.map(t => findWord(n, t)).filter(i => i >= 0));
+    let a = Math.max(0, first - 55), b = Math.min(text.length, first + 115);
+    if (a > 0) a = text.indexOf(' ', a) + 1;
+    if (b < text.length) b = text.lastIndexOf(' ', b);
+    return (a > 0 ? '…' : '') + marked(text, n, toks, a, b) + (b < text.length ? '…' : '');
+  }
+  const KIND = { title: 'Chapter title', dek: 'Opening line', proto: 'Prototype', section: 'Section', box: 'Boxed result', read: 'Further reading' };
+
+  /* ---------------- state ---------------- */
+  let state = { mode: 'chapter', id: 'qm' }, hoverId = null, lastChapter = 'qm', lastResults = null;
+
+  function setHash(h) { try { history.replaceState(null, '', '#' + h); } catch (e) { /* the frame may refuse */ } }
+
+  function select(id, opts = {}) {
+    show({ mode: 'chapter', id, back: opts.back || null }, opts.reveal);
+    setHash(id);
+  }
+  function show(next, reveal) {
+    state = next;
+    if (state.mode === 'chapter') lastChapter = state.id;
+    renderPanel();
+    paint();
+    menuBox.querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', String(state.mode === 'menu' && state.menu === b.dataset.menu)));
+    if (wide.matches) panel.scrollTop = 0;
+    else if (reveal && panel.getBoundingClientRect().top < 0) panel.scrollIntoView({ block: 'start', behavior: reduced.matches ? 'auto' : 'smooth' });
+    updatePeek();
+  }
+
+  /* ---------------- paint the map ---------------- */
+  function paint() {
+    const f = hoverId ? { mode: 'chapter', id: hoverId } : state;
+    Object.values(nodes).forEach(b => {
+      b.classList.remove('sel', 'anc', 'desc', 'hit', 'step', 'lean', 'on');
+      b.removeAttribute('aria-current');
+      const badge = b.querySelector('.badge'); badge.hidden = true; badge.textContent = '';
+    });
+    const mark = (id, ...cls) => nodes[id].classList.add('on', ...cls);
+    const badge = (id, text) => { const el = nodes[id].querySelector('.badge'); el.textContent = text; el.hidden = false; };
+    const up = [], down = [];
+    if (f.mode === 'chapter') {
+      const c = byId[f.id];
+      mark(c.id, 'sel'); nodes[c.id].setAttribute('aria-current', 'true');
+      c.anc.forEach(a => mark(a, 'anc'));
+      c.desc.forEach(d => mark(d, 'desc'));
+      edges.forEach(e => {
+        if ((e.to === c.id || c.anc.has(e.to)) && c.anc.has(e.from)) up.push(e);
+        else if ((e.from === c.id || c.desc.has(e.from)) && c.desc.has(e.to)) down.push(e);
+      });
+    } else if (f.mode === 'menu') {
+      const m = menuById[f.menu], inMenu = new Set([...m.steps, ...m.then]);
+      m.steps.forEach((id, i) => { mark(id, 'step'); badge(id, i + 1); });
+      m.then.forEach(id => { mark(id, 'desc'); badge(id, m.steps.length + 1); });
+      menuGaps(m).forEach(id => mark(id, 'lean'));
+      edges.forEach(e => { if (inMenu.has(e.from) && inMenu.has(e.to)) up.push(e); });
+    } else if (f.mode === 'search') {
+      (lastResults ? lastResults.res : []).forEach(r => { mark(r.c.id, 'hit'); badge(r.c.id, r.hits.length); });
+    }
+    edges.forEach(e => e.path.removeAttribute('class'));
+    up.forEach(e => { e.path.setAttribute('class', 'anc'); svg.append(e.path); });
+    down.forEach(e => { e.path.setAttribute('class', 'desc'); svg.append(e.path); });
+    map.classList.add('focus');
+  }
+  const menuGaps = m => {
+    const have = new Set([...m.steps, ...m.then]), need = new Set();
+    m.steps.forEach(id => byId[id].anc.forEach(a => { if (!have.has(a)) need.add(a); }));
+    return bookOrder(need);
+  };
+
+  /* ---------------- the panel ---------------- */
+  const chip = (id, cls = '') => `<button type="button" class="chip ${cls}" data-go="${id}"><span class="n">${byId[id].n}</span>${esc(byId[id].title)}</button>`;
+  const toMap = '<button type="button" class="linkish to-map" data-tomap>Back to the map</button>';
+
+  function chapterPanel(c, back) {
+    const route = bookOrder(c.anc);
+    const lv = [1, 2, 3].map(k => c.prob.filter(p => p.lv === k).length);
+    const named = c.prob.filter(p => p.t).slice(0, 4);
+    const sections = c.sec.map(s => s.t);
+    return `
+      <div class="top-links">${back ? `<button type="button" class="linkish" data-back>Back to results for “${esc(back.query)}”</button>` : ''}${toMap}</div>
+      <p class="eyebrow">Chapter ${c.n}</p>
+      <h2>${esc(c.title)}</h2>
+      <p class="dek">${esc(c.dek)}</p>
+      ${c.proto ? `<p class="proto"><span class="tag">Prototype</span>${esc(c.proto)}</p>` : ''}
+
+      <h3>Builds on</h3>
+      ${c.pre.length ? `<div class="chips">${bookOrder(c.pre).map(id => chip(id, 'anc')).join('')}</div>`
+        : `<p class="quiet">${esc(c.pretext.charAt(0).toUpperCase() + c.pretext.slice(1))}.</p>`}
+
+      <h3>Leads to</h3>
+      ${c.kids.length ? `<div class="chips">${bookOrder(c.kids).map(id => chip(id, 'desc')).join('')}</div>`
+        : `<p class="quiet">No later chapter builds on this one. It is a destination.</p>`}
+
+      <h3>Reading from scratch</h3>
+      ${route.length ? `<ol class="route">${route.map(id => `<li><button type="button" data-go="${id}"><span class="n">${byId[id].n}</span><span>${esc(byId[id].title)}</span></button></li>`).join('')}<li><span class="here"><span class="n">${c.n}</span><span>${esc(c.title)}</span></span></li></ol>
+        <p class="quiet" style="margin-top:8px">Everything this chapter leans on, all the way down, in book order. Skip whatever you already know.</p>`
+        : `<p class="quiet">Nothing comes first. You can start here.</p>`}
+
+      <h3>On the plate</h3>
+      <ul class="plate">${sections.map(t => `<li>${esc(t)}</li>`).join('')}</ul>
+
+      <h3>Problems</h3>
+      <div class="bar" role="img" aria-label="${lv[0]} first-order, ${lv[1]} second-order and ${lv[2]} nonperturbative problems">${lv.map((k, i) => k ? `<span class="b${i + 1}" style="flex:${k}"></span>` : '').join('')}</div>
+      <div class="levels">
+        <span class="lv c1">O(ε)</span><span class="k">${lv[0]}</span><span class="what">first order: apply the chapter directly</span>
+        <span class="lv c2">O(ε²)</span><span class="k">${lv[1]}</span><span class="what">second order: combine ideas, carry a correction</span>
+        <span class="lv c3">e<sup>−1/ε</sup></span><span class="k">${lv[2]}</span><span class="what">nonperturbative: needs a new idea</span>
+      </div>
+      ${named.length ? `<ul class="named">${named.map(p => `<li><span class="pn">${c.n}.${p.n}</span>${esc(p.t)}</li>`).join('')}</ul>` : ''}
+      <p class="quiet" style="margin-top:10px">Hints for the nonperturbative problems are in Appendix C, and solutions to all ${c.prob.length} are in Appendix D.</p>
+
+      ${c.read.length ? `<h3>After this chapter</h3><ul class="shelf">${c.read.map(t => `<li>${esc(t)}</li>`).join('')}</ul>` : ''}`;
+  }
+
+  function menuPanel(m) {
+    const gaps = menuGaps(m);
+    return `
+      <div class="top-links">${toMap}</div>
+      <p class="eyebrow">Tasting menu</p>
+      <h2>The ${esc(m.name.toLowerCase())} menu</h2>
+      <p class="dek">A suggested route through the book, from the advice at the front.</p>
+      <h3>In this order</h3>
+      <ol class="steps">${m.steps.map((id, i) => `<li><span class="badge">${i + 1}</span><button type="button" data-go="${id}"><span class="pn">${byId[id].n}</span>${esc(byId[id].title)}</button><p>${esc(byId[id].dek)}</p></li>`).join('')}</ol>
+      ${m.then.length ? `<h3>Then any of</h3><div class="chips">${m.then.map(id => chip(id, 'desc')).join('')}</div>` : ''}
+      ${gaps.length ? `<h3>Also leans on</h3><div class="chips">${gaps.map(id => chip(id)).join('')}</div>
+        <p class="quiet" style="margin-top:8px">These chapters are not on the menu, but some step builds on them. Skim them if a step feels steep.</p>` : ''}`;
+  }
+
+  function searchPanel(q) {
+    const { toks, res } = lastResults;
+    if (!res.length) return `<p class="eyebrow">Search</p><h2>“${esc(q)}”</h2>
+      <p class="quiet">Nothing in the book matches that. Try a single word, like “wave”, “spin” or “energy”.</p>`;
+    const places = res.reduce((a, r) => a + r.hits.length, 0);
+    return `
+      <div class="top-links">${toMap}</div>
+      <p class="eyebrow">Search</p>
+      <h2>“${esc(q)}”</h2>
+      <p class="quiet">${places} ${places === 1 ? 'place' : 'places'} in ${res.length} ${res.length === 1 ? 'chapter' : 'chapters'}. The numbers on the map count them.</p>
+      <ol class="results">${res.map(r => {
+        const top = r.hits.slice().sort((a, b) => b.it.w - a.it.w).slice(0, 3);
+        return `<li><button type="button" class="res-head" data-go="${r.c.id}" data-from-search><span class="n">${r.c.n}</span><span class="t">${esc(r.c.title)}</span><span class="count">${r.hits.length} ${r.hits.length === 1 ? 'place' : 'places'}</span></button>
+          <ul class="hits">${top.map(({ it }) => `<li><span class="kind">${it.kind === 'prob' ? 'Problem ' + it.num : it.kind === 'para' ? 'In “' + esc(it.sec) + '”' : KIND[it.kind]}</span>${snippet(it, toks)}</li>`).join('')}</ul></li>`;
+      }).join('')}</ol>`;
+  }
+
+  function renderPanel() {
+    if (state.mode === 'chapter') panel.innerHTML = chapterPanel(byId[state.id], state.back);
+    else if (state.mode === 'menu') panel.innerHTML = menuPanel(menuById[state.menu]);
+    else panel.innerHTML = searchPanel(state.query);
+  }
+
+  panel.addEventListener('click', e => {
+    const go = e.target.closest('[data-go]');
+    if (go) {
+      const back = go.hasAttribute('data-from-search') ? { mode: 'search', query: state.query } : (state.mode === 'chapter' ? state.back : null);
+      select(go.dataset.go, { back, reveal: true });
+      return;
+    }
+    if (e.target.closest('[data-back]')) { const b = state.back; input.value = b.query; lastResults = search(b.query); show(b, true); return; }
+    if (e.target.closest('[data-tomap]')) map.scrollIntoView({ block: 'start', behavior: reduced.matches ? 'auto' : 'smooth' });
+  });
+
+  let timer = 0;
+  input.addEventListener('input', () => {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      const q = input.value.trim();
+      if (q.length >= 2) { lastResults = search(q); show({ mode: 'search', query: q }); }
+      else if (state.mode === 'search') select(lastChapter);
+    }, 120);
+  });
+  input.addEventListener('keydown', e => { if (e.key === 'Escape' && input.value) { input.value = ''; if (state.mode === 'search') select(lastChapter); } });
+
+  /* ---------------- phone: the peek bar ---------------- */
+  const peek = $('peek'), peekText = $('peek-text');
+  let panelInView = false;
+  function updatePeek() {
+    let html = '';
+    if (state.mode === 'chapter') html = `<span class="n">${byId[state.id].n}</span><span>${esc(byId[state.id].title)}</span>`;
+    else if (state.mode === 'menu') html = `<span>The ${esc(menuById[state.menu].name.toLowerCase())} menu</span>`;
+    else html = `<span>“${esc(state.query)}”: ${lastResults.res.length} chapters</span>`;
+    peekText.innerHTML = html;
+    peek.hidden = wide.matches || panelInView;
+  }
+  new IntersectionObserver(es => { panelInView = es[0].isIntersecting; updatePeek(); }).observe(panel);
+  wide.addEventListener('change', () => { updatePeek(); redraw(); });
+  $('peek-go').addEventListener('click', () => panel.scrollIntoView({ block: 'start', behavior: reduced.matches ? 'auto' : 'smooth' }));
+
+  /* ---------------- start ---------------- */
+  function fromHash() {
+    const h = decodeURIComponent(location.hash.slice(1));
+    if (byId[h]) return select(h);
+    if (h.startsWith('menu-') && menuById[h.slice(5)]) return show({ mode: 'menu', menu: h.slice(5) });
+    select(lastChapter);
+  }
+  window.addEventListener('hashchange', fromHash);
+  fromHash();
+  drawEdges();
+})();
+</script>

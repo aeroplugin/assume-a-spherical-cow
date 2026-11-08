@@ -1,0 +1,165 @@
+\chapter{General relativity}
+\label{ch:gr}
+
+\buildson{special relativity (Chapter~\ref{ch:sr})}
+
+\chapterdek{Gravity reimagined as the bending of spacetime itself --- Einstein's masterpiece, which predicted black holes, an expanding universe, and ripples in the fabric of space.}
+
+\begin{prototype}
+A black hole: a region where spacetime is curved so strongly that not even light can escape. It is the simplest macroscopic object in the universe, completely described by its mass and its spin, and it is where general relativity stops being a small correction to Newton and becomes the whole story.
+\end{prototype}
+
+Special relativity left a problem. Newton's gravity acts instantly across any distance, which special relativity forbids; and it was unclear how gravity should treat energy, which special relativity had shown is a form of mass. Einstein spent eight years, from 1907 to 1915, finding a theory of gravity compatible with relativity. What he found was not a new force at all. Gravity, in general relativity, is the curvature of spacetime, and freely falling objects simply follow the straightest possible paths through it. It is widely regarded as the most beautiful theory in physics, and it has passed every test.
+
+\section{The equivalence principle}
+
+Galileo found that all bodies fall at the same rate, whatever their mass or composition. In Newton's theory this is a coincidence: the mass that appears in $F = ma$ (inertial mass) happens to equal the mass that appears in $F = GMm/r^2$ (gravitational mass). Experiments have confirmed the equality to about one part in $10^{15}$. Einstein took it as a clue.
+
+Imagine you are in a closed elevator. If it is at rest on Earth, you feel your weight. If it is in deep space, accelerating upward at $9.8\un{m/s^2}$, you feel exactly the same thing, and no experiment inside can tell the difference. If instead the elevator cable snaps and it falls freely, you float: gravity has vanished.
+
+\begin{law}[The equivalence principle]
+Locally --- in a small enough region over a short enough time --- the effects of gravity are indistinguishable from those of acceleration. In particular, a freely falling frame is locally an inertial frame, in which special relativity holds.
+\end{law}
+
+Einstein called this ``the happiest thought of my life.'' Two consequences follow immediately. First, \emph{light bends in gravity}: in an accelerating elevator, a light beam crossing the cabin appears to curve downward, so by the equivalence principle it must curve in a gravitational field too. Second, \emph{clocks run slower deeper in a gravitational potential}. Send a light pulse up an accelerating rocket of height $h$: by the time it arrives, the receiver is moving faster, so it sees the pulse Doppler-shifted to lower frequency (Problem~\ref{prob:redshift}). By the equivalence principle, light climbing out of a gravitational field is \emph{redshifted} by
+\[
+  \frac{\Delta f}{f} = \frac{gh}{c^2} = \frac{\Delta\Phi}{c^2},
+\]
+where $\Phi$ is the Newtonian potential. In 1959 Pound and Rebka measured this shift --- two parts in $10^{15}$ --- for gamma rays climbing a $22.5\un{m}$ tower at Harvard. Today's optical clocks detect it over a height difference of one centimetre (Chapter~\ref{ch:amo}).
+
+\section{Gravity is geometry}
+
+If gravity can be removed locally by falling freely, then it is not really a force. What remains, and cannot be removed, is \emph{tidal} effects: two balls dropped side by side in a falling elevator drift slowly toward each other, because they fall toward the Earth's centre along converging lines; two balls one above the other drift apart. No choice of frame removes this relative acceleration. Einstein's insight was that tidal effects are \emph{curvature}.
+
+Think of two travellers on the Earth's surface, starting at the equator a few kilometres apart and both heading due north, each walking in the straightest possible line. They gradually approach each other and meet at the pole. No force pulled them together; the surface is curved. In general relativity, freely falling objects follow the straightest possible paths --- \emph{geodesics} --- through curved spacetime, and they appear to attract because spacetime is curved by mass and energy.
+
+The geometry of spacetime is encoded in the \textbf{metric}, which gives the interval between nearby events:
+\[
+  \dd s^2 = g_{\mu\nu}\,\dd x^\mu\dd x^\nu .
+\]
+For flat spacetime, $g_{\mu\nu}$ is the Minkowski metric of Chapter~\ref{ch:sr}. For weak gravity, the time--time component is $g_{00}\approx-(1+2\Phi/c^2)$: the Newtonian potential is just a small warping of time. In fact, almost all of everyday gravity --- apples, orbits, tides --- comes from the warping of \emph{time}, not space: clocks run at different rates at different heights, and objects drift toward where time runs slowest. A freely falling clock maximizes its proper time between two events (Chapter~\ref{ch:sr}), and that principle alone reproduces Newton's laws in the weak-field limit.
+
+\section{Einstein's equations}
+
+How does matter curve spacetime? After years of struggle, Einstein found the answer in November 1915:
+\[
+  G_{\mu\nu} + \Lambda g_{\mu\nu} = \frac{8\pi G}{c^4}\,T_{\mu\nu} .
+\]
+On the right is the \emph{stress--energy tensor} $T_{\mu\nu}$, describing the density and flow of energy and momentum. On the left is the \emph{Einstein tensor} $G_{\mu\nu}$, built from the second derivatives of the metric --- a measure of curvature constructed from the \emph{Riemann tensor}, which describes how vectors twist when carried around small loops. The term with $\Lambda$, the \emph{cosmological constant}, Einstein added in 1917 and later regretted; it is back, as dark energy (Chapter~\ref{ch:cosmo}).
+
+John Wheeler summarized: \emph{spacetime tells matter how to move; matter tells spacetime how to curve.} These are ten coupled nonlinear partial differential equations, and exact solutions are rare and precious. For weak fields and slow motions they reduce to Newton's $\nabla^2\Phi = 4\pi G\rho$. The pressure and energy of matter also gravitate, not just its mass, which matters in neutron stars and the early universe.
+
+\section{The Schwarzschild solution}
+
+Within weeks of Einstein's paper, Karl Schwarzschild, serving at the Russian front, found the exact solution for the spacetime outside a spherical mass:
+\[
+  \dd s^2 = -\left(1-\frac{r_s}{r}\right)c^2\dd t^2 + \frac{\dd r^2}{1 - r_s/r} + r^2\left(\dd\theta^2 + \sin^2\theta\,\dd\phi^2\right),
+  \qquad r_s = \frac{2GM}{c^2}.
+\]
+The \emph{Schwarzschild radius} $r_s$ is about $3\un{km}$ for the Sun and $9\un{mm}$ for the Earth. As long as the mass is spread over a radius much larger than $r_s$, the corrections to Newton are small, of order $r_s/r$: about $10^{-9}$ at the Earth's surface and $10^{-6}$ at the Sun's.
+
+Reading the metric: a clock at rest at radius $r$ ticks off proper time $\dd\tau = \sqrt{1-r_s/r}\,\dd t$, slower than a clock far away. Radial distances are stretched by $1/\sqrt{1-r_s/r}$: the space around a mass is curved.
+
+\section{The classic tests}
+
+General relativity's corrections are small in the solar system, but measurable.
+\begin{itemize}[itemsep=4pt]
+  \item \textbf{Mercury's perihelion.} Mercury's elliptical orbit slowly rotates, mostly because of tugs from other planets. But after accounting for all of them, $43$ arcseconds per century were unexplained. General relativity predicts exactly $43''$ (Problem~\ref{prob:perihelion}). Einstein later said the discovery gave him heart palpitations.
+  \item \textbf{Light deflection.} Starlight grazing the Sun is bent by $1.75''$, twice what a Newtonian argument for light ``particles'' would give, because space as well as time is curved (Problem~\ref{prob:deflection}). Eddington's 1919 eclipse expedition confirmed it and made Einstein world-famous overnight.
+  \item \textbf{The Shapiro delay.} Radar signals passing near the Sun are delayed, because they travel through curved space. Tracking of the Cassini spacecraft in 2003 confirmed the prediction to about one part in $10^5$.
+  \item \textbf{Frame dragging.} A spinning mass drags spacetime around with it. Gravity Probe B measured this tiny effect with gyroscopes orbiting the Earth.
+  \item \textbf{GPS.} GPS satellite clocks, higher in the Earth's potential, run fast by $45\un{\mu s}$ per day relative to the ground; their orbital speed slows them by $7\un{\mu s}$ per day (Problem~\ref{prob:gps-sr}). Uncorrected, the net $38\un{\mu s}$ per day would cause position errors growing by about ten kilometres a day. Your phone is a test of general relativity.
+\end{itemize}
+
+\section{Black holes}
+
+If a mass is compressed inside its Schwarzschild radius, something extraordinary happens. At $r = r_s$, the time coefficient in the metric vanishes: light emitted from there is infinitely redshifted, and nothing, not even light, can climb out. The sphere $r = r_s$ is the \emph{event horizon}, and the region inside is a \emph{black hole}.
+
+The horizon is not a physical surface. An astronaut falling in notices nothing special as she crosses it (for a large black hole, the tidal forces there are gentle; Problem~\ref{prob:spaghetti}). The apparent infinity in the metric at $r_s$ is an artefact of the coordinates, like the apparent singularity of longitude at the North Pole. But once inside, all future-pointing paths lead inward, toward $r=0$, where the curvature becomes truly infinite --- a \emph{singularity}, where general relativity breaks down. A distant observer, meanwhile, never sees her cross: her signals are redshifted ever more and she fades to black, frozen at the horizon.
+
+A few distances characterize the region around a black hole:
+\begin{itemize}[itemsep=3pt]
+  \item At $r = \tfrac32r_s$, light can orbit in a circle: the \emph{photon sphere}, which forms the bright ring in images of black holes.
+  \item At $r = 3r_s$ is the \emph{innermost stable circular orbit}. Matter in an accretion disk spirals in to here, then plunges. The energy released on the way down is about $6\%$ of the rest mass energy --- far more than the $0.7\%$ from nuclear fusion (Chapter~\ref{ch:nuclear}) --- and up to $42\%$ for a rapidly spinning black hole. Accreting black holes power the brightest objects in the universe, quasars (Chapter~\ref{ch:astro}).
+\end{itemize}
+Rotating black holes are described by Roy Kerr's 1963 solution, which includes an \emph{ergosphere} outside the horizon where spacetime is dragged around so fast that nothing can stand still. The \emph{no-hair theorem} says that a black hole in equilibrium is completely described by three numbers: mass, spin, and charge. Everything else about what fell in is hidden.
+
+For decades black holes were regarded as mathematical curiosities. Now they are among the best-observed objects in astronomy. Stars orbiting the centre of our galaxy reveal a black hole of four million solar masses, Sagittarius~A$^*$ (Nobel Prize, 2020; Problem~\ref{prob:sgra}). The Event Horizon Telescope, a network of radio dishes the size of the Earth, imaged the shadow of the black hole in the galaxy M87 in 2019, and Sagittarius~A$^*$ in 2022. And LIGO hears black holes merge (Chapter~\ref{ch:gw}).
+
+\section{Gravitational lensing}
+
+Because mass bends light, a galaxy or cluster between us and a more distant source acts as a lens, distorting, magnifying, and multiplying its image. A perfectly aligned source appears as an \emph{Einstein ring}. Lensing weighs whatever does the bending, including matter that emits no light, which makes it one of the key tools for mapping dark matter (Chapter~\ref{ch:cosmo}). Within our galaxy, a star passing in front of another briefly brightens it (\emph{microlensing}), a technique that has found exoplanets.
+
+\begin{center}
+\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}[scale=1.05]
+  \draw[ascrule, dashed] (0,0) -- (9,0);
+  \draw[ascblue, thick] (0,0) .. controls (4.2,0.95) and (5.8,0.95) .. (9,0);
+  \draw[ascblue, thick] (0,0) .. controls (4.2,-0.95) and (5.8,-0.95) .. (9,0);
+  \draw[ascblue!55, dashed] (9,0) -- (0,2.67);
+  \draw[ascblue!55, dashed] (9,0) -- (0,-2.67);
+  \foreach \y in {2.67,-2.67} \node[star, star points=5, star point ratio=2.2, draw=ascwarm!70, fill=ascwarm!25, inner sep=1.3pt] at (0,\y) {};
+  \node[star, star points=5, star point ratio=2.2, fill=ascwarm, inner sep=1.6pt] at (0,0) {};
+  \fill[ascink] (5,0) circle (5pt);
+  \fill[ascink] (9,0) circle (2pt);
+  \node[font=\small, below=4pt] at (0,0) {source};
+  \node[font=\small, anchor=south west] at (0.2,2.75) {what we see};
+  \node[font=\small, below=6pt] at (5,0) {lens};
+  \node[font=\small, below=3pt] at (9,0) {us};
+\end{tikzpicture}
+
+{\small Gravitational lensing. Light from a distant source bends around a massive galaxy or cluster on its way to us, so we see the source displaced, and here split into two images. If source, lens and observer lined up exactly, the images would spread into an Einstein ring.}
+\end{minipage}
+\end{center}
+
+\section{Hawking radiation}
+
+In 1974 Stephen Hawking combined general relativity with quantum field theory (Chapter~\ref{ch:qft}) and found that black holes are not black. Quantum fluctuations near the horizon produce real particles that escape, and a black hole radiates like a blackbody at the \emph{Hawking temperature}
+\[
+  T_H = \frac{\hbar c^3}{8\pi GM\kB}.
+\]
+For a solar-mass black hole this is $6\times10^{-8}\un{K}$, far colder than the cosmic microwave background, so real astrophysical black holes absorb far more than they emit. But in principle, a black hole slowly evaporates, faster as it shrinks. Combined with Bekenstein's discovery that black holes have entropy proportional to their horizon area, Hawking's result made black holes thermodynamic objects --- and raised the \emph{information paradox}: if a black hole evaporates into featureless thermal radiation, what happens to the information about what fell in? This question is one of the main drivers of research into quantum gravity (Chapter~\ref{ch:strings}).
+
+\section{Where general relativity goes}
+
+Applied to the universe as a whole, general relativity predicts that space itself must expand or contract (Chapter~\ref{ch:cosmo}). Its equations have wave solutions, ripples in spacetime that travel at the speed of light (Chapter~\ref{ch:gw}). And its singularities --- at the centres of black holes and at the beginning of the universe --- are places where the theory predicts its own failure, because it ignores quantum mechanics (Chapter~\ref{ch:strings}).
+
+\section{Problems}
+
+\begin{problems}
+\prob{1}\core Compute the Schwarzschild radius of the Sun, the Earth, and a $70\un{kg}$ person. How dense would each have to be to become a black hole? Why is it easier to make a black hole from a large mass than a small one?
+
+\prob{1} Compute the fractional gravitational redshift for light climbing the $22.5\un{m}$ tower in the Pound--Rebka experiment, and for light escaping from the surface of the Sun to infinity. How would the Sun's spectral lines be shifted?
+
+\prob{2}\core \label{prob:redshift} \emph{(Redshift from the equivalence principle.)} A rocket of height $h$ accelerates upward at $g$ in empty space. A light pulse is emitted from the floor at frequency $f$ and travels to the ceiling in time $\approx h/c$, during which the ceiling's speed increases by $gh/c$. Use the (non-relativistic) Doppler shift to show that it is received at $f(1 - gh/c^2)$. Explain why the equivalence principle then implies that clocks higher in a gravitational field run faster.
+
+\prob{2}\core GPS satellites orbit at an altitude of $20\,200\un{km}$. Compute the fractional rate difference between their clocks and clocks on the ground due to the difference in gravitational potential, and convert it to microseconds per day. Combine it with the special-relativistic effect from Problem~\ref{prob:gps-sr} to get the net correction.
+
+\prob{2}\core \label{prob:deflection} A Newtonian particle moving at speed $c$ past the Sun with impact parameter $b$ is deflected by angle $2GM/(c^2b)$. Evaluate this for light grazing the Sun's surface. General relativity predicts twice this. Why would Eddington's measurement, if it had found the Newtonian value, have refuted Einstein but not the equivalence principle?
+
+\prob{2}\core \label{prob:spaghetti} \emph{(Spaghettification.)} The tidal acceleration across a body of length $L$ at distance $r$ from mass $M$ is about $2GML/r^3$. Compute it for a $2\un{m}$ person at the event horizon of a $10$-solar-mass black hole and of Sagittarius~A$^*$ ($4\times10^6$ solar masses). Show that it scales as $1/M^2$ at the horizon. Which black hole could you fall into intact?
+
+\prob{2} On a sphere of radius $R$, two travellers start on the equator a distance $d$ apart and walk due north. Show that their separation is $d\cos(s/R)$ after each has walked a distance $s$, so their ``relative acceleration'' is $-d/R^2$ for small $s$. Compare with the tidal convergence of two balls dropped side by side toward the Earth, and identify the analogue of the sphere's curvature.
+
+\prob{2} For light moving in the Schwarzschild geometry, one can show that the radial motion behaves as if in an effective potential proportional to $(1 - r_s/r)/r^2$. Show that this has a maximum at $r = \tfrac32r_s$, the photon sphere, and explain why circular light orbits there are unstable.
+
+\prob{2} Compute the Hawking temperature of a black hole with the mass of the Sun, and of one with the mass of the Moon ($7\times10^{22}\un{kg}$). Which would absorb more from the $2.7\un{K}$ cosmic background than it emits? The evaporation time scales as $M^3$; given that a black hole of about $2\times10^{11}\un{kg}$ would evaporate in the age of the universe, estimate the evaporation time of a solar-mass black hole.
+
+\prob{2}\core \label{prob:sgra} The star S2 orbits Sagittarius~A$^*$ with a period of $16.0$ years and a semi-major axis of about $1000\un{AU}$. Use Kepler's third law in solar units ($M = a^3/T^2$, with $a$ in AU and $T$ in years) to find the mass of the central object. At its closest approach, S2 is about $120\un{AU}$ from the centre. Why must the central object be a black hole?
+
+\prob{3}\core \label{prob:perihelion} \emph{(Mercury's perihelion.)} In general relativity, the effective potential for a planet has, in addition to the Newtonian terms, a small attractive term $-GML^2/(c^2m^2r^3)$ per unit mass, where $L$ is the angular momentum. Treating it as a perturbation, show that the orbit precesses by
+\[
+  \Delta\phi = \frac{6\pi GM}{c^2a(1-e^2)}
+\]
+per orbit. Evaluate it for Mercury ($a = 5.79\times10^{10}\un{m}$, $e = 0.206$, period $88$ days) in arcseconds per century.
+\hint{Write the orbit equation in terms of $u = 1/r$; the correction adds a term $\propto u^2$. Look for a solution $u\propto1 + e\cos(\omega\phi)$ with $\omega$ slightly less than $1$.}
+
+\prob{3} \emph{(The horizon you carry with you.)} An observer accelerates forever at constant proper acceleration $a$ (Problem~\ref{prob:twins} has the formulas). Show that light emitted from more than a distance $c^2/a$ behind her at the moment she starts can never catch up: she has a horizon. Unruh showed in 1976 that such an observer sees the vacuum as a thermal bath at temperature $\hbar a/(2\pi c\kB)$. Compare this with the Hawking temperature, using the acceleration needed to hover just outside a black hole's horizon. Why must the equivalence principle make the two effects related?
+\end{problems}
+
+\begin{reading}
+\rd{James B.\ Hartle, \emph{Gravity: An Introduction to Einstein's General Relativity}}{A physics-first introduction that reaches black holes, cosmology, and gravitational waves before the full tensor machinery.}
+\rd{Bernard Schutz, \emph{A First Course in General Relativity}}{The standard undergraduate text, developing tensors carefully.}
+\rd{Sean Carroll, \emph{Spacetime and Geometry}}{The modern graduate standard, clear and comprehensive.}
+\rd{Kip Thorne, \emph{Black Holes and Time Warps}}{The history and physics of black holes, beautifully told for a general audience.}
+\end{reading}

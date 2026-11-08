@@ -1,0 +1,281 @@
+\chapter{Mathematical methods}
+\label{ch:math}
+
+\buildson{nothing beyond calculus --- this chapter is a toolkit to return to}
+
+\chapterdek{The working toolkit the rest of the book quietly runs on. Read it quickly once; come back whenever a later chapter reaches for a tool you have not used before.}
+
+\begin{prototype}
+The exponential $e^{\lambda t}$, the function that is its own derivative up to a constant. It solves every linear differential equation with constant coefficients, it turns rotation into multiplication when $\lambda$ is imaginary, and it is the building block of Fourier analysis, damping, growth, decay, and quantum mechanics.
+\end{prototype}
+
+Mathematics is the language of physics, but physicists speak it with an accent. We care less about whether a series converges than about how many terms we need; less about existence theorems than about estimates. This chapter collects the tools in the order a physicist reaches for them --- and the first tools are not equations at all.
+
+\section{Dimensional analysis}
+
+Every physical quantity carries \emph{dimensions}: mass $[M]$, length $[L]$, time $[T]$, and a few others (charge, temperature). An equation that adds metres to seconds is not wrong in a subtle way; it is nonsense. This simple constraint is astonishingly powerful.
+
+\begin{example}[The pendulum, without physics]
+The period $T$ of a pendulum could depend on its length $L$, the bob's mass $m$, the gravitational acceleration $g$, and the amplitude $\theta_0$. Try $T \propto L^a m^b g^c$. Dimensions: $[T] = [L]^a [M]^b [L T^{-2}]^c$. Matching powers: $b=0$ (nothing else carries mass), $-2c = 1$, $a + c = 0$. So
+\[
+  T = f(\theta_0)\,\sqrt{L/g}
+\]
+for some function $f$ of the dimensionless amplitude. We have found, without any dynamics, that the period does not depend on mass and scales as $\sqrt{L}$. The full theory (Chapter~\ref{ch:sho}) only supplies $f(0)=2\pi$.
+\end{example}
+
+The general statement is the \textbf{Buckingham $\pi$ theorem}: if a physical law involves $n$ quantities built from $k$ independent dimensions, it can be rewritten as a relation among $n-k$ dimensionless combinations. In the pendulum, $n=5$ quantities ($T, L, m, g, \theta_0$) and $k=3$ dimensions give two dimensionless groups, $T\sqrt{g/L}$ and $\theta_0$, so one must be a function of the other.
+
+\begin{example}[G.~I.~Taylor and the atomic bomb]
+In 1950 the physicist G.~I.~Taylor estimated the energy of the first atomic explosion from photographs of the fireball published in a magazine. The radius $R$ of a strong blast wave can depend only on the energy $E$, the time $t$, and the air density $\rho$. The only combination with dimensions of length is
+\[
+  R \sim \left(\frac{E\,t^{2}}{\rho}\right)^{1/5}.
+\]
+Reading $R\approx 140\un{m}$ at $t\approx 25\un{ms}$ off the photographs and taking $\rho\approx1.2\un{kg/m^3}$ gives $E\sim 10^{14}\un{J}$, about 20 kilotons of TNT --- close to the classified value.
+\end{example}
+
+\begin{keyidea}
+Before solving any problem, find the dimensionless combinations. Often the answer is ``a number of order one, times the only combination with the right units,'' and the hard calculation only supplies the number.
+\end{keyidea}
+
+\section{Orders of magnitude}
+
+Physicists estimate constantly, and they estimate in powers of ten. The goal of an estimate is not two significant figures; it is the right power of ten, and the confidence to know you have it.
+
+\begin{example}[How many atoms are in you?]
+You weigh about $70\un{kg}$ and are mostly water. A mole of water is $18\un{g}$ and contains $6\times10^{23}$ molecules, each with three atoms. So you contain about
+\[
+  \frac{70\,000\un{g}}{18\un{g}}\times 6\times10^{23}\times 3 \approx 7\times10^{27}\ \text{atoms}.
+\]
+\end{example}
+
+The technique, often called a \emph{Fermi problem} after Enrico Fermi who loved them, is to break an unknown quantity into factors you can each estimate within a factor of three. Errors in independent factors tend to partly cancel, so the product is usually better than any single guess. Appendix~\ref{app:constants} lists numbers worth knowing by heart; a working physicist carries a few dozen of them.
+
+A useful habit is to think logarithmically. Over a range of a factor $10^{6}$, ``halfway'' is $10^{3}$, not $5\times 10^{5}$. When you do not know a quantity but know it lies between $a$ and $b$, guess the geometric mean $\sqrt{ab}$.
+
+\section{Approximation and the small parameter}
+
+The most important formula in physics may be the Taylor series:
+\[
+  f(x_0 + \epsilon) = f(x_0) + f'(x_0)\,\epsilon + \tfrac12 f''(x_0)\,\epsilon^{2} + \tfrac16 f'''(x_0)\,\epsilon^3 + \cdots
+\]
+When $\epsilon$ is small, each term is smaller than the one before, and we stop after one or two. A few expansions are used so often they should become reflexes:
+\begin{align*}
+  (1+\epsilon)^{n} &\approx 1 + n\epsilon + \tfrac{n(n-1)}{2}\epsilon^2, &
+  e^{\epsilon} &\approx 1 + \epsilon + \tfrac12\epsilon^{2}, \\
+  \sin\epsilon &\approx \epsilon - \tfrac16\epsilon^{3}, &
+  \cos\epsilon &\approx 1 - \tfrac12\epsilon^{2}, \\
+  \ln(1+\epsilon) &\approx \epsilon - \tfrac12\epsilon^{2}, &
+  \frac{1}{1-\epsilon} &\approx 1+\epsilon+\epsilon^2 .
+\end{align*}
+The binomial one, $(1+\epsilon)^n\approx 1+n\epsilon$, works for \emph{any} $n$, including negative and fractional powers. It turns $\sqrt{1.02}$ into $1.01$, $1/1.03$ into $0.97$, and $1/\sqrt{1-v^2/c^2}$ into $1 + v^2/2c^2$ (Chapter~\ref{ch:sr}).
+
+\begin{center}
+\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}
+\begin{axis}[asc, width=0.66\linewidth, height=0.44\linewidth, xmin=0, xmax=5.3, ymin=-1.7, ymax=1.7,
+  xlabel={$x$}, xtick={0,1.5708,3.1416,4.7124}, xticklabels={$0$,$\pi/2$,$\pi$,$3\pi/2$}, ytick={-1,0,1},
+  domain=0:5.3, samples=140, legend pos=outer north east, legend cell align=left]
+  \addplot[ascink, line width=1.4pt] {sin(deg(x))};
+  \addplot[ascblue!35, thick] {x};
+  \addplot[ascblue!60, thick] {x - x^3/6};
+  \addplot[ascblue, thick] {x - x^3/6 + x^5/120};
+  \addplot[ascpurple, thick] {x - x^3/6 + x^5/120 - x^7/5040};
+  \legend{$\sin x$, $x$, $x-\frac{x^3}{6}$, ${}+\frac{x^5}{120}$, ${}-\frac{x^7}{5040}$}
+\end{axis}
+\end{tikzpicture}
+
+{\small $\sin x$ and its first four Taylor polynomials. Each extra term keeps the approximation good over a wider range of $x$.}
+\end{minipage}
+\end{center}
+
+\begin{example}[How far is the horizon?]
+Standing with your eyes at height $h$ above a sphere of radius $R$, the distance $d$ to the horizon satisfies $(R+h)^2 = R^2 + d^2$, so $d^2 = 2Rh + h^2$. Since $h \ll R$, drop $h^2$: $d \approx \sqrt{2Rh}$. For $h=1.7\un{m}$ and $R = 6.4\times10^{6}\un{m}$, $d\approx 4.7\un{km}$.
+\end{example}
+
+The general strategy --- find a small parameter, solve the problem with it set to zero, then compute corrections order by order --- is called \emph{perturbation theory}, and it is the reason this book grades its problems by order of $\epsilon$. Its limitation is also worth knowing now: a function like $e^{-1/\epsilon}$ has every Taylor coefficient zero at $\epsilon=0$. No finite number of corrections will ever see it.
+
+\section{Vectors and index notation}
+
+A vector is a quantity with magnitude and direction, like a displacement, a velocity, or a force. In components, $\vb{a} = (a_1,a_2,a_3)$. The two products are
+\[
+  \vb a\cdot\vb b = a_1b_1 + a_2b_2+a_3b_3 = ab\cos\theta,
+  \qquad
+  \abs{\vb a \times \vb b} = ab\sin\theta,
+\]
+with $\vb a\times \vb b$ perpendicular to both, by the right-hand rule. The dot product measures how much two vectors point the same way (work is $\vb F\cdot\dd\vb r$); the cross product measures how much they twist around each other (torque is $\vb r\times\vb F$).
+
+Physicists rarely write out components. Instead we use \emph{index notation} with the \emph{Einstein summation convention}: a repeated index is summed. Then
+\[
+  \vb a\cdot\vb b = a_i b_i, \qquad (\vb a\times\vb b)_i = \varepsilon_{ijk}\,a_j b_k,
+\]
+where the \emph{Kronecker delta} $\delta_{ij}$ is $1$ if $i=j$ and $0$ otherwise, and the \emph{Levi-Civita symbol} $\varepsilon_{ijk}$ is $+1$ for $(ijk)$ an even permutation of $(123)$, $-1$ for odd, and $0$ if any index repeats. One identity does most of the work:
+\[
+  \varepsilon_{ijk}\varepsilon_{ilm} = \delta_{jl}\delta_{km} - \delta_{jm}\delta_{kl}.
+\]
+
+\begin{exercise}
+Use it to prove $\vb a\times(\vb b\times\vb c) = \vb b(\vb a\cdot\vb c) - \vb c(\vb a\cdot\vb b)$, the ``BAC minus CAB'' rule.
+\end{exercise}
+
+Index notation will come back in relativity (Chapter~\ref{ch:sr}), where indices go up and down, and in general relativity (Chapter~\ref{ch:gr}), where they carry the whole theory.
+
+\section{Calculus in many dimensions}
+
+A \emph{field} assigns a number (a scalar field, like temperature $T(\vb r)$) or a vector (a vector field, like the wind $\vb v(\vb r)$) to every point in space. The derivative operator $\grad = (\partial_x, \partial_y, \partial_z)$ acts on fields in three ways:
+\begin{itemize}[itemsep=3pt]
+  \item The \textbf{gradient} $\grad T$ points in the direction $T$ increases fastest, with magnitude equal to that rate. Heat flows down $\grad T$; a ball rolls down $\grad U$, since $\vb F = -\grad U$.
+  \item The \textbf{divergence} $\grad\cdot\vb v$ measures how much the field spreads out from a point: the net outflow per unit volume. It is positive at a source (a tap), negative at a sink (a drain).
+  \item The \textbf{curl} $\curl\vb v$ measures how much the field swirls around a point. Drop a tiny paddle wheel in the flow; the curl is twice its angular velocity.
+\end{itemize}
+Two combinations deserve names. The \textbf{Laplacian} $\nabla^{2}T = \grad\cdot\grad T$ compares the value at a point with the average of its neighbours: $\nabla^2 T > 0$ means the point is colder than its surroundings. That one fact is why it appears in the heat equation, the wave equation, and the Schrödinger equation. And two identities hold for every smooth field: $\curl(\grad T) = 0$ and $\grad\cdot(\curl\vb v) = 0$.
+
+The integral theorems turn local information into global information:
+\begin{law}[The fundamental theorems of vector calculus]
+For a volume $V$ with closed boundary surface $\partial V$, and a surface $S$ with boundary curve $\partial S$,
+\begin{align*}
+  \int_V (\grad\cdot\vb v)\,\dd V &= \oint_{\partial V} \vb v\cdot \dd\vb A
+  &&\text{(divergence theorem)},\\
+  \int_S (\curl\vb v)\cdot\dd\vb A &= \oint_{\partial S} \vb v\cdot\dd\vb l
+  &&\text{(Stokes' theorem)}.
+\end{align*}
+\end{law}
+Both say the same thing: adding up local sources (or local swirls) inside a region gives the total flow out through (or around) its edge, because the contributions of interior neighbours cancel in pairs. They are the reason Maxwell's equations (Chapter~\ref{ch:em}) can be written in either a local, differential form or a global, integral form.
+
+\section{Complex numbers}
+
+A complex number $z = x+iy$ with $i^2=-1$ is a point in the plane. The single most useful fact about complex numbers is \textbf{Euler's formula},
+\[
+  e^{i\theta} = \cos\theta + i\sin\theta ,
+\]
+which you can check by comparing Taylor series. It says that $e^{i\theta}$ is the point at angle $\theta$ on the unit circle, so any complex number can be written $z = re^{i\theta}$, and multiplying complex numbers multiplies their lengths and \emph{adds their angles}. Multiplication by $i$ is rotation by $90^\circ$.
+
+Physicists use complex numbers for anything that oscillates. A quantity $A\cos(\omega t+\varphi)$ is the real part of $\tilde A e^{i\omega t}$, where the complex amplitude $\tilde A = Ae^{i\varphi}$ (a \emph{phasor}) stores both size and phase. Because $\tfrac{\dd}{\dd t}e^{i\omega t} = i\omega e^{i\omega t}$, differential equations become algebra. In quantum mechanics (Chapter~\ref{ch:qm}) the complex numbers stop being a bookkeeping trick and become essential: the wavefunction is genuinely complex.
+
+\section{Ordinary differential equations}
+
+Most laws of physics are differential equations: they say how something changes from moment to moment. Three facts cover a remarkable fraction of physics.
+
+\textbf{First-order linear equations} $\dot x = -x/\tau$ give exponential decay, $x = x_0 e^{-t/\tau}$. The time constant $\tau$ is the time to fall by a factor $e$; the half-life is $\tau\ln 2$. Radioactive decay, a capacitor discharging, a cup of coffee cooling, and the attenuation of light in water all obey this law.
+
+\textbf{Linear equations with constant coefficients}, such as $a\ddot x + b\dot x + cx = 0$, are solved by guessing $x = e^{\lambda t}$, which turns the equation into a polynomial $a\lambda^{2}+b\lambda+c=0$. Real roots give growth or decay, imaginary roots give oscillation, complex roots give damped oscillation. Chapter~\ref{ch:sho} works through every case.
+
+\textbf{Superposition}: if $x_1$ and $x_2$ solve a linear homogeneous equation, so does any combination $c_1x_1 + c_2x_2$. Linearity is what lets us break complicated problems into simple pieces --- normal modes, Fourier components, Green's functions --- and add the answers. Most of the hardest problems in physics are hard precisely because they are nonlinear (Chapter~\ref{ch:chaos}).
+
+\begin{remark}
+An $n$th-order equation needs $n$ pieces of initial information: Newton's second law is second order, so you need both the initial position and the initial velocity. In quantum mechanics, the Schrödinger equation is first order in time, so the wavefunction now determines the wavefunction forever.
+\end{remark}
+
+\section{Linear algebra}
+
+A \emph{vector space} is any collection of objects you can add and scale: arrows in space, but also functions, quantum states, and the displacements of all the atoms in a crystal. A \emph{linear map} (a matrix, once you choose a basis) takes vectors to vectors and respects addition and scaling.
+
+The most important question to ask of a linear map $M$ is: which vectors does it merely stretch? An \emph{eigenvector} $\vb v$ satisfies
+\[
+  M\vb v = \lambda\vb v,
+\]
+with \emph{eigenvalue} $\lambda$. The eigenvalues solve $\det(M - \lambda I) = 0$. In the basis of eigenvectors (when one exists), $M$ is diagonal and the problem falls apart into independent one-dimensional problems. This single idea is behind normal modes of vibration (Chapter~\ref{ch:waves}), principal axes of a spinning body (Chapter~\ref{ch:newton}), stability of fixed points (Chapter~\ref{ch:chaos}), and the entirety of quantum measurement (Chapter~\ref{ch:qm}).
+
+\begin{theorem}[Spectral theorem]
+A real symmetric matrix ($M = M^{T}$), or more generally a complex Hermitian one ($M = M^\dagger$, the conjugate transpose), has real eigenvalues, and its eigenvectors can be chosen to form an orthonormal basis.
+\end{theorem}
+Physics loves this theorem because the matrices that appear in nature are usually symmetric or Hermitian: inertia tensors, coupling matrices of springs, and every quantum observable. Real eigenvalues are measurable frequencies and energies; orthogonal eigenvectors are independent modes.
+
+\begin{example}[Two coupled pendulums]
+Two identical pendulums joined by a weak spring obey $\ddot{\vb x} = -K\vb x$ with
+$K = \begin{pmatrix} \omega_0^2 + \kappa & -\kappa\\ -\kappa & \omega_0^2+\kappa\end{pmatrix}$.
+The eigenvectors are $(1,1)$, swinging together with $\omega^2 = \omega_0^2$, and $(1,-1)$, swinging opposite with $\omega^2 = \omega_0^2+2\kappa$. Start one pendulum alone and it is a superposition of both modes; their slightly different frequencies beat, and the energy sloshes slowly back and forth between the two pendulums.
+\end{example}
+
+\section{Fourier analysis}
+
+\begin{keyidea}
+Any reasonable function can be built out of sines and cosines. Breaking a signal into frequencies is often the single most clarifying thing you can do to it.
+\end{keyidea}
+
+A function with period $2L$ has a \textbf{Fourier series}
+\[
+  f(x) = \sum_{n=-\infty}^{\infty} c_n\, e^{i n\pi x/L},
+  \qquad
+  c_n = \frac{1}{2L}\int_{-L}^{L} f(x)\,e^{-in\pi x/L}\,\dd x .
+\]
+The coefficient formula works because the exponentials are orthogonal: integrating one against another over a period gives zero unless they are the same. This is ``Fourier's trick,'' and it is exactly the same move as finding the components of a vector by taking dot products with orthonormal basis vectors. Functions are vectors; sines are a basis.
+
+For non-periodic functions the sum becomes an integral, the \textbf{Fourier transform}:
+\[
+  \tilde f(k) = \int_{-\infty}^{\infty} f(x)\,e^{-ikx}\,\dd x,
+  \qquad
+  f(x) = \frac{1}{2\pi}\int_{-\infty}^{\infty} \tilde f(k)\,e^{ikx}\,\dd k .
+\]
+One fact about it reaches across all of physics: \emph{a function cannot be narrow in both $x$ and $k$}. A pulse of width $\Delta x$ is made of wavenumbers spread over $\Delta k \gtrsim 1/\Delta x$. A short musical note has an uncertain pitch; a short laser pulse has a broad spectrum; and in quantum mechanics, where momentum is $p = \hbar k$, this becomes the uncertainty principle $\Delta x\,\Delta p\gtrsim\hbar$.
+
+\section{Probability}
+
+Physics deals with randomness in two ways: from ignorance (we cannot track $10^{23}$ molecules, Chapter~\ref{ch:statmech}) and, in quantum mechanics, apparently from nature itself. Either way the tools are the same.
+
+A random variable $X$ with probability density $p(x)$ has \emph{mean} $\langle X\rangle = \int x\,p(x)\,\dd x$ and \emph{variance} $\sigma^2 = \langle X^2\rangle - \langle X\rangle^2$; the standard deviation $\sigma$ measures its spread. The most important distribution is the \textbf{Gaussian},
+\[
+  p(x) = \frac{1}{\sqrt{2\pi}\,\sigma}\, e^{-(x-\mu)^{2}/2\sigma^{2}},
+\]
+and the reason is the \textbf{central limit theorem}: the sum of many independent random contributions, whatever their individual distributions, is approximately Gaussian. Measurement errors, the speeds of gas molecules along one axis, and the position of a diffusing particle are all Gaussian for this reason.
+
+A consequence worth memorising: the sum of $N$ independent contributions, each of typical size $\sigma$, has a typical size $\sqrt N\,\sigma$, not $N\sigma$. A random walk of $N$ steps gets $\sqrt N$ steps from home. Relative fluctuations therefore shrink as $1/\sqrt{N}$, which is why a gas of $10^{24}$ molecules has a pressure steady to one part in $10^{12}$.
+
+\section{Symmetry, briefly}
+
+A \emph{symmetry} is a transformation that leaves something unchanged: rotating a sphere, translating an infinite plane, shifting the origin of time. The set of symmetries of an object always forms a \emph{group}: you can compose two symmetries, undo any symmetry, and do nothing.
+
+Symmetry is the most powerful idea in modern physics, for two reasons that this book will develop. First, by \textbf{Noether's theorem} (Chapter~\ref{ch:analytical}), every continuous symmetry of the laws of physics comes with a conserved quantity: time-translation symmetry gives energy conservation, space-translation gives momentum, rotation gives angular momentum. Second, demanding that a theory have certain symmetries can nearly determine its form; in particle physics (Chapter~\ref{ch:particle}), the forces of nature are almost forced on us by symmetry. The mathematics of how a group can act on a vector space --- \emph{representation theory} --- is why electrons have spin $\tfrac12$ and why the periodic table looks the way it does.
+
+\section{The delta function and Green's functions}
+
+Physicists often need a point: a point charge, a point mass, a sudden kick. The \textbf{Dirac delta} $\delta(x)$ is zero everywhere except at $x=0$, where it is infinitely tall in such a way that $\int \delta(x)\,\dd x = 1$. Its defining property is
+\[
+  \int f(x)\,\delta(x-a)\,\dd x = f(a).
+\]
+It is not a function but a limit of ever-narrower spikes, and it is perfectly safe as long as it ends up inside an integral.
+
+The delta function gives a beautiful strategy for linear problems. Find the response $G(t)$ of a system to a single sharp kick at $t=0$; this is the \textbf{Green's function}. Any force is a superposition of kicks, $F(t) = \int F(t')\,\delta(t-t')\,\dd t'$, so by linearity the response to any force is
+\[
+  x(t) = \int G(t-t')\,F(t')\,\dd t'.
+\]
+Solve the problem once, for a kick, and you have solved it for every force. The electric potential of any charge distribution, the sound from any source, and the propagators of quantum field theory (Chapter~\ref{ch:qft}) are all Green's functions.
+
+\section{Problems}
+
+\begin{problems}
+\prob{1}\core Use dimensional analysis to find how the speed of deep-water waves depends on their wavelength $\lambda$ and on $g$. Why can't the density of water appear? Do long or short waves travel faster?
+
+\prob{1} Estimate the number of heartbeats in a human lifetime, the number of seconds in a year to two significant figures ($\pi\times10^{7}$ is a famous approximation), and the number of grains of sand on all the world's beaches. Write each to the nearest power of ten.
+
+\prob{1} Expand $\dfrac{1}{\sqrt{1-x}}$ to second order in $x$, and use it to evaluate $1/\sqrt{0.98}$ without a calculator. How large is the error?
+
+\prob{1} Find the eigenvalues and eigenvectors of $\begin{pmatrix}2&1\\1&2\end{pmatrix}$ and of $\begin{pmatrix}0&1\\-1&0\end{pmatrix}$. Interpret the second matrix geometrically, and explain why it has no real eigenvectors.
+
+\prob{2}\core Compute the Gaussian integral $I = \int_{-\infty}^\infty e^{-x^2}\,\dd x$ by evaluating $I^2$ as a double integral in polar coordinates. Then deduce $\int_{-\infty}^\infty x^2 e^{-ax^2}\,\dd x$ by differentiating with respect to $a$. (Both appear constantly in statistical mechanics and quantum mechanics.)
+
+\prob{2} Compute the Fourier series of a square wave that equals $+1$ on $(0,\pi)$ and $-1$ on $(-\pi,0)$. Show that only odd harmonics appear, with amplitudes falling like $1/n$. Explain in words why a sharp corner needs high frequencies.
+
+\prob{2} Using index notation, prove that $\grad\cdot(\curl\vb v)=0$ and $\curl(\curl\vb v) = \grad(\grad\cdot\vb v) - \nabla^2\vb v$. The second identity is how you get a wave equation out of Maxwell's equations.
+
+\prob{2} The surface of the ocean bulges near a submarine mountain because the mountain's extra mass pulls water toward it. Use dimensional analysis and a rough estimate to decide whether this bulge is closer to a millimetre, a metre, or a kilometre for a mountain $2\un{km}$ tall and $20\un{km}$ wide.
+
+\prob{2}\core \emph{(Random walks.)} A drunkard takes $N$ steps of length $\ell$ in random directions on a line. Show that $\langle x\rangle = 0$ but $\langle x^2\rangle = N\ell^2$. A molecule of perfume in still air takes steps of about $0.1\un{\mu m}$ roughly $10^{10}$ times per second. How long does it take to diffuse across a $5\un{m}$ room? (Why, then, can you smell perfume across a room within a minute?)
+
+\prob{3}\core \emph{(Stirling's approximation.)} Write $N! = \int_0^\infty x^{N}e^{-x}\,\dd x$. The integrand is sharply peaked; expand the logarithm of the integrand to second order about its maximum and do the resulting Gaussian integral to show
+\[
+  N! \approx \sqrt{2\pi N}\,N^{N}e^{-N}.
+\]
+This trick --- approximate a sharply peaked integrand by a Gaussian --- is called Laplace's method, and it underlies most of statistical mechanics.
+
+\prob{3} \emph{(A nonperturbative function.)} Show that every derivative of $f(\epsilon) = e^{-1/\epsilon}$ (for $\epsilon>0$, with $f(0)=0$) vanishes at $\epsilon = 0$, so its Taylor series about zero is identically zero even though $f$ is not. Explain why this means no perturbative expansion in $\epsilon$ can ever detect such an effect. (Quantum tunnelling, Chapter~\ref{ch:qm}, has exactly this form, with $\epsilon\propto\hbar$.)
+
+\prob{3} \emph{(Buckingham at the breakfast table.)} A drop of water falls from a tap. Its size depends on the surface tension $\sigma$ (force per length), the density $\rho$, $g$, and the tap radius $r$. Form the dimensionless groups and show that for small taps the drop mass is $m\propto \sigma r/g$, independent of $\rho$. Then argue from a force balance why this is true, and estimate the size of a drop from a kitchen tap.
+\end{problems}
+
+\begin{reading}
+\rd{Mary L.\ Boas, \emph{Mathematical Methods in the Physical Sciences}}{The standard first book on mathematics for physicists. Clear, complete, full of practice problems.}
+\rd{H.\ M.\ Schey, \emph{Div, Grad, Curl, and All That}}{A short, friendly, physically motivated introduction to vector calculus.}
+\rd{Sanjoy Mahajan, \emph{Street-Fighting Mathematics} and \emph{The Art of Insight in Science and Engineering}}{The definitive books on estimation, dimensional analysis, and approximation. Both are freely available online.}
+\rd{Gilbert Strang, \emph{Introduction to Linear Algebra}}{Linear algebra taught with the geometric intuition a physicist needs.}
+\rd{Riley, Hobson, and Bence, \emph{Mathematical Methods for Physics and Engineering}}{A comprehensive reference for when you need the next level.}
+\end{reading}

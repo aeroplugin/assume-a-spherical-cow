@@ -1,0 +1,179 @@
+\chapter{Quantum field theory}
+\label{ch:qft}
+
+\buildson{analytical mechanics (Chapter~\ref{ch:analytical}), special relativity (Chapter~\ref{ch:sr}), quantum mechanics (Chapter~\ref{ch:qm})}
+
+\chapterdek{Where quantum mechanics meets relativity, and the particles turn out to be ripples on fields that fill all of space.}
+
+\begin{prototype}
+A field of oscillators. Imagine a mattress of springs filling all of space, one harmonic oscillator at every point, each coupled to its neighbours. Its normal modes are waves; quantize them, and each mode's energy comes in lumps of $\hbar\omega$. Those lumps are particles. A photon is one quantum of one mode of the electromagnetic field. Chapter~\ref{ch:sho}, repeated infinitely many times, is the foundation of all of particle physics.
+\end{prototype}
+
+Quantum mechanics (Chapter~\ref{ch:qm}) describes a fixed number of particles. Special relativity (Chapter~\ref{ch:sr}) says mass is a form of energy, so with enough energy, particles can be created and destroyed. The two are not compatible as they stand. The resolution, worked out between 1927 and the 1970s, is \emph{quantum field theory} (QFT): the fundamental objects are not particles but fields, and particles are their quantized excitations. QFT is the language of the Standard Model of particle physics (Chapter~\ref{ch:particle}), of condensed matter physics (Chapter~\ref{ch:condmat}), and of critical phenomena (Chapter~\ref{ch:statmech}). It is the most accurately tested theory in the history of science, and also the most demanding to learn. This chapter tries to give the ideas, not the machinery.
+
+\section{Why particles are not enough}
+
+Try to confine an electron to a region of size $\Delta x$. Its momentum becomes uncertain by $\hbar/\Delta x$, and its energy by about $\hbar c/\Delta x$ once that exceeds $m_ec^2$. When $\Delta x$ is smaller than the \emph{Compton wavelength}
+\[
+  \lambda_C = \frac{\hbar}{mc},
+\]
+about $4\times10^{-13}\un{m}$ for an electron, the energy uncertainty exceeds the energy needed to create an electron--positron pair. Probe an electron that closely and you will find not one particle but a fluctuating swarm. The number of particles is not a fixed quantity in a relativistic quantum theory, and a theory of a fixed number of particles cannot be right.
+
+There is a second problem: causality. In relativity, events outside each other's light cones have no definite time order (Chapter~\ref{ch:sr}). If a particle could be emitted at one such event and absorbed at another, observers would disagree about which happened first. Consistency requires that what one observer sees as a particle going forward, another sees as an \emph{antiparticle} going the other way. Relativity plus quantum mechanics demands antimatter.
+
+\section{Natural units}
+
+From here on, we set $\hbar = c = 1$. Then mass, energy, and momentum have the same units, which are also the units of inverse length and inverse time. Everything is measured in powers of energy, usually GeV. The conversion back is via
+\[
+  \hbar c\approx197\un{MeV\,fm},
+\]
+so a mass of $197\un{MeV}$ corresponds to a length of $1\un{fm}$. The proton, at about $1\un{GeV}$, has a Compton wavelength of $0.2\un{fm}$. In these units the fine-structure constant is simply $\alpha = e^2/4\pi\approx1/137$.
+
+\section{Classical fields}
+
+A field $\phi(\vb x,t)$ assigns a value to every point in spacetime. Its dynamics comes from an action, just as in Chapter~\ref{ch:analytical}, but now the Lagrangian is a \emph{density} integrated over space and time, $S = \int\mathcal{L}\,\dd^4x$. For the simplest relativistic field, a single real scalar,
+\[
+  \mathcal{L} = \tfrac12(\partial_t\phi)^2 - \tfrac12(\grad\phi)^2 - \tfrac12m^2\phi^2 .
+\]
+The three terms are kinetic energy, the ``spring'' coupling to neighbouring points, and a restoring force at each point. The Euler--Lagrange equation is the \textbf{Klein--Gordon equation},
+\[
+  \left(\partial_t^2 - \nabla^2 + m^2\right)\phi = 0 .
+\]
+Plane waves $e^{-i(Et-\vb p\cdot\vb x)}$ solve it provided $E^2 = \vb p^2 + m^2$: exactly the relativistic energy--momentum relation (Chapter~\ref{ch:sr}). Each Fourier mode of the field, with wavevector $\vb k$, oscillates independently as a harmonic oscillator with frequency $\omega_{\vb k} = \sqrt{\vb k^2 + m^2}$. A free field is an infinite collection of uncoupled oscillators.
+
+\section{From oscillators to particles}
+
+Now quantize. Each mode is a quantum harmonic oscillator (Chapter~\ref{ch:qm}), with ladder operators $a_{\vb k}$ and $a^\dagger_{\vb k}$ and energy levels $(n_{\vb k} + \tfrac12)\omega_{\vb k}$. The interpretation is the heart of QFT:
+
+\begin{keyidea}
+The state with $n_{\vb k} = 0$ for every mode is the \emph{vacuum}, $\ket0$. Acting with $a^\dagger_{\vb k}$ adds one quantum of energy $\omega_{\vb k} = \sqrt{\vb k^2+m^2}$ and momentum $\vb k$ --- that is, it \emph{creates a particle} of mass $m$ and momentum $\vb k$. The number $n_{\vb k}$ is the number of particles with momentum $\vb k$. Particles are quanta of fields.
+\end{keyidea}
+
+Several mysteries dissolve at once. All electrons are identical because they are all excitations of the same field. Bosons come out automatically symmetric, because $a^\dagger_{\vb k}a^\dagger_{\vb k'} = a^\dagger_{\vb k'}a^\dagger_{\vb k}$; for fermions, the creation operators \emph{anticommute}, $b^\dagger b^\dagger = -b^\dagger b^\dagger$, so creating two in the same state gives zero --- the Pauli exclusion principle (Chapter~\ref{ch:qm}). Particle creation and destruction are just the raising and lowering of oscillators. The photon, introduced by Einstein as an ad hoc lump of light, is a quantum of the electromagnetic field.
+
+\section{The vacuum is not empty}
+
+Each mode has zero-point energy $\tfrac12\omega_{\vb k}$, and there are infinitely many modes, so the vacuum energy is infinite. In most of physics this does not matter, because only energy \emph{differences} are measurable. But changes in the vacuum energy are real. Between two parallel conducting plates, only modes that fit can exist (Chapter~\ref{ch:waves}), so the vacuum energy between them is lower than outside, and the plates are pushed together: the \textbf{Casimir effect}, with a pressure
+\[
+  P = \frac{\pi^2\hbar c}{240\,d^4}
+\]
+for plates a distance $d$ apart. It was measured precisely in 1997, and it matters in nanoscale machines. The vacuum also fluctuates: the Lamb shift (Chapter~\ref{ch:amo}) is caused by vacuum fluctuations of the electromagnetic field jiggling the electron. And gravity, unlike everything else, \emph{does} feel the absolute energy of the vacuum; the mismatch between the vast zero-point energy and the tiny observed cosmological constant (Chapter~\ref{ch:cosmo}) is the worst problem in theoretical physics (Problem~\ref{prob:vacuum}).
+
+\section{The Dirac equation and antimatter}
+
+In 1928 Paul Dirac sought a relativistic wave equation for the electron that, unlike Klein--Gordon, was first order in time. He found that it required four-component wavefunctions and $4\times4$ matrices:
+\[
+  (i\gamma^\mu\partial_\mu - m)\psi = 0 .
+\]
+Out of the mathematics fell the electron's spin $\tfrac12$ and its magnetic moment (with the ``$g$-factor'' $g = 2$), neither of which had been put in. So did solutions with negative energy, which Dirac eventually interpreted as a new particle with the electron's mass and the opposite charge. Carl Anderson found the \textbf{positron} in cosmic rays in 1932. Every particle has an antiparticle; when they meet they can annihilate into pure energy, as in PET scanners (Chapter~\ref{ch:medical}). Dirac said, ``The equation was smarter than I was.''
+
+\section{Interactions and Feynman diagrams}
+
+Free fields are just oscillators. Interactions couple them. In quantum electrodynamics (QED), the Lagrangian contains a term $e\bar\psi\gamma^\mu\psi A_\mu$ coupling the electron field $\psi$ to the photon field $A_\mu$. It allows a single basic process: an electron emits or absorbs a photon. Everything in electromagnetism and chemistry is built from this one vertex.
+
+Because $e$ is small ($\alpha\approx1/137$), we can calculate in perturbation theory, as a power series in $\alpha$. Richard Feynman invented a way to draw each term as a picture: lines for particles travelling through spacetime, vertices where they interact. Each diagram stands for a precise mathematical expression, and each vertex contributes a factor of $e\propto\sqrt\alpha$.
+\begin{itemize}[itemsep=3pt]
+  \item Two electrons repel by exchanging a photon: one emits it, the other absorbs it. This simplest diagram reproduces Coulomb's law. Exchanging a massive particle instead gives the short-range Yukawa potential $e^{-mr}/r$ (Problem~\ref{prob:yukawa}; Chapter~\ref{ch:nuclear}).
+  \item The exchanged photon is \emph{virtual}: it need not satisfy $E^2 = p^2 + m^2$, and it exists only as an intermediate step, permitted by the uncertainty principle.
+  \item Diagrams with closed loops --- an electron briefly emitting and reabsorbing a photon, or a photon briefly splitting into an electron--positron pair --- give corrections suppressed by further powers of $\alpha$.
+\end{itemize}
+
+\begin{center}
+\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}[photon/.style={decorate, decoration={snake, amplitude=1.7pt, segment length=5pt}, ascwarm, thick},
+  fermion/.style={thick, ascblue}, arr/.style={ascblue, -{Stealth[length=5.5pt]}}]
+  \def\fer#1#2{\draw[fermion] #1 -- #2; \draw[arr] ($#1!0.45!#2$) -- ($#1!0.56!#2$);}
+  % (a) the vertex
+  \fer{(0,-0.9)}{(1.2,0)} \fer{(1.2,0)}{(2.4,-0.9)}
+  \draw[photon] (1.2,0) -- (2.4,0.9);
+  \fill (1.2,0) circle (1.6pt);
+  \node[font=\small, left] at (0,-0.9) {$e^-$}; \node[font=\small, right] at (2.4,-0.9) {$e^-$}; \node[font=\small, right] at (2.4,0.9) {$\gamma$};
+  \node[font=\small] at (1.2,-1.75) {(a)};
+  % (b) electron-electron scattering
+  \begin{scope}[xshift=4.4cm]
+    \fer{(0,1.1)}{(1.2,0.75)} \fer{(1.2,0.75)}{(2.4,1.1)}
+    \fer{(0,-1.1)}{(1.2,-0.75)} \fer{(1.2,-0.75)}{(2.4,-1.1)}
+    \draw[photon] (1.2,0.75) -- (1.2,-0.75);
+    \fill (1.2,0.75) circle (1.6pt); \fill (1.2,-0.75) circle (1.6pt);
+    \node[font=\small, left] at (0,1.1) {$e^-$}; \node[font=\small, left] at (0,-1.1) {$e^-$};
+    \node[font=\small, right] at (2.4,1.1) {$e^-$}; \node[font=\small, right] at (2.4,-1.1) {$e^-$};
+    \node[font=\small, right] at (1.25,0) {$\gamma$};
+    \node[font=\small] at (1.2,-1.75) {(b)};
+  \end{scope}
+  % (c) annihilation
+  \begin{scope}[xshift=8.6cm]
+    \fer{(0,1)}{(0.9,0)} \fer{(0.9,0)}{(0,-1)}
+    \draw[photon] (0.9,0) -- (2.1,0);
+    \fer{(2.1,0)}{(3.0,1)} \fer{(3.0,-1)}{(2.1,0)}
+    \fill (0.9,0) circle (1.6pt); \fill (2.1,0) circle (1.6pt);
+    \node[font=\small, left] at (0,1) {$e^-$}; \node[font=\small, left] at (0,-1) {$e^+$};
+    \node[font=\small, right] at (3.0,1) {$\mu^-$}; \node[font=\small, right] at (3.0,-1) {$\mu^+$};
+    \node[font=\small, above] at (1.5,0.1) {$\gamma$};
+    \node[font=\small] at (1.5,-1.75) {(c)};
+  \end{scope}
+  \draw[ascink!60, -{Stealth[length=5pt]}] (0,-2.25) -- (11.6,-2.25) node[midway, below, font=\footnotesize] {time};
+\end{tikzpicture}
+
+{\small Feynman diagrams. (a) The basic vertex of quantum electrodynamics: an electron emits or absorbs a photon. Every other diagram is built from copies of it, and each vertex costs a factor of $e$. (b) Two electrons repel by exchanging a photon. (c) An electron and a positron annihilate into a photon, which becomes a muon and an antimuon. Antiparticles are drawn with their arrows pointing backwards in time.}
+\end{minipage}
+\end{center}
+
+The results are staggering. The electron's magnetic moment is predicted to be slightly larger than Dirac's $g=2$, by an amount $\alpha/2\pi$ plus higher corrections computed to fifth order in $\alpha$ (involving thousands of diagrams). Theory and experiment agree to about one part in a trillion, making QED the most precisely tested theory in all of science.
+
+\section{Infinities and renormalization}
+
+Loop diagrams have a problem: they involve integrals over the momenta of virtual particles, and those integrals diverge at high momentum. For two decades, QFT seemed to predict infinite answers. In the late 1940s Feynman, Schwinger, Tomonaga, and Dyson found a cure, \emph{renormalization}: the infinities can be absorbed into the definitions of the electron's mass and charge, which are anyway measured rather than predicted. After that, every other prediction is finite and agrees with experiment.
+
+For years renormalization looked like sweeping infinities under the rug. The modern understanding, due largely to Kenneth Wilson in the 1970s, is profound and liberating. Every physical theory is an \emph{effective theory}, valid below some energy scale and ignorant of what happens above it. The divergences are a sign of that ignorance, and renormalization is the statement that physics at low energies depends on physics at high energies only through a few parameters. As the energy scale changes, those parameters \emph{run}. The electromagnetic coupling, screened at long distances by a cloud of virtual electron--positron pairs that polarize the vacuum, grows from $1/137$ at low energy to about $1/128$ at the mass of the $Z$ boson (Problem~\ref{prob:running}). The strong coupling does the opposite (Chapter~\ref{ch:particle}).
+
+\begin{keyidea}
+Effective field theory is the spherical cow, made rigorous. You do not need to know what happens at the Planck scale to compute the energy levels of hydrogen, just as you do not need to know about atoms to design a bridge. Each scale of physics has its own effective description, and the renormalization group connects them. The same mathematics explains universality at critical points (Chapter~\ref{ch:statmech}).
+\end{keyidea}
+
+\section{Gauge symmetry}
+
+Why does electromagnetism exist at all? Here is the modern answer. The electron field has a phase, and multiplying the field everywhere by the same phase, $\psi\to e^{i\alpha}\psi$, changes nothing observable. By Noether's theorem (Chapter~\ref{ch:analytical}), this \emph{global} symmetry gives a conserved quantity: electric charge.
+
+Now demand more: that physics be unchanged even if the phase is changed \emph{differently at every point}, $\psi\to e^{i\alpha(x)}\psi$. Derivatives of $\psi$ now pick up extra terms, and the Lagrangian is no longer invariant. To restore the symmetry, we must introduce a new field $A_\mu$ that shifts in just the right way to cancel those terms, $A_\mu\to A_\mu - \tfrac1e\partial_\mu\alpha$ --- exactly the gauge freedom of the electromagnetic potentials (Chapter~\ref{ch:em}). The photon is \emph{required} by local phase symmetry. Its coupling to the electron, its masslessness, and Maxwell's equations all follow.
+
+This \emph{gauge principle} is the organizing idea of fundamental physics. In 1954 Yang and Mills generalized it to symmetries in which the ``phase'' is a matrix, as for the group $SU(2)$ or $SU(3)$. The resulting gauge fields interact with each other as well as with matter. With $SU(3)$, they are the gluons of the strong force; with $SU(2)\times U(1)$, the photon and the $W$ and $Z$ bosons of the electroweak force (Chapter~\ref{ch:particle}). The forces of nature are what you get when you demand that certain symmetries hold locally.
+
+\section{Hidden symmetry and the Higgs mechanism}
+
+Gauge symmetry seems to forbid the gauge bosons from having mass. Yet the $W$ and $Z$ are heavy. The resolution is \emph{spontaneous symmetry breaking}: the laws can be symmetric while the vacuum is not. Picture a ball in a potential shaped like the bottom of a wine bottle (or a Mexican hat), $V = -\mu^2\abs\phi^2 + \lambda\abs\phi^4$. The potential is symmetric under rotations, but the lowest energy is on a circle of nonzero $\abs\phi$, and the ball must settle somewhere on it, choosing a direction (compare the bead on a hoop, Problem~\ref{prob:bead-hoop}, and the ferromagnet of Chapter~\ref{ch:condmat}). Oscillations around the circle cost no energy and give massless particles (\emph{Goldstone bosons}); oscillations up the side give massive ones.
+
+When the symmetry is a gauge symmetry, something remarkable happens: the would-be Goldstone bosons are absorbed by the gauge fields, which become massive. This is the \textbf{Higgs mechanism}, proposed in 1964 by Higgs, Englert and Brout, and others. Its condensed matter ancestors are the massive photon in a plasma (Chapter~\ref{ch:plasma}) and in a superconductor (Chapter~\ref{ch:condmat}). The leftover oscillation up the side of the hat is the \emph{Higgs boson}, discovered at CERN in 2012 (Chapter~\ref{ch:particle}).
+
+\section{Problems}
+
+\begin{problems}
+\prob{1}\core Find the Compton wavelengths $\hbar/mc$ of the electron ($0.511\un{MeV}$), the proton ($938\un{MeV}$), and the $W$ boson ($80\un{GeV}$), using $\hbar c = 197\un{MeV\,fm}$. Interpret each as a length scale in physics.
+
+\prob{1} Show that the plane wave $e^{-i(Et - \vb p\cdot\vb x)}$ solves the Klein--Gordon equation if and only if $E^2 = \vb p^2 + m^2$. What happens for $m = 0$?
+
+\prob{1} An electron is confined to a box of size $L$. Below what $L$ does its kinetic energy exceed the energy needed to create an electron--positron pair? Why does this mean the one-electron picture fails at that scale?
+
+\prob{2}\core \label{prob:yukawa} The static Klein--Gordon equation with a point source is $(\nabla^2 - m^2)\phi = -g\,\delta^3(\vb r)$. Show that $\phi = \frac{g}{4\pi}\frac{e^{-mr}}{r}$ solves it. With $m = 0$, it reduces to the Coulomb potential. Restore $\hbar$ and $c$ to show the range is $\hbar/mc$, and find the range for a mediator of mass $140\un{MeV}$.
+
+\prob{2} A process with two QED vertices has an amplitude proportional to $e^2\propto\alpha$, so a cross-section proportional to $\alpha^2$. Each extra loop costs roughly another factor of $\alpha/\pi$. Estimate the size of one-loop corrections relative to the leading term. Why is perturbation theory so successful for QED?
+
+\prob{2}\core Evaluate the Casimir pressure between two plates $1\un{\mu m}$ apart and $10\un{nm}$ apart. At what separation does it equal atmospheric pressure? Why does the effect matter for microelectromechanical devices?
+
+\prob{2} \label{prob:running} Including only the electron's vacuum polarization, the coupling runs as $\alpha(Q) = \alpha/[1 - (2\alpha/3\pi)\ln(Q/m_e)]$. Evaluate $1/\alpha$ at $Q = 91\un{GeV}$. Including all charged fermions lighter than $91\un{GeV}$ (each weighted by its charge squared and number of colours), the measured value is about $128$. Explain physically why the effective charge grows at short distances.
+
+\prob{2}\core \emph{(Gauge invariance in the Schr\"odinger equation.)} For a particle of charge $q$, the Schr\"odinger equation is $i\hbar\partial_t\psi = \frac{1}{2m}(-i\hbar\grad - q\vb A)^2\psi + q\phi\psi$. Show that it is unchanged in form under the combined transformation $\psi\to e^{iq\chi/\hbar}\psi$, $\vb A\to\vb A + \grad\chi$, $\phi\to\phi - \partial_t\chi$, for any function $\chi(\vb x,t)$. Why would the equation fail to be invariant without the potentials?
+
+\prob{2} For $V = -\mu^2\abs\phi^2 + \lambda\abs\phi^4$ with complex $\phi$, find the radius of the circle of minima. Writing $\phi = (v + h)e^{i\theta}/\sqrt2$ near a minimum, show that small oscillations in $h$ have a mass while those in $\theta$ do not.
+
+\prob{3}\core \label{prob:vacuum} \emph{(The worst prediction in physics.)} Suppose QFT is valid up to the Planck energy $E_P = \sqrt{\hbar c^5/G}\approx1.2\times10^{19}\un{GeV}$, so that zero-point energies are summed up to that cutoff. Estimate the vacuum energy density as $E_P^4/(\hbar c)^3$, in $\mathrm{J/m^3}$. The observed dark energy density is about $6\times10^{-10}\un{J/m^3}$. By how many orders of magnitude does the estimate miss? What would a cutoff at $1\un{TeV}$ give?
+
+\prob{3}\core \emph{(The weak scale from Fermi's theory.)} Fermi described beta decay with a four-fermion interaction of strength $G_F\approx1.17\times10^{-5}\un{GeV^{-2}}$. By dimensional analysis, a cross-section at energy $E$ in this theory must scale as $\sigma\sim G_F^2E^2$, growing without limit. Quantum mechanics forbids cross-sections from growing faster than $\sim1/E^2$ (unitarity). Show that the theory must break down below about $E\sim G_F^{-1/2}$. In the Standard Model, $G_F = \sqrt2g^2/8m_W^2$ with $g\approx0.65$; estimate $m_W$ and compare with $80\un{GeV}$. The breakdown of an effective theory announced the new particle.
+\end{problems}
+
+\begin{reading}
+\rd{Lancaster and Blundell, \emph{Quantum Field Theory for the Gifted Amateur}}{The most gentle and physical introduction, in short chapters.}
+\rd{A.\ Zee, \emph{Quantum Field Theory in a Nutshell}}{An inspiring, idea-driven tour that reaches the frontier quickly.}
+\rd{David Tong, lecture notes on Quantum Field Theory}{Clear and complete Cambridge lecture notes, free online.}
+\rd{Peskin and Schroeder, \emph{An Introduction to Quantum Field Theory}}{The standard graduate text for computing things.}
+\rd{Matthew Schwartz, \emph{Quantum Field Theory and the Standard Model}}{A modern graduate text with excellent physical explanations.}
+\end{reading}

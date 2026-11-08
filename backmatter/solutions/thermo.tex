@@ -1,0 +1,27 @@
+\solchapter{thermo}
+
+\sol{thermo}{1} $W = nRT\ln2 = (8.31)(300)(0.693) = 1.73\un{kJ}$. Since $\Delta U = 0$, it absorbs $Q = 1.73\un{kJ}$ of heat. $\Delta S = Q/T = nR\ln2 = 5.8\un{J/K}$.
+
+\sol{thermo}{2} $\eta_{\max} = 1-300/800 = 62.5\%$. At $40\%$, producing $1\un{GW}$ takes $2.5\un{GW}$ of heat, of which $1.5\un{GW}$ is dumped. A river carrying $10^5\un{kg/s}$ warms by $\Delta T = 1.5\times10^9/(10^5\times4186)\approx3.6\un{K}$.
+
+\sol{thermo}{3} $\text{COP} = T_h/(T_h-T_c) = 293/20\approx15$. As the outside gets colder the denominator grows, so each joule of work moves less heat; real units also lose efficiency and must defrost their outdoor coils.
+
+\sol{thermo}{4} $T_2 = T_1(V_1/V_2)^{\gamma-1} = 300\times20^{0.4}\approx990\un{K}$, and $P_2 = P_1\times20^{1.4}\approx66\un{atm}$. Diesel fuel autoignites at about $500\un{K}$; sprayed into air at nearly $1000\un{K}$, it ignites on its own.
+
+\sol{thermo}{5} By symmetry $T_f = 50^\circ\text{C} = 323.15\un{K}$. Then
+\[
+  \Delta S = mc\left[\ln\frac{323.15}{353.15} + \ln\frac{323.15}{293.15}\right] = 4186\,(-0.0888 + 0.0974)\approx+36\un{J/K}.
+\]
+The cold water gains more entropy than the hot water loses, because the same heat counts for more at lower temperature.
+
+\sol{thermo}{6} With $\Delta V\approx V_{\text{gas}} = RT/P$ per mole, $\dd P/\dd T = LP/RT^2$, so $\dd\ln P/\dd T = L/RT^2$ and $P\propto e^{-L/RT}$. Then $\ln(0.33) = -(L/R)(1/T - 1/373)$ gives $1/T = 0.002681 + 0.000227$, so $T\approx344\un{K}\approx71^\circ\text{C}$.
+
+\sol{thermo}{7} A reversible engine creates no entropy, so $C\ln(T_f/T_1) + C\ln(T_f/T_2) = 0$, giving $T_f = \sqrt{T_1T_2}$. The work is the heat lost by the hot body minus the heat gained by the cold one: $C(T_1-T_f) - C(T_f - T_2) = C(\sqrt{T_1}-\sqrt{T_2})^2$. In direct contact, $T_f = (T_1+T_2)/2$ (the arithmetic mean, higher than the geometric mean), no work is done, and entropy increases by $C\ln[(T_1+T_2)^2/4T_1T_2]>0$.
+
+\sol{thermo}{8} Connect the same initial and final states by a reversible isothermal expansion, which absorbs heat $N\kB T\ln2$: so $\Delta S = N\kB\ln2$. The free expansion is irreversible because its reverse --- the gas spontaneously gathering into one half --- would lower the entropy; it has probability $2^{-N}$, never seen for macroscopic $N$.
+
+\sol{thermo}{9} The tension of rubber is mostly entropic: stretching straightens the chains, reducing their number of configurations, so $f\approx-T(\partial S/\partial x)_T$, which grows with $T$ at fixed length. \emph{Quick stretch}: nearly adiabatic, so total entropy is fixed; the configurational entropy drops, so the vibrational (thermal) entropy must rise --- the band warms. \emph{Heating under load}: the tension at a given length increases in proportion to $T$, so the band contracts until it balances the weight again, lifting it. A steel wire, whose elasticity is energetic, does the opposite.
+
+\sol{thermo}{10} Each binary decision the demon makes can lower the gas's entropy by at most $\kB\ln2$ (one bit of information about which side a molecule is on). Its memory is finite, so eventually it must erase each bit, which adds at least $\kB\ln2$ to the environment. The total entropy change over a full cycle is $\ge0$. (Bennett showed in 1982 that the measurement itself can be made reversible; it is the erasure that cannot.) Erasing a gigabyte, $8\times10^9$ bits, at $300\un{K}$ costs at least $8\times10^9\times\kB T\ln2\approx2\times10^{-11}\un{J}$. Real transistors dissipate about $10^{-15}\un{J}$ per bit operation, roughly a million times the Landauer limit.
+
+\sol{thermo}{11} From $\dd U = T\,\dd S - P\,\dd V$, $(\partial U/\partial V)_T = T(\partial S/\partial V)_T - P = T(\partial P/\partial T)_V - P$, using the Maxwell relation. For radiation, $U = u(T)V$ gives $(\partial U/\partial V)_T = u$, and $P = u/3$ gives $(\partial P/\partial T)_V = u'/3$. So $u = Tu'/3 - u/3$, i.e.\ $u'/u = 4/T$, and $u = aT^4$.

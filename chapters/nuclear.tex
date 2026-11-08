@@ -1,0 +1,160 @@
+\chapter{Nuclear physics}
+\label{ch:nuclear}
+
+\buildson{quantum mechanics (Chapter~\ref{ch:qm})}
+
+\chapterdek{What binds the nucleus, what happens when it lets go, and how the elements of your body were forged in stars.}
+
+\begin{prototype}
+The liquid-drop nucleus. Treat a nucleus as a droplet of incompressible nuclear fluid: constant density, a volume energy that holds it together, a surface tension that resists deformation, and an electric charge that tries to tear it apart. This almost absurdly simple picture predicts the binding energies of hundreds of nuclei to within a percent, and explains both fission and fusion.
+\end{prototype}
+
+The nucleus is a hundred thousand times smaller than the atom, yet holds more than $99.9\%$ of its mass. Its energies are measured in millions of electron-volts rather than the few eV of chemistry, which is why a kilogram of uranium can power a city and why the Sun can shine for ten billion years. Nuclear physics sits between atomic physics and particle physics, and it needs both: quantum mechanics to describe nucleons in a nucleus, and the strong and weak forces of Chapter~\ref{ch:particle} to describe what holds them and what transforms them.
+
+\section{The discovery of the nucleus}
+
+In 1909 Geiger and Marsden, working for Rutherford, fired alpha particles at a thin gold foil. Most passed through with small deflections, as expected if the atom's positive charge were spread out like a pudding. But about one in eight thousand bounced back. ``It was quite the most incredible event that has ever happened to me in my life,'' Rutherford said. ``It was almost as incredible as if you fired a 15-inch shell at a piece of tissue paper and it came back and hit you.'' The only explanation was that the atom's positive charge and nearly all its mass are concentrated in a tiny \emph{nucleus}.
+
+Nuclei are made of protons and neutrons (\emph{nucleons}; the neutron was found by Chadwick in 1932). A nucleus with $Z$ protons and $N$ neutrons has mass number $A = Z+N$; nuclei with the same $Z$ but different $N$ are \emph{isotopes} of the same element. Scattering experiments show that nuclear radii follow
+\[
+  R\approx r_0A^{1/3},\qquad r_0\approx1.2\un{fm}
+\]
+($1\un{fm} = 10^{-15}\un{m}$). The volume is proportional to $A$: every nucleus has the same density, about $2\times10^{17}\un{kg/m^3}$. A teaspoon of nuclear matter would weigh about a billion tonnes. Nucleons pack together like the molecules of a liquid: this is the evidence for the liquid drop.
+
+\section{The strong force}
+
+What holds a nucleus together against the electric repulsion of its protons? A new force, the \emph{strong nuclear force}, with remarkable properties. It is strong --- about a hundred times stronger than electromagnetism at nuclear distances. It is short-ranged, vanishing beyond about $2\un{fm}$, which is why nuclei are small and why each nucleon interacts only with its immediate neighbours. It acts almost identically between protons and neutrons. And at very short distances it becomes strongly repulsive, which is why nuclear matter does not collapse.
+
+In 1935 Hideki Yukawa explained the short range. If a force is carried by exchanging a particle of mass $m$, the uncertainty principle lets the particle exist for a time $\Delta t\sim\hbar/mc^2$, so it can travel at most a distance $\hbar/mc$. Yukawa showed that such a force has potential
+\[
+  V(r)\propto-\frac{e^{-r/\lambda}}{r},\qquad\lambda = \frac{\hbar}{mc},
+\]
+the Coulomb potential cut off exponentially. A range of about $1.4\un{fm}$ requires $mc^2\approx140\un{MeV}$, and the \emph{pion}, with exactly this mass, was found in 1947. (The deeper theory of the strong force, quantum chromodynamics, describes it in terms of quarks and gluons; pion exchange is its low-energy spherical cow. See Chapter~\ref{ch:particle}.)
+
+\section{Binding energy}
+
+A nucleus weighs less than its separated protons and neutrons. The difference, times $c^2$, is its \emph{binding energy} $B$, the energy needed to pull it apart (Chapter~\ref{ch:sr}). Plot the binding energy per nucleon, $B/A$, against $A$, and you get one of the most important graphs in physics. It rises steeply through the light nuclei (with a sharp spike for helium-4, an exceptionally tightly bound little nucleus), peaks at about $8.8\un{MeV}$ per nucleon near iron and nickel ($A\approx56$--$62$), and falls slowly toward the heaviest nuclei.
+
+\begin{keyidea}
+Iron is the most tightly bound nucleus. Fusing light nuclei toward iron releases energy (fusion); splitting heavy nuclei toward iron also releases energy (fission). Every nuclear power source in the universe is a way of rolling toward the peak of this curve.
+\end{keyidea}
+
+\section{The liquid-drop model}
+
+In 1935 von Weizs\"acker wrote down a formula for the binding energy based on the liquid drop. Each term is a piece of simple physics:
+\[
+  B(A,Z) = a_VA - a_SA^{2/3} - a_C\frac{Z(Z-1)}{A^{1/3}} - a_A\frac{(A-2Z)^2}{A} + \delta(A,Z).
+\]
+\begin{itemize}[itemsep=3pt]
+  \item \textbf{Volume} ($a_V\approx15.8\un{MeV}$): each nucleon is bound to its neighbours, so binding grows in proportion to $A$, as for a liquid.
+  \item \textbf{Surface} ($a_S\approx18.3\un{MeV}$): nucleons at the surface have fewer neighbours, a surface tension proportional to the area $\propto A^{2/3}$. It matters most for small nuclei, which are mostly surface.
+  \item \textbf{Coulomb} ($a_C\approx0.71\un{MeV}$): the protons repel each other, an energy $\propto Z^2/R$. It matters most for heavy nuclei.
+  \item \textbf{Asymmetry} ($a_A\approx23.2\un{MeV}$): a quantum effect. Protons and neutrons each fill their own ladder of energy levels (they are fermions; Chapter~\ref{ch:qm}). Having more of one than the other means filling one ladder higher, which costs energy.
+  \item \textbf{Pairing} ($\delta$, about $\pm12/\sqrt A\un{MeV}$): nucleons like to pair up, so even--even nuclei are a little more bound and odd--odd ones a little less.
+\end{itemize}
+With five fitted constants, this \emph{semi-empirical mass formula} reproduces the binding energies of hundreds of nuclei to about one percent. It explains why the $B/A$ curve has its shape: the surface term suppresses binding of light nuclei, the Coulomb term that of heavy ones. It predicts the \emph{valley of stability}: for each $A$, the most stable $Z$ balances the asymmetry term (which wants $Z = A/2$) against the Coulomb term (which wants fewer protons), so heavy nuclei carry extra neutrons --- lead-208 has $82$ protons and $126$ neutrons. And it shows why there is a limit to the periodic table: beyond about $Z^2/A\approx50$, a nucleus would split spontaneously.
+
+\begin{center}
+\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}
+\begin{axis}[asc, width=0.8\linewidth, height=0.46\linewidth, xmin=0, xmax=258, ymin=0, ymax=10.2,
+  xlabel={mass number $A$}, ylabel={$B/A$ (MeV)}, xtick={0,50,...,250}, ytick={0,2,...,10}]
+  \addplot[ascblue, thick] coordinates {(20,7.820) (22,7.954) (24,8.067) (26,8.163) (28,8.245) (30,8.315) (32,8.375) (34,8.427) (36,8.472) (38,8.510) (40,8.544) (42,8.572) (44,8.597) (46,8.618) (48,8.635) (50,8.650) (52,8.662) (54,8.672) (56,8.680) (58,8.686) (60,8.691) (62,8.693) (64,8.695) (66,8.695) (68,8.694) (70,8.692) (72,8.688) (74,8.684) (76,8.679) (78,8.674) (80,8.667) (82,8.660) (84,8.653) (86,8.644) (88,8.636) (90,8.627) (92,8.617) (94,8.607) (96,8.596) (98,8.586) (100,8.574) (102,8.563) (104,8.551) (106,8.539) (108,8.527) (110,8.515) (112,8.502) (114,8.489) (116,8.476) (118,8.463) (120,8.449) (122,8.436) (124,8.422) (126,8.408) (128,8.394) (130,8.380) (132,8.366) (134,8.352) (136,8.337) (138,8.323) (140,8.308) (142,8.294) (144,8.279) (146,8.264) (148,8.250) (150,8.235) (152,8.220) (154,8.205) (156,8.190) (158,8.175) (160,8.160) (162,8.145) (164,8.130) (166,8.115) (168,8.100) (170,8.085) (172,8.070) (174,8.055) (176,8.040) (178,8.025) (180,8.010) (182,7.995) (184,7.980) (186,7.965) (188,7.949) (190,7.934) (192,7.919) (194,7.904) (196,7.889) (198,7.874) (200,7.859) (202,7.844) (204,7.829) (206,7.814) (208,7.799) (210,7.785) (212,7.770) (214,7.755) (216,7.740) (218,7.725) (220,7.710) (222,7.696) (224,7.681) (226,7.666) (228,7.651) (230,7.637) (232,7.622) (234,7.607) (236,7.593) (238,7.578) (240,7.564) (242,7.549) (244,7.535) (246,7.520) (248,7.506) (250,7.492)};
+  \addplot[only marks, mark=*, mark size=1.8pt, ascwarm] coordinates {(2,1.112)} node[right, font=\footnotesize, text=ascink] {${}^{2}\mathrm{H}$};
+  \addplot[only marks, mark=*, mark size=1.8pt, ascwarm] coordinates {(4,7.074)} node[below right, font=\footnotesize, text=ascink] {${}^{4}\mathrm{He}$};
+  \addplot[only marks, mark=*, mark size=1.8pt, ascwarm] coordinates {(6,5.332)} node[right, font=\footnotesize, text=ascink] {${}^{6}\mathrm{Li}$};
+  \addplot[only marks, mark=*, mark size=1.8pt, ascwarm] coordinates {(12,7.680)} node[right, font=\footnotesize, text=ascink] {${}^{12}\mathrm{C}$};
+  \addplot[only marks, mark=*, mark size=1.8pt, ascwarm] coordinates {(16,7.976)} node[above right, font=\footnotesize, text=ascink] {${}^{16}\mathrm{O}$};
+  \addplot[only marks, mark=*, mark size=1.8pt, ascwarm] coordinates {(56,8.790)} node[above, font=\footnotesize, text=ascink] {${}^{56}\mathrm{Fe}$};
+  \addplot[only marks, mark=*, mark size=1.8pt, ascwarm] coordinates {(120,8.505)} node[above, font=\footnotesize, text=ascink] {${}^{120}\mathrm{Sn}$};
+  \addplot[only marks, mark=*, mark size=1.8pt, ascwarm] coordinates {(208,7.868)} node[above, font=\footnotesize, text=ascink] {${}^{208}\mathrm{Pb}$};
+  \addplot[only marks, mark=*, mark size=1.8pt, ascwarm] coordinates {(238,7.570)} node[below, font=\footnotesize, text=ascink] {${}^{238}\mathrm{U}$};
+  \draw[ascink!70, -{Stealth[length=6pt]}] (axis cs:18,9.55) -- (axis cs:50,9.55) node[midway, above, font=\footnotesize] {fusion};
+  \draw[ascink!70, -{Stealth[length=6pt]}] (axis cs:235,9.55) -- (axis cs:150,9.55) node[midway, above, font=\footnotesize] {fission};
+\end{axis}
+\end{tikzpicture}
+
+{\small Binding energy per nucleon. The curve is the semi-empirical mass formula with the constants above (drawn from $A = 20$, below which it is unreliable); the dots are measured values. Iron and nickel sit at the top, so fusing light nuclei and splitting heavy ones both release energy. Helium-4 lies well above the curve: it is unusually tightly bound.}
+\end{minipage}
+\end{center}
+
+\section{The shell model}
+
+The liquid drop misses something. Nuclei with $2, 8, 20, 28, 50, 82,$ or $126$ protons or neutrons are unusually stable, abundant, and spherical. These \emph{magic numbers} are the nuclear analogue of the noble gases. In 1949 Maria Goeppert Mayer and Hans Jensen explained them with a \emph{shell model}: nucleons move independently in an average potential created by all the others, filling energy levels as electrons do in atoms --- but with a strong spin--orbit coupling that reshuffles the levels to produce exactly the observed magic numbers. That nuclei can be described both as a dense liquid and as independent particles in orbits is one of the field's great paradoxes, resolved by the Pauli principle: in a filled Fermi sea, nucleons cannot scatter into occupied states, so they move almost freely. Doubly magic nuclei like helium-4, oxygen-16, calcium-40, and lead-208 are especially stable, and theorists predict an \emph{island of stability} of superheavy nuclei near $Z = 114$--$126$, $N = 184$.
+
+\section{Radioactivity}
+
+Unstable nuclei decay. Each nucleus has a fixed probability per unit time of decaying, independent of its age, so a sample decays exponentially:
+\[
+  N(t) = N_0e^{-t/\tau} = N_02^{-t/t_{1/2}},\qquad t_{1/2} = \tau\ln2 .
+\]
+Half-lives range from less than a microsecond to far longer than the age of the universe. There are three classic kinds of decay.
+
+\textbf{Alpha decay}: heavy nuclei emit a helium-4 nucleus. The alpha particle is trapped behind the Coulomb barrier with less energy than its height, and escapes by quantum tunnelling (Chapter~\ref{ch:qm}). The tunnelling probability depends exponentially on the energy, so tiny differences in energy produce enormous differences in half-life: alpha energies from $4$ to $9\un{MeV}$ correspond to half-lives ranging over more than twenty orders of magnitude (the \emph{Geiger--Nuttall law}, Problem~\ref{prob:geiger-nuttall}). Gamow's explanation of this in 1928 was one of the first triumphs of quantum mechanics.
+
+\textbf{Beta decay}: a neutron turns into a proton, emitting an electron, $n\to p + e^- + \bar\nu_e$ (or a proton into a neutron, emitting a positron). The electrons come out with a continuous range of energies, which seemed to violate energy conservation. In 1930 Pauli proposed, as a ``desperate remedy,'' that an invisible neutral particle carries off the missing energy. Fermi named it the \emph{neutrino} and built a theory of beta decay around it; it was finally detected in 1956. Beta decay is driven by the \emph{weak force} (Chapter~\ref{ch:particle}). A free neutron decays with a half-life of about ten minutes; inside a stable nucleus, the Pauli principle blocks it.
+
+\textbf{Gamma decay}: an excited nucleus drops to a lower state by emitting a photon of MeV energy, the nuclear analogue of atomic emission (Chapter~\ref{ch:amo}).
+
+\begin{example}[Radiocarbon dating]
+Cosmic rays continually make carbon-14 in the upper atmosphere, and living things keep the same ratio of $^{14}$C to $^{12}$C as the air. When an organism dies, its $^{14}$C decays with a half-life of $5730$ years. Measuring the remaining fraction dates bones, wood, and cloth up to about fifty thousand years old. Longer-lived isotopes --- uranium-238 decaying to lead with a half-life of $4.5$ billion years --- date rocks, and have established the age of the Earth as $4.54$ billion years.
+\end{example}
+
+\section{Fission}
+
+In 1938 Hahn and Strassmann found barium in uranium bombarded with neutrons; Meitner and Frisch, using the liquid-drop model on a walk in the snow, realized the nucleus had split in two. A uranium-235 nucleus absorbing a slow neutron becomes so excited that it oscillates like a wobbling drop, elongates until the Coulomb repulsion of the two ends overcomes the surface tension, and splits, releasing about $200\un{MeV}$ and two or three new neutrons.
+
+Those neutrons make a \emph{chain reaction} possible. If on average more than one neutron from each fission causes another fission, the reaction grows exponentially. Whether it does depends on how many neutrons escape through the surface before being captured, so there is a \emph{critical mass}: about $50\un{kg}$ for a bare sphere of pure uranium-235 (Problem~\ref{prob:critical}). In a reactor, the chain reaction is held at exactly one new fission per fission. A \emph{moderator} (water or graphite) slows neutrons down so they are more likely to cause fission, and control rods absorb excess neutrons. Control is possible only because a small fraction of neutrons are emitted seconds after the fission rather than instantly; these \emph{delayed neutrons} slow the response enough for mechanical systems to keep up. Remarkably, nature built its own reactors: two billion years ago, when uranium-235 was more abundant, groundwater-moderated uranium deposits at Oklo in Gabon sustained chain reactions for hundreds of thousands of years.
+
+\section{Fusion and the stars}
+
+Light nuclei release energy by fusing, but they must first overcome their Coulomb repulsion, about $1\un{MeV}$ for two protons. In the Sun's core, at fifteen million kelvin, typical thermal energies are only about $1\un{keV}$. Fusion happens only by tunnelling, and only for the rare protons in the high-energy tail of the Maxwell--Boltzmann distribution (Chapters~\ref{ch:statmech} and~\ref{ch:qm}). The product of the falling Boltzmann factor and the rising tunnelling probability peaks sharply at a few times $\kB T$, the \emph{Gamow peak}.
+
+The Sun fuses hydrogen to helium mainly by the \emph{proton--proton chain}, whose net result is
+\[
+  4\,p\to{}^4\mathrm{He} + 2e^+ + 2\nu_e + 26.7\un{MeV}.
+\]
+The first step, in which two protons fuse and one turns into a neutron by the weak interaction, is so slow --- a given proton waits on average billions of years --- that the Sun burns steadily for ten billion years instead of exploding. Heavier stars use carbon, nitrogen, and oxygen as catalysts (the \emph{CNO cycle}). When the hydrogen runs out, helium fuses to carbon via the \emph{triple-alpha} process, which works only because carbon-12 has an excited state at just the right energy --- predicted by Fred Hoyle in 1953 from the mere fact that carbon exists. Chapter~\ref{ch:astro} follows the life of stars; Chapter~\ref{ch:plasma} discusses fusion on Earth.
+
+\section{Where the elements came from}
+
+Hydrogen, helium, and a little lithium were made in the first three minutes after the Big Bang (Chapter~\ref{ch:cosmo}). Everything else up to iron was made by fusion in stars. Beyond iron, fusion no longer releases energy, and heavier elements are built by capturing neutrons, which feel no Coulomb barrier. In the \emph{s-process} (slow), neutrons are captured one at a time in giant stars, with time for beta decays in between. In the \emph{r-process} (rapid), a flood of neutrons is captured in seconds, building very neutron-rich nuclei that then decay back to stability. The site of the r-process was long uncertain; in 2017 the collision of two neutron stars, observed in both gravitational waves and light, showed the glow of freshly made heavy elements (Chapter~\ref{ch:gw}). Much of the gold and platinum on Earth was forged in such collisions. As Carl Sagan put it, we are made of star stuff.
+
+\section{Nuclear matter and beyond}
+
+Protons and neutrons are themselves made of quarks, bound by gluons (Chapter~\ref{ch:particle}). Heat nuclear matter to about two trillion kelvin --- as in collisions of gold or lead nuclei at Brookhaven and CERN --- and the nucleons melt into a \emph{quark--gluon plasma}, the state of the universe a microsecond after the Big Bang. It turns out to be the most perfect fluid known, with the lowest viscosity relative to its entropy of any substance. At the other extreme, a neutron star is essentially a single nucleus twenty kilometres across, held together by gravity instead of the strong force (Chapter~\ref{ch:astro}).
+
+\section{Problems}
+
+\begin{problems}
+\prob{1}\core Use $R = 1.2A^{1/3}\un{fm}$ to find the radius of a gold nucleus ($A=197$) and the density of nuclear matter. What would a teaspoon ($5\un{cm^3}$) of it weigh? Compare with the density of a neutron star.
+
+\prob{1} The mass of a helium-4 atom is $4.002602\un{u}$; a hydrogen atom is $1.007825\un{u}$ and a neutron $1.008665\un{u}$ ($1\un{u} = 931.5\un{MeV}/c^2$). Find the binding energy of helium-4 in total and per nucleon.
+
+\prob{1}\core A piece of wood contains $25\%$ of the carbon-14 found in living trees. How old is it? A second sample contains $1\%$. Why is radiocarbon dating useless for dinosaur bones?
+
+\prob{1} Compare the energy released by fissioning $1\un{kg}$ of uranium-235 ($200\un{MeV}$ per fission) with burning $1\un{kg}$ of coal ($3\times10^{7}\un{J}$). How much uranium does a $1\un{GW}$ power station consume per day?
+
+\prob{2}\core Use Yukawa's argument to predict the mass of the particle that carries the nuclear force, given a range of $1.4\un{fm}$. The weak force has a range of about $2\times10^{-18}\un{m}$; what does this predict for the mass of its carrier? (Compare with the $W$ boson, $80\un{GeV}/c^2$.)
+
+\prob{2}\core Using the semi-empirical mass formula, find the value of $Z$ that maximizes $B$ for fixed $A$ (neglect pairing and use $Z^2$ for $Z(Z-1)$). Show that $Z\approx A/(2 + 0.015A^{2/3})$, and check it for $A = 56$ and $A = 238$.
+
+\prob{2}\core \emph{(Solar neutrinos.)} The Sun's luminosity is $3.8\times10^{26}\un{W}$. Each conversion of four protons to helium releases $26.7\un{MeV}$ and two neutrinos. How many neutrinos does the Sun emit per second, and how many pass through each square centimetre of your body every second? Why don't you notice?
+
+\prob{2} Use the surface and Coulomb terms of the mass formula to estimate the energy released when a uranium-238 nucleus splits into two equal halves. (You should get roughly $200\un{MeV}$.) Which term makes fission release energy, and which resists it?
+
+\prob{2} Marie Curie defined the curie as the activity of one gram of radium-226, whose half-life is $1600$ years. Compute the activity in decays per second. Then estimate the activity of the potassium-40 in your body ($0.012\%$ of potassium, with $140\un{g}$ of potassium and a half-life of $1.25$ billion years).
+
+\prob{3}\core \label{prob:geiger-nuttall} \emph{(The Geiger--Nuttall law.)} For an alpha particle of energy $E$ tunnelling through the Coulomb barrier of a nucleus of charge $Z$, the tunnelling probability is approximately $e^{-2\pi\eta}$ with $\eta = 2Ze^2/(4\pi\epsilon_0\hbar v)$, where $v$ is the alpha particle's speed. Show that this gives $\ln t_{1/2}\approx a\,Z/\sqrt E + b$. For polonium ($Z\approx84$), estimate how much the half-life changes between $E = 5$ and $E = 9\un{MeV}$. (Real half-lives in this range span from about a microsecond to over a hundred days.)
+
+\prob{3} \label{prob:critical} \emph{(Critical mass.)} In uranium-235, a fast neutron travels a mean free path of about $\ell\approx4\un{cm}$ between collisions, and each fission makes $\nu\approx2.5$ neutrons. A neutron diffuses as a random walk. Argue that a sphere is critical when its radius $R$ is large enough that a neutron typically causes another fission before escaping, and that this gives $R_c\sim\ell\,\pi/\sqrt{3(\nu-1)}$. Estimate $R_c$ and the critical mass (density $19\un{g/cm^3}$). How does surrounding the sphere with a neutron reflector change things?
+
+\prob{3} \emph{(Why stars stop at iron.)} Using the binding energy curve, explain why fusion in stellar cores stops at iron. Then explain why the heavier elements must be built by neutron capture rather than by fusing charged nuclei: compare the Coulomb barrier for adding a proton to a nucleus with $Z = 50$ with typical stellar thermal energies. Why can't the s-process build elements beyond bismuth?
+\end{problems}
+
+\begin{reading}
+\rd{Kenneth S.\ Krane, \emph{Introductory Nuclear Physics}}{The standard undergraduate text, thorough and readable.}
+\rd{B.\ R.\ Martin, \emph{Nuclear and Particle Physics: An Introduction}}{A compact modern introduction to both fields together.}
+\rd{Carlos Bertulani, \emph{Nuclear Physics in a Nutshell}}{A concise, more advanced survey.}
+\rd{Richard Rhodes, \emph{The Making of the Atomic Bomb}}{The history of nuclear physics as a gripping human story.}
+\end{reading}

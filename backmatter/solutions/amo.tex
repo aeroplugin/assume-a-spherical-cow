@@ -1,0 +1,33 @@
+\solchapter{amo}
+
+\sol{amo}{1} $1/\lambda = R_\infty(\tfrac14 - 1/n^2)$: H$\alpha$ ($n=3$) $656\un{nm}$, red; H$\beta$ ($n = 4$) $486\un{nm}$, blue-green; H$\gamma$ ($n=5$) $434\un{nm}$, violet-blue. The series limit ($n\to\infty$) is $365\un{nm}$, in the ultraviolet.
+
+\sol{amo}{2} $E = hf = 5.9\times10^{-6}\un{eV}$, or $E/\kB = 0.068\un{K}$. At $100\un{K}$, collisions between atoms easily supply this energy and keep the hyperfine levels populated in their statistical ratio of $3:1$, much faster than the upper level decays radiatively. Each atom emits only once in ten million years, but a galaxy has so many hydrogen atoms that the line is bright.
+
+\sol{amo}{3} $\mu_BB = 5.8\times10^{-5}\un{eV}$ at $1\un{T}$, a frequency of $14\un{GHz}$. In the sunspot, $\Delta E = hc\,\Delta\lambda/\lambda^2 = (1240\un{eV\,nm})(0.01)/525^2\approx4.5\times10^{-5}\un{eV}$. If that is the spacing between the outer components of a simple triplet ($2\mu_BB$), $B\approx0.4\un{T}$; real lines have Land\'e factors of order one, but the answer is a few tenths of a tesla, as Hale found.
+
+\sol{amo}{4} Solving the balance for $u$:
+\[
+  u(\nu) = \frac{AN_2}{B(N_1-N_2)} = \frac{A/B}{N_1/N_2 - 1} = \frac{A/B}{e^{h\nu/\kB T}-1}.
+\]
+Matching Planck's law, $u = (8\pi h\nu^3/c^3)/(e^{h\nu/\kB T}-1)$, at every temperature requires $A/B = 8\pi h\nu^3/c^3$. (Einstein also needed the absorption and stimulated-emission coefficients to be equal, which the high-temperature limit demands.)
+
+\sol{amo}{5} $\mu = \tfrac{12\times16}{28}\un{u} = 1.14\times10^{-26}\un{kg}$ and $I = \mu r^2 = 1.46\times10^{-46}\un{kg\,m^2}$. The $\ell=1\to0$ transition has energy $\hbar^2/I = 7.6\times10^{-23}\un{J}$, a frequency of $115\un{GHz}$ and wavelength $2.6\un{mm}$.
+
+\sol{amo}{6} $\mu = \tfrac{35}{36}\un{u} = 1.61\times10^{-27}\un{kg}$, so $\omega = \sqrt{k/\mu} = 5.7\times10^{14}\un{rad/s}$, $f = 9.0\times10^{13}\un{Hz}$, $\lambda = 3.3\un{\mu m}$. For DCl, $\mu = \tfrac{2\times35}{37}\un{u}$, nearly twice as large, so the frequency drops by $\sqrt{0.97/1.89} = 0.72$, close to $1/\sqrt2$.
+
+\sol{amo}{7} The kinetic energy is about $13.6\un{eV}$, and relativistic corrections are a fraction $(v/c)^2 = \alpha^2$ of it: $\alpha^2\times13.6\un{eV} = 7\times10^{-4}\un{eV}$ for the ground state. The splittings that show up in the Balmer lines come from the $n=2$ and $n = 3$ levels, smaller by about $1/n^3$: the $n=2$ fine structure is $4.5\times10^{-5}\un{eV}$. Relative to the $1.89\un{eV}$ H$\alpha$ photon this is $2\times10^{-5}$, about $0.015\un{nm}$ --- visible only with a good spectrometer.
+
+\sol{amo}{8} $T_D = \hbar\Gamma/2\kB = (1.05\times10^{-34})(3.8\times10^7)/(2\times1.38\times10^{-23}) = 144\un{\mu K}$. $T_r = \hbar^2k^2/m\kB = 0.36\un{\mu K}$, about $400$ times lower. Sub-Doppler cooling methods get down to a few recoil temperatures.
+
+\sol{amo}{9} Each photon carries $\hbar k = h/\lambda = 1.1\times10^{-27}\un{kg\,m/s}$; at $3\times10^7$ per second the force is $3.4\times10^{-20}\un{N}$, and on a mass of $3.8\times10^{-26}\un{kg}$ the deceleration is $9\times10^5\un{m/s^2}$, about $10^5g$. Stopping from $600\un{m/s}$ takes $0.7\un{ms}$ over $v^2/2a\approx0.2\un{m}$. (As the atom slows, its Doppler shift changes, so a ``Zeeman slower'' uses a tapered magnetic field to keep it in resonance.)
+
+\sol{amo}{10} Light climbing a height $\Delta h$ is redshifted by $g\Delta h/c^2$ (Chapter~\ref{ch:gr}), so the upper clock runs fast by that fraction: $9.8\times0.01/(9\times10^{16}) = 1.1\times10^{-18}$. The best optical clocks average down to this level in about an hour or two of running; in 2022 the redshift was resolved across a single millimetre-tall cloud of atoms.
+
+\sol{amo}{11} $\dot N_2 = BI(N_1-N_2) - AN_2$. In steady state, $N_2/N_1 = BI/(BI+A)$, which approaches $1$ as $I\to\infty$ but never exceeds it: whenever the populations are equal, absorption and stimulated emission cancel and pumping does nothing more. A three-level laser pumps from level 1 to level 3, which decays quickly to a long-lived level 2, and lases from 2 to 1; inversion then needs more than half the atoms moved out of the ground state. A four-level laser lases from level 3 to a level 2 that empties quickly into the ground state, so the lower laser level is almost empty and even a little pumping inverts the population.
+
+\sol{amo}{12} $\langle V(\vb r+\delta\vb r)\rangle = V + \tfrac12\langle\delta r_i\delta r_j\rangle\partial_i\partial_jV = V + \tfrac16\langle\delta r^2\rangle\nabla^2V$, since the jitter is isotropic ($\langle\delta r_i\delta r_j\rangle = \delta_{ij}\langle\delta r^2\rangle/3$) and averages to zero to first order. For the Coulomb potential, $\nabla^2V = (e^2/\epsilon_0)\delta^3(\vb r)$, so the shift is $\Delta E = \tfrac16\langle\delta r^2\rangle(e^2/\epsilon_0)\abs{\psi(0)}^2$. With $\abs{\psi_{2s}(0)}^2 = 1/8\pi a_0^3$, $e^2/\epsilon_0 = 4\pi\alpha\hbar c$, and $a_0 = \hbar/(\alpha m_ec)$, this simplifies to
+\[
+  \Delta E = \frac{\alpha^5}{6\pi}\ln\frac1\alpha\;m_ec^2\approx3\times10^{-6}\un{eV},
+\]
+a frequency of about $0.7\un{GHz}$ --- the right order of magnitude next to the measured $1.06\un{GHz}$. Bethe's 1947 calculation, with a better estimate of the logarithm, got within a few percent.

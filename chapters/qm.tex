@@ -1,0 +1,291 @@
+\chapter{Quantum mechanics}
+\label{ch:qm}
+
+\buildson{the harmonic oscillator (Chapter~\ref{ch:sho}), analytical mechanics (Chapter~\ref{ch:analytical}), waves (Chapter~\ref{ch:waves})}
+
+\chapterdek{The rulebook for the very small, where certainty runs out, particles behave like waves, and the most successful theory in the history of science refuses to tell us what it means.}
+
+\begin{prototype}
+A particle in a box. An electron confined between two impenetrable walls cannot have just any energy: its wave has to fit, so its energies come in a discrete ladder $E_n\propto n^2$, starting not at zero but at a minimum ``zero-point'' energy. Its little sister is the \emph{qubit}: a system with only two states, which can nevertheless be in any superposition of them.
+\end{prototype}
+
+Quantum mechanics is the theory of atoms, molecules, solids, nuclei, light, and everything made of them --- which is to say everything. It is not an optional refinement of classical physics for small things; it is the actual physics, of which classical mechanics is an approximation valid when actions are much larger than Planck's constant. Its predictions have been confirmed to as many as twelve significant figures. Its interpretation is still argued about by serious people. Both facts are worth keeping in mind.
+
+\section{The crisis}
+
+Around 1900, classical physics was failing in several places at once.
+\begin{itemize}[itemsep=3pt]
+  \item \textbf{Blackbody radiation.} Classical statistical mechanics predicted infinite energy in the high-frequency modes of a hot cavity. Planck fixed it in 1900 by assuming that oscillators exchange energy only in lumps $E = h\nu$ (Chapter~\ref{ch:statmech}).
+  \item \textbf{The photoelectric effect.} Light knocks electrons out of metals with energies set by its frequency, not its intensity. Einstein explained it in 1905 with photons of energy $h\nu$ (Chapter~\ref{ch:optics}).
+  \item \textbf{Atomic spectra.} Hot hydrogen emits light only at specific wavelengths, following a simple numerical pattern no one could explain.
+  \item \textbf{Atomic stability.} An electron orbiting a nucleus should radiate its energy away and spiral in within $10^{-11}$ seconds (Problem~\ref{prob:classical-atom}). Atoms should not exist.
+\end{itemize}
+In 1924 de Broglie proposed the symmetric idea: if light waves behave like particles, perhaps particles behave like waves, with wavelength
+\[
+  \lambda = \frac{h}{p}.
+\]
+For an electron with a few electron-volts of energy, $\lambda$ is about a nanometre, comparable to the spacing of atoms in a crystal. In 1927 Davisson and Germer scattered electrons off nickel and saw diffraction peaks. Electrons fired one at a time through a double slit build up an interference pattern dot by dot, just as photons do. Matter is wavelike.
+
+\section{The wavefunction}
+
+A quantum particle is described not by a position but by a \emph{wavefunction} $\psi(x,t)$, a complex-valued function of space.
+
+\begin{law}[The Born rule]
+The probability of finding the particle between $x$ and $x+\dd x$ is $\abs{\psi(x,t)}^2\,\dd x$. In particular, $\int\abs{\psi}^2\dd x = 1$.
+\end{law}
+
+Two features matter enormously. First, $\psi$ is complex: it has a magnitude and a phase. Second, quantum mechanics is linear: if $\psi_1$ and $\psi_2$ are possible states, so is any \emph{superposition} $c_1\psi_1 + c_2\psi_2$. In the double slit, $\psi = \psi_1+\psi_2$ is the sum of the waves from each slit, and the probability is
+\[
+  \abs{\psi_1 + \psi_2}^2 = \abs{\psi_1}^2 + \abs{\psi_2}^2 + 2\,\mathrm{Re}(\psi_1^*\psi_2).
+\]
+The last term is interference. \emph{Amplitudes add, not probabilities.} This one rule is the source of almost everything strange about quantum mechanics. If you put a detector at the slits to find out which way the particle went, the interference term disappears and you get two blobs, as you would for bullets.
+
+\section{The Schr\"odinger equation}
+
+The wavefunction evolves according to the \textbf{Schr\"odinger equation}:
+\[
+  i\hbar\,\pdv{\psi}{t} = \hat H\psi, \qquad \hat H = -\frac{\hbar^2}{2m}\nabla^2 + V(\vb r),
+\]
+where $\hbar = h/2\pi = 1.055\times10^{-34}\un{J\,s}$. The operator $\hat H$, the \emph{Hamiltonian}, is the quantum version of the energy (Chapter~\ref{ch:analytical}), with momentum replaced by the operator $\hat p = -i\hbar\,\partial/\partial x$. For a free particle, a plane wave $e^{i(kx-\omega t)}$ solves it with $p = \hbar k$ and $E = \hbar\omega = \hbar^2k^2/2m$: de~Broglie's relation and Einstein's, together.
+
+Because the equation is first order in time, the wavefunction now determines the wavefunction forever. Quantum evolution is perfectly deterministic. The randomness enters only at measurement.
+
+The most useful solutions are \emph{stationary states}, $\psi = \phi(x)e^{-iEt/\hbar}$, whose probability density does not change in time. Substituting gives the \textbf{time-independent Schr\"odinger equation}
+\[
+  -\frac{\hbar^2}{2m}\phi'' + V\phi = E\phi .
+\]
+It is an eigenvalue equation (Chapter~\ref{ch:math}): we look for the energies $E$ for which a well-behaved solution exists. Any other state is a superposition of stationary states, each rotating at its own frequency $E/\hbar$.
+
+\section{The particle in a box}
+
+Put a particle in a one-dimensional box of length $L$ with infinitely high walls, so $\phi = 0$ at $x=0$ and $x=L$. Inside, $\phi'' = -k^2\phi$ with $k^2 = 2mE/\hbar^2$, so $\phi = A\sin kx$, and fitting the wave in requires $kL = n\pi$:
+\[
+  \phi_n(x) = \sqrt{\frac2L}\sin\frac{n\pi x}{L},\qquad E_n = \frac{n^2\pi^2\hbar^2}{2mL^2},\qquad n = 1,2,3,\dots
+\]
+These are exactly the standing waves on a string (Chapter~\ref{ch:waves}). Three lessons generalize:
+\begin{itemize}[itemsep=3pt]
+  \item \textbf{Confinement gives quantization.} The energy is discrete because the wave has to fit.
+  \item \textbf{There is a zero-point energy.} The lowest energy is not zero. A confined particle cannot sit still.
+  \item \textbf{Smaller boxes mean bigger energies}, as $1/L^2$. An electron in an atom-sized box ($0.1\un{nm}$) has energies of tens of eV; a proton in a nucleus-sized box ($10^{-15}\un{m}$) has energies of tens of MeV. That factor of a million is the ratio between chemical and nuclear energy.
+\end{itemize}
+Quantum dots --- semiconductor crystals a few nanometres across --- are boxes for electrons, and their colour is set by their size: the same material glows red or blue depending on how big the dot is.
+
+\begin{center}
+\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}
+  \fill[ascgraybg] (-0.35,-0.1) rectangle (0,6.0);
+  \fill[ascgraybg] (4,-0.1) rectangle (4.35,6.0);
+  \draw[line width=1.2pt] (0,6.0) -- (0,-0.1) -- (4,-0.1) -- (4,6.0);
+  \foreach \n/\E/\lab in {1/0.6/{$E_1$}, 2/2.4/{$4E_1$}, 3/5.4/{$9E_1$}} {
+    \draw[ascrule] (0,\E) -- (4,\E);
+    \draw[ascblue, thick, domain=0:4, samples=80] plot (\x, {\E + 0.42*sin(\n*45*\x)});
+    \node[font=\small, anchor=west] at (4.5,\E) {$n=\n$, \ \lab};
+  }
+  \node[font=\small] at (2,-0.45) {$L$};
+\end{tikzpicture}
+
+{\small The three lowest states of a particle in a box, each drawn at the height of its energy. Each is a standing wave that fits a whole number of half-wavelengths between the walls, and the energies grow as $n^2$.}
+\end{minipage}
+\end{center}
+
+\section{The uncertainty principle}
+
+A wave packet localized within $\Delta x$ must contain wavenumbers spread over $\Delta k\gtrsim1/\Delta x$ (Chapter~\ref{ch:math}). With $p = \hbar k$:
+
+\begin{law}[The Heisenberg uncertainty principle]
+\[
+  \Delta x\,\Delta p\ge\frac{\hbar}{2}.
+\]
+\end{law}
+
+This is not a statement about clumsy measurements. It says that a particle \emph{does not have} a precise position and momentum at the same time, because a wave cannot be both localized and of definite wavelength.
+
+The uncertainty principle is also the physicist's best estimation tool. It explains why atoms do not collapse. Confine an electron within radius $r$ of a proton and its momentum must be at least $\sim\hbar/r$, giving kinetic energy $\sim\hbar^2/2mr^2$. The potential energy is $-e^2/4\pi\epsilon_0r$. Squeezing lowers the potential energy but raises the kinetic energy, and the total
+\[
+  E(r)\approx\frac{\hbar^2}{2mr^2} - \frac{e^2}{4\pi\epsilon_0r}
+\]
+is minimized at the \emph{Bohr radius} $a_0 = 4\pi\epsilon_0\hbar^2/me^2 = 0.053\un{nm}$, with $E = -13.6\un{eV}$. These are exactly the true size and binding energy of hydrogen. Matter is stable, and has the size it does, because of the uncertainty principle.
+
+\section{Tunnelling}
+
+A classical ball without enough energy to climb a hill is reflected. A quantum particle can pass through. Inside a barrier where $V>E$, the Schr\"odinger equation gives exponentially decaying solutions $e^{-\kappa x}$ with $\kappa = \sqrt{2m(V-E)}/\hbar$ instead of oscillations, so the wavefunction leaks through a barrier of width $a$ with transmission probability
+\[
+  T\approx e^{-2\kappa a}.
+\]
+Tunnelling is everywhere. It lets alpha particles escape nuclei, with half-lives from microseconds to billions of years set by tiny differences in barrier thickness (Chapter~\ref{ch:nuclear}). It lets protons in the Sun's core fuse despite having a thousand times too little energy to climb their electric repulsion (Problem~\ref{prob:gamow}). It is how a scanning tunnelling microscope images individual atoms, how flash memory stores bits, and how some enzymes speed up reactions.
+
+\begin{keyidea}
+Tunnelling probability goes like $e^{-2\kappa a}$, and $\kappa\propto1/\hbar$. As a function of $\hbar$, it is $e^{-c/\hbar}$: smaller than any power of $\hbar$. It vanishes at every order of an expansion around classical physics. That is why this book's hardest problems are marked $e^{-1/\epsilon}$: like tunnelling, they cannot be reached by perturbing the obvious.
+\end{keyidea}
+
+\section{The quantum harmonic oscillator}
+
+For $V = \tfrac12m\omega^2x^2$ (Chapter~\ref{ch:sho}), there is an elegant algebraic solution. Define the \emph{ladder operators}
+\[
+  \hat a = \sqrt{\frac{m\omega}{2\hbar}}\left(\hat x + \frac{i\hat p}{m\omega}\right), \qquad
+  \hat a^\dagger = \sqrt{\frac{m\omega}{2\hbar}}\left(\hat x - \frac{i\hat p}{m\omega}\right).
+\]
+Using $[\hat x,\hat p] = i\hbar$ (\S\ref{sec:formalism}), one finds $[\hat a,\hat a^\dagger] = 1$ and
+\[
+  \hat H = \hbar\omega\left(\hat a^\dagger\hat a + \tfrac12\right).
+\]
+Then $\hat a^\dagger$ raises the energy by exactly $\hbar\omega$ and $\hat a$ lowers it. The ladder must stop at a ground state with $\hat a\ket0 = 0$, which is a Gaussian, and the energies are
+\[
+  E_n = \left(n+\tfrac12\right)\hbar\omega .
+\]
+Evenly spaced rungs, with a zero-point energy $\tfrac12\hbar\omega$. This is the most important exactly solvable problem in physics. Molecular vibrations are quantized this way (Chapter~\ref{ch:amo}); so are lattice vibrations, whose quanta are \emph{phonons} (Chapter~\ref{ch:condmat}); and in quantum field theory, $\hat a^\dagger$ becomes the operator that creates a particle (Chapter~\ref{ch:qft}).
+
+\section{The formalism}
+\label{sec:formalism}
+
+By the late 1920s, Dirac and von Neumann had distilled quantum mechanics into a short list of rules. They are worth stating cleanly.
+
+\begin{law}[The postulates of quantum mechanics]
+\begin{enumerate}[label=(\arabic*),itemsep=3pt]
+  \item The state of a system is a unit vector $\ket\psi$ in a complex vector space with an inner product (a \emph{Hilbert space}).
+  \item Every observable is a Hermitian operator $\hat A$. The possible results of measuring it are its eigenvalues $a$.
+  \item If the system is in state $\ket\psi$, the probability of getting result $a$ is $\abs{\braket{a}{\psi}}^2$, where $\ket a$ is the corresponding eigenvector. Immediately after the measurement, the state is $\ket a$.
+  \item Between measurements, the state evolves by the Schr\"odinger equation, $i\hbar\,\tfrac{\dd}{\dd t}\ket\psi = \hat H\ket\psi$.
+\end{enumerate}
+\end{law}
+
+The wavefunction $\psi(x)$ is just the component of $\ket\psi$ along the position eigenstate $\ket x$. Hermitian operators have real eigenvalues and orthogonal eigenvectors (Chapter~\ref{ch:math}), which is why measurement results are real numbers and why distinct outcomes are mutually exclusive. The average of many measurements is the \emph{expectation value} $\expval{\hat A} = \bra\psi\hat A\ket\psi$.
+
+The deepest new feature is that operators need not commute. Position and momentum satisfy
+\[
+  [\hat x,\hat p] = \hat x\hat p - \hat p\hat x = i\hbar,
+\]
+exactly the classical Poisson bracket $\{x,p\} = 1$ multiplied by $i\hbar$ (Chapter~\ref{ch:analytical}). Two observables can have definite values simultaneously only if they commute, and in general
+\[
+  \Delta A\,\Delta B\ge\tfrac12\abs{\expval{[\hat A,\hat B]}},
+\]
+which gives the Heisenberg principle as a special case.
+
+How does classical mechanics emerge? \textbf{Ehrenfest's theorem} says that expectation values obey $\tfrac{\dd}{\dd t}\expval{\hat x} = \expval{\hat p}/m$ and $\tfrac{\dd}{\dd t}\expval{\hat p} = -\expval{V'(\hat x)}$: Newton's laws on average. When the wave packet is narrow compared to the scale on which $V$ varies, the averages follow classical trajectories.
+
+\section{Spin and the two-level system}
+
+In 1922 Stern and Gerlach sent a beam of silver atoms through a nonuniform magnetic field. Classically, randomly oriented magnetic moments should spread the beam into a smear. Instead it split cleanly into \emph{two}. Electrons carry an intrinsic angular momentum, \emph{spin}, whose component along any axis can only be $+\hbar/2$ or $-\hbar/2$.
+
+Spin-$\tfrac12$ is the simplest quantum system, and the cleanest place to see quantum mechanics work. Its states live in a two-dimensional space with basis $\ket\uparrow$, $\ket\downarrow$ (spin up or down along $z$). The general state is
+\[
+  \ket\psi = \alpha\ket\uparrow + \beta\ket\downarrow,\qquad\abs\alpha^2+\abs\beta^2 = 1 .
+\]
+The spin components are $\hat S_i = \tfrac\hbar2\sigma_i$, with the \emph{Pauli matrices}
+\[
+  \sigma_x = \begin{pmatrix}0&1\\1&0\end{pmatrix},\quad
+  \sigma_y = \begin{pmatrix}0&-i\\i&0\end{pmatrix},\quad
+  \sigma_z = \begin{pmatrix}1&0\\0&-1\end{pmatrix}.
+\]
+The state ``spin up along $x$'' is $(\ket\uparrow+\ket\downarrow)/\sqrt2$. Measure its $z$-component and you get up or down with probability $\tfrac12$ each. Send the up-along-$z$ survivors through an $x$-measurement, then a $z$-measurement again, and half of them come out \emph{down}: the $x$-measurement erased the $z$-information. No classical arrow behaves like this.
+
+In a magnetic field, a spin precesses around the field at the \emph{Larmor frequency}, proportional to the field. For protons in a $3\un{T}$ magnet it is $128\un{MHz}$, which is the radio frequency that magnetic resonance imaging listens to (Chapter~\ref{ch:medical}). A two-level system of any kind --- spin, an atom with two relevant levels, a superconducting circuit --- is a \emph{qubit}, the unit of quantum information (Chapter~\ref{ch:qinfo}).
+
+\section{Angular momentum and the hydrogen atom}
+
+Orbital angular momentum $\hat{\vb L} = \hat{\vb r}\times\hat{\vb p}$ has components that do not commute: $[\hat L_x,\hat L_y] = i\hbar\hat L_z$. So we can know $\hat L^2$ and one component, say $\hat L_z$, but not all three. The algebra alone forces the eigenvalues:
+\[
+  L^2 = \ell(\ell+1)\hbar^2,\quad\ell = 0,1,2,\dots;\qquad L_z = m\hbar,\quad m = -\ell,\dots,\ell.
+\]
+(Spin is the same algebra allowing half-integer $\ell$, which orbital motion cannot.)
+
+For the \textbf{hydrogen atom}, $V = -e^2/4\pi\epsilon_0 r$. Because the potential is spherically symmetric, the angular part of the wavefunction is fixed by angular momentum, and the radial equation can be solved exactly. The energies are
+\[
+  E_n = -\frac{13.6\un{eV}}{n^2},\qquad n = 1,2,3,\dots,
+\]
+with $\ell = 0,\dots,n-1$ and $m = -\ell,\dots,\ell$. Each level has $n^2$ states (times two for spin). States with $\ell = 0,1,2,3$ are called $s,p,d,f$ \emph{orbitals}, and their shapes are the familiar spheres, dumbbells, and cloverleaves of chemistry. When an electron drops from level $n$ to $n'$, it emits a photon with energy $E_n - E_{n'}$. The visible \emph{Balmer} lines (down to $n'=2$) are the red, blue-green, and violet lines that had puzzled spectroscopists for decades. Refinements --- fine structure, the Lamb shift, hyperfine splitting --- are the subject of Chapter~\ref{ch:amo}.
+
+\section{Identical particles}
+
+All electrons are identical, not just similar. Swapping two of them cannot change any measurable quantity, so the wavefunction can at most change sign. Nature uses both options:
+\begin{itemize}[itemsep=3pt]
+  \item \textbf{Bosons} (integer spin: photons, gluons, helium-4 atoms) have symmetric wavefunctions, $\psi(x_1,x_2) = +\psi(x_2,x_1)$.
+  \item \textbf{Fermions} (half-integer spin: electrons, protons, neutrons, quarks) have antisymmetric ones, $\psi(x_1,x_2) = -\psi(x_2,x_1)$.
+\end{itemize}
+The connection between spin and symmetry is the \emph{spin-statistics theorem}, which follows from relativistic quantum field theory (Chapter~\ref{ch:qft}). For fermions, if both particles are in the same state, the antisymmetric wavefunction vanishes:
+
+\begin{law}[The Pauli exclusion principle]
+No two identical fermions can occupy the same quantum state.
+\end{law}
+
+This one principle is responsible for the periodic table. Electrons fill an atom's orbitals from the bottom up, two per orbital (one of each spin), and the chemistry of an element is set by its outermost, partly filled shell. It makes matter take up space: you cannot squeeze two atoms into each other because their electrons would have to share states. It holds up white dwarfs and neutron stars (Chapter~\ref{ch:astro}). And bosons' opposite preference, to bunch into the same state, gives lasers and Bose--Einstein condensates (Chapter~\ref{ch:statmech}).
+
+\section{Approximation methods}
+
+Almost nothing beyond the box, the oscillator, and hydrogen can be solved exactly. Physicists live on approximations --- the spherical cows of quantum mechanics.
+
+\textbf{Perturbation theory.} If $\hat H = \hat H_0 + \lambda\hat H'$, with $\hat H_0$ solvable and $\lambda$ small, the energies shift by
+\[
+  E_n \approx E_n^{(0)} + \lambda\bra{n}\hat H'\ket{n} + \lambda^2\sum_{m\ne n}\frac{\abs{\bra m\hat H'\ket n}^2}{E_n^{(0)} - E_m^{(0)}} + \cdots
+\]
+The first-order shift is just the average of the perturbation in the unperturbed state. The second-order shift always lowers the ground state: perturbations push levels apart.
+
+\textbf{The variational principle.} For \emph{any} normalized trial state, $\bra\psi\hat H\ket\psi\ge E_0$. Guess a state with some adjustable parameters, minimize its energy, and you get an upper bound on the ground state energy --- often an excellent one. This is how quantum chemistry computes molecules (Chapter~\ref{ch:chem}).
+
+\textbf{Fermi's golden rule.} A perturbation can cause transitions between states. The rate from state $i$ to a continuum of final states $f$ is
+\[
+  \Gamma = \frac{2\pi}{\hbar}\abs{\bra f\hat H'\ket i}^2\rho(E_f),
+\]
+where $\rho$ is the density of final states. It governs how atoms absorb and emit light, how nuclei decay, and how particles scatter.
+
+\section{Entanglement}
+
+Two spin-$\tfrac12$ particles can be in the state
+\[
+  \ket{\Psi^-} = \frac{1}{\sqrt2}\big(\ket{\uparrow\downarrow} - \ket{\downarrow\uparrow}\big).
+\]
+Neither particle has a definite spin, yet their spins are perfectly anticorrelated along \emph{every} axis. The state cannot be written as (state of particle 1) times (state of particle 2): the particles are \emph{entangled}.
+
+In 1935 Einstein, Podolsky, and Rosen argued that this proved quantum mechanics incomplete: measuring particle 1 seems to instantly fix particle 2, however far away, so particle 2 must have had a definite spin all along, carried by some ``hidden variable.'' In 1964 John Bell proved that \emph{any} theory with such local hidden variables obeys an inequality that quantum mechanics violates (Chapter~\ref{ch:qinfo}). Experiments, culminating in loophole-free tests in 2015 and the 2022 Nobel Prize, side with quantum mechanics. Nature is not locally realistic. Yet entanglement cannot be used to send signals faster than light: the correlations only become visible when the two sides compare notes by ordinary means.
+
+\section{What does it mean?}
+
+Quantum mechanics has two rules for how states change: smooth, deterministic Schr\"odinger evolution, and abrupt, random collapse at measurement. But measuring devices are made of atoms, which obey the Schr\"odinger equation. When, exactly, does collapse happen? This is the \emph{measurement problem}, and it has several proposed resolutions:
+\begin{itemize}[itemsep=3pt]
+  \item \textbf{Copenhagen}: the wavefunction is a tool for predicting measurement outcomes, not a description of reality; asking what happens between measurements is not meaningful.
+  \item \textbf{Many worlds}: there is no collapse. The wavefunction of the universe evolves smoothly, and every outcome happens in a different branch.
+  \item \textbf{Pilot waves} (de Broglie--Bohm): particles have definite positions at all times, guided by the wavefunction, at the cost of explicit nonlocality.
+  \item \textbf{Objective collapse}: the Schr\"odinger equation is slightly wrong, and wavefunctions spontaneously collapse at a rate that grows with size.
+\end{itemize}
+What all agree on is \emph{decoherence}: when a quantum system interacts with a large environment, the interference terms between macroscopically different states become unobservable extremely fast. This explains why we never see a superposed cat, though not, by itself, why we see one outcome rather than another. Most physicists, most of the time, follow the advice attributed to David Mermin: shut up and calculate. The calculations work.
+
+\section{Problems}
+
+\begin{problems}
+\prob{1}\core Compute the de Broglie wavelength of an electron with kinetic energy $100\un{eV}$ and of a $0.15\un{kg}$ baseball at $40\un{m/s}$. Why can electron beams be diffracted by crystals, while baseballs are never diffracted by doorways?
+
+\prob{1} Normalize $\psi(x) = Ae^{-\abs x/a}$, and find the probability that the particle is within $a$ of the origin. Compute $\expval x$ and $\expval{x^2}$.
+
+\prob{1} Find the energies of the three lowest levels of an electron in a one-dimensional box of width $1\un{nm}$, and the wavelength of a photon emitted in the $2\to1$ transition. Is it visible?
+
+\prob{1} Sodium has a work function of $2.3\un{eV}$. What is the maximum kinetic energy of electrons ejected by $400\un{nm}$ light? By $600\un{nm}$ light?
+
+\prob{2}\core Using the uncertainty principle estimate $E(r)\approx\hbar^2/2mr^2 - e^2/4\pi\epsilon_0r$, find the size and energy of the hydrogen ground state. Repeat for a ``muonic hydrogen'' atom in which the electron is replaced by a muon, $207$ times heavier. How much smaller is it?
+
+\prob{2} An electron with energy $1\un{eV}$ meets a rectangular barrier of height $5\un{eV}$ and width $0.5\un{nm}$. Estimate the tunnelling probability. By what factor does it change if the width is doubled? If the electron is replaced by a proton?
+
+\prob{2}\core Using $[\hat a,\hat a^\dagger] = 1$, show that $[\hat H,\hat a^\dagger] = \hbar\omega\,\hat a^\dagger$. Deduce that if $\ket n$ has energy $E$, then $\hat a^\dagger\ket n$ has energy $E+\hbar\omega$. Then solve $\hat a\ket0 = 0$ as a differential equation in position space to find the ground-state wavefunction.
+
+\prob{2} Find the eigenvalues and eigenvectors of $\sigma_x$, $\sigma_y$, and $\sigma_z$. A spin is prepared up along $x$. Find the probabilities of each outcome when measuring along $z$, and along an axis at angle $\theta$ to $x$ in the $x$--$z$ plane. Describe the outcome statistics of the sequence $z\to x\to z$.
+
+\prob{2}\core Verify $[\hat x,\hat p] = i\hbar$ by acting on an arbitrary test function $f(x)$. Then use $[\hat x_i,\hat p_j] = i\hbar\delta_{ij}$ to show $[\hat L_x,\hat L_y] = i\hbar\hat L_z$.
+
+\prob{2} An anharmonic oscillator has $\hat H = \hat H_{\text{SHO}} + \lambda\hat x^4$. Using $\expval{x^4} = 3(\hbar/2m\omega)^2$ in the ground state, find the first-order shift of the ground state energy. When is first-order perturbation theory trustworthy here?
+
+\prob{2} Use a Gaussian trial function $\psi\propto e^{-r^2/2b^2}$ for the hydrogen atom to show that the variational energy is minimized at $E = -\tfrac{8}{3\pi}\times13.6\un{eV}\approx-11.5\un{eV}$. Why is this above the true ground state energy, and why is the Gaussian a worse guess than $e^{-r/a}$?
+
+\prob{3}\core A particle moves in an attractive delta-function potential $V(x) = -\alpha\,\delta(x)$. Show that there is exactly one bound state, with $\psi\propto e^{-\kappa\abs x}$ and energy $E = -m\alpha^2/2\hbar^2$.
+\hint{Away from $x=0$ the particle is free. Integrate the Schr\"odinger equation across $x = 0$ to find the jump in $\psi'$.}
+
+\prob{3}\core \label{prob:gamow} \emph{(Why the Sun shines.)} Two protons must approach to about $1\un{fm}$ to fuse. Show that the Coulomb barrier there is about $1\un{MeV}$, while the thermal energy in the Sun's core ($T\approx1.5\times10^7\un{K}$) is about $1\un{keV}$. Classically, fusion is impossible. Quantum mechanically, the tunnelling probability at energy $E$ is about $e^{-\sqrt{E_G/E}}$, where the \emph{Gamow energy} is $E_G = 2\mu c^2(\pi\alpha)^2\approx 490\un{keV}$ for two protons ($\mu = m_p/2$, $\alpha\approx1/137$). Evaluate this at $E = 1\un{keV}$ and $E=5\un{keV}$. Combining it with the Boltzmann tail, explain why fusion happens mainly at energies of several $\kB T$, and why the Sun burns so slowly.
+
+\prob{3} \emph{(The bomb tester.)} A Mach--Zehnder interferometer splits a single photon into two paths and recombines them so that, by interference, it always exits through detector $A$, never $B$. A bomb that explodes if a photon touches it may or may not be placed in one path. Show that if a bomb is present, there is a $25\%$ chance that detector $B$ clicks --- certifying that a live bomb is in the path, even though the photon never touched it. (Elitzur and Vaidman, 1993.) By using the quantum Zeno effect, the success rate can be pushed arbitrarily close to $100\%$.
+\end{problems}
+
+\begin{reading}
+\rd{Griffiths and Schroeter, \emph{Introduction to Quantum Mechanics} (3rd ed.)}{The most accessible introduction, built on elementary exercises plus a rich variety of harder problems.}
+\rd{John S.\ Townsend, \emph{A Modern Approach to Quantum Mechanics}}{Starts with spin and Stern--Gerlach rather than wavefunctions, which many find clearer.}
+\rd{\emph{The Feynman Lectures on Physics}, Volume III}{Quantum mechanics from amplitudes and two-state systems, with unmatched physical insight.}
+\rd{R.\ Shankar, \emph{Principles of Quantum Mechanics}}{A thorough, more mathematical treatment, with an excellent review of linear algebra.}
+\rd{Robert Littlejohn's lecture notes (Berkeley Physics 221)}{The clearest graduate-level treatment, freely available online.}
+\end{reading}

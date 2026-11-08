@@ -1,0 +1,29 @@
+\solchapter{chaos}
+
+\sol{chaos}{1} $x - x^3 = x(1-x^2)$ vanishes at $x = 0,\pm1$. With $f'(x) = 1-3x^2$: $f'(0) = 1$, unstable; $f'(\pm1) = -2$, stable. Every positive start flows to $+1$, every negative start to $-1$. A linear equation has a single fixed point, approached or fled exponentially; it cannot produce two stable states (bistability) or saturation.
+
+\sol{chaos}{2} For $r<0$, fixed points at $x = \pm\sqrt{-r}$; since $f'(x) = 2x$, the negative one is stable and the positive one unstable. They merge at $r = 0$ and vanish for $r>0$, after which $x$ runs off to infinity. For small $r>0$, $\dot x$ is tiny near $x = 0$, the ``ghost'' of the vanished fixed points, and the time to pass is $\int_{-\infty}^{\infty}\dd x/(r+x^2) = \pi/\sqrt r$: arbitrarily long as $r\to0^+$.
+
+\sol{chaos}{3} The Jacobian $\begin{pmatrix}0&1\\-1&-0.2\end{pmatrix}$ has $\lambda^2 + 0.2\lambda + 1 = 0$, so $\lambda = -0.1\pm0.995i$: a stable spiral. It is the damped harmonic oscillator $\ddot x + 0.2\dot x + x = 0$, with $Q = 5$.
+
+\sol{chaos}{4} Fixed points: $x = 0$ and $x^* = 1-1/r$. Since $F'(x) = r(1-2x)$, $F'(x^*) = 2-r$, and $\abs{2-r}<1$ for $1<r<3$. Dividing $F(F(x)) - x$ by $x(x-x^*)$ leaves $r^2x^2 - r(r+1)x + (r+1) = 0$, whose roots $x_\pm = [(r+1)\pm\sqrt{(r+1)(r-3)}]/2r$ are real for $r>3$: the 2-cycle. Its stability multiplier is $F'(x_+)F'(x_-) = r^2[1 - 2(x_++x_-) + 4x_+x_-] = -r^2 + 2r + 4$, which equals $1$ at $r = 3$ and reaches $-1$ when $r^2-2r-5 = 0$, at $r = 1+\sqrt6$.
+
+\sol{chaos}{5} Nearby points separate as $\delta_n = 2^n\delta_0$ (while small), so $\lambda = \ln2$. Writing $x_0 = 0.b_1b_2b_3\ldots$ in binary, the map discards the leading digit and shifts the rest left: after $n$ steps the leading digit of $x_n$ is $b_{n+1}$. Knowing $x_0$ to $k$ bits lets you predict $k$ steps and no more. The future is encoded in ever-deeper digits of the initial condition, which no finite measurement can supply.
+
+\sol{chaos}{6} $t\approx(1/\lambda)\ln(10^5) = 1.5\times11.5\approx17$ days. A thousandfold improvement adds $1.5\times\ln1000\approx10$ days. (Real forecasts are good for about ten days, because model errors grow too.)
+
+\sol{chaos}{7} Contours of $E = \tfrac12m\ell^2\dot\theta^2 - mg\ell\cos\theta$: closed loops around $\theta = 0$ for $E<mg\ell$ (swinging), wavy open curves for $E>mg\ell$ (rotating), and the separatrix $E = mg\ell$, $\dot\theta = \pm2\sqrt{g/\ell}\cos(\theta/2)$, through the saddles at $\pm\pi$. Near the saddle, motion is governed by $\ddot\phi = (g/\ell)\phi$, so a trajectory passing within $\epsilon$ of it spends a time $\sim\sqrt{\ell/g}\ln(1/\epsilon)$ there. In closed form, as $\theta_0\to\pi$,
+\[
+  T = 4\sqrt{\frac{\ell}{g}}\,K\!\left(\sin\frac{\theta_0}{2}\right)\approx4\sqrt{\frac{\ell}{g}}\,\ln\frac{4}{\cos(\theta_0/2)},
+\]
+a logarithmic divergence.
+
+\sol{chaos}{8} At the origin the Jacobian is block-diagonal: $z$ decays at rate $\beta$, and the $(x,y)$ block $\begin{pmatrix}-\sigma&\sigma\\\rho&-1\end{pmatrix}$ has negative trace and determinant $\sigma(1-\rho)$, positive for $\rho<1$, so both eigenvalues have negative real parts: stable. Fixed points require $x = y$, $x^2 = \beta z$, and $x(\rho - 1 - z) = 0$; the nonzero solutions have $z = \rho - 1$ and $x = y = \pm\sqrt{\beta(\rho-1)}$, which exist for $\rho>1$. At $\rho = 1$ convection begins, in a pitchfork bifurcation.
+
+\sol{chaos}{9} The Cantor set is two copies of itself at scale $\tfrac13$: $D = \ln2/\ln3 = 0.63$. The Koch curve is four copies at scale $\tfrac13$: $D = \ln4/\ln3 = 1.26$. Each step multiplies the perimeter by $\tfrac43$, so it diverges. Starting from a triangle of area $A_0$, step $n$ adds $3\cdot4^{n-1}$ triangles each of area $A_0/9^n$, a total of $A_0\cdot\tfrac34\sum_n(4/9)^n = \tfrac35A_0$, so the final area is $\tfrac85A_0$: finite.
+
+\sol{chaos}{10} The damped pendulum's state is $(\theta,\dot\theta)$: a two-dimensional autonomous flow, which by Poincar\'e--Bendixson can only settle onto fixed points or closed orbits (and friction makes it settle at rest). A periodic drive makes the equations depend explicitly on time; treating the drive's phase $\Omega t$ as a third variable gives a three-dimensional autonomous flow, where chaos is allowed --- and the driven damped pendulum is indeed chaotic for suitable parameters. Maps are different: invertible maps need at least two dimensions (the H\'enon map), but non-invertible maps like the logistic map can be chaotic in one, because they can fold.
+
+\sol{chaos}{11} $\dot\phi = (\omega_1-\omega_2) - 2K\sin\phi$. A fixed point needs $\sin\phi = (\omega_1-\omega_2)/2K$, possible if and only if $\abs{\omega_1-\omega_2}\le2K$. Just outside, there is no fixed point but a bottleneck: $\phi$ creeps past the ghost of the vanished fixed point, then slips quickly through $2\pi$. These \emph{phase slips} recur with period $2\pi/\sqrt{(\omega_1-\omega_2)^2-4K^2}$, which diverges at the locking threshold --- a saddle-node bifurcation on a circle.
+
+\sol{chaos}{12} The intervals are $0.4495$, $0.0946$, $0.0203$, with ratios $4.75$ and $4.66$ --- already close to $4.669$. If the intervals continue to shrink by $\delta$, the remaining sum is a geometric series: $r_\infty\approx r_4 + (r_4-r_3)/(\delta-1) = 3.5644 + 0.0055 = 3.5699$. A dripping tap's successive intervals $T_{n+1} = F(T_n)$ obey some one-humped return map. Feigenbaum's renormalization argument shows that the cascade's ratios depend only on the map having a smooth quadratic maximum, not on its details, so every such system shares $\delta$.

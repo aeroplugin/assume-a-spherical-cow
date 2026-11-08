@@ -1,0 +1,33 @@
+\solchapter{nuclear}
+
+\sol{nuclear}{1} $R = 1.2\times197^{1/3} = 7.0\un{fm}$. The density is $m_u/(\tfrac43\pi(1.2\un{fm})^3) = 2.3\times10^{17}\un{kg/m^3}$, the same for every nucleus. A teaspoon would weigh $10^{12}\un{kg}$, a billion tonnes. Neutron stars have similar densities, a few times $10^{17}\un{kg/m^3}$: a neutron star is, roughly, one giant nucleus held together by gravity.
+
+\sol{nuclear}{2} The constituents weigh $2(1.007825) + 2(1.008665) = 4.032980\un{u}$; the deficit is $0.030378\un{u}$, or $28.3\un{MeV}$ ($7.07\un{MeV}$ per nucleon). Using hydrogen atoms instead of bare protons makes the electron masses cancel.
+
+\sol{nuclear}{3} $25\%$ is two half-lives: $11\,500$ years. $1\%$ is $\log_2100 = 6.6$ half-lives: $38\,000$ years. The dinosaurs died $66$ million years ago, $11\,500$ half-lives: the remaining fraction, $2^{-11\,500}$, means not a single atom of the original carbon-14 is left. Dinosaur bones are dated from the uranium and potassium isotopes in the surrounding volcanic rock.
+
+\sol{nuclear}{4} $1\un{kg}$ of U-235 has $2.6\times10^{24}$ nuclei, which release $8\times10^{13}\un{J}$ --- nearly three million times as much as $1\un{kg}$ of coal. A power station producing $1\un{GW}$ of heat fissions about $1\un{kg}$ per day; one producing $1\un{GW}$ of electricity at $33\%$ efficiency, about $3\un{kg}$. (A coal plant of the same output burns about $10\,000$ tonnes a day.)
+
+\sol{nuclear}{5} The carrier's mass is $mc^2\approx\hbar c/\text{range}$, which is $197\un{MeV\,fm}/1.4\un{fm} = 140\un{MeV}$: the pion. For the weak force, $197\un{MeV\,fm}/(2\times10^{-3}\un{fm})\approx100\un{GeV}$, in excellent agreement with the $W$ boson.
+
+\sol{nuclear}{6} $\partial B/\partial Z = -2a_CZ/A^{1/3} + 4a_A(A-2Z)/A = 0$ gives $Z = A/(2 + (a_C/2a_A)A^{2/3})$, with $a_C/2a_A = 0.71/46.4 = 0.015$. For $A = 56$, $Z = 25$ (iron is $26$); for $A = 238$, $Z = 92$, exactly uranium. Without the Coulomb term, the asymmetry term would make $Z = A/2$; Coulomb repulsion pushes heavy nuclei toward a neutron excess.
+
+\sol{nuclear}{7} The Sun completes $L/(26.7\un{MeV}) = 8.9\times10^{37}$ reactions per second, emitting $1.8\times10^{38}$ neutrinos per second. Spread over a sphere of radius $1\un{AU}$, that is $6\times10^{14}$ per square metre, or $6\times10^{10}$ per square centimetre per second --- sixty billion through your fingernail every second, day and night (they pass through the Earth too). Their weak-interaction cross-section is around $10^{-44}\un{cm^2}$, so the mean free path in lead is of order light-years; the chance that a given neutrino interacts in your body is about $10^{-20}$.
+
+\sol{nuclear}{8} Splitting $A$ into two halves of $A/2$ changes the surface term by $a_SA^{2/3}(2\cdot2^{-2/3} - 1) = 0.26\,a_SA^{2/3} = +183\un{MeV}$ (a cost: more surface), and the Coulomb term by $a_CZ^2A^{-1/3}(1 - 2\cdot2^{-2}\cdot2^{1/3}) = 0.37\,a_CZ^2/A^{1/3} = -359\un{MeV}$ (a gain: the halves are farther apart). The energy released is about $180\un{MeV}$. Coulomb repulsion drives fission; surface tension resists it, which is what creates the barrier that keeps heavy nuclei from splitting spontaneously all the time.
+
+\sol{nuclear}{9} One gram of radium is $2.7\times10^{21}$ atoms, and $\lambda = \ln2/t_{1/2} = 1.37\times10^{-11}\un{s^{-1}}$, so the activity is $3.7\times10^{10}$ decays per second --- the curie. Your potassium-40 is $0.017\un{g}$, or $2.5\times10^{20}$ atoms, with $\lambda = 1.76\times10^{-17}\un{s^{-1}}$: about $4400$ decays per second, all the time, in your own body.
+
+\sol{nuclear}{10} The half-life is inversely proportional to the tunnelling probability (times an attempt rate that varies little), so $\ln t_{1/2} = 2\pi\eta + \text{const}$. Since $v = \sqrt{2E/m}$, $\eta\propto Z/\sqrt E$, which is the Geiger--Nuttall law. Numerically, $2\pi\eta = 4\pi Z\alpha/(v/c)$, with $v/c = \sqrt{2E/m_\alpha c^2}$ and $m_\alpha c^2 = 3727\un{MeV}$. For $Z = 84$: at $5\un{MeV}$, $2\pi\eta = 149$; at $9\un{MeV}$, $111$. The half-lives differ by $e^{38}\approx10^{16}$. For real polonium isotopes, Po-210 ($5.3\un{MeV}$, $138$ days) and Po-212 ($8.95\un{MeV}$, $0.3\un{\mu s}$), the formula predicts a ratio of $e^{33}\approx3\times10^{14}$, against the measured $4\times10^{13}$: thirteen orders of magnitude captured to within a factor of ten, by a one-line formula. (The daughter nucleus, lead, has $Z = 82$, which makes the agreement slightly better still.)
+
+\sol{nuclear}{11} Neutrons diffuse with $D = \ell v/3$ and multiply at the rate $(\nu-1)/\tau$, where $\tau = \ell/v$ is the time between collisions (counting each collision as a fission, which is generous). The neutron density obeys
+\[
+  \pdv{n}{t} = D\nabla^2n + \frac{\nu-1}{\tau}n.
+\]
+In a sphere with $n = 0$ at the surface, the slowest-decaying mode is $n\propto\sin(\pi r/R)/r$, with $\nabla^2n = -(\pi/R)^2n$. It grows if $(\nu-1)/\tau>D\pi^2/R^2$, i.e.\ for
+\[
+  R>R_c = \pi\sqrt{\frac{D\tau}{\nu-1}} = \frac{\pi\ell}{\sqrt{3(\nu-1)}}.
+\]
+For $\ell = 4\un{cm}$ and $\nu = 2.5$, $R_c\approx6\un{cm}$ and the mass is $\tfrac43\pi R_c^3\times19\un{g/cm^3}\approx17\un{kg}$. (The true bare-sphere value is $52\un{kg}$, with $R = 8.5\un{cm}$: not every collision causes a fission.) A reflector sends escaping neutrons back in, effectively removing the boundary condition $n = 0$; it can reduce the critical mass by a factor of two or three.
+
+\sol{nuclear}{12} Binding energy per nucleon peaks near iron and nickel, so fusing iron into anything heavier absorbs energy instead of releasing it. A core of iron can no longer support the star: it collapses, and the result is a supernova. The Coulomb barrier for a proton to enter a $Z = 50$ nucleus ($R\approx1.2(1+120^{1/3})\un{fm} = 7\un{fm}$) is $50\times1.44\un{MeV\,fm}/7\un{fm}\approx10\un{MeV}$, while even at $3\times10^9\un{K}$, $\kB T\approx0.26\un{MeV}$: tunnelling is hopeless. Neutrons feel no Coulomb barrier, so they are absorbed at any energy. In the slow s-process (in old red giants), each neutron capture is followed by beta decay before the next capture, building up the stable nuclei one step at a time. It stops at bismuth-209: capturing a neutron gives bismuth-210, which decays to polonium-210, which alpha-decays back to lead-206, so the chain cycles. The heaviest elements, thorium and uranium, need the r-process, where neutrons are captured faster than the nuclei can decay --- in neutron star mergers (Chapter~\ref{ch:gw}) and perhaps some supernovae.

@@ -1,0 +1,35 @@
+\solchapter{gw}
+
+\sol{gw}{1} $\Delta L = \tfrac12hL = 2\times10^{-18}\un{m}$, about a thousandth of a proton's diameter. LIGO can detect this because it averages over the trillions of photons bouncing in its arms, each measurement of position limited by the light's wavelength divided by the square root of the number of photons.
+
+\sol{gw}{2} The radiation comes from the mass quadrupole moment, which depends on the positions squared: rotating a binary by half a turn leaves its mass distribution unchanged (exactly, for equal masses), so the pattern repeats twice per orbit. At $100\un{Hz}$, the orbital frequency is $50\un{Hz}$ and the period $20\un{ms}$.
+
+\sol{gw}{3} $3\Msun c^2 = 5.4\times10^{47}\un{J}$. The Sun will emit $3.8\times10^{26}\un{W}\times10^{10}\un{yr} = 1.2\times10^{44}\un{J}$, so this is $4500$ Suns' lifetimes of output. Over $20\un{ms}$, the power was $3\times10^{49}\un{W}$ --- briefly more than all the stars in the observable universe combined.
+
+\sol{gw}{4} $\ddot{\vb D} = \sum m_i\ddot{\vb r}_i = \sum\vb F_i = 0$, because internal forces cancel in pairs (Newton's third law, or conservation of momentum). In electromagnetism, the dipole is $\vb p = \sum q_i\vb r_i$, and $\ddot{\vb p} = \sum(q_i/m_i)\vb F_i$, which is nonzero unless all particles have the same charge-to-mass ratio: an electron and proton orbiting each other radiate. In gravity, the ``charge'' is the mass itself, so every particle has the same ratio --- this is the equivalence principle. The dipole is just the total mass times the centre of mass, which moves uniformly. (Similarly, the magnetic-dipole analogue is the total angular momentum, also conserved.) Gravitational radiation starts at the quadrupole, which is why it is so weak.
+
+\sol{gw}{5} The light travel time was $130\times10^6\un{yr}\times3.16\times10^7\un{s/yr} = 4\times10^{15}\un{s}$. A delay of a few seconds over that time implies $\abs{v_{\text{gw}}-c}/c\lesssim10^{-15}$. In a single night, this ruled out a large class of alternative theories of gravity.
+
+\sol{gw}{6} With $G\mathcal M/c^2 = 41\un{km}$, $\pi f/c = 1.6\times10^{-6}\un{m^{-1}}$, and $r = 1.3\times10^{25}\un{m}$, $h\approx2\times10^{-21}$. That's within a factor of two of the measured value, from a formula derived by dimensional analysis and the quadrupole formula.
+
+\sol{gw}{7} $a = (GMP^2/4\pi^2)^{1/3}$ with $M = 2.8\Msun$ and $P = 2.8\times10^4\un{s}$: $a = 1.9\times10^9\un{m}$, about three solar radii. Two neutron stars orbit in a space that would fit inside a large star, in less than eight hours, with speeds of hundreds of kilometres per second.
+
+\sol{gw}{8} The orbital frequency is $\sqrt{GM/r^3}/2\pi$, so with $r = 6GM/c^2$ the gravitational-wave frequency (twice the orbital) is $f = c^3/(6^{3/2}\pi GM)$, about $4400\un{Hz}\times\Msun/M$. For $60\Msun$, $f = 73\un{Hz}$, in LIGO's band. For $10^6\Msun$, $f = 4.4\un{mHz}$, far below what ground-based detectors can reach (seismic noise swamps them below about $10\un{Hz}$), and squarely in the band of the planned space detector LISA.
+
+\sol{gw}{9} The quadrupole formula gives the power
+\[
+  P = \frac{32}{5}\frac{G^4}{c^5}\frac{(m_1m_2)^2(m_1+m_2)}{a^5},
+\]
+and setting $\dd E/\dd t = (Gm_1m_2/2a^2)\,\dot a = -P$,
+\[
+  \dot a = -\frac{64}{5}\frac{G^3m_1m_2(m_1+m_2)}{c^5a^3}.
+\]
+Separating variables, $a^3\,\dd a = -K\,\dd t$, where $K$ collects the constants; integrating from $a$ down to $0$ gives $t = a^4/4K$, which is the stated result. For the Earth and Sun, $P\approx200\un{W}$ --- a couple of light bulbs, radiated by a planet. The inspiral time is $10^{23}$ years, ten trillion times the age of the universe. The Sun will die long before.
+
+\sol{gw}{10} The gravitational-wave frequency is twice the orbital frequency, so Kepler's law gives $(\pi f)^2 = GM/a^3$ with $M = m_1+m_2$, i.e.\ $a\propto(GM)^{1/3}f^{-2/3}$, and $\dot f/f = -\tfrac32\dot a/a$. Substituting $\dot a$ from the previous problem,
+\[
+  \dot f = \frac{96}{5}\frac{f}{c^5}\frac{G^3m_1m_2M}{a^4} = \frac{96}{5}\pi^{8/3}\left(\frac{G\mathcal M}{c^3}\right)^{5/3}f^{11/3},
+\]
+since $a^4 = (GM)^{4/3}(\pi f)^{-8/3}$ and $m_1m_2M^{-1/3} = \mathcal M^{5/3}$. So measuring $f$ and $\dot f$ at any moment gives the chirp mass directly. The individual masses affect the signal only through relativistic corrections that become important near the merger, where the signal is briefest, and they are partly degenerate with the black holes' spins: the chirp mass of GW150914 was measured to about $5\%$, the individual masses only to about $15\%$.
+
+\sol{gw}{11} $H_0 = v/d = 3000/40 = 75\un{km\,s^{-1}\,Mpc^{-1}}$. A single event's distance is uncertain by about $15\%$, mostly because the amplitude depends on how the orbit is tilted to our line of sight, which is hard to separate from distance. The galaxy's local velocity, a few hundred km/s, adds another $10\%$. Since errors on independent measurements fall as $1/\sqrt N$, reaching $2\%$ needs about $(15/2)^2\approx50$ events with identified host galaxies. The method needs no cosmic distance ladder, so it can independently test the current tension between measurements of $H_0$.

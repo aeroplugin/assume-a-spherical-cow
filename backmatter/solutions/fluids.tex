@@ -1,0 +1,29 @@
+\solchapter{fluids}
+
+\sol{fluids}{1} $P = \rho gh = 1025\times9.8\times11\,000 = 1.1\times10^8\un{Pa}$, about $1100\un{atm}$. The fractional compression is $P/K = 1.1\times10^8/2.2\times10^9 = 5\%$, so the water there is $5\%$ denser.
+
+\sol{fluids}{2} Floating means weight equals buoyancy: $\rho_{\text{ice}}V = \rho_{\text{sea}}V_{\text{sub}}$, so $V_{\text{sub}}/V = 917/1025 = 89\%$. An ice cube floating in fresh water displaces exactly its own mass of water, and melts into exactly that volume: the level does not change. An iceberg (fresh ice) in seawater displaces seawater, but melts into fresh water, which is $2.5\%$ less dense and so takes up $2.5\%$ more volume than the seawater it displaced: a very slight rise. The serious sea-level rise comes from ice on land.
+
+\sol{fluids}{3} With $\nu_{\text{water}} = 10^{-6}$ and $\nu_{\text{air}} = 1.5\times10^{-5}\un{m^2/s}$: bacterium $(2\times10^{-6})(3\times10^{-5})/10^{-6} = 6\times10^{-5}$; swimmer ($2\un{m}$, $1\un{m/s}$) $2\times10^6$; car ($4\un{m}$, $30\un{m/s}$) $8\times10^6$; aorta $(0.025)(0.3)/(3\times10^{-6}) = 2500$. The swimmer's and car's wakes are fully turbulent. The aorta sits near the transition (about $2000$ for pipes) and becomes briefly turbulent at the peak of each heartbeat.
+
+\sol{fluids}{4} The level falls as $A\,\dd h/\dd t = -a\sqrt{2gh}$, so $\dd h/\sqrt h = -(a/A)\sqrt{2g}\,\dd t$. Integrating from $h_0$ to $0$, $2\sqrt{h_0} = (a/A)\sqrt{2g}\,T$, so $T = (A/a)\sqrt{2h_0/g}$. The outflow speed is $\sqrt{2gh}$, which is largest when the water is deepest.
+
+\sol{fluids}{5} Balancing weight against Stokes drag, $v = 2r^2\rho g/9\eta = 2(10^{-5})^2(1000)(9.8)/(9\times1.8\times10^{-5})\approx1.2\un{cm/s}$. Then $\mathrm{Re} = \rho_{\text{air}}v(2r)/\eta\approx0.02$: tiny, so Stokes' law applies. Droplets fall about a metre a minute, and the gentlest updraft --- a few centimetres per second --- holds them up.
+
+\sol{fluids}{6} $Q\propto R^4$, so the flow falls to $0.8^4 = 0.41$ of its original value, a $59\%$ drop. Restoring it needs $1/0.41 = 2.4$ times the pressure difference.
+
+\sol{fluids}{7} In the rotating frame, the water is at rest under gravity and the centrifugal force: $\partial P/\partial r = \rho\Omega^2r$ and $\partial P/\partial z = -\rho g$. On the free surface $P$ is constant, so $\rho\Omega^2r\,\dd r = \rho g\,\dd z$, giving $z = \Omega^2r^2/2g$. (Equivalently, the surface is a level set of the effective potential $gz - \tfrac12\Omega^2r^2$.) Newton argued the water ``knows'' it rotates relative to absolute space; Mach suggested relative to the distant matter of the universe; general relativity says relative to the local inertial frames, which matter determines.
+
+\sol{fluids}{8} Surface tension pulls up around the perimeter with force $2\pi r\gamma$ (for a fully wetting liquid), holding up a column of weight $\rho g\pi r^2h$, so $h = 2\gamma/\rho gr$. For $r = 0.1\un{mm}$, $h = 2(0.072)/(1000\times9.8\times10^{-4}) = 15\un{cm}$. For xylem, $r = 20\un{\mu m}$ gives only $0.7\un{m}$ --- far short of $100\un{m}$.
+
+\sol{fluids}{9} For tea, $\varepsilon = 0.01/0.3 = 0.03\un{W/kg}$ and $\nu = 10^{-6}$, so $\eta_K = (\nu^3/\varepsilon)^{1/4}\approx7\times10^{-5}\un{m}$, about $0.1\un{mm}$. For the atmosphere, $\nu = 1.5\times10^{-5}$ and $\varepsilon = 10^{-3}$ give $\eta_K\approx1.4\un{mm}$. Below these sizes, viscosity smooths everything out.
+
+\sol{fluids}{10} The Stokes equations are linear and contain no time derivative, so at each instant the flow is fixed uniquely by the velocities of the body's surface at that instant --- there is no inertia and no memory. The body's velocity is therefore a linear function of its rate of change of shape, $\dot X = A(s)\,\dot s$, where $s$ describes the shape. The net displacement over a stroke, $\Delta X = \int A(s)\,\dd s$, depends only on the path through shape space, not on how fast it is traversed. A reciprocal stroke retraces its path, so the forward and backward integrals cancel exactly. A rotating helical flagellum is not reciprocal: it rotates continuously in one direction, a cycle in shape space that does not retrace itself, so its contributions add up stroke after stroke.
+
+\sol{fluids}{11} The circulation set up by a spinning ball scales as the surface speed $\omega r$ times a length $r$, and the Kutta--Joukowski force per length is $\rho v\Gamma$; over a length $\sim r$ this gives $F\sim\rho(\omega r)vr^2$, up to geometric factors. With $\omega = 63\un{rad/s}$, $\omega r = 6.9\un{m/s}$, $\pi r^2 = 0.038\un{m^2}$, and a prefactor $\tfrac12$: $F\approx\tfrac12(1.2)(6.9)(25)(0.038)\approx4\un{N}$, an acceleration of $9\un{m/s^2}$. Over a flight of about $1\un{s}$, the ball bends by $\tfrac12at^2\approx4\un{m}$ (less in practice, as the ball and its spin slow). That is ample to bend a kick around a wall of defenders.
+
+\sol{fluids}{12} With $r = R_0 + \delta\cos kz$, the volume per length is $\pi(R_0^2 + \delta^2/2)$; keeping it equal to $\pi R^2$ requires $R_0\approx R - \delta^2/4R$. The area per length is $\langle2\pi r\sqrt{1+r'^2}\rangle\approx2\pi[R_0 + \tfrac14R\delta^2k^2]$. So the change in area per length is
+\[
+  2\pi\left(\frac{R\delta^2k^2}{4} - \frac{\delta^2}{4R}\right) = \frac{\pi\delta^2}{2R}\,(k^2R^2 - 1),
+\]
+which is negative when $kR<1$, i.e.\ for wavelengths longer than $2\pi R$. Surface tension lowers its energy by amplifying such ripples until the stream pinches into drops. (Which of the unstable wavelengths grows fastest depends on dynamics, and turns out to be about $9R$.)

@@ -1,0 +1,168 @@
+\chapter{Atomic, molecular and optical physics}
+\label{ch:amo}
+
+\buildson{optics (Chapter~\ref{ch:optics}), quantum mechanics (Chapter~\ref{ch:qm})}
+
+\chapterdek{Why every atom glows in its own private set of colours --- and how physicists learned to hold single atoms still, cool them to a billionth of a degree, and build clocks that would not lose a second in the age of the universe.}
+
+\begin{prototype}
+The hydrogen atom: one proton, one electron. Its spectrum of sharp lines was the Rosetta Stone of quantum mechanics, and every refinement of it --- fine structure, the Lamb shift, the 21-centimetre line --- opened a new chapter of physics.
+\end{prototype}
+
+Atomic, molecular, and optical (AMO) physics is quantum mechanics at the scale where it is cleanest. Atoms are simple, identical, and isolated; light can be controlled with exquisite precision. This makes AMO physics the field where quantum mechanics is tested most precisely, where the most accurate measurements in all of science are made, and where many of the strangest quantum phenomena --- Bose--Einstein condensates, entangled atoms, squeezed light --- are engineered on purpose.
+
+\section{The hydrogen spectrum}
+
+In 1885 Johann Balmer, a Swiss schoolteacher, found that the four visible lines of hydrogen fit a formula, later generalized by Rydberg:
+\[
+  \frac1\lambda = R_\infty\left(\frac{1}{n'^2} - \frac{1}{n^2}\right),\qquad R_\infty = 1.097\times10^{7}\un{m^{-1}}.
+\]
+With $n' = 2$ it gives the visible \emph{Balmer series}, including the red H$\alpha$ line at $656\un{nm}$ that colours glowing nebulae; with $n'=1$ the ultraviolet \emph{Lyman series}; with $n'=3$ the infrared \emph{Paschen series}. Quantum mechanics explains it at once: the energies are $E_n = -13.6\un{eV}/n^2$ (Chapter~\ref{ch:qm}), and each line is a photon emitted as the electron drops between two levels.
+
+\begin{center}
+\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}
+  \draw[thick] (0,-6.800) -- (8.2,-6.800);
+  \node[font=\footnotesize, anchor=east] at (-0.1,-6.800) {$n=1$};
+  \node[font=\scriptsize, anchor=west] at (8.3,-6.800) {$-13.60\un{eV}$};
+  \draw[thick] (0,-1.700) -- (8.2,-1.700);
+  \node[font=\footnotesize, anchor=east] at (-0.1,-1.700) {$n=2$};
+  \node[font=\scriptsize, anchor=west] at (8.3,-1.700) {$-3.40\un{eV}$};
+  \draw[thick] (0,-0.756) -- (8.2,-0.756);
+  \node[font=\footnotesize, anchor=east] at (-0.1,-0.756) {$n=3$};
+  \node[font=\scriptsize, anchor=west] at (8.3,-0.756) {$-1.51\un{eV}$};
+  \draw[ascink!70] (0,-0.425) -- (8.2,-0.425);
+  \node[font=\footnotesize, anchor=east] at (-0.1,-0.425) {$n=4$};
+  \node[font=\scriptsize, anchor=west] at (8.3,-0.425) {$-0.85\un{eV}$};
+  \draw[ascink!70] (0,-0.272) -- (8.2,-0.272);
+  \draw[ascink!70] (0,-0.189) -- (8.2,-0.189);
+  \draw[dashed] (0,0) -- (8.2,0);
+  \node[font=\footnotesize, anchor=east] at (-0.1,0.12) {$n=\infty$};
+  \node[font=\scriptsize, anchor=west] at (8.3,0.12) {$0$};
+  \draw[ascpurple, -{Stealth[length=5pt]}] (0.50,-1.700) -- (0.50,-6.800);
+  \draw[ascpurple, -{Stealth[length=5pt]}] (0.85,-0.756) -- (0.85,-6.800);
+  \draw[ascpurple, -{Stealth[length=5pt]}] (1.20,-0.425) -- (1.20,-6.800);
+  \draw[ascpurple, -{Stealth[length=5pt]}] (1.55,-0.272) -- (1.55,-6.800);
+  \draw[ascpurple, -{Stealth[length=5pt]}] (1.90,-0.189) -- (1.90,-6.800);
+  \draw[red!75!black, thick, -{Stealth[length=5pt]}] (3.30,-0.756) -- (3.30,-1.700);
+  \draw[teal, thick, -{Stealth[length=5pt]}] (3.65,-0.425) -- (3.65,-1.700);
+  \draw[blue!75, thick, -{Stealth[length=5pt]}] (4.00,-0.272) -- (4.00,-1.700);
+  \draw[violet, thick, -{Stealth[length=5pt]}] (4.35,-0.189) -- (4.35,-1.700);
+  \draw[ascink!60, -{Stealth[length=5pt]}] (6.10,-0.425) -- (6.10,-0.756);
+  \draw[ascink!60, -{Stealth[length=5pt]}] (6.45,-0.272) -- (6.45,-0.756);
+  \draw[ascink!60, -{Stealth[length=5pt]}] (6.80,-0.189) -- (6.80,-0.756);
+  \node[ascpurple, font=\small, align=left, anchor=west] at (2.1,-4.6) {Lyman\\(ultraviolet)};
+  \node[font=\small, align=center] at (3.85,-2.3) {Balmer (visible)};
+  \node[ascink!70, font=\small, align=center] at (6.45,-1.2) {Paschen (infrared)};
+\end{tikzpicture}
+
+{\small The energy levels of hydrogen, $E_n = -13.6\un{eV}/n^2$, drawn to scale. Jumps down to $n=1$ give the ultraviolet Lyman series, jumps to $n=2$ the visible Balmer series (in roughly their real colours, from red H$\alpha$ to violet), and jumps to $n=3$ the infrared Paschen series.}
+\end{minipage}
+\end{center}
+
+In 1913, before the Schr\"odinger equation existed, Niels Bohr got these energies with a spherical cow of genius: a classical electron in a circular orbit, with the single extra rule that its angular momentum must be a whole multiple of $\hbar$. The model is wrong in nearly every detail --- electrons do not orbit, and the ground state has zero angular momentum --- yet it gets the energies exactly right, and it was the bridge to the real theory.
+
+\section{Fine structure and the fine-structure constant}
+
+Look closely, with a good spectrometer, and each hydrogen line splits into closely spaced components. This \emph{fine structure} has two sources of the same size. The electron moves at a speed $v\approx c/137$, so relativistic corrections of order $(v/c)^2$ shift the energies. And the electron's spin interacts with the magnetic field it sees from the proton circling around it in its own frame (\emph{spin--orbit coupling}). Both effects are smaller than the main energies by the square of
+\[
+  \alpha = \frac{e^2}{4\pi\epsilon_0\hbar c}\approx\frac{1}{137.036},
+\]
+the \emph{fine-structure constant}. It is dimensionless --- the same in any system of units --- and it measures the strength of electromagnetism. Its value is unexplained, and it is perhaps the most famous number in physics. Dirac's relativistic equation for the electron (Chapter~\ref{ch:qft}) predicts the fine structure exactly.
+
+\section{Beyond Dirac: the Lamb shift and the 21-centimetre line}
+
+Dirac's theory predicts that the $2s$ and $2p_{1/2}$ states of hydrogen have exactly the same energy. In 1947 Willis Lamb measured them with microwaves and found the $2s$ state higher by about $1\un{GHz}$ (a few millionths of an eV). The \emph{Lamb shift} is caused by the vacuum itself: the quantized electromagnetic field is never truly empty, and its zero-point fluctuations jiggle the electron, smearing out its interaction with the nucleus (Problem~\ref{prob:welton}). Explaining it quantitatively forced the development of renormalized quantum electrodynamics (Chapter~\ref{ch:qft}), now the most precisely tested theory in science.
+
+The proton has a spin too, and the electron and proton spins interact magnetically. In the ground state, the configuration with spins parallel lies slightly above the antiparallel one. This \emph{hyperfine} splitting is tiny, $5.9\times10^{-6}\un{eV}$, corresponding to radio waves of frequency $1420\un{MHz}$ and wavelength $21\un{cm}$. The transition is so slow that a given atom makes it about once every ten million years. But there is so much hydrogen in space that the $21$-cm line is one of the brightest signals in radio astronomy. It passes through dust that blocks visible light, and its Doppler shifts map the motion of gas throughout our galaxy and others --- which is how the flat rotation curves pointing to dark matter were measured (Chapter~\ref{ch:astro}).
+
+\section{Many electrons and the periodic table}
+
+In an atom with many electrons, each electron feels the nucleus partly \emph{screened} by the others. Inner electrons see nearly the full nuclear charge; outer electrons see much less. Screening breaks the hydrogen degeneracy between orbitals with the same $n$: $s$ orbitals, which penetrate close to the nucleus, lie lower than $p$, which lie lower than $d$. Filling orbitals in order of energy, two electrons per orbital by the Pauli principle (Chapter~\ref{ch:qm}), gives the shells of the periodic table, with rows of $2, 8, 8, 18, 18, 32, 32$ elements. Within a shell, electrons spread out with parallel spins where they can (\emph{Hund's rules}), because the antisymmetric spatial wavefunction keeps them apart and reduces their repulsion. Chemistry is mostly the physics of the outermost shell (Chapter~\ref{ch:chem}).
+
+Knock out an inner electron with an electron beam, and an outer electron falls into the hole, emitting an X-ray. In 1913 Henry Moseley found that the X-ray frequencies scale as $(Z-1)^2$, and used them to put the periodic table in order by atomic number rather than mass, predicting missing elements. He was killed at Gallipoli two years later, aged twenty-seven.
+
+\section{Atoms in fields}
+
+A magnetic field splits each atomic level according to the component of its angular momentum along the field. This is the \textbf{Zeeman effect}, with splittings of order $\mu_BB$, where the \emph{Bohr magneton} $\mu_B = e\hbar/2m_e = 5.8\times10^{-5}\un{eV/T}$. In 1908 George Ellery Hale saw Zeeman-split lines in the light from sunspots and discovered that sunspots are regions of intense magnetic field, about $0.3\un{T}$. Astronomers still measure stellar magnetic fields this way. An electric field also shifts and splits levels (the \emph{Stark effect}), by polarizing the atom.
+
+\section{How atoms absorb and emit light}
+
+An atom with energy levels $E_1<E_2$ interacts with light of frequency $\nu = (E_2 - E_1)/h$ in three ways. It can \emph{absorb} a photon and jump up; it can \emph{spontaneously emit} a photon and drop down; and, as Einstein realized in 1917, a passing photon can \emph{stimulate} it to emit a second photon identical to the first. Einstein described the rates with coefficients $A$ (spontaneous) and $B$ (stimulated and absorbed), and by demanding that atoms in a cavity reach equilibrium with Planck's blackbody radiation (Chapter~\ref{ch:statmech}), he showed they must be related:
+\[
+  \frac{A}{B} = \frac{8\pi h\nu^3}{c^3}.
+\]
+Spontaneous emission therefore grows steeply with frequency. Visible transitions have lifetimes of nanoseconds; microwave transitions, like the 21-cm line, can take millions of years.
+
+Not every pair of levels is connected. The photon carries one unit of angular momentum, so the strongest (\emph{electric dipole}) transitions obey \emph{selection rules} such as $\Delta\ell = \pm1$. Transitions that break them are ``forbidden'' --- not impossible, but millions of times slower. In the near-vacuum of nebulae, atoms can sit in such \emph{metastable} states long enough to radiate rather than being knocked out by collisions. The striking green glow of planetary nebulae comes from forbidden lines of doubly ionized oxygen, which baffled astronomers in the nineteenth century so completely that they attributed it to a new element, ``nebulium.''
+
+\section{Lasers}
+
+Normally there are more atoms in lower states than upper ones (Boltzmann; Chapter~\ref{ch:statmech}), so light passing through matter is absorbed more than it is amplified. A laser needs a \emph{population inversion}: more atoms in the upper level than the lower. This cannot be achieved with two levels (Problem~\ref{prob:two-level}); practical lasers pump atoms into a high level that decays quickly to a long-lived upper laser level, from which they are stimulated down to a lower level that empties quickly. Put the gain medium between two mirrors, and stimulated emission builds up a coherent beam.
+
+Lasers now come in every colour and power: diode lasers in barcode scanners, helium--neon lasers in classrooms, carbon dioxide lasers that cut steel, and titanium--sapphire lasers that emit pulses a few femtoseconds long --- short enough to watch chemical bonds break. An \emph{optical frequency comb}, a laser emitting a train of such pulses, produces a spectrum of millions of perfectly evenly spaced frequencies: a ruler for light, which made optical atomic clocks practical (Nobel Prize, 2005).
+
+\section{Molecules}
+
+A molecule's nuclei are thousands of times heavier than its electrons, so the electrons rearrange almost instantly as the nuclei move. In the \textbf{Born--Oppenheimer approximation}, we first solve for the electrons with the nuclei clamped in place, giving an effective potential in which the nuclei then vibrate and rotate (Chapter~\ref{ch:chem}). This splits molecular energies into a hierarchy:
+\begin{itemize}[itemsep=3pt]
+  \item \textbf{Electronic} transitions: a few eV, in the visible and ultraviolet.
+  \item \textbf{Vibrational} levels: harmonic oscillator rungs $(n+\tfrac12)\hbar\omega$ (Chapter~\ref{ch:sho}), about $0.1\un{eV}$ apart, in the infrared.
+  \item \textbf{Rotational} levels: $E_\ell = \hbar^2\ell(\ell+1)/2I$, about $10^{-3}\un{eV}$ apart, in the microwave.
+\end{itemize}
+Each step down is smaller by a factor of about $\sqrt{m_e/M}\sim1/50$. Molecular spectra are fingerprints: astronomers have identified over two hundred molecules in interstellar clouds by their rotational lines, and atmospheric scientists measure greenhouse gases by their vibrational ones. Carbon dioxide absorbs strongly at $15\un{\mu m}$, where its bending vibration lies --- right near the peak of the Earth's thermal emission (Chapter~\ref{ch:geo}). Nitrogen and oxygen, being symmetric diatomic molecules with no dipole moment to wiggle, are nearly transparent in the infrared.
+
+\section{Laser cooling and trapping}
+
+Light carries momentum, so an atom that absorbs a photon gets a kick of $\hbar k$. Each kick is tiny, but an atom can scatter millions of photons per second, giving accelerations of $10^5$ to $10^6\,g$.
+
+To cool atoms, tune the lasers slightly \emph{below} the atomic resonance. An atom moving toward a laser sees it Doppler-shifted up, closer to resonance, and scatters more photons from it, each pushing it back. An atom moving away sees it shifted further from resonance and scatters fewer. With lasers from all six directions, every atom feels a velocity-dependent friction, an \emph{optical molasses}. This \emph{Doppler cooling} reaches temperatures of about
+\[
+  T_D = \frac{\hbar\Gamma}{2\kB},
+\]
+where $\Gamma$ is the natural linewidth of the transition: a few hundred microkelvin. Cleverer schemes reach microkelvin, and adding a magnetic field gradient turns the molasses into a \emph{magneto-optical trap} that also holds the atoms in place. The final step is \emph{evaporative cooling}: let the hottest atoms escape, as steam carries heat away from a cup of coffee. In 1995 this produced the first Bose--Einstein condensates, at about a hundred nanokelvin (Chapter~\ref{ch:statmech}). Laser-cooled atoms can be loaded into \emph{optical lattices}, crystals made of standing waves of light, where they mimic electrons in a solid --- a way to simulate quantum materials (Chapter~\ref{ch:condmat}). And a tightly focused laser beam can grip a single bead or bacterium as \emph{optical tweezers} (Chapter~\ref{ch:bio}).
+
+\section{Clocks and precision}
+
+Atoms make perfect clocks: every caesium atom is identical, and its transitions do not wear out. Since 1967 the second has been defined as exactly $9\,192\,631\,770$ oscillations of the hyperfine transition of caesium-133. Modern optical clocks, using transitions at visible frequencies a hundred thousand times higher and trapped single ions or lattices of atoms, are accurate to about one part in $10^{18}$: they would not have lost a second since the Big Bang. They are so precise that raising one by a centimetre measurably changes its rate, through gravitational time dilation (Chapter~\ref{ch:gr}). Such clocks are being used to search for changes in the fundamental constants, for dark matter, and to measure the shape of the Earth's gravitational field.
+
+The most precise agreement between theory and experiment in all of science is in AMO physics: the magnetic moment of the electron, which quantum electrodynamics predicts and Penning-trap experiments measure, agree to about one part in a trillion.
+
+\section{Quantum optics}
+
+Ordinary light from a bulb is a jumble of photons arriving at random. Laser light is described by a \emph{coherent state}, the quantum state closest to a classical wave, with photon numbers following a Poisson distribution. But quantum mechanics allows stranger states of light: single photons on demand, entangled photon pairs (used in tests of Bell's inequality and quantum cryptography; Chapter~\ref{ch:qinfo}), and \emph{squeezed light}, in which the quantum noise in one property is pushed below the vacuum level at the expense of another. LIGO injects squeezed light into its interferometers to beat the quantum noise limit (Chapter~\ref{ch:gw}). In \emph{cavity quantum electrodynamics}, a single atom and a single photon trapped between mirrors exchange energy back and forth coherently --- a clean realization of the light--matter interaction at its most elementary.
+
+\section{Problems}
+
+\begin{problems}
+\prob{1}\core Compute the wavelengths of the first three Balmer lines (H$\alpha$, H$\beta$, H$\gamma$) and of the shortest-wavelength line in the series. What colours are they?
+
+\prob{1} Convert the hydrogen hyperfine splitting, $1420.4\un{MHz}$, to an energy in electron-volts and to a temperature. Why is the upper level populated in interstellar gas at $100\un{K}$, even though the transition is so slow?
+
+\prob{1} Estimate the Zeeman splitting, in eV and in GHz, for an atom in a $1\un{T}$ field. A sunspot spectral line at $525\un{nm}$ is split into components $0.01\un{nm}$ apart. Estimate the sunspot's magnetic field.
+
+\prob{2}\core Derive Einstein's relation $A/B = 8\pi h\nu^3/c^3$. In equilibrium the upward and downward rates must balance, $B\,u(\nu)\,N_1 = A\,N_2 + B\,u(\nu)\,N_2$ (for equal degeneracies), with $N_2/N_1 = e^{-h\nu/\kB T}$. Solve for $u(\nu)$ and demand that it equal Planck's law at all temperatures.
+
+\prob{2} The CO molecule has bond length $0.113\un{nm}$. Find its moment of inertia and the frequency of its lowest rotational transition, $\ell = 1\to0$. (Astronomers use this $115\un{GHz}$ line to map molecular clouds where stars are born.)
+
+\prob{2} The HCl molecule has bond stiffness $516\un{N/m}$. Find its vibrational frequency and the wavelength of infrared light it absorbs. By what factor does the frequency change for DCl, with deuterium replacing hydrogen?
+
+\prob{2}\core Estimate the fine structure of hydrogen: in the ground state the electron moves at $v\approx\alpha c$, so relativistic corrections are of relative size $(v/c)^2$. Show that the corrections are of order $\alpha^2\times13.6\un{eV}$, and evaluate this. What fraction of a $656\un{nm}$ wavelength does this correspond to?
+
+\prob{2} Rubidium's cooling transition has natural linewidth $\Gamma = 2\pi\times6\un{MHz}$ and wavelength $780\un{nm}$. Find the Doppler cooling limit, and the \emph{recoil temperature} $T_r = \hbar^2k^2/m\kB$ set by the kick of a single photon. Which is lower?
+
+\prob{2} A sodium atom ($m = 23\un{u}$) scatters $589\un{nm}$ photons at up to $\Gamma/2 = 3\times10^7$ photons per second. Find its maximum deceleration. How far and how long does it take to stop an atom from an oven at $600\un{m/s}$?
+
+\prob{2}\core Two optical clocks are compared, one $1\un{cm}$ higher than the other. Show that the higher one runs fast by a fraction $g\,\Delta h/c^2$, and evaluate it. How long must a clock with fractional uncertainty $10^{-18}$ run to detect this?
+
+\prob{3}\core \label{prob:two-level} Write rate equations for a two-level system driven by light of intensity $I$, with absorption and stimulated emission equally likely and spontaneous decay at rate $A$. Show that as $I\to\infty$ the populations approach equality but never invert. Explain why a laser medium needs at least three levels, and why four-level lasers are easier still.
+
+\prob{3} \label{prob:welton} \emph{(Welton's estimate of the Lamb shift.)} The zero-point fluctuations of the electromagnetic field make the electron jitter randomly by a small displacement $\delta\vb r$, with $\langle\delta r^2\rangle\approx\frac{2\alpha}{\pi}\left(\frac{\hbar}{m_ec}\right)^2\ln\frac{1}{\alpha}$. Expanding the Coulomb potential to second order, show that the average potential the electron feels shifts by $\tfrac16\langle\delta r^2\rangle\nabla^2V$. Since $\nabla^2V\propto\delta^3(\vb r)$, only $s$ states, which have $\psi(0)\neq0$, are shifted. Estimate the shift of the $2s$ state and compare with the measured $1.06\un{GHz}$.
+\end{problems}
+
+\begin{reading}
+\rd{Christopher J.\ Foot, \emph{Atomic Physics}}{A clear modern introduction from the Oxford master's series, strong on laser cooling and precision measurement.}
+\rd{Budker, Kimball, and DeMille, \emph{Atomic Physics: An Exploration Through Problems and Solutions}}{Learn the field by working its problems.}
+\rd{Gerry and Knight, \emph{Introductory Quantum Optics}}{The standard first book on photons, coherent and squeezed states, and cavity QED.}
+\rd{Metcalf and van der Straten, \emph{Laser Cooling and Trapping}}{The field's own textbook.}
+\end{reading}

@@ -1,0 +1,167 @@
+\chapter{Optics}
+\label{ch:optics}
+
+\buildson{waves (Chapter~\ref{ch:waves}), electromagnetism (Chapter~\ref{ch:em})}
+
+\chapterdek{How light bends, focuses, interferes with itself, and paints the sky --- and the experiment that proved, twice, that light is stranger than anyone thought.}
+
+\begin{prototype}
+The double slit. Shine light through two narrow parallel slits onto a screen and you do not get two bright lines: you get a whole row of bright and dark fringes. The light from the two slits interferes. Light is a wave.
+\end{prototype}
+
+Light is an electromagnetic wave (Chapter~\ref{ch:em}) with a wavelength between about $400$ and $700\un{nm}$. That one sentence contains all of optics, but it contains it in two very different regimes. When the objects light meets are much larger than its wavelength --- lenses, mirrors, raindrops --- light travels in straight lines called \emph{rays}, and we can do \emph{geometric optics}. When they are comparable to the wavelength --- slits, gratings, thin films, the edges of shadows --- the wave nature takes over, and we need \emph{wave optics}. Knowing which regime you are in is half the battle.
+
+\section{Rays: reflection and refraction}
+
+In a medium, light travels slower than in vacuum, at speed $c/n$, where $n$ is the \emph{refractive index}: about $1.0003$ for air, $1.33$ for water, $1.5$ for glass, $2.42$ for diamond. All of geometric optics follows from one principle.
+
+\begin{law}[Fermat's principle]
+Light travels between two points along a path for which the travel time is stationary --- usually a minimum.
+\end{law}
+
+For reflection from a mirror this gives the familiar rule that the angle of incidence equals the angle of reflection. For refraction at a boundary between media it gives
+\[
+  n_1\sin\theta_1 = n_2\sin\theta_2 \qquad\text{(Snell's law)},
+\]
+with angles measured from the normal. Light bends \emph{toward} the normal entering a slower medium. A lifeguard running along a beach and then swimming to a drowning swimmer, trying to minimize time, faces exactly the same problem and should follow the same law.
+
+\begin{example}[The bent straw and the shallow pool]
+Looking straight down into water of depth $d$, the bottom appears at depth $d/n\approx0.75d$. Rays from the bottom bend away from the normal as they leave the water, and your brain traces them back along straight lines. Pools are deeper than they look.
+\end{example}
+
+Going from a slower to a faster medium, light bends away from the normal, and beyond the \emph{critical angle} $\sin\theta_c = n_2/n_1$ there is no refracted ray at all: the light is entirely reflected. \textbf{Total internal reflection} traps light in optical fibres, which carry most of the world's internet traffic by bouncing light along glass threads thinner than a hair. It also makes diamonds sparkle: with $n = 2.42$, the critical angle is only $24^\circ$, so light that enters a well-cut diamond bounces around inside many times before escaping.
+
+\textbf{Mirages} come from a refractive index that varies smoothly. Air just above a hot road is less dense, so its index is slightly lower. Rays from the sky heading toward the road curve upward, and you see an image of the sky on the road --- a ``puddle'' that recedes as you approach.
+
+\section{Lenses and instruments}
+
+A lens is a piece of glass shaped so that refraction brings parallel rays to a focus at a distance $f$, the \emph{focal length}. For a thin lens, an object at distance $s$ forms an image at distance $s'$ with
+\[
+  \frac{1}{s} + \frac{1}{s'} = \frac{1}{f}, \qquad m = -\frac{s'}{s},
+\]
+where $m$ is the magnification (negative meaning inverted). Opticians measure lens power in \emph{diopters}, $1/f$ in inverse metres; powers of thin lenses in contact add.
+
+Your \textbf{eye} is a lens (mostly the cornea, with the crystalline lens for fine adjustment) that focuses images onto the retina about $2\un{cm}$ behind. To focus on near objects, muscles squeeze the lens to shorten its focal length. A short-sighted eye focuses distant objects in front of the retina and needs a diverging lens; a long-sighted one, a converging lens.
+
+Instruments combine lenses. A \textbf{magnifying glass} lets you hold an object closer than your eye could otherwise focus. A \textbf{microscope} uses a short-focus objective to form a large real image, then examines it with a magnifier. A \textbf{telescope} uses a long-focus objective (lens or mirror) to form an image of a distant object and a short-focus eyepiece to view it, with angular magnification $f_{\text{objective}}/f_{\text{eyepiece}}$. But the most important job of a big telescope is not magnification. It is to collect light, and to beat diffraction (\S\ref{sec:diffraction}).
+
+\section{Interference}
+
+Now the waves. In 1801 Thomas Young passed light through two narrow slits separated by a distance $d$. At an angle $\theta$, the paths from the two slits to a distant screen differ in length by $d\sin\theta$. Where this is a whole number of wavelengths, crests meet crests and the light is bright; where it is a half-integer, crests meet troughs and the light cancels:
+\[
+  d\sin\theta = m\lambda \quad\text{(bright)},\qquad d\sin\theta = (m+\tfrac12)\lambda\quad\text{(dark)}.
+\]
+On a screen a distance $L$ away the fringes are spaced by $\lambda L/d$. With red laser light, slits $0.1\un{mm}$ apart, and a screen $2\un{m}$ away, the fringes are about a centimetre apart: you can do this experiment on a kitchen table.
+
+\begin{center}
+\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}
+\begin{axis}[asc, width=0.8\linewidth, height=0.36\linewidth, xmin=-8.4, xmax=8.4, ymin=0, ymax=1.12,
+  xlabel={$d\sin\theta/\lambda$}, ylabel={intensity}, xtick={-8,-6,...,8}, ytick=\empty, samples=600, domain=-8.4:8.4]
+  \addplot[ascrule, thick, dashed] {(sin(deg(pi*x/5))/(pi*x/5))^2};
+  \addplot[ascblue, thick] {cos(deg(pi*x))^2*(sin(deg(pi*x/5))/(pi*x/5))^2};
+\end{axis}
+\end{tikzpicture}
+
+{\small The two-slit pattern for slits a fifth as wide as their separation. Bright fringes fall where $d\sin\theta$ is a whole number of wavelengths, under the envelope (dashed) of each slit's own diffraction. Fringe number $5$ is missing, because it lands on a zero of the envelope.}
+\end{minipage}
+\end{center}
+
+\begin{keyidea}
+Interference requires waves; particles cannot cancel. Young's experiment settled, for a century, that light is a wave. Then the photoelectric effect (\S\ref{sec:photons}) unsettled it, and the resolution --- that light is something new, a quantum field --- is the subject of Chapters~\ref{ch:qm} and~\ref{ch:qft}.
+\end{keyidea}
+
+\textbf{Thin films.} The colours of soap bubbles and oil slicks come from interference between light reflected from the top and bottom surfaces of a film. The two reflections differ in path by twice the film thickness, and there is an extra half-wavelength shift on reflection whenever light reflects off a medium of higher index. Different thicknesses reinforce different colours, so the film paints a contour map of its own thickness. A soap bubble about to pop turns black: the film is so thin that the two reflections, differing only by the half-wavelength flip, cancel.
+
+\textbf{Interferometers} exploit interference to measure tiny distances. A Michelson interferometer splits a beam, sends the halves down two perpendicular arms, and recombines them; a change in one arm's length by a quarter wavelength turns a bright output dark. Michelson and Morley used one in 1887 to look for the Earth's motion through the ``ether'' and found nothing (Chapter~\ref{ch:sr}). LIGO, with $4\un{km}$ arms, now detects changes in arm length a thousand times smaller than a proton (Chapter~\ref{ch:gw}).
+
+\section{Diffraction}
+\label{sec:diffraction}
+
+Light passing through a single slit of width $a$ also spreads out. By Huygens' principle every point in the slit is a source, and pairing up points half a slit apart shows that the light cancels completely at angles where
+\[
+  a\sin\theta = m\lambda, \qquad m = \pm1,\pm2,\dots
+\]
+The central bright band has angular half-width $\lambda/a$: the narrower the slit, the wider the spread. Squeeze a beam and it fans out.
+
+For a circular aperture of diameter $D$ --- the pupil of your eye, the mirror of a telescope --- the first dark ring is at $\theta = 1.22\lambda/D$. Two point sources (two stars, two headlights) closer together than this blur into one. This \textbf{Rayleigh criterion} sets a fundamental limit on every optical instrument:
+\[
+  \theta_{\min}\approx 1.22\,\frac{\lambda}{D}.
+\]
+Your eye ($D\approx3\un{mm}$) resolves about one arcminute; the Hubble Space Telescope ($D = 2.4\un{m}$) about $0.05$ arcseconds. A light microscope cannot resolve detail much smaller than half a wavelength, about $200\un{nm}$ --- which is why we need electron microscopes and X-rays to see atoms (Chapter~\ref{ch:condmat}).
+
+A \textbf{diffraction grating} --- thousands of slits --- sharpens Young's fringes into very narrow lines at $d\sin\theta = m\lambda$. Because the angle depends on $\lambda$, a grating spreads light into a spectrum, and the resolving power improves with the number of slits $N$: it can distinguish wavelengths differing by $\lambda/(mN)$. Spectroscopy with gratings is how we know what stars are made of (Chapter~\ref{ch:astro}) and how atomic energy levels were first mapped (Chapter~\ref{ch:amo}).
+
+\begin{remark}
+There is a deep and useful fact hiding here: the far-field diffraction pattern of an aperture is the Fourier transform of the aperture's shape (Chapter~\ref{ch:math}). A narrow slit gives a wide pattern because a narrow function has a wide Fourier transform. A lens, in fact, \emph{performs} a Fourier transform: the pattern in its focal plane is the transform of the light falling on it.
+\end{remark}
+
+\section{Polarization}
+
+Light is a transverse wave, so its electric field can point in any direction perpendicular to its motion. Light whose field oscillates along a fixed line is \emph{linearly polarized}; light from the Sun or a bulb is \emph{unpolarized}, a random jumble of directions. A polarizing filter transmits only one component: unpolarized light loses half its intensity, and polarized light at angle $\theta$ to the filter's axis is transmitted with intensity
+\[
+  I = I_0\cos^2\theta \qquad\text{(Malus's law)}.
+\]
+Light reflected from water or glass is partly polarized parallel to the surface, and at \emph{Brewster's angle}, $\tan\theta_B = n_2/n_1$ ($53^\circ$ for water), it is completely polarized. Polarized sunglasses block exactly this horizontally polarized glare. Scattered skylight is also polarized, most strongly at $90^\circ$ from the Sun, and bees navigate by it. Liquid-crystal displays work by electrically rotating the polarization of light between crossed polarizers.
+
+\section{Light in matter: colour}
+
+The refractive index depends on wavelength, usually increasing toward the blue. This \emph{dispersion} is why a prism spreads white light into a spectrum and why simple lenses have coloured fringes.
+
+\textbf{The rainbow} is dispersion in raindrops. Sunlight enters a spherical drop, reflects once off the back, and leaves. The exit angle depends on where the ray entered, but it has a stationary value near $42^\circ$ from the antisolar point, so light piles up at that angle (Problem~\ref{prob:rainbow}). Because $n$ varies with colour, red lands at $42^\circ$ and violet at $40^\circ$: the bow is a circle centred on the shadow of your head, red on the outside. Two internal reflections give the fainter secondary bow at $51^\circ$, with colours reversed.
+
+\textbf{Scattering} colours the sky. Molecules far smaller than the wavelength scatter light with intensity $\propto 1/\lambda^4$ (\emph{Rayleigh scattering}; see Chapter~\ref{ch:sho}), so the sky is blue, and the setting Sun, seen through a long path of air that has scattered its blue away, is red. Water droplets in clouds are larger than the wavelength and scatter all colours almost equally (\emph{Mie scattering}), so clouds are white.
+
+Light passing through an absorbing medium decays exponentially, $I = I_0 e^{-\alpha x}$ (the \emph{Beer--Lambert law}). Water absorbs red light slightly, which is why deep water and glaciers look blue, and why it is blue-green and dim a few tens of metres down.
+
+\section{Coherence and lasers}
+
+Interference requires \emph{coherence}: the waves being combined must keep a fixed phase relationship. Sunlight is coherent only over a few micrometres, which is why you see thin-film colours in soap bubbles but not in window panes. A \textbf{laser} produces light that is coherent over metres or kilometres, nearly monochromatic, and tightly collimated. It works by \emph{stimulated emission}: a photon passing an excited atom can trigger it to emit a second photon that is an exact copy --- same frequency, direction, phase, and polarization. Pump a medium so that more atoms are excited than not (a \emph{population inversion}), put it between two mirrors, and a cascade of identical photons builds up. Einstein predicted stimulated emission in 1917; the first laser was built in 1960. Chapter~\ref{ch:amo} explains how it works.
+
+\section{Photons}
+\label{sec:photons}
+
+By 1900 the wave theory of light was complete. Then it broke. When light shines on a metal it can knock out electrons --- the \emph{photoelectric effect} --- and the electrons' energies depend not on the light's intensity but on its frequency. Below a threshold frequency, no electrons come out however bright the light; above it, electrons come out instantly however dim. In 1905 Einstein explained this by proposing that light comes in lumps, \emph{photons}, each with energy
+\[
+  E = hf = \hbar\omega, \qquad h = 6.626\times10^{-34}\un{J\,s}.
+\]
+A visible photon carries about $2$--$3\un{eV}$.
+
+So is light a wave or a particle? Do the double-slit experiment with light so dim that only one photon is in the apparatus at a time. Each photon arrives at a single point on the screen, like a particle. But as thousands of dots accumulate, they build up the interference pattern, like a wave. Each photon somehow went through both slits. This is not a paradox to be resolved by better experiments; it is the central fact of quantum mechanics, and Chapter~\ref{ch:qm} is about learning to live with it.
+
+\section{Problems}
+
+\begin{problems}
+\prob{1} A swimming pool is $2.0\un{m}$ deep. How deep does it appear when viewed from directly above? A fish looks up at the surface. Within what cone can it see the outside world, and what does it see outside that cone?
+
+\prob{1} Find the critical angle for total internal reflection from diamond to air, and from glass ($n=1.5$) to air. An optical fibre has a glass core ($n=1.48$) clad in glass of $n=1.46$. What is the maximum angle to the fibre axis at which light is trapped?
+
+\prob{1} An object is $30\un{cm}$ in front of a converging lens of focal length $10\un{cm}$. Locate the image, find its magnification, and say whether it is real or virtual, upright or inverted. Repeat with the object at $5\un{cm}$.
+
+\prob{1}\core A red laser ($633\un{nm}$) shines on two slits $0.10\un{mm}$ apart. Find the fringe spacing on a screen $2.0\un{m}$ away. What happens to the pattern if the whole apparatus is submerged in water?
+
+\prob{2}\core Estimate the smallest detail you could resolve on the Moon by eye, through a backyard telescope ($D = 20\un{cm}$), and with Hubble. Could a spy satellite with a $2.4\un{m}$ mirror at an altitude of $250\un{km}$ read a car's license plate? (Ignore the atmosphere, then explain why you shouldn't.)
+
+\prob{2} A soap film ($n = 1.33$) in air reflects strongly at $550\un{nm}$ when viewed at normal incidence. Find the smallest possible thickness of the film. Why does the film look black just before it breaks?
+
+\prob{2} Find Brewster's angle for light reflecting from water. You are on a boat; at what height above the horizon should the Sun be for polarizing sunglasses to cut the glare from the water most effectively?
+
+\prob{2} The yellow sodium doublet consists of two lines at $589.0$ and $589.6\un{nm}$. How many slits must a diffraction grating have to resolve them in first order?
+
+\prob{2} Prove the law of reflection from Fermat's principle. Then use Fermat's principle to explain qualitatively why a hot road shows a mirage of the sky.
+
+\prob{3}\core \label{prob:rainbow} \emph{(Why the rainbow is at $42^\circ$.)} A ray enters a spherical raindrop at angle of incidence $i$, refracts to angle $r$ ($\sin i = n\sin r$), reflects once off the back, and exits. Show that its total deviation is $D = 180^\circ + 2i - 4r$. Find the angle of incidence at which $D$ is stationary, and show that for $n = 4/3$ the rainbow appears $42^\circ$ from the antisolar point. Why does light concentrate at the stationary angle?
+\hint{Near a stationary point, a wide range of incidence angles all give nearly the same exit angle.}
+
+\prob{3} \emph{(Arago's spot.)} In 1818 Poisson tried to ridicule Fresnel's wave theory of light: if it were right, he argued, the shadow of an opaque disc should have a bright spot at its very centre. Arago did the experiment and found the spot. Explain why the wave theory predicts it.
+\hint{Every point on the circular edge of the disc is the same distance from the centre of the shadow.}
+
+\prob{3} \emph{(You can't out-shine the Sun.)} With lenses and mirrors you can focus sunlight onto a small spot. Show, using the second law of thermodynamics, that no passive optical system can heat an object above the temperature of the Sun's surface. Then explain the optical reason: a lens cannot make the Sun look \emph{brighter} (more power per solid angle per area), only bigger, and at best can surround the target with the Sun's surface on all sides.
+\end{problems}
+
+\begin{reading}
+\rd{Eugene Hecht, \emph{Optics}}{The standard undergraduate textbook, encyclopaedic and well illustrated.}
+\rd{\emph{The Feynman Lectures on Physics}, Volume I, Chapters~26--36}{Optics from Fermat's principle to polarization and colour vision.}
+\rd{Richard Feynman, \emph{QED: The Strange Theory of Light and Matter}}{Four popular lectures explaining reflection, refraction, and interference as photons adding up arrows. Essential, and readable in an evening.}
+\rd{Lipson, Lipson, and Lipson, \emph{Optical Physics}}{Modern optics built on Fourier methods, through lasers and holography.}
+\end{reading}

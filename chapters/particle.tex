@@ -1,0 +1,170 @@
+\chapter{Particle physics}
+\label{ch:particle}
+
+\buildson{quantum field theory (Chapter~\ref{ch:qft}), accelerators and detectors (Chapter~\ref{ch:accel})}
+
+\chapterdek{The Standard Model: seventeen particles, three forces, a few symmetries, and the most successful --- and most obviously incomplete --- theory of nature ever written down.}
+
+\begin{prototype}
+Symmetry becoming force. Demand that the laws of physics be unchanged under a local symmetry, and a force appears, carried by a gauge boson (Chapter~\ref{ch:qft}). The phase symmetry $U(1)$ gives the photon; $SU(2)$ gives the $W$ and $Z$; $SU(3)$ gives the eight gluons. Hide part of the symmetry with the Higgs field, and some of those carriers become heavy. The whole Standard Model is this idea, applied three times.
+\end{prototype}
+
+By the 1950s, physicists had found far more ``elementary'' particles than anyone wanted --- pions, kaons, lambdas, sigmas, deltas, a whole zoo. ``If I could remember the names of all these particles,'' Fermi supposedly said, ``I'd be a botanist.'' Over the next twenty-five years the zoo was reduced to order, and the result, the \emph{Standard Model of particle physics}, has passed every test thrown at it for half a century, with the discovery of the Higgs boson in 2012 completing its predicted list of particles. And yet we know it cannot be the final theory. This chapter describes what it says, how we know, and where it falls short.
+
+\section{The particles}
+
+All known matter is built from \emph{fermions} (spin $\tfrac12$) of two kinds, quarks and leptons, which come in three \emph{generations}, each a heavier copy of the one before. Forces are carried by \emph{gauge bosons} (spin 1), and there is one spin-0 particle, the Higgs boson.
+
+\begin{center}
+\small
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{@{}l l c r@{\qquad}l l c r@{}}
+\toprule
+\multicolumn{4}{c}{\textbf{Quarks}} & \multicolumn{4}{c}{\textbf{Leptons}}\\
+\midrule
+up & $u$ & $+\tfrac23$ & $2.2\un{MeV}$ & electron & $e$ & $-1$ & $0.511\un{MeV}$\\
+down & $d$ & $-\tfrac13$ & $4.7\un{MeV}$ & electron neutrino & $\nu_e$ & $0$ & $<1\un{eV}$\\
+charm & $c$ & $+\tfrac23$ & $1.27\un{GeV}$ & muon & $\mu$ & $-1$ & $106\un{MeV}$\\
+strange & $s$ & $-\tfrac13$ & $93\un{MeV}$ & muon neutrino & $\nu_\mu$ & $0$ & $<1\un{eV}$\\
+top & $t$ & $+\tfrac23$ & $173\un{GeV}$ & tau & $\tau$ & $-1$ & $1.78\un{GeV}$\\
+bottom & $b$ & $-\tfrac13$ & $4.18\un{GeV}$ & tau neutrino & $\nu_\tau$ & $0$ & $<1\un{eV}$\\
+\bottomrule
+\end{tabular}
+
+\smallskip
+\textbf{Bosons}: photon $\gamma$ (massless), gluons $g$ (massless), $W^\pm$ ($80.4\un{GeV}$),\\ $Z$ ($91.2\un{GeV}$), Higgs $H$ ($125\un{GeV}$)
+\end{center}
+
+Every particle has an antiparticle with opposite charges. Ordinary matter needs only the first generation: up and down quarks (making protons and neutrons), electrons, and electron neutrinos. Why there are three generations, and why their masses span from below an electron-volt to $173\un{GeV}$, a factor of more than $10^{11}$, is unknown. When I.~I.~Rabi heard of the muon, he asked, ``Who ordered that?''
+
+\section{Forces and conservation laws}
+
+The Standard Model has three forces. Gravity is left out; it is far too weak to matter for individual particles (Problem~\ref{prob:coulomb-gravity} compared it with electromagnetism), and nobody knows how to fit it in (Chapter~\ref{ch:strings}).
+\begin{itemize}[itemsep=3pt]
+  \item \textbf{Electromagnetism}, carried by the photon, acts on electric charge, with strength $\alpha\approx1/137$ and infinite range.
+  \item \textbf{The weak force}, carried by the $W^\pm$ and $Z$, acts on all fermions. At low energy it is feeble and short-ranged ($10^{-18}\un{m}$) because its carriers are heavy. It is the only force that changes one kind of particle into another --- quarks of one flavour into another, as in beta decay.
+  \item \textbf{The strong force}, carried by eight gluons, acts on quarks and gluons via \emph{colour charge}, binding quarks into protons and neutrons and, as a residual effect, nucleons into nuclei (Chapter~\ref{ch:nuclear}).
+\end{itemize}
+
+Which processes happen is governed by conservation laws (Chapter~\ref{ch:analytical}). Energy, momentum, angular momentum, and electric charge are exactly conserved. So, as far as we know, is \emph{baryon number} (quarks count $+\tfrac13$, antiquarks $-\tfrac13$), which is why the proton, the lightest baryon, is stable. In the Standard Model, \emph{lepton number} is also conserved, separately for each generation in practice: a muon can decay to an electron only by also producing a muon neutrino and an electron antineutrino, never as $\mu\to e\gamma$. Other quantities --- the numbers of strange or charm quarks --- are conserved by the strong and electromagnetic forces but changed by the weak force, which is why strange particles live a billion times longer than particles that decay strongly.
+
+\section{Quarks and colour}
+
+In 1961 Murray Gell-Mann and Yuval Ne'eman independently noticed that the zoo of hadrons fit into patterns of the symmetry group $SU(3)$ --- octets and decuplets --- the ``eightfold way.'' One slot in the decuplet was empty, and Gell-Mann predicted a particle to fill it, the $\Omega^-$, with a definite mass and strangeness. It was found in 1964. That year Gell-Mann and George Zweig proposed that the patterns arise because hadrons are made of three types of \emph{quarks} (``three quarks for Muster Mark,'' from \emph{Finnegans Wake}), with fractional electric charges. \emph{Baryons} are made of three quarks: the proton is $uud$, the neutron $udd$. \emph{Mesons} are a quark and an antiquark: the $\pi^+$ is $u\bar d$.
+
+No one has ever seen a free quark. But in 1968 electrons scattered off protons at SLAC bounced as if from hard, point-like constituents inside --- a re-run of Rutherford's experiment (Chapter~\ref{ch:nuclear}) one level down.
+
+There was a puzzle. The $\Delta^{++}$ is $uuu$, with all three quark spins aligned in the lowest-energy, symmetric spatial state. That is a totally symmetric state of three identical fermions, which the Pauli principle forbids. The resolution is that quarks carry an extra quantum number, \emph{colour}, with three values (``red,'' ``green,'' ``blue''), and the wavefunction is antisymmetric in colour (Problem~\ref{prob:colour}). Colour turned out to be the charge of the strong force.
+
+\section{Quantum chromodynamics}
+
+The theory of the strong force, \emph{quantum chromodynamics} (QCD), is a gauge theory with symmetry group $SU(3)$ (Chapter~\ref{ch:qft}). Its eight gluons carry colour themselves, so unlike photons they interact with each other. That changes everything.
+
+\textbf{Asymptotic freedom.} In QED, the effective charge grows at short distances because virtual pairs screen it (Chapter~\ref{ch:qft}). In QCD, the gluon self-interactions produce the opposite effect: an \emph{anti}-screening, so the strong coupling gets \emph{weaker} at short distances and high energies (Problem~\ref{prob:alphas}). Inside a proton, quarks probed at high energy behave almost as free particles, which is why the SLAC experiments saw point-like constituents. Gross, Wilczek, and Politzer discovered this in 1973 (Nobel Prize, 2004).
+
+\textbf{Confinement.} At long distances the coupling becomes strong. Pull a quark and antiquark apart and the gluon field between them is squeezed into a narrow tube with constant energy per length, about $1\un{GeV/fm}$, like a stretched rubber band that never weakens. Before you could separate them, the tube has so much energy that it snaps, creating a new quark--antiquark pair at the break: two mesons instead of two free quarks. In high-energy collisions, quarks and gluons appear as \emph{jets}, sprays of hadrons collimated along the original direction. Confinement has never been proved mathematically; it is another Millennium Prize Problem.
+
+\textbf{Where your mass comes from.} The up and down quarks in a proton weigh only about $9\un{MeV}$ together, about $1\%$ of the proton's $938\un{MeV}$ (Problem~\ref{prob:proton-mass}). The rest is the energy of the gluon field and the quarks' kinetic energy, confined to a femtometre, via $E = mc^2$ (Chapter~\ref{ch:sr}). Almost all the mass of everything you can touch is QCD binding energy. Supercomputer calculations of QCD on a spacetime lattice (Chapter~\ref{ch:comp}) reproduce the proton mass to about $1\%$.
+
+\section{The weak force}
+
+The weak force is responsible for beta decay, which at the quark level is $d\to u + W^-$, with the virtual $W^-$ turning into an electron and an antineutrino. Its feebleness at low energy is entirely due to the $W$'s large mass: the strength of the effective interaction, Fermi's constant $G_F$, is proportional to $g^2/m_W^2$, where the underlying coupling $g$ is actually \emph{larger} than the electromagnetic one (Chapter~\ref{ch:qft}).
+
+\begin{center}
+\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}[photon/.style={decorate, decoration={snake, amplitude=1.7pt, segment length=5pt}, ascwarm, thick},
+  q/.style={thick, ascblue}, l/.style={thick, ascpurple}]
+  \def\arw#1#2#3{\draw[#3, -{Stealth[length=5.5pt]}] ($#1!0.45!#2$) -- ($#1!0.56!#2$);}
+  \draw[q] (0,0) -- (4,0); \arw{(0,0)}{(4,0)}{ascblue}
+  \draw[q] (0,0.45) -- (4,0.45); \arw{(0,0.45)}{(4,0.45)}{ascblue}
+  \draw[q] (0,0.9) -- (1.7,0.9); \arw{(0,0.9)}{(1.7,0.9)}{ascblue}
+  \draw[q] (1.7,0.9) -- (4,0.9); \arw{(1.7,0.9)}{(4,0.9)}{ascblue}
+  \draw[photon] (1.7,0.9) -- (2.7,1.9);
+  \draw[l] (2.7,1.9) -- (4,2.6); \arw{(2.7,1.9)}{(4,2.6)}{ascpurple}
+  \draw[l] (4,1.45) -- (2.7,1.9); \arw{(4,1.45)}{(2.7,1.9)}{ascpurple}
+  \fill (1.7,0.9) circle (1.6pt); \fill (2.7,1.9) circle (1.6pt);
+  \foreach \y/\f in {0/u, 0.45/d, 0.9/d} \node[font=\small, left] at (-0.05,\y) {$\f$};
+  \foreach \y/\f in {0/u, 0.45/d, 0.9/u} \node[font=\small, right] at (4.05,\y) {$\f$};
+  \node[font=\small, right] at (4.05,2.6) {$e^-$};
+  \node[font=\small, right] at (4.05,1.45) {$\bar\nu_e$};
+  \node[font=\small, above left] at (2.25,1.35) {$W^-$};
+  \draw[decorate, decoration={brace, amplitude=4pt}] (-0.45,-0.1) -- (-0.45,1.0) node[midway, left=5pt, font=\small] {neutron};
+  \draw[decorate, decoration={brace, amplitude=4pt, mirror}] (4.45,-0.1) -- (4.45,1.0) node[midway, right=5pt, font=\small] {proton};
+  \draw[ascink!60, -{Stealth[length=5pt]}] (0,-0.5) -- (4,-0.5) node[midway, below, font=\footnotesize] {time};
+\end{tikzpicture}
+
+{\small Beta decay, quark by quark. One of the neutron's down quarks turns into an up quark by emitting a virtual $W^-$, which becomes an electron and an electron antineutrino. The other two quarks are spectators. The neutron ($udd$) has become a proton ($uud$).}
+\end{minipage}
+\end{center}
+
+The weak force has three strange properties.
+\begin{itemize}[itemsep=4pt]
+  \item \textbf{It violates parity.} In 1956 Lee and Yang pointed out that no experiment had ever tested whether the weak force respects mirror symmetry. Within months, Chien-Shiung Wu aligned the spins of cobalt-60 nuclei in a magnetic field and found that beta-decay electrons come out preferentially in one direction relative to the spin: the mirror image of the experiment does not happen in nature. The weak force acts only on left-handed particles (and right-handed antiparticles). Pauli had bet that God was not ``a weak left-hander''; he lost.
+  \item \textbf{It mixes generations.} The quark states that the $W$ couples to are not quite the same as the states of definite mass; they are rotated by a $3\times3$ unitary matrix, the \emph{CKM matrix}. That is why a strange quark can decay to an up quark, slowly.
+  \item \textbf{It violates CP.} The combined symmetry of swapping matter with antimatter and reflecting in a mirror is broken, slightly, as Cronin and Fitch found in neutral kaons in 1964. Kobayashi and Maskawa showed in 1973 that this requires at least three generations of quarks --- before the third generation was discovered. CP violation means matter and antimatter behave slightly differently, which is a precondition for the universe ending up with more matter than antimatter (Problem~\ref{prob:sakharov}).
+\end{itemize}
+
+\section{Electroweak unification and the Higgs}
+
+In the 1960s Glashow, Weinberg, and Salam unified the electromagnetic and weak forces into a single gauge theory with symmetry $SU(2)\times U(1)$. At high energies the theory has four massless gauge bosons. The Higgs mechanism (Chapter~\ref{ch:qft}) breaks the symmetry: a Higgs field fills all of space with a nonzero value, $v = 246\un{GeV}$, and three of the four gauge bosons absorb parts of it and become massive --- the $W^+$, $W^-$, and $Z$ --- while one combination stays massless: the photon. The theory predicted the $W$ and $Z$ masses, and CERN found them in 1983, exactly where predicted.
+
+The Higgs field gives mass to the fermions too: each fermion's mass is proportional to the strength of its coupling to the Higgs field, $m_f = y_fv/\sqrt2$. Why those couplings range from $10^{-6}$ for the electron to almost exactly $1$ for the top quark is one of the great unexplained patterns. The leftover ripple in the Higgs field is the Higgs boson. It was the last missing piece, sought for decades, and on 4 July 2012 the ATLAS and CMS experiments at the LHC (Chapter~\ref{ch:accel}) announced its discovery at $125\un{GeV}$. Its measured couplings to other particles so far all match the Standard Model's predictions.
+
+\section{Neutrinos}
+
+Neutrinos are the most elusive particles in the Standard Model, and they have provided its biggest surprise. In the 1960s Ray Davis built a tank of $600$ tonnes of cleaning fluid in a South Dakota gold mine to catch neutrinos from the Sun (Chapter~\ref{ch:nuclear}), counting the argon atoms they made one at a time. He found only a third of the predicted number. For thirty years the \emph{solar neutrino problem} persisted. The answer, confirmed by Super-Kamiokande in 1998 with neutrinos made by cosmic rays and by SNO in 2001 with solar neutrinos, was that neutrinos change flavour as they travel: an electron neutrino can turn into a muon or tau neutrino and back. This \emph{neutrino oscillation} happens only if neutrinos have mass, because it is an interference effect between mass states with slightly different energies (Problem~\ref{prob:oscillation}):
+\[
+  P(\nu_e\to\nu_\mu) = \sin^22\theta\,\sin^2\!\left(\frac{\Delta m^2c^4\,L}{4\hbar cE}\right).
+\]
+The Standard Model had assumed neutrinos massless. Their masses are tiny, below about $1\un{eV}$, at least a million times lighter than the electron, and nobody knows why. Nor do we know whether a neutrino is its own antiparticle, a question being probed by searches for an extremely rare nuclear decay.
+
+\section{Beyond the Standard Model}
+
+The Standard Model is spectacularly successful and certainly incomplete.
+\begin{itemize}[itemsep=4pt]
+  \item \textbf{Gravity} is not included, and combining it with quantum field theory runs into deep trouble (Chapter~\ref{ch:strings}).
+  \item \textbf{Dark matter} (Chapter~\ref{ch:cosmo}) is not any particle in the Standard Model.
+  \item \textbf{Neutrino masses} need some extension, perhaps new heavy particles.
+  \item \textbf{The matter--antimatter asymmetry}: the CP violation in the Standard Model is far too small to explain why the universe is made of matter (Problem~\ref{prob:sakharov}).
+  \item \textbf{The hierarchy problem}: quantum corrections should drag the Higgs mass up toward the highest energy scale in the theory, perhaps the Planck scale. That it sits at $125\un{GeV}$ seems to require a cancellation to one part in $10^{30}$. Supersymmetry and other theories proposed to explain this predicted new particles at the LHC, which have not been found.
+  \item \textbf{The strong CP problem}: QCD allows a CP-violating term that experiments limit to below $10^{-10}$ of its natural size. One proposed explanation predicts a new particle, the \emph{axion}, which is also a dark matter candidate.
+\end{itemize}
+\emph{Grand unified theories} suggest that the three gauge couplings, running with energy (Chapter~\ref{ch:qft}), might meet at about $10^{16}\un{GeV}$, uniting the forces into one. Most predict that protons decay, with lifetimes of $10^{34}$ years or so; enormous detectors have watched for it, and find the proton lives longer than $10^{34}$ years (Problem~\ref{prob:proton-decay}). The muon's magnetic moment was for years a tantalizing hint of new physics; improved theoretical calculations have since brought theory and experiment much closer together. Physics beyond the Standard Model surely exists. Where it will first appear is the field's central question.
+
+\section{Problems}
+
+\begin{problems}
+\prob{1}\core Which of these processes are allowed, and which conservation law forbids each of the others? (a) $p\to e^+ + \gamma$; (b) $n\to p + e^- + \bar\nu_e$; (c) $\mu^-\to e^- + \gamma$; (d) $\pi^0\to\gamma + \gamma$; (e) $\Lambda^0\to p + \pi^-$ (the $\Lambda^0$ is $uds$); (f) $e^+ + e^-\to\gamma$.
+
+\prob{1}\core Give the quark content and check the electric charge of the proton, neutron, $\Delta^{++}$, $\Omega^-$ ($sss$), $\pi^+$, and $K^-$ ($s\bar u$).
+
+\prob{1} Estimate the range of the weak force from the $W$ mass. Compare with the size of a proton. Why, then, is the weak force ``weak''?
+
+\prob{2}\core \emph{(Predicting the tau's lifetime.)} The muon decays only via $\mu\to e\bar\nu_e\nu_\mu$, with lifetime $2.2\un{\mu s}$. Fermi theory predicts a decay rate $\propto G_F^2m^5$. The tau decays to an electron and two neutrinos in $17.8\%$ of its decays. Predict the tau's lifetime, and compare with the measured $2.9\times10^{-13}\un{s}$. Why the fifth power?
+
+\prob{2}\core \emph{(Counting colours.)} At energies where it can make quark pairs, the ratio $R = \sigma(e^+e^-\to\text{hadrons})/\sigma(e^+e^-\to\mu^+\mu^-)$ is predicted to be $N_c\sum_qQ_q^2$, summed over the quarks light enough to be produced, where $N_c$ is the number of colours. Compute $R$ below the charm threshold, between charm and bottom, and above bottom. The measured values are about $2$, $3.3$, and $3.7$. What is $N_c$?
+
+\prob{2} For atmospheric neutrinos, $\Delta m^2c^4\approx2.5\times10^{-3}\un{eV^2}$ and the mixing is nearly maximal. At what distance does a $1\un{GeV}$ muon neutrino have the greatest chance of having changed flavour? Why do neutrinos coming up through the Earth show fewer muon neutrinos than those coming down from the sky?
+
+\prob{2}\core \label{prob:proton-mass} Add up the masses of the quarks in a proton and in a neutron. What fraction of the nucleon's mass is this? Where does the rest come from? If the up and down quarks were massless, roughly what would the proton weigh?
+
+\prob{2} \label{prob:alphas} The strong coupling runs approximately as $\alpha_s(Q) = \dfrac{12\pi}{(33-2n_f)\ln(Q^2/\Lambda^2)}$, with $\Lambda\approx0.2\un{GeV}$ and $n_f$ the number of quark flavours lighter than $Q$. Evaluate $\alpha_s$ at $91\un{GeV}$ ($n_f = 5$) and at $2\un{GeV}$ ($n_f = 3$). What happens as $Q$ approaches $\Lambda$? Why does the sign of $33 - 2n_f$ matter, and what would happen with $17$ flavours?
+
+\prob{2} Fermion masses are $m_f = y_fv/\sqrt2$ with $v = 246\un{GeV}$. Find the Yukawa couplings $y_f$ of the electron, the bottom quark, and the top quark. Why is the top quark special?
+
+\prob{3}\core \label{prob:colour} \emph{(The case for colour.)} The $\Delta^{++}$ has spin $\tfrac32$: all three $u$ quarks have spin up, and they are in the spatially symmetric ground state. Show that the combined space--spin wavefunction is symmetric under exchanging any two quarks, violating the Pauli principle. Show that adding a three-valued colour quantum number and requiring the colour part to be totally antisymmetric, $\epsilon_{ijk}q_iq_jq_k$, resolves the problem. Why does this make every baryon colour-neutral?
+
+\prob{3} \label{prob:proton-decay} Super-Kamiokande contains $50\,000$ tonnes of water. How many protons does it contain? If the proton lifetime were $10^{34}$ years, how many decays per year would be expected (ignoring detection efficiency)? Explain how watching for years without seeing any sets a lower limit on the lifetime.
+
+\prob{3} \label{prob:sakharov} \emph{(Why is there matter?)} Andrei Sakharov showed in 1967 that a universe starting with equal amounts of matter and antimatter can develop an excess of matter only if three conditions hold: baryon number is violated; C and CP are violated; and there is a departure from thermal equilibrium. Explain why each is necessary. (For the third, use the fact that in equilibrium the populations depend only on energies, and CPT symmetry guarantees that particles and antiparticles have equal masses.) The observed asymmetry is about one extra baryon per billion photons (Chapter~\ref{ch:cosmo}).
+
+\prob{3} \label{prob:oscillation} \emph{(Why oscillation means mass.)} Suppose $\nu_e = \cos\theta\,\nu_1 + \sin\theta\,\nu_2$, where $\nu_1$ and $\nu_2$ have masses $m_1$ and $m_2$. Each mass state evolves with phase $e^{-iE_jt/\hbar}$, with $E_j\approx pc + m_j^2c^4/2pc$ for a relativistic neutrino. Show that the probability of detecting a $\nu_e$ after distance $L$ is $1 - \sin^22\theta\sin^2(\Delta m^2c^4L/4\hbar cE)$. Why does this vanish if $m_1 = m_2$?
+\end{problems}
+
+\begin{reading}
+\rd{David Griffiths, \emph{Introduction to Elementary Particles}}{The standard undergraduate introduction, especially good for learning to compute.}
+\rd{Mark Thomson, \emph{Modern Particle Physics}}{A modern, experimentally grounded undergraduate text.}
+\rd{David Tong, lecture notes on Particle Physics}{A qualitative modern overview of the Standard Model, free online.}
+\rd{Frank Close, \emph{The Infinity Puzzle}}{The story of how the Standard Model was built, for a general reader.}
+\rd{Particle Data Group, \emph{Review of Particle Physics}}{Every measured property of every particle, free online.}
+\end{reading}

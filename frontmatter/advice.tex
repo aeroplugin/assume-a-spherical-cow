@@ -1,0 +1,95 @@
+\chapter{Advice for the reader}
+
+\section*{Prerequisites}
+
+The mathematical prerequisite is calculus: you should be able to differentiate and integrate without fear, and know what a differential equation is even if you cannot yet solve many of them. Multivariable calculus, linear algebra, and complex numbers are used freely in later chapters; Chapter~\ref{ch:math} introduces them quickly, and you should treat it as a reference to come back to rather than a wall to climb first.
+
+The physical prerequisite is harder to state, and matters more. Call it \emph{physical maturity}. It means being willing to
+\begin{itemize}[itemsep=2pt]
+  \item reason in \textbf{limiting cases} (what happens as the mass goes to infinity? as the temperature goes to zero?),
+  \item check every equation against its \textbf{units} and its \textbf{symmetries} before you trust it,
+  \item \textbf{estimate} answers to within a factor of ten before computing them,
+  \item move back and forth between a \textbf{physical picture} and the equations that encode it, and
+  \item accept that every model is a \textbf{useful lie}, and that knowing how it lies is part of knowing it.
+\end{itemize}
+Nobody starts with all of this. The book tries to teach it as it goes.
+
+\section*{Deciding what to read}
+
+There is no need to read this book in order. The chapters run as a loose climb --- the foundations first, the frontier last --- but almost every chapter can be started directly. Pick a chapter that sounds interesting, look at what it \emph{builds on} (listed at the top of every chapter and in the map below), and follow those links back only as far as you need to.
+
+If you want a suggestion, here are a few tasting menus:
+\begin{itemize}[itemsep=3pt]
+  \item \textbf{The quantum menu:} \ref{ch:math}~$\to$~\ref{ch:newton}~$\to$~\ref{ch:sho}~$\to$~\ref{ch:analytical}~$\to$~\ref{ch:qm}, then any of \ref{ch:amo}, \ref{ch:condmat}, or \ref{ch:qinfo}.
+  \item \textbf{The cosmic menu:} \ref{ch:newton}~$\to$~\ref{ch:sr}~$\to$~\ref{ch:gr}~$\to$~\ref{ch:astro}~$\to$~\ref{ch:cosmo}~$\to$~\ref{ch:gw}.
+  \item \textbf{The everyday menu:} \ref{ch:newton}~$\to$~\ref{ch:thermo}~$\to$~\ref{ch:fluids}~$\to$~\ref{ch:continuum}~$\to$~\ref{ch:geo}.
+  \item \textbf{The deep-end menu:} \ref{ch:sho}~$\to$~\ref{ch:analytical}~$\to$~\ref{ch:sr}~$\to$~\ref{ch:qm}~$\to$~\ref{ch:qft}~$\to$~\ref{ch:particle}~$\to$~\ref{ch:strings}.
+  \item \textbf{The life menu:} \ref{ch:thermo}~$\to$~\ref{ch:statmech}~$\to$~\ref{ch:chem}~$\to$~\ref{ch:bio}~$\to$~\ref{ch:medical}.
+\end{itemize}
+
+\section*{The boxes}
+
+The book uses a few recurring boxes. They mean the same thing everywhere.
+
+\begin{prototype}
+The prototypical example of the chapter. Every definition and theorem that follows should be tested against it.
+\end{prototype}
+
+\begin{keyidea}
+The one idea from a section that you should remember a year from now.
+\end{keyidea}
+
+\begin{definition}
+A precise definition of a new character.
+\end{definition}
+
+\begin{law}
+A law of nature or a major result, stated precisely. (Physics has fewer theorems than mathematics and more laws.)
+\end{law}
+
+\begin{example}
+A worked example. I am, like the author of the \emph{Napkin}, pathologically fond of examples, and some pages are mostly boxes. I hope you will not mind.
+\end{example}
+
+\begin{exercise}
+Inline exercises are short and should be done on the spot. If you cannot do one, the explanation before it probably failed; read back.
+\end{exercise}
+
+\section*{Problems, and how hard they are}
+
+Every chapter ends with problems, and the problems are the most important part of the chapter. They climb in difficulty, and the difficulty is marked in the most physicist way available: by \emph{order of perturbation theory}.
+
+In physics, when a problem is too hard to solve exactly, we look for a small parameter $\epsilon$ and expand: the answer is the solvable part, plus a correction of order $\epsilon$, plus a smaller correction of order $\epsilon^2$, and so on. Most of physics lives in the first two terms. But some effects --- quantum tunnelling is the classic example --- behave like $e^{-1/\epsilon}$. Such a function is smaller than \emph{every} power of $\epsilon$, so it is invisible at every order of the expansion. You cannot reach it by working harder at the obvious approach; you need a new idea.
+
+So:
+\begin{itemize}[itemsep=5pt]
+  \item[\diffmark{1}] \textbf{First order.} Apply the ideas of the chapter directly. If one of these defeats you, re-read the relevant section.
+  \item[\diffmark{2}] \textbf{Second order.} Combine several ideas, keep careful track of a correction, or carry a calculation through several steps. These are where most of the learning happens.
+  \item[\diffmark{3}] \textbf{Nonperturbative.} No amount of grinding on the obvious approach will work; you need a genuinely new idea, a clever change of viewpoint, or a trick you have not seen. Some of these are famous. Do not be discouraged if you need hints, or days.
+\end{itemize}
+Two further marks indicate importance: a \core marks a result that later chapters rely on, and a \aside marks an aside worth knowing but not needed elsewhere.
+
+Every nonperturbative problem has a hint in Appendix~\ref{app:hints}, and every problem has a solution in Appendix~\ref{app:solutions}. Use them the way you would use a friend who knows the answer: only after you have honestly tried, and one step at a time.
+
+\section*{Pencil and paper}
+
+Read this book with a pencil and paper. You cannot keep it all in your head; nobody can. Check the algebra that is skipped, sketch the graphs that are described, and try every inline exercise before reading on.
+
+\section*{Conventions}
+
+\begin{itemize}[itemsep=3pt]
+  \item Units are SI unless stated otherwise. From Chapter~\ref{ch:qft} onward we sometimes set $\hbar = c = 1$, and say so loudly when we do.
+  \item Vectors are bold, $\vb{F}$; their magnitudes are plain, $F$. A hat marks a unit vector, $\vu{r}$.
+  \item Dots are time derivatives: $\dot x = \dd x/\dd t$.
+  \item The symbol $\approx$ means ``approximately equal to''; $\sim$ means ``of the same order of magnitude as,'' i.e.\ equal up to a factor of a few; $\propto$ means ``proportional to.''
+  \item Appendix~\ref{app:constants} collects physical constants and useful orders of magnitude.
+\end{itemize}
+
+\clearpage
+\section*{The map}
+
+Here is how the chapters lean on each other. An arrow runs from a chapter to each chapter that builds on it; the two boxes with heavy borders need nothing at all. I suggest that you simply \textbf{pick a chapter you find interesting, and walk the arrows back only as far as you need to.} (Every box in the chart is a link to its chapter.)
+
+\begin{center}
+\input{frontmatter/chart}
+\end{center}

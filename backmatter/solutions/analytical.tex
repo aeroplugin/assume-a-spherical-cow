@@ -1,0 +1,39 @@
+\solchapter{analytical}
+
+\sol{analytical}{1} Let $m_1$ descend a distance $x$, so $m_2$ rises by $x$. Then $L = \tfrac12(m_1+m_2)\dot x^2 + (m_1-m_2)gx$, and the Euler--Lagrange equation is $(m_1+m_2)\ddot x = (m_1-m_2)g$, as Newton's laws gave. The tension never appears because the coordinate already respects the inextensible string.
+
+\sol{analytical}{2} In spherical coordinates the velocity has components $\dot r$, $r\dot\theta$, and $r\sin\theta\,\dot\phi$, giving the stated $L$. It does not depend on $\phi$, so $p_\phi = mr^2\sin^2\theta\,\dot\phi = L_z$ is conserved. The potential depends only on $r$, so the Lagrangian is invariant under every rotation, and by Noether's theorem every component of $\vb L$ is conserved; choosing the polar axis along any direction makes that component the manifest one. (Equivalently, a central force exerts no torque.)
+
+\sol{analytical}{3} $H = p^2/2m + \tfrac12m\omega^2x^2$ gives $\dot x = p/m$ and $\dot p = -m\omega^2x$. Since $H = E$ is conserved, the trajectory is the ellipse $x^2/a^2 + p^2/b^2 = 1$ with $a = \sqrt{2E/m\omega^2}$ and $b = \sqrt{2mE}$. At the top ($x = 0$, $p>0$) we have $\dot x>0$: moving right, so clockwise. The area is $\pi ab = 2\pi E/\omega$.
+
+\sol{analytical}{4} With $\theta$ measured from the bottom, the bead's velocity has components $R\dot\theta$ along the hoop and $R\Omega\sin\theta$ around the axis, so $L = \tfrac12mR^2(\dot\theta^2 + \Omega^2\sin^2\theta) + mgR\cos\theta$. Then
+\[
+  H = p_\theta\dot\theta - L = \tfrac12mR^2\dot\theta^2 - \tfrac12mR^2\Omega^2\sin^2\theta - mgR\cos\theta,
+\]
+whereas the energy is $E = \tfrac12mR^2\dot\theta^2 + \tfrac12mR^2\Omega^2\sin^2\theta - mgR\cos\theta$. They differ in the sign of the rotational term. $H$ is conserved because $L$ has no explicit time dependence. $E$ is not, because the motor keeping the hoop spinning at fixed $\Omega$ does work on the bead through the normal force whenever the bead's distance from the axis changes.
+
+\sol{analytical}{5} With $x_1 = \ell\sin\theta_1$, $y_1 = -\ell\cos\theta_1$, $x_2 = x_1+\ell\sin\theta_2$, $y_2 = y_1-\ell\cos\theta_2$:
+\[
+  L = \tfrac12m\ell^2\big[2\dot\theta_1^2 + \dot\theta_2^2 + 2\dot\theta_1\dot\theta_2\cos(\theta_1-\theta_2)\big] + mg\ell(2\cos\theta_1 + \cos\theta_2).
+\]
+For small angles, $M = m\ell^2\begin{pmatrix}2&1\\1&1\end{pmatrix}$ and $K = mg\ell\begin{pmatrix}2&0\\0&1\end{pmatrix}$. With $w = \omega^2\ell/g$, $\det(K-\omega^2M) = 0$ becomes $(2-2w)(1-w) - w^2 = w^2 - 4w + 2 = 0$, so $w = 2\pm\sqrt2$. The slow mode ($w = 2-\sqrt2$) has $\theta_2 = \sqrt2\,\theta_1$: both rods swing the same way, the lower one further. The fast mode ($w = 2+\sqrt2$) has $\theta_2 = -\sqrt2\,\theta_1$: they swing in opposition.
+
+\sol{analytical}{6} With $L_x = yp_z - zp_y$ and $L_y = zp_x - xp_z$, the only nonzero pieces are $\{yp_z, zp_x\} = -yp_x$ and $\{zp_y, xp_z\} = xp_y$, so $\{L_x, L_y\} = xp_y - yp_x = L_z$. By the same token $\{L_z,L_x\} = L_y$ and $\{L_z,L_y\} = -L_x$, so $\{L_z, L_x^2+L_y^2+L_z^2\} = 2L_xL_y - 2L_yL_x = 0$. Finally $\{x, L_z\} = \{x, xp_y - yp_x\} = -y$.
+
+\sol{analytical}{7} With polar angle $\theta$ from the downward vertical and azimuth $\phi$, $L = \tfrac12m\ell^2(\dot\theta^2 + \sin^2\theta\,\dot\phi^2) + mg\ell\cos\theta$. The conserved quantities are the energy and $p_\phi = m\ell^2\sin^2\theta\,\dot\phi$ (the vertical angular momentum). Eliminating $\dot\phi$ leaves $\tfrac12m\ell^2\dot\theta^2 + U_{\text{eff}}(\theta) = E$ with $U_{\text{eff}} = p_\phi^2/(2m\ell^2\sin^2\theta) - mg\ell\cos\theta$. A steady cone needs $\ddot\theta = 0$: $\sin\theta\cos\theta\,\dot\phi^2 = (g/\ell)\sin\theta$, so $\dot\phi = \sqrt{g/(\ell\cos\theta_0)}$.
+
+\sol{analytical}{8} Put the start at height $a$ above the interface and the end at depth $b$ below it, a horizontal distance $d$ apart, and let the ray cross at $x$. The time is $t = [n_1\sqrt{a^2+x^2} + n_2\sqrt{b^2+(d-x)^2}]/c$. Setting $\dd t/\dd x = 0$ gives $n_1x/\sqrt{a^2+x^2} = n_2(d-x)/\sqrt{b^2+(d-x)^2}$, which is $n_1\sin\theta_1 = n_2\sin\theta_2$.
+
+\sol{analytical}{9} Starting from rest, $v = \sqrt{2gy}$, and $\dd s = \sqrt{1+y'^2}\,\dd x$, so $t = \int\sqrt{(1+y'^2)/2gy}\,\dd x$. The integrand $F(y,y')$ has no explicit $x$, so $F - y'\,\partial F/\partial y'$ is constant (the analogue of energy conservation, with $x$ as time). This gives $1/\sqrt{y(1+y'^2)} = $ const, i.e.\ $y(1+y'^2) = 2a$. Substituting $y = a(1-\cos\psi)$ gives $\dd x/\dd\psi = a(1-\cos\psi)$, so $x = a(\psi - \sin\psi)$: a cycloid. It is the same curve as the tautochrone of Problem~\ref{prob:tautochrone} --- the cycloid is both the fastest path and the isochronous one.
+
+\sol{analytical}{10} In the pivot's frame, gravity is effectively $g + \ddot z_p = g - a\Omega^2\cos\Omega t$, so
+\[
+  \ell\ddot\theta = -(g - a\Omega^2\cos\Omega t)\sin\theta .
+\]
+Write $\theta = \bar\theta + \xi$. The fast part obeys $\ell\ddot\xi\approx a\Omega^2\cos\Omega t\sin\bar\theta$, so $\xi = -(a/\ell)\sin\bar\theta\cos\Omega t$. Averaging the slow equation over a fast period, the only surviving extra term is $a\Omega^2\langle\cos\Omega t\,\xi\rangle\cos\bar\theta = -(a^2\Omega^2/2\ell)\sin\bar\theta\cos\bar\theta$. So
+\[
+  m\ell^2\ddot{\bar\theta} = -mg\ell\sin\bar\theta - \tfrac12ma^2\Omega^2\sin\bar\theta\cos\bar\theta = -\dv{U_{\text{eff}}}{\bar\theta},
+\]
+with the stated $U_{\text{eff}}$. At $\theta = \pi$, $U_{\text{eff}}'' = -mg\ell + \tfrac12ma^2\Omega^2$, which is positive (a stable minimum) when $a^2\Omega^2>2g\ell$.
+
+\sol{analytical}{11} A wall approaching at speed $u$ adds $2u$ to the ball's speed at each bounce, and the ball hits it every $2\ell/v$. So $\dot v = uv/\ell$, while $\dot\ell = -u$. Dividing, $\dd v/v = -\dd\ell/\ell$: $v\ell$ is constant. (It is the action $\oint p\,\dd x = 2mv\ell$, an adiabatic invariant.) The energy goes as $v^2\propto1/\ell^2$. For $N$ balls the average force on a wall is $Nmv^2/\ell\propto\ell^{-3}$, so $P\ell^3$ is constant: $\gamma = 3$, matching $\gamma = 1 + 2/f$ for $f = 1$ degree of freedom.

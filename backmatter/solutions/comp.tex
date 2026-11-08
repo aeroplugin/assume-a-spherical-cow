@@ -1,0 +1,73 @@
+\solchapter{comp}
+
+\sol{comp}{1} \texttt{0.1 + 0.2} evaluates to \texttt{0.30000000000000004}, so the test fails: none of $0.1$, $0.2$, $0.3$ has a finite binary expansion, and the rounding errors do not cancel. Halving from $1$, the last $\epsilon$ for which $1+\epsilon>1$ is $2^{-52}\approx2.2\times10^{-16}$: double precision stores $52$ bits after the leading one.
+
+\sol{comp}{2} Running it:
+\begin{center}
+\small
+\begin{tabular}{@{}lll@{}}
+\toprule
+$x$ & direct & rewritten\\
+\midrule
+$10^{-1}$ & $0.499583472$ & $0.499583472$\\
+$10^{-3}$ & $0.4999999583$ & $0.4999999583$\\
+$10^{-5}$ & $0.50000004$ & $0.4999999999958$\\
+$10^{-7}$ & $0.4996$ & $0.5$\\
+$10^{-8}$, $10^{-9}$ & $0$ & $0.5$\\
+\bottomrule
+\end{tabular}
+\end{center}
+$1-\cos x\approx x^2/2$ is computed as the difference of two numbers near $1$, so its relative error is about $\epsilon/(x^2/2)$, which reaches order one when $x\sim\sqrt{2\epsilon}\approx2\times10^{-8}$. Below that, $\cos x$ rounds to exactly $1$.
+
+\sol{comp}{3} $E' = \tfrac12(v - h\omega^2x)^2 + \tfrac12\omega^2(x + hv)^2$; the cross terms cancel, leaving $(1+\omega^2h^2)E$. With $100$ steps per period, $\omega h = 2\pi/100$ and the energy grows per period by $(1+0.0039)^{100}\approx e^{0.39} = 1.48$. Keeping growth below $1\%$ over $100$ periods needs $\exp(100\cdot4\pi^2/N)<1.01$, i.e.\ $N\gtrsim4\times10^5$ steps per period. Hopeless.
+
+\sol{comp}{4} Taylor expansion gives $[f(x+h)-f(x-h)]/2h = f'(x) + \tfrac16h^2f'''(x) + \dots$; each function value carries a rounding error $\sim\epsilon\abs f$, contributing $\sim\epsilon\abs f/h$. Minimizing $h^2\abs{f'''}/6 + \epsilon\abs f/h$ gives $h = (3\epsilon\abs f/\abs{f'''})^{1/3}\sim\epsilon^{1/3}\approx10^{-5}$, with error $\sim\epsilon^{2/3}\approx10^{-11}$. On log-log axes the error has slope $+2$ for large $h$ (truncation) and slope $-1$ for small $h$ (round-off): a V with its point near $h\approx10^{-5}$.
+
+\sol{comp}{5} $x_{n+1} = x_n - (x_n^2-2)/2x_n = \tfrac12(x_n+2/x_n)$. From $x_0 = 1$: $1.5$, $1.4166667$, $1.4142157$, $1.414213562375$, $1.414213562373095$, with errors $9\times10^{-2}$, $2\times10^{-3}$, $2\times10^{-6}$, $2\times10^{-12}$ --- roughly $1, 3, 6, 12$ correct digits. In general $e_{n+1} = e_n^2/2x_n$: quadratic convergence.
+
+\sol{comp}{6} With step $0.01\un{yr}$ for $100$ years (units of AU and years, $GM = 4\pi^2$), a run of the code gives:
+\begin{itemize}[itemsep=2pt]
+  \item \textbf{Euler}: the energy rises steadily; after $100$ years it has risen by $85\%$ of $\abs{E_0}$ and the ``Earth'' has spiralled out to $6\un{AU}$, nearly unbound.
+  \item \textbf{RK4}: a tiny but systematic drift, $\Delta E/E\approx-2\times10^{-5}$ after $100$ years, growing steadily with time.
+  \item \textbf{Velocity Verlet}: the energy error oscillates with the orbital period, staying below $4\times10^{-6}$ throughout, with no long-term drift.
+\end{itemize}
+RK4 is more accurate per step, but only the symplectic method stays bounded forever.
+
+\sol{comp}{7} The computed levels, in units of the exact $\pi^2n^2/2$:
+\begin{center}
+\small
+\begin{tabular}{@{}lllll@{}}
+\toprule
+$N$ & $n=1$ & $n=2$ & $n=3$ & $n=4$\\
+\midrule
+$10$ & $0.9932$ & $3.892$ & $8.463$ & $14.33$\\
+$100$ & $0.99992$ & $3.9987$ & $8.9935$ & $15.979$\\
+$1000$ & $0.999999$ & $3.99999$ & $8.99993$ & $15.9998$\\
+\bottomrule
+\end{tabular}
+\end{center}
+The discretized $-\tfrac12\,\dd^2/\dd x^2$ has exact eigenvalues
+\[
+  \frac{2}{h^2}\sin^2\frac{n\pi h}{2}\approx\frac{(n\pi)^2}{2}\left(1 - \frac{(n\pi h)^2}{12}\right),
+\]
+so the relative error of level $n$ is $-(n\pi h)^2/12$, falling a hundredfold for each tenfold increase in $N$. With $V = \tfrac12x^2$ on $[-10,10]$ and $N = 1000$, the levels are $0.49999$, $1.49994$, $2.49984$, $3.49969$.
+
+\sol{comp}{8} Substituting the Fourier mode, $g = 1 + r(e^{ik\Delta x} - 2 + e^{-ik\Delta x}) = 1 - 4r\sin^2(k\Delta x/2)$. The worst case is $\sin^2 = 1$, giving $g = 1-4r$, and $\abs g\le1$ requires $r\le\tfrac12$. The first mode to go unstable has $k\Delta x = \pi$: the sawtooth that alternates sign at every grid point --- the checkerboard you see when a simulation explodes.
+
+\sol{comp}{9} The fraction inside is $p = \pi/4$, so the error in $\pi$ is $4\sqrt{p(1-p)/N}\approx1.6/\sqrt N$. A run gave errors of $0.10$, $0.016$, and $0.0016$ for $N = 10^2$, $10^4$, $10^6$, against predictions of $0.16$, $0.016$, $0.0016$. A grid with $10$ points per axis in $10$ dimensions needs $10^{10}$ points; Monte Carlo's $1/\sqrt N$ error does not care about dimension, so $10^4$ samples give about $1\%$.
+
+\sol{comp}{10} On a $32\times32$ lattice (averaging $\abs m$ over $2000$ sweeps):
+\begin{center}
+\small
+\begin{tabular}{@{}lcccccccc@{}}
+\toprule
+$T$ & $1.5$ & $2.0$ & $2.2$ & $2.3$ & $2.4$ & $2.6$ & $3.0$ & $3.5$\\
+$\langle\abs m\rangle$ & $0.99$ & $0.91$ & $0.75$ & $0.58$ & $0.34$ & $0.15$ & $0.08$ & $0.06$\\
+\bottomrule
+\end{tabular}
+\end{center}
+The steepest drop is near $T\approx2.3$, consistent with Onsager's $2.269$ and far below the mean-field $4$. A finite lattice cannot have a true singularity: correlations cannot grow larger than the lattice, so the transition is smeared over a range of width $\sim1/L$, and above $T_c$, $\abs m$ stays nonzero at the level of the fluctuations, $\sim1/L$.
+
+\sol{comp}{11} With $a = \omega^2h^2/2$, one step is $x' = (1-a)x + hv$, $v' = -h\omega^2(1-a/2)x + (1-a)v$. The determinant is $(1-a)^2 + h^2\omega^2(1-a/2) = 1$. Writing the matrix as $M = \begin{pmatrix}c&h\\-q&c\end{pmatrix}$ with $c^2 + hq = 1$, a direct calculation gives $M^TSM = S$ for $S = \mathrm{diag}(q/h, 1)$, i.e.\ $q/h = \omega^2(1-\omega^2h^2/4)$: so $\tilde H$ is exactly conserved. For $\omega h<2$, $\tilde H$ is a positive quadratic form, the motion stays on a fixed ellipse, and the true energy differs from $\tilde H$ by a bounded oscillating amount of relative size $\sim\omega^2h^2$. For $\omega h>2$, $\tilde H$ is indefinite, $\abs{\tr M} = 2\abs{1-a}>2$, one eigenvalue exceeds $1$ in magnitude, and the numerical solution blows up exponentially.
+
+\sol{comp}{12} A run with $h = 10^{-3}$ and $h(1+10^{-12})$ from $(1,1,1)$ gives separations of $2\times10^{-11}$ at $t = 1$, $5\times10^{-10}$ at $t=10$, $10^{-5}$ at $t = 30$, $0.2$ at $t = 40$, and order $10$ (the size of the attractor) by $t\approx45$ --- growth at about the maximal Lyapunov exponent, $0.9$. So no simulation tracks \emph{the} true trajectory for long. The \emph{shadowing lemma} says that for hyperbolic systems, every slightly erroneous numerical trajectory stays close to some \emph{exact} trajectory from a slightly different initial condition. The simulation is a faithful sample of the attractor, just not of the trajectory you asked for --- so averages, Lyapunov exponents, and other statistical properties come out right. (The Lorenz attractor is not uniformly hyperbolic, but shadowing holds in practice for very long times.)

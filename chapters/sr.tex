@@ -1,0 +1,196 @@
+\chapter{Special relativity}
+\label{ch:sr}
+
+\buildson{Newtonian mechanics (Chapter~\ref{ch:newton}), electromagnetism (Chapter~\ref{ch:em})}
+
+\chapterdek{Space and time, caught trading places at high speed --- and the discovery that they were never really separate.}
+
+\begin{prototype}
+The light clock: two mirrors facing each other, with a pulse of light bouncing between them. Each round trip is one tick. Watch a light clock fly past you and its light zigzags along a longer path; since light always moves at speed $c$, each tick takes longer. Moving clocks run slow.
+\end{prototype}
+
+Special relativity is what happens when you take one experimental fact completely seriously: the speed of light is the same for everyone. The consequences --- time dilation, length contraction, the relativity of simultaneity, $E=mc^2$ --- are counterintuitive only because our intuitions were built at speeds a millionth of the speed of light. Underneath, the theory is not complicated. It is geometry.
+
+\section{The problem}
+
+Newtonian mechanics obeys the principle of relativity: the laws of physics are the same in every inertial frame, and you cannot tell by any mechanical experiment whether your train is moving smoothly or standing still. Velocities simply add: throw a ball forward at $10\un{m/s}$ from a train moving at $30\un{m/s}$, and it moves at $40\un{m/s}$ relative to the ground.
+
+But Maxwell's equations (Chapter~\ref{ch:em}) predict that light travels at $c = 1/\sqrt{\mu_0\epsilon_0}$, with no mention of any frame. Relative to what? Nineteenth-century physicists assumed relative to a medium, the ``luminiferous ether,'' and that the Earth must be moving through it. In 1887 Michelson and Morley used an interferometer (Chapter~\ref{ch:optics}) sensitive enough to detect the Earth's orbital motion through the ether. They found nothing. Light moved at the same speed in every direction, in every season.
+
+\section{Einstein's postulates}
+
+In 1905 Einstein took the null result at face value.
+\begin{law}[The postulates of special relativity]
+\begin{enumerate}[label=(\arabic*),itemsep=2pt]
+  \item The laws of physics are the same in all inertial frames.
+  \item The speed of light in vacuum is the same, $c$, in all inertial frames, regardless of the motion of the source or observer.
+\end{enumerate}
+\end{law}
+Each postulate seems reasonable alone. Together they seem impossible: if I chase a light beam at half the speed of light, how can it still recede from me at $c$? Something about our ideas of space and time must give. It turns out to be the idea that time is the same for everyone.
+
+\section{Simultaneity is relative}
+
+A train moves past a platform. Lightning strikes both ends of the train, and the flashes reach an observer standing at the middle of the platform at the same moment; she concludes the strikes were simultaneous. A passenger at the middle of the train is moving toward the front flash and away from the rear one, so he sees the front flash first. In his frame, light travels at $c$ in both directions and he is standing still at the middle, so he must conclude the front strike happened \emph{first}.
+
+Both are right. \emph{Whether two separated events are simultaneous depends on the observer's frame.} Everything else in special relativity follows from this.
+
+\section{Time dilation}
+
+Take a light clock with mirrors a distance $L$ apart. At rest, a tick takes $\Delta\tau = 2L/c$. Now let the clock move sideways at speed $v$. In our frame, the light travels diagonally, covering a distance $c\Delta t/2$ on each half-trip while the clock moves $v\Delta t/2$. Pythagoras gives $(c\Delta t/2)^2 = L^2 + (v\Delta t/2)^2$, so
+\[
+  \Delta t = \gamma\,\Delta\tau, \qquad \gamma = \frac{1}{\sqrt{1 - v^2/c^2}} \ge 1 .
+\]
+\emph{Moving clocks run slow} by the factor $\gamma$, the \emph{Lorentz factor}. By the first postulate this applies to every clock, including atoms, muons, and hearts --- otherwise you could compare a light clock with a mechanical clock and detect absolute motion. The time $\tau$ measured by a clock in its own rest frame is called its \emph{proper time}.
+
+At everyday speeds $\gamma\approx1+v^2/2c^2$ (Chapter~\ref{ch:math}), and the effect is tiny: on a jet at $250\un{m/s}$, about a nanosecond per hour. But it is measurable. Atomic clocks flown around the world in 1971 confirmed it, and GPS satellites must correct for it every day (Problem~\ref{prob:gps-sr}).
+
+\begin{example}[Muons reach the ground]
+Cosmic rays striking the upper atmosphere make muons, unstable particles that live $2.2\un{\mu s}$ at rest. Even at nearly the speed of light, a muon should travel only about $660\un{m}$ before decaying --- yet they rain down at sea level, $15\un{km}$ below. At $v = 0.998c$, $\gamma\approx16$: in our frame their clocks run sixteen times slow, and they survive long enough.
+\end{example}
+
+\section{Length contraction}
+
+From the muon's own point of view, its clock is fine. So how does it reach the ground? In its frame the atmosphere rushes past at $0.998c$, and is \emph{contracted} along the direction of motion:
+\[
+  L = \frac{L_0}{\gamma}.
+\]
+The $15\un{km}$ of atmosphere is less than a kilometre thick to the muon. Time dilation in one frame is length contraction in the other; the two observers agree on what happens (the muon reaches the ground) while disagreeing about why. Only lengths along the motion contract; perpendicular lengths are unchanged.
+
+\section{The Lorentz transformation}
+
+The full rule for converting the coordinates $(t,x)$ of an event in one frame to $(t',x')$ in a frame moving at speed $v$ along $x$ is the \textbf{Lorentz transformation}:
+\[
+  t' = \gamma\left(t - \frac{vx}{c^2}\right), \qquad x' = \gamma\,(x - vt), \qquad y'=y,\quad z' = z .
+\]
+At low speeds it reduces to the Galilean $t'=t$, $x' = x - vt$. The new ingredient is the term $vx/c^2$ in the time: clocks that are synchronized in one frame are out of sync in another, by an amount that grows with their separation. That is the relativity of simultaneity, in a formula.
+
+Velocities no longer simply add. An object moving at $u$ in one frame moves at
+\[
+  u' = \frac{u + v}{1 + uv/c^2}
+\]
+in a frame moving at $-v$. Add $0.8c$ to $0.8c$ and you get $0.976c$. Add anything to $c$ and you get $c$. Nothing with mass can be accelerated to the speed of light.
+
+\section{Spacetime}
+
+In 1908 Minkowski, Einstein's former teacher, recast special relativity as geometry. ``Henceforth space by itself, and time by itself, are doomed to fade away into mere shadows, and only a kind of union of the two will preserve an independent reality.''
+
+An \emph{event} is a point in four-dimensional spacetime. Different observers disagree about time intervals and about distances, but they all agree on the \textbf{spacetime interval}
+\[
+  \Delta s^2 = c^2\Delta t^2 - \Delta x^2 - \Delta y^2 - \Delta z^2 .
+\]
+It plays the role that distance plays in ordinary geometry: just as rotating your axes changes $\Delta x$ and $\Delta y$ but not $\Delta x^2+\Delta y^2$, a Lorentz transformation changes $\Delta t$ and $\Delta x$ but not $\Delta s^2$. A Lorentz boost is a rotation in spacetime --- a hyperbolic one, because of that minus sign.
+
+The sign of the interval classifies pairs of events:
+\begin{itemize}[itemsep=3pt]
+  \item \textbf{Timelike} ($\Delta s^2>0$): one event can influence the other. All observers agree on their order, and $\Delta s/c$ is the proper time measured by a clock that travels between them.
+  \item \textbf{Lightlike} ($\Delta s^2 = 0$): they can be connected only by a light signal.
+  \item \textbf{Spacelike} ($\Delta s^2<0$): no signal can connect them, and different observers disagree about which happened first. Causality is safe precisely because such events cannot influence each other.
+\end{itemize}
+On a \emph{spacetime diagram}, with time up and space across, light travels on $45^\circ$ lines, and each event has a \emph{light cone}: the future cone of everything it can affect, and the past cone of everything that could have affected it.
+
+\begin{center}
+\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}[scale=1.15]
+  \fill[ascwarmbg] (0,0) -- (2.4,2.4) -- (-2.4,2.4) -- cycle;
+  \fill[ascwarmbg] (0,0) -- (1.2,-1.2) -- (-1.2,-1.2) -- cycle;
+  \draw[-{Stealth[length=6pt]}] (-2.5,0) -- (2.7,0) node[right] {$x$};
+  \draw[-{Stealth[length=6pt]}] (0,-1.3) -- (0,2.6) node[above] {$ct$};
+  \draw[ascwarm, thick] (-1.2,-1.2) -- (2.4,2.4) node[above right, font=\small] {light};
+  \draw[ascwarm, thick] (1.2,-1.2) -- (-2.4,2.4) node[above left, font=\small] {light};
+  \draw[ascblue, thick, -{Stealth[length=6pt]}] (-0.6,-1.2) -- (1.25,2.5) node[above, font=\small] {$ct'$};
+  \draw[ascblue, thick, -{Stealth[length=6pt]}] (-2.4,-1.2) -- (2.6,1.3) node[right, font=\small] {$x'$};
+  \foreach \s in {0.7,1.4} \draw[ascblue!60, dashed] (-2.2,{-1.1+\s}) -- (2.2,{1.1+\s});
+  \node[ascblue, font=\small, anchor=west] at (2.25,1.8) {$t' = $ const};
+  \node[font=\small, ascwarm!80!black] at (-1.25,1.75) {future};
+  \node[font=\small, ascwarm!80!black] at (0,-0.95) {past};
+\end{tikzpicture}
+
+{\small A spacetime diagram. Light moves along the $45^\circ$ lines, which bound the future and past of the event at the origin. An observer moving at $v = c/2$ has tilted axes $ct'$ and $x'$; the dashed lines are events that observer calls simultaneous.}
+\end{minipage}
+\end{center}
+
+\begin{keyidea}
+In ordinary geometry, the straight line is the \emph{shortest} path between two points. In spacetime, because of the minus sign, the straight worldline is the \emph{longest}: an unaccelerated clock records more proper time between two events than any other clock that travels between them. This one fact dissolves the twin paradox (Problem~\ref{prob:twins}).
+\end{keyidea}
+
+\section{Four-vectors, energy, and momentum}
+
+Just as the position of an event is a \emph{four-vector} $x^\mu = (ct,x,y,z)$, other quantities combine into four-vectors whose ``length'' (in the sense of the interval) is invariant. The most important is the \textbf{four-momentum}
+\[
+  p^\mu = \left(\frac{E}{c},\,\vb p\right), \qquad E = \gamma mc^2,\quad \vb p = \gamma m\vb v .
+\]
+Its invariant length gives the most important equation in relativity:
+\[
+  E^2 = (pc)^2 + (mc^2)^2 .
+\]
+The energy of a particle at rest is not zero but
+\[
+  E = mc^2 .
+\]
+Mass is a form of energy, and a very concentrated one: one kilogram is $9\times10^{16}\un{J}$, roughly the annual output of a few large power stations. The kinetic energy is $(\gamma-1)mc^2$, which at low speed expands to $\tfrac12mv^2 + \tfrac38mv^4/c^2+\cdots$: Newton's kinetic energy plus relativistic corrections. As $v\to c$, $\gamma\to\infty$, and it would take infinite energy to reach $c$.
+
+$E=mc^2$ also means that the mass of a bound system is \emph{less} than the sum of its parts, by its binding energy divided by $c^2$. For a chemical bond the difference is a part in $10^{10}$, unmeasurable. For a nucleus it is nearly a percent, and releasing it powers the Sun and nuclear reactors (Chapter~\ref{ch:nuclear}). For a proton, almost all of whose mass comes from the energy of the quarks and gluons inside it, the ``parts'' weigh about $1\%$ of the whole (Chapter~\ref{ch:particle}).
+
+\textbf{Massless particles} have $m = 0$, so $E = pc$, and they must move at exactly $c$. Light carries momentum $E/c$, which is the radiation pressure of Chapter~\ref{ch:em}. When a photon scatters off an electron it loses energy and its wavelength increases by $\Delta\lambda = (h/m_ec)(1-\cos\theta)$, the \emph{Compton effect}, which convinced physicists in 1923 that photons carry momentum like particles.
+
+\section{Collisions and the creation of matter}
+
+In any collision the total four-momentum is conserved. But mass is not! Kinetic energy can become rest energy: collide particles hard enough and new particles appear. That is what particle accelerators do (Chapter~\ref{ch:accel}). The useful energy for making new particles is the energy in the centre-of-mass frame, which is fixed by the invariant
+\[
+  s = \Big(\sum E\Big)^2 - \Big(\sum\vb p\,c\Big)^2 .
+\]
+A beam hitting a stationary target wastes most of its energy on moving the debris forward; two beams colliding head-on waste none. That is why modern accelerators are colliders.
+
+\section{The relativistic Doppler effect}
+
+A source receding at speed $v$ emits light that we receive at a lower frequency,
+\[
+  f_{\text{obs}} = f_{\text{src}}\sqrt{\frac{1-v/c}{1+v/c}}.
+\]
+Unlike sound (Chapter~\ref{ch:waves}), there is no medium, so only the relative velocity matters; and time dilation adds a \emph{transverse} Doppler shift even for sideways motion. (The redshifts of distant galaxies are mostly not Doppler shifts at all but the stretching of space itself; Chapter~\ref{ch:cosmo}.)
+
+\section{Electromagnetism, finally at home}
+
+Maxwell's equations were already relativistic. In four-vector language, the charge density and current combine into a four-vector $J^\mu = (c\rho,\vb J)$, the potentials into $A^\mu = (\phi/c,\vb A)$, and the electric and magnetic fields into a single antisymmetric \emph{field tensor} $F^{\mu\nu}$, whose six independent components are the three components of $\vb E$ and the three of $\vb B$. All four of Maxwell's equations collapse into two:
+\[
+  \partial_\mu F^{\mu\nu} = \mu_0 J^\nu, \qquad \partial_{[\lambda}F_{\mu\nu]} = 0 .
+\]
+Under a Lorentz boost, the components of $F^{\mu\nu}$ mix, which is the precise sense in which a pure electric field in one frame is partly magnetic in another (Chapter~\ref{ch:em}). Charge conservation, $\partial_\mu J^\mu = 0$, is now a single equation.
+
+\section{Where this goes}
+
+Special relativity has two great descendants. Combine it with gravity and you need curved spacetime: general relativity (Chapter~\ref{ch:gr}). Combine it with quantum mechanics and particle number stops being conserved --- $E=mc^2$ lets particles be created and destroyed --- so you need quantum field theory (Chapter~\ref{ch:qft}), in which antimatter appears as a requirement rather than a guess.
+
+\section{Problems}
+
+\begin{problems}
+\prob{1}\core Muons are produced $15\un{km}$ up, moving at $0.998c$, and have a rest-frame lifetime of $2.2\un{\mu s}$. What fraction would reach the ground without time dilation? With it? Describe the same calculation from the muon's frame.
+
+\prob{1} Find the rest energy of one gram of matter in joules, and in tons of TNT ($1\un{ton} = 4.2\times10^{9}\un{J}$). The Hiroshima bomb released about $15$ kilotons. How much mass was converted to energy?
+
+\prob{1} A spaceship moving at $0.8c$ fires a probe forward at $0.8c$ relative to itself. How fast does the probe move relative to the Earth? What would Galileo have said?
+
+\prob{2}\core \label{prob:gps-sr} GPS satellites orbit at a speed of about $3.9\un{km/s}$. By how many microseconds per day do their clocks fall behind clocks on the ground, due to special relativity alone? If uncorrected, roughly how quickly would position errors accumulate? (General relativity gives a larger effect in the \emph{opposite} direction; see Chapter~\ref{ch:gr}.)
+
+\prob{2} A charged pion at rest ($m_\pi c^2 = 139.6\un{MeV}$) decays into a muon ($m_\mu c^2 = 105.7\un{MeV}$) and a massless neutrino. Use conservation of energy and momentum to find the muon's kinetic energy.
+
+\prob{2}\core Antiprotons can be made by firing protons at protons at rest: $p + p\to p + p + p + \bar p$. Find the threshold kinetic energy of the beam proton. (Answer: $6m_pc^2\approx5.6\un{GeV}$.) Why is it so much more than the $2m_pc^2$ of new rest mass? This is why the Bevatron at Berkeley, which first made antiprotons in 1955, was designed for $6\un{GeV}$.
+
+\prob{2} Show directly from the Lorentz transformation that $c^2t^2 - x^2$ is the same in both frames. Then show that the transformation can be written as $ct' = ct\cosh\phi - x\sinh\phi$, $x' = x\cosh\phi - ct\sinh\phi$, with \emph{rapidity} $\tanh\phi = v/c$, and that rapidities simply add under successive boosts.
+
+\prob{2} Derive the Compton formula $\Delta\lambda = (h/m_ec)(1-\cos\theta)$ for a photon scattering off an electron at rest, using conservation of four-momentum.
+\hint{Write $p_e' = p_\gamma + p_e - p_\gamma'$ and square both sides; the invariant $p\cdot p$ of each particle is $m^2c^2$.}
+
+\prob{3}\core \label{prob:twins} \emph{(The twin paradox.)} One twin stays on Earth; the other travels at $0.8c$ to a star $4$ light-years away and immediately returns. Show that the travelling twin ages $6$ years while the Earth twin ages $10$. The travelling twin can argue that it was the Earth that moved away and came back, so the \emph{Earth} twin should be younger. Draw a spacetime diagram, including the travelling twin's lines of simultaneity just before and just after the turnaround, and explain precisely where the symmetry breaks.
+
+\prob{3} \emph{(The barn and the pole.)} A $20\un{m}$ pole is carried at $0.866c$ ($\gamma = 2$) toward a $10\un{m}$ barn with doors at both ends. In the barn's frame the pole contracts to $10\un{m}$ and fits inside, so both doors can be shut simultaneously for an instant. In the pole's frame the \emph{barn} contracts to $5\un{m}$, so the pole cannot possibly fit. Resolve the paradox. What happens if the far door is solid and stays shut?
+
+\prob{3} \emph{(To the centre of the galaxy in a lifetime.)} A rocket accelerates at a constant $g = 9.8\un{m/s^2}$ in its own instantaneous rest frame. One can show that after proper time $\tau$ it has travelled a distance $x = (c^2/g)\,[\cosh(g\tau/c) - 1]$ in the original frame. How far does it get in $10$ years of the crew's time? In $20$? How many years of crew time does it take to reach the centre of the galaxy, $26\,000$ light-years away (accelerating halfway, then decelerating)? What is the catch?
+\end{problems}
+
+\begin{reading}
+\rd{Taylor and Wheeler, \emph{Spacetime Physics}}{The classic introduction that teaches relativity as geometry from the first page.}
+\rd{David Morin, \emph{Special Relativity for the Enthusiastic Beginner}}{Short, clear, and packed with problems and paradoxes, fully solved.}
+\rd{A.\ P.\ French, \emph{Special Relativity}}{The MIT introductory text, careful about experiments.}
+\rd{Bernard Schutz, \emph{A First Course in General Relativity}}{Chapters~1--2 give a tensor-based treatment of special relativity that leads directly into general relativity.}
+\end{reading}

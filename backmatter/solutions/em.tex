@@ -1,0 +1,30 @@
+\solchapter{em}
+
+\sol{em}{1} $F_e/F_g = e^2/(4\pi\epsilon_0Gm_p^2) = (8.99\times10^9)(1.60\times10^{-19})^2/[(6.67\times10^{-11})(1.67\times10^{-27})^2]\approx1.2\times10^{36}$. Both forces fall as $1/r^2$, so the ratio is independent of distance. Gravity wins in astronomy because large bodies are neutral to extraordinary precision: positive and negative charges cancel, and any imbalance quickly attracts opposite charge, while every mass adds to gravity.
+
+\sol{em}{2} For $r<R$, the enclosed charge is $Qr^3/R^3$, so $E = Qr/(4\pi\epsilon_0R^3)$, rising linearly. For $r>R$, $E = Q/(4\pi\epsilon_0r^2)$. The field peaks at the surface. Gravity inside a uniform Earth has exactly the same shape, $g(r) = gr/R$, which is what made the tunnel motion simple harmonic.
+
+\sol{em}{3} $C = \epsilon_0A/d = 8.85\un{nF}$, $Q = CV = 8.85\un{\mu C}$, $U = \tfrac12CV^2 = 4.4\un{mJ}$. The field is $E = V/d = 10^6\un{V/m}$ (a third of air's breakdown field), with energy density $\tfrac12\epsilon_0E^2 = 4.4\un{J/m^3}$; times the gap volume $10^{-3}\un{m^3}$ this is again $4.4\un{mJ}$.
+
+\sol{em}{4} $V = \sqrt{2U/C} = \sqrt{400/10^{-4}} = 2000\un{V}$. $\tau = RC = 50\times10^{-4} = 5\un{ms}$.
+
+\sol{em}{5} Electron: $\omega = eB/m = 1.76\times10^{11}\un{rad/s}$ ($28\un{GHz}$); $v = \sqrt{2K/m} = 1.9\times10^7\un{m/s}$; $r = v/\omega = 0.11\un{mm}$. Proton: $\omega = 9.6\times10^7\un{rad/s}$ ($15\un{MHz}$); $v = 4.4\times10^5\un{m/s}$; $r = 4.6\un{mm}$. Same energy, but the heavier particle circles slower in a bigger orbit.
+
+\sol{em}{6} Take the curl of the Amp\`ere--Maxwell law in vacuum and use Faraday's law: $\curl(\curl\vb B) = \mu_0\epsilon_0\,\partial_t(\curl\vb E) = -\mu_0\epsilon_0\,\partial_t^2\vb B$. Since $\grad\cdot\vb B = 0$, the left side is $-\nabla^2\vb B$, giving the wave equation with speed $1/\sqrt{\mu_0\epsilon_0}$. For plane waves $\propto e^{i(\vb k\cdot\vb r-\omega t)}$, the divergence equations give $\vb k\cdot\vb E_0 = \vb k\cdot\vb B_0 = 0$ (transverse), and Faraday's law gives $\vb k\times\vb E_0 = \omega\vb B_0$, so $\vb B_0 = \vu k\times\vb E_0/c$: perpendicular to both, with $B = E/c$.
+
+\sol{em}{7} As the magnet falls, the flux through rings of pipe below it grows and through rings above it shrinks. The induced EMFs drive circulating eddy currents, which by Lenz's law oppose the change: the ring below repels the magnet and the ring above attracts it --- both brake it. The EMF is proportional to the rate of change of flux, hence to $v$; the current is proportional to the conductivity $\sigma$ and the wall thickness $w$; so the braking force is $\propto\sigma wv$. At terminal velocity $mg = k\sigma wv$, so $v_t\propto1/\sigma w$. The magnet's lost potential energy heats the pipe.
+
+\sol{em}{8} A perfect reflector feels force $2IA/c = 2(1361)(10^4)/(3\times10^8) = 0.091\un{N}$. The Sun pulls with $GM_\odot m/r^2 = 0.59\un{N}$. The ratio is $0.15$. Both forces fall as $1/r^2$, so the ratio is the same everywhere in the solar system; to beat gravity, the sail would need to weigh less than about $1.5\un{g/m^2}$.
+
+\sol{em}{9} The pair $+q$ at height $d$ and $-q$ at depth $d$ gives zero potential everywhere on the plane, by symmetry, and has the right source ($q$) in the region above. By the uniqueness theorem, a solution of Poisson's equation with the right sources and boundary values is the only one, so it \emph{is} the field above the plane. The force on $q$ is the attraction to its image: $F = q^2/4\pi\epsilon_0(2d)^2 = q^2/16\pi\epsilon_0d^2$. The trick works because the fictitious charge lies outside the region where we need the answer.
+
+\sol{em}{10} For the circular orbit, $a = e^2/(4\pi\epsilon_0m_ea_0^2)\approx9\times10^{22}\un{m/s^2}$, so $P = e^2a^2/6\pi\epsilon_0c^3\approx4.7\times10^{-8}\un{W}$. The binding energy is $13.6\un{eV} = 2.2\times10^{-18}\un{J}$, so a crude estimate is $|E|/P\approx5\times10^{-11}\un{s}$. Doing it properly, $E = -e^2/8\pi\epsilon_0r$ and $P\propto r^{-4}$, so $\dd E/\dd t = -P$ integrates to $t = a_0^3/(4r_e^2c)\approx1.6\times10^{-11}\un{s}$, where $r_e = e^2/4\pi\epsilon_0m_ec^2$ is the classical electron radius. Classical atoms would not last a billionth of a second.
+
+\sol{em}{11} In empty space $V$ satisfies Laplace's equation, which implies the mean-value property: $V$ at any point equals its average over any small sphere around it. A strict local minimum (or maximum) would be below (or above) all its neighbours, hence below (above) their average --- impossible. Equivalently, $\nabla^2V = 0$ forbids all three second derivatives from being positive. So $qV$ has at best saddle points: stable in some directions, unstable in others. Ion traps escape by using oscillating fields (a time-averaged effective potential, as for the Kapitza pendulum) or by adding a magnetic field.
+
+\sol{em}{12} \emph{Lab frame.} $B = \mu_0I/2\pi r = \mu_0\lambda v/\pi r$, and $F = qvB = \mu_0q\lambda v^2/\pi r$, attractive.
+\emph{Test charge's frame.} The positive charges move with $q$, so they are at rest: their density is their rest density, $\lambda/\gamma_v$. The negative charges move at $u = 2v/(1+v^2/c^2)$, so their density is $-(\lambda/\gamma_v)\gamma_u$. The net density is $\lambda' = (\lambda/\gamma_v)(1-\gamma_u)\approx-2\lambda v^2/c^2$ to leading order. The wire is negatively charged, and attracts $q$ with
+\[
+  F' = q\frac{\abs{\lambda'}}{2\pi\epsilon_0r} = \frac{q\lambda v^2}{\pi\epsilon_0c^2r} = \frac{\mu_0q\lambda v^2}{\pi r},
+\]
+using $\epsilon_0\mu_0 = 1/c^2$. A transverse force differs between the frames only by a factor $\gamma\approx1$, so the two agree to leading order. The ``magnetic'' force is an electric force seen from another frame.

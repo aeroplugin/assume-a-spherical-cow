@@ -1,0 +1,80 @@
+\definecolor{cowpink}{HTML}{F2B8B0}
+\begin{titlepage}
+\centering
+\vspace*{1.4cm}
+{\sffamily\large\color{ascblue}A\ TASTING\ TOUR\ OF\ PHYSICS\par}
+\vspace{0.9cm}
+{\fontsize{40}{46}\selectfont\bfseries Assume a\\[4pt] Spherical Cow\par}
+\vspace{1.6cm}
+
+\begin{tikzpicture}[line width=1.1pt,line join=round,line cap=round]
+  % shadow
+  \fill[ascrule] (0,-2.42) ellipse (2.1 and 0.2);
+  % legs
+  \foreach \x in {-1.25,-0.45,0.45,1.25} {
+    \fill[ascink] (\x-0.17,-2.4) rectangle (\x+0.17,-1.4);
+  }
+  % ears
+  \fill[white,draw=ascink] (-2.02,1.32) ellipse [x radius=0.48,y radius=0.22,rotate=28];
+  \fill[cowpink] (-2.02,1.32) ellipse [x radius=0.28,y radius=0.11,rotate=28];
+  \fill[white,draw=ascink] (2.02,1.32) ellipse [x radius=0.48,y radius=0.22,rotate=-28];
+  \fill[cowpink] (2.02,1.32) ellipse [x radius=0.28,y radius=0.11,rotate=-28];
+  % horns
+  \fill[ascgraybg,draw=ascink] (-0.78,1.84) .. controls (-1.05,2.25) and (-1.25,2.45) .. (-1.12,2.62)
+      .. controls (-0.85,2.45) and (-0.6,2.2) .. (-0.42,1.95) -- cycle;
+  \fill[ascgraybg,draw=ascink] (0.78,1.84) .. controls (1.05,2.25) and (1.25,2.45) .. (1.12,2.62)
+      .. controls (0.85,2.45) and (0.6,2.2) .. (0.42,1.95) -- cycle;
+  % tail
+  \draw[ascink] (1.9,-0.75) .. controls (2.45,-0.7) and (2.6,-0.1) .. (2.35,0.25);
+  \fill[ascink] (2.35,0.25) circle (0.11);
+  % body (a sphere, obviously)
+  \fill[white] (0,0) circle (2);
+  \begin{scope}
+    \clip (0,0) circle (2);
+    \fill[ascink] (-1.75,0.85) ellipse [x radius=0.62,y radius=0.45,rotate=20];
+    \fill[ascink] (1.75,-0.15) ellipse [x radius=0.45,y radius=0.7,rotate=-10];
+    \fill[ascink] (0.35,1.78) ellipse [x radius=0.45,y radius=0.3];
+    \fill[ascink] (-1.0,-1.55) ellipse [x radius=0.5,y radius=0.32,rotate=-15];
+    \fill[ascink] (1.05,-1.6) ellipse [x radius=0.28,y radius=0.2];
+  \end{scope}
+  \draw[ascink] (0,0) circle (2);
+  % a radius, for rigor (tucked under the snout)
+  \draw[ascblue,line width=0.8pt,-{Stealth[length=5pt]}] (0,0) -- (-35:1.97);
+  \node[ascblue,font=\small\itshape] at (-44:1.52) {$R$};
+  % eyes
+  \fill[ascink] (-0.58,0.5) circle (0.14);
+  \fill[ascink] (0.58,0.5) circle (0.14);
+  \fill[white] (-0.54,0.55) circle (0.04);
+  \fill[white] (0.62,0.55) circle (0.04);
+  % snout
+  \fill[cowpink,draw=ascink] (0,-0.42) ellipse [x radius=0.88,y radius=0.52];
+  \fill[ascink] (-0.3,-0.42) ellipse [x radius=0.09,y radius=0.14];
+  \fill[ascink] (0.3,-0.42) ellipse [x radius=0.09,y radius=0.14];
+\end{tikzpicture}
+
+\vspace{0.5cm}
+{\small\itshape\color{gray} Figure 0. A cow, to leading order.\par}
+
+\vfill
+{\sffamily\small\color{gray} Draft edition\par}
+\end{titlepage}
+
+% ---- reverse of title page ----
+\thispagestyle{empty}
+\vspace*{\fill}
+\begin{center}
+\begin{minipage}{0.78\linewidth}
+\itshape
+A dairy farmer, worried about falling milk production, asks the local university for help.
+A team of physicists takes the problem away. Weeks later they return, triumphant:
+``We have a solution. It works only for spherical cows in a vacuum.''
+\par\medskip
+\upshape\hfill --- folklore
+\end{minipage}
+\end{center}
+\vspace*{\fill}
+\begin{center}
+\small\color{gray}
+This is a draft. Corrections, comments, and better cows are welcome.
+\end{center}
+\clearpage

@@ -1,0 +1,258 @@
+\chapter{Electromagnetism}
+\label{ch:em}
+
+\buildson{mathematical methods (Chapter~\ref{ch:math}), Newtonian mechanics (Chapter~\ref{ch:newton})}
+
+\chapterdek{The first field theory, the first great unification, and still the template for every theory that came after.}
+
+\begin{prototype}
+A single point charge. At rest, it surrounds itself with an electric field that falls off as $1/r^2$. Moving steadily, it adds a magnetic field. Shaken back and forth, it sends ripples of field outward at the speed of light --- and that is what light \emph{is}.
+\end{prototype}
+
+Electricity and magnetism look like separate things --- static cling and compass needles --- and for most of history they were treated separately. Over the nineteenth century Faraday and then Maxwell showed that they are two faces of a single \emph{electromagnetic field}, and that ripples in this field travel at a speed that matched the measured speed of light. Electromagnetism explains almost everything in daily life that is not gravity: chemistry, friction, the solidity of matter, light, and every electrical device.
+
+\section{Charge and Coulomb's law}
+
+Electric charge comes in two signs, is conserved, and is quantized in units of the electron charge $e = 1.602\times10^{-19}\un{C}$. Like charges repel, opposite charges attract, with a force
+\[
+  F = \frac{1}{4\pi\epsilon_0}\frac{q_1q_2}{r^2}, \qquad \frac{1}{4\pi\epsilon_0} \approx 8.99\times10^{9}\un{N\,m^2/C^2}.
+\]
+This is the same inverse-square law as gravity, but vastly stronger: two electrons repel each other electrically about $4\times10^{42}$ times more strongly than they attract gravitationally. Gravity dominates the universe only because matter is so nearly neutral that the electric forces cancel.
+
+\section{The electric field}
+
+Instead of saying that charges act on each other at a distance, we say each charge creates an \emph{electric field} $\vb E(\vb r)$ filling space, and a charge $q$ placed at $\vb r$ feels a force $q\vb E(\vb r)$. For a point charge,
+\[
+  \vb E = \frac{q}{4\pi\epsilon_0 r^2}\,\vu r ,
+\]
+and fields of many charges simply add. At first the field looks like bookkeeping. By the end of this chapter it will carry energy, momentum, and waves of its own, and it will be impossible to think of it as anything but real.
+
+A pair of opposite charges $\pm q$ separated by $\vb d$ forms an \emph{electric dipole} with moment $\vb p = q\vb d$. Far away its field falls off as $1/r^3$ rather than $1/r^2$, because the two charges nearly cancel. Most molecules are neutral, so their electric influence on each other is a dipole effect or weaker --- which is why intermolecular forces are short-ranged (Chapter~\ref{ch:chem}).
+
+\begin{center}
+\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}[scale=1.1]
+  \begin{scope}
+    \clip (-3.3,-2.2) rectangle (3.3,2.2);
+    \draw[ascblue, thick] plot[smooth] coordinates {(-0.912,0.018) (-0.833,0.033) (-0.755,0.048) (-0.676,0.063) (-0.597,0.078) (-0.519,0.091) (-0.440,0.104) (-0.360,0.115) (-0.281,0.124) (-0.201,0.132) (-0.121,0.137) (-0.041,0.139) (0.039,0.139) (0.118,0.137) (0.198,0.132) (0.278,0.125) (0.357,0.115) (0.437,0.104) (0.516,0.092) (0.595,0.078) (0.673,0.064) (0.752,0.049) (0.830,0.034) (0.928,0.014)};
+    \draw[ascblue, -{Stealth[length=5pt]}] (0.039,0.139) -- (0.089,0.138);
+    \draw[ascblue, thick] plot[smooth] coordinates {(-0.925,0.050) (-0.858,0.094) (-0.791,0.138) (-0.724,0.181) (-0.656,0.222) (-0.586,0.262) (-0.516,0.300) (-0.444,0.335) (-0.370,0.366) (-0.294,0.392) (-0.217,0.413) (-0.139,0.429) (-0.059,0.437) (0.021,0.439) (0.100,0.434) (0.180,0.422) (0.257,0.403) (0.334,0.379) (0.408,0.350) (0.481,0.317) (0.552,0.281) (0.622,0.242) (0.691,0.201) (0.759,0.159) (0.826,0.115) (0.893,0.071) (0.926,0.049)};
+    \draw[ascblue, -{Stealth[length=5pt]}] (0.021,0.439) -- (0.071,0.436);
+    \draw[ascblue, thick] plot[smooth] coordinates {(-0.950,0.075) (-0.905,0.141) (-0.860,0.207) (-0.813,0.272) (-0.765,0.336) (-0.716,0.399) (-0.663,0.459) (-0.609,0.518) (-0.551,0.573) (-0.490,0.625) (-0.425,0.672) (-0.357,0.713) (-0.285,0.748) (-0.210,0.776) (-0.133,0.796) (-0.053,0.807) (0.027,0.809) (0.106,0.801) (0.184,0.784) (0.260,0.759) (0.333,0.726) (0.403,0.686) (0.468,0.641) (0.531,0.591) (0.590,0.537) (0.645,0.479) (0.698,0.419) (0.749,0.357) (0.797,0.294) (0.844,0.229) (0.890,0.163) (0.935,0.097) (0.957,0.064)};
+    \draw[ascblue, -{Stealth[length=5pt]}] (0.027,0.809) -- (0.076,0.804);
+    \draw[ascblue, thick] plot[smooth] coordinates {(-0.982,0.088) (-0.966,0.167) (-0.950,0.245) (-0.931,0.323) (-0.912,0.400) (-0.890,0.477) (-0.866,0.554) (-0.839,0.629) (-0.809,0.703) (-0.776,0.776) (-0.739,0.847) (-0.697,0.915) (-0.652,0.981) (-0.602,1.044) (-0.548,1.102) (-0.489,1.156) (-0.425,1.205) (-0.358,1.248) (-0.286,1.283) (-0.211,1.311) (-0.134,1.331) (-0.054,1.341) (0.026,1.343) (0.105,1.336) (0.183,1.319) (0.259,1.294) (0.332,1.261) (0.401,1.221) (0.466,1.175) (0.527,1.122) (0.583,1.065) (0.635,1.004) (0.681,0.939) (0.724,0.872) (0.763,0.802) (0.797,0.730) (0.829,0.656) (0.857,0.581) (0.882,0.505) (0.904,0.428) (0.925,0.351) (0.943,0.273) (0.960,0.195) (0.977,0.117) (0.985,0.077)};
+    \draw[ascblue, -{Stealth[length=5pt]}] (0.026,1.343) -- (0.075,1.338);
+    \draw[ascblue, thick] plot[smooth] coordinates {(-1.018,0.088) (-1.033,0.167) (-1.047,0.245) (-1.061,0.324) (-1.073,0.403) (-1.083,0.483) (-1.092,0.562) (-1.099,0.642) (-1.103,0.722) (-1.106,0.802) (-1.105,0.882) (-1.102,0.962) (-1.096,1.041) (-1.087,1.121) (-1.074,1.200) (-1.058,1.278) (-1.039,1.356) (-1.016,1.433) (-0.989,1.508) (-0.959,1.582) (-0.924,1.654) (-0.886,1.724) (-0.844,1.792) (-0.797,1.857) (-0.747,1.919) (-0.692,1.978) (-0.634,2.032) (-0.571,2.082) (-0.505,2.128) (-0.436,2.168) (-0.364,2.202)};
+    \draw[ascblue, -{Stealth[length=5pt]}] (-1.074,1.200) -- (-1.064,1.249);
+    \draw[ascblue, thick] plot[smooth] coordinates {(-1.050,0.075) (-1.094,0.142) (-1.138,0.209) (-1.181,0.276) (-1.223,0.344) (-1.265,0.412) (-1.305,0.481) (-1.344,0.551) (-1.382,0.622) (-1.419,0.693) (-1.454,0.764) (-1.488,0.837) (-1.521,0.910) (-1.552,0.984) (-1.581,1.058) (-1.609,1.133) (-1.635,1.209) (-1.660,1.285) (-1.682,1.362) (-1.703,1.439) (-1.722,1.517) (-1.739,1.595) (-1.754,1.673) (-1.767,1.752) (-1.778,1.831) (-1.788,1.911) (-1.795,1.991) (-1.800,2.070) (-1.802,2.150) (-1.803,2.210)};
+    \draw[ascblue, -{Stealth[length=5pt]}] (-1.581,1.058) -- (-1.599,1.105);
+    \draw[ascblue, thick] plot[smooth] coordinates {(-1.075,0.050) (-1.141,0.095) (-1.207,0.140) (-1.273,0.185) (-1.339,0.231) (-1.404,0.277) (-1.469,0.324) (-1.534,0.371) (-1.598,0.419) (-1.661,0.467) (-1.724,0.516) (-1.787,0.566) (-1.849,0.617) (-1.911,0.668) (-1.972,0.720) (-2.032,0.772) (-2.092,0.825) (-2.152,0.879) (-2.210,0.933) (-2.268,0.988) (-2.326,1.043) (-2.383,1.099) (-2.439,1.156) (-2.495,1.214) (-2.550,1.272) (-2.605,1.330) (-2.659,1.389) (-2.712,1.449) (-2.765,1.509) (-2.816,1.570) (-2.868,1.631) (-2.918,1.693) (-2.968,1.756) (-3.018,1.819) (-3.066,1.882) (-3.114,1.946) (-3.162,2.011) (-3.208,2.076) (-3.254,2.142) (-3.299,2.208)};
+    \draw[ascblue, -{Stealth[length=5pt]}] (-2.210,0.933) -- (-2.247,0.967);
+    \draw[ascblue, thick] plot[smooth] coordinates {(-1.088,0.018) (-1.167,0.033) (-1.245,0.049) (-1.324,0.065) (-1.402,0.081) (-1.480,0.097) (-1.558,0.114) (-1.637,0.131) (-1.715,0.148) (-1.793,0.165) (-1.871,0.182) (-1.949,0.200) (-2.027,0.218) (-2.105,0.236) (-2.183,0.254) (-2.261,0.273) (-2.338,0.292) (-2.416,0.311) (-2.494,0.331) (-2.571,0.350) (-2.649,0.370) (-2.726,0.390) (-2.803,0.411) (-2.881,0.431) (-2.958,0.452) (-3.035,0.473) (-3.112,0.495) (-3.189,0.516) (-3.266,0.538) (-3.305,0.549)};
+    \draw[ascblue, -{Stealth[length=5pt]}] (-2.183,0.254) -- (-2.231,0.266);
+    \draw[ascblue, thick] plot[smooth] coordinates {(-1.088,-0.018) (-1.167,-0.033) (-1.245,-0.049) (-1.324,-0.065) (-1.402,-0.081) (-1.480,-0.097) (-1.558,-0.114) (-1.637,-0.131) (-1.715,-0.148) (-1.793,-0.165) (-1.871,-0.182) (-1.949,-0.200) (-2.027,-0.218) (-2.105,-0.236) (-2.183,-0.254) (-2.261,-0.273) (-2.338,-0.292) (-2.416,-0.311) (-2.494,-0.331) (-2.571,-0.350) (-2.649,-0.370) (-2.726,-0.390) (-2.803,-0.411) (-2.881,-0.431) (-2.958,-0.452) (-3.035,-0.473) (-3.112,-0.495) (-3.189,-0.516) (-3.266,-0.538) (-3.305,-0.549)};
+    \draw[ascblue, -{Stealth[length=5pt]}] (-2.183,-0.254) -- (-2.231,-0.266);
+    \draw[ascblue, thick] plot[smooth] coordinates {(-1.075,-0.050) (-1.141,-0.095) (-1.207,-0.140) (-1.273,-0.185) (-1.339,-0.231) (-1.404,-0.277) (-1.469,-0.324) (-1.534,-0.371) (-1.598,-0.419) (-1.661,-0.467) (-1.724,-0.516) (-1.787,-0.566) (-1.849,-0.617) (-1.911,-0.668) (-1.972,-0.720) (-2.032,-0.772) (-2.092,-0.825) (-2.152,-0.879) (-2.210,-0.933) (-2.268,-0.988) (-2.326,-1.043) (-2.383,-1.099) (-2.439,-1.156) (-2.495,-1.214) (-2.550,-1.272) (-2.605,-1.330) (-2.659,-1.389) (-2.712,-1.449) (-2.765,-1.509) (-2.816,-1.570) (-2.868,-1.631) (-2.918,-1.693) (-2.968,-1.756) (-3.018,-1.819) (-3.066,-1.882) (-3.114,-1.946) (-3.162,-2.011) (-3.208,-2.076) (-3.254,-2.142) (-3.299,-2.208)};
+    \draw[ascblue, -{Stealth[length=5pt]}] (-2.210,-0.933) -- (-2.247,-0.967);
+    \draw[ascblue, thick] plot[smooth] coordinates {(-1.050,-0.075) (-1.094,-0.142) (-1.138,-0.209) (-1.181,-0.276) (-1.223,-0.344) (-1.265,-0.412) (-1.305,-0.481) (-1.344,-0.551) (-1.382,-0.622) (-1.419,-0.693) (-1.454,-0.764) (-1.488,-0.837) (-1.521,-0.910) (-1.552,-0.984) (-1.581,-1.058) (-1.609,-1.133) (-1.635,-1.209) (-1.660,-1.285) (-1.682,-1.362) (-1.703,-1.439) (-1.722,-1.517) (-1.739,-1.595) (-1.754,-1.673) (-1.767,-1.752) (-1.778,-1.831) (-1.788,-1.911) (-1.795,-1.991) (-1.800,-2.070) (-1.802,-2.150) (-1.803,-2.210)};
+    \draw[ascblue, -{Stealth[length=5pt]}] (-1.581,-1.058) -- (-1.599,-1.105);
+    \draw[ascblue, thick] plot[smooth] coordinates {(-1.018,-0.088) (-1.033,-0.167) (-1.047,-0.245) (-1.061,-0.324) (-1.073,-0.403) (-1.083,-0.483) (-1.092,-0.562) (-1.099,-0.642) (-1.103,-0.722) (-1.106,-0.802) (-1.105,-0.882) (-1.102,-0.962) (-1.096,-1.041) (-1.087,-1.121) (-1.074,-1.200) (-1.058,-1.278) (-1.039,-1.356) (-1.016,-1.433) (-0.989,-1.508) (-0.959,-1.582) (-0.924,-1.654) (-0.886,-1.724) (-0.844,-1.792) (-0.797,-1.857) (-0.747,-1.919) (-0.692,-1.978) (-0.634,-2.032) (-0.571,-2.082) (-0.505,-2.128) (-0.436,-2.168) (-0.364,-2.202)};
+    \draw[ascblue, -{Stealth[length=5pt]}] (-1.074,-1.200) -- (-1.064,-1.249);
+    \draw[ascblue, thick] plot[smooth] coordinates {(-0.982,-0.088) (-0.966,-0.167) (-0.950,-0.245) (-0.931,-0.323) (-0.912,-0.400) (-0.890,-0.477) (-0.866,-0.554) (-0.839,-0.629) (-0.809,-0.703) (-0.776,-0.776) (-0.739,-0.847) (-0.697,-0.915) (-0.652,-0.981) (-0.602,-1.044) (-0.548,-1.102) (-0.489,-1.156) (-0.425,-1.205) (-0.358,-1.248) (-0.286,-1.283) (-0.211,-1.311) (-0.134,-1.331) (-0.054,-1.341) (0.026,-1.343) (0.105,-1.336) (0.183,-1.319) (0.259,-1.294) (0.332,-1.261) (0.401,-1.221) (0.466,-1.175) (0.527,-1.122) (0.583,-1.065) (0.635,-1.004) (0.681,-0.939) (0.724,-0.872) (0.763,-0.802) (0.797,-0.730) (0.829,-0.656) (0.857,-0.581) (0.882,-0.505) (0.904,-0.428) (0.925,-0.351) (0.943,-0.273) (0.960,-0.195) (0.977,-0.117) (0.985,-0.077)};
+    \draw[ascblue, -{Stealth[length=5pt]}] (0.026,-1.343) -- (0.075,-1.338);
+    \draw[ascblue, thick] plot[smooth] coordinates {(-0.950,-0.075) (-0.905,-0.141) (-0.860,-0.207) (-0.813,-0.272) (-0.765,-0.336) (-0.716,-0.399) (-0.663,-0.459) (-0.609,-0.518) (-0.551,-0.573) (-0.490,-0.625) (-0.425,-0.672) (-0.357,-0.713) (-0.285,-0.748) (-0.210,-0.776) (-0.133,-0.796) (-0.053,-0.807) (0.027,-0.809) (0.106,-0.801) (0.184,-0.784) (0.260,-0.759) (0.333,-0.726) (0.403,-0.686) (0.468,-0.641) (0.531,-0.591) (0.590,-0.537) (0.645,-0.479) (0.698,-0.419) (0.749,-0.357) (0.797,-0.294) (0.844,-0.229) (0.890,-0.163) (0.935,-0.097) (0.957,-0.064)};
+    \draw[ascblue, -{Stealth[length=5pt]}] (0.027,-0.809) -- (0.076,-0.804);
+    \draw[ascblue, thick] plot[smooth] coordinates {(-0.925,-0.050) (-0.858,-0.094) (-0.791,-0.138) (-0.724,-0.181) (-0.656,-0.222) (-0.586,-0.262) (-0.516,-0.300) (-0.444,-0.335) (-0.370,-0.366) (-0.294,-0.392) (-0.217,-0.413) (-0.139,-0.429) (-0.059,-0.437) (0.021,-0.439) (0.100,-0.434) (0.180,-0.422) (0.257,-0.403) (0.334,-0.379) (0.408,-0.350) (0.481,-0.317) (0.552,-0.281) (0.622,-0.242) (0.691,-0.201) (0.759,-0.159) (0.826,-0.115) (0.893,-0.071) (0.926,-0.049)};
+    \draw[ascblue, -{Stealth[length=5pt]}] (0.021,-0.439) -- (0.071,-0.436);
+    \draw[ascblue, thick] plot[smooth] coordinates {(-0.912,-0.018) (-0.833,-0.033) (-0.755,-0.048) (-0.676,-0.063) (-0.597,-0.078) (-0.519,-0.091) (-0.440,-0.104) (-0.360,-0.115) (-0.281,-0.124) (-0.201,-0.132) (-0.121,-0.137) (-0.041,-0.139) (0.039,-0.139) (0.118,-0.137) (0.198,-0.132) (0.278,-0.125) (0.357,-0.115) (0.437,-0.104) (0.516,-0.092) (0.595,-0.078) (0.673,-0.064) (0.752,-0.049) (0.830,-0.034) (0.928,-0.014)};
+    \draw[ascblue, -{Stealth[length=5pt]}] (0.039,-0.139) -- (0.089,-0.138);
+  \end{scope}
+  \fill[ascwarm] (-1,0) circle (0.13) node[white, font=\small\bfseries] {$+$};
+  \fill[ascink] (1,0) circle (0.13) node[white, font=\small\bfseries] {$-$};
+\end{tikzpicture}
+
+{\small The field lines of an electric dipole. Each line leaves the positive charge and, unless it escapes off the page, ends on the negative one. The field is strong where the lines crowd together.}
+\end{minipage}
+\end{center}
+
+\section{Gauss's law}
+
+Define the \emph{flux} of $\vb E$ through a surface as $\int\vb E\cdot\dd\vb A$: roughly, the number of field lines piercing it. For a point charge at the centre of a sphere, the flux is $E\cdot 4\pi r^2 = q/\epsilon_0$, independent of $r$ --- the $1/r^2$ of the field exactly cancels the $r^2$ of the area. That is not a coincidence of the sphere; it is true for any closed surface.
+
+\begin{law}[Gauss's law]
+For any closed surface $S$ enclosing total charge $Q_{\text{enc}}$,
+\[
+  \oint_S \vb E\cdot\dd\vb A = \frac{Q_{\text{enc}}}{\epsilon_0}
+  \qquad\Longleftrightarrow\qquad
+  \grad\cdot\vb E = \frac{\rho}{\epsilon_0}.
+\]
+\end{law}
+The two forms are related by the divergence theorem (Chapter~\ref{ch:math}). Charges are the sources of the electric field.
+
+With enough symmetry, Gauss's law hands you the field in one line. A uniformly charged sphere looks, from outside, exactly like a point charge (this is the electric shell theorem). An infinite line of charge density $\lambda$ has $E = \lambda/(2\pi\epsilon_0 r)$. An infinite plane of charge density $\sigma$ has $E = \sigma/(2\epsilon_0)$, independent of distance.
+
+\textbf{Conductors.} In a conductor, charges move freely until they feel no force. So in equilibrium $\vb E = 0$ inside a conductor, any excess charge sits on its surface, and the field just outside is perpendicular to the surface. A hollow conductor shields its interior from outside fields: this is a \emph{Faraday cage}, which is why you are safe in a car struck by lightning and why your phone loses signal in a lift.
+
+\section{Potential and energy}
+
+Because the electrostatic field is conservative ($\curl\vb E = 0$), we can write $\vb E = -\grad V$ for an \emph{electric potential} $V$, measured in volts. A charge $q$ moving through a potential difference $\Delta V$ gains energy $q\Delta V$. One \emph{electron-volt}, $1\un{eV} = 1.6\times10^{-19}\un{J}$, is the energy an electron gains falling through one volt; it is the natural unit of atomic physics. Chemical bonds are a few eV; visible photons are about 2--3~eV.
+
+Combining $\vb E = -\grad V$ with Gauss's law gives \emph{Poisson's equation} $\nabla^2V = -\rho/\epsilon_0$, and in empty space \emph{Laplace's equation} $\nabla^2 V = 0$. Solutions of Laplace's equation have no local maxima or minima: the value at any point is the average of its surroundings.
+
+A \emph{capacitor} --- two conductors holding charges $\pm Q$ --- stores energy. For parallel plates of area $A$ and separation $d$, $C = Q/V = \epsilon_0A/d$ and the stored energy is $\tfrac12CV^2$. Where is this energy? The beautiful answer is: in the field. The energy density of an electric field is
+\[
+  u_E = \tfrac12\epsilon_0E^2 ,
+\]
+and integrating it over the gap reproduces $\tfrac12CV^2$ exactly.
+
+\section{Currents and circuits}
+
+A current $I$ is charge flow per time. In most materials, current is proportional to voltage, $V = IR$ (\emph{Ohm's law}), with resistance $R = \rho_{\text{r}} L/A$ set by the resistivity of the material. A resistor dissipates power $P = IV = I^2R$ as heat. Microscopically, electrons are accelerated by the field and constantly scattered by the lattice, reaching a drift speed of only millimetres per second --- even though the signal travels at nearly the speed of light (Chapter~\ref{ch:condmat}).
+
+Circuits obey Kirchhoff's rules: current is conserved at every junction, and the voltage changes around any loop sum to zero (energy conservation). A capacitor discharging through a resistor obeys $R\dot Q = -Q/C$, so the charge decays exponentially with time constant $\tau = RC$ --- the first-order equation of Chapter~\ref{ch:math} again. A camera flash charges its capacitor over a second or two and dumps it in a millisecond.
+
+\section{Magnetism}
+
+Moving charges feel a second force. The full force on a charge is the \textbf{Lorentz force}
+\[
+  \vb F = q\,(\vb E + \vb v\times\vb B).
+\]
+The magnetic part is always perpendicular to the velocity, so \emph{magnetic forces do no work}; they bend paths but never change speeds. A charge in a uniform field $\vb B$ therefore circles at the \emph{cyclotron frequency}
+\[
+  \omega_c = \frac{qB}{m},
+\]
+independent of its speed. Faster particles circle in bigger orbits in the same time. This is the principle of the cyclotron (Chapter~\ref{ch:accel}), of mass spectrometers, and of the auroras, where solar-wind particles spiral down the Earth's field lines (Chapter~\ref{ch:plasma}).
+
+Magnetic fields are made by currents. A long straight wire carrying current $I$ has field lines circling it with
+\[
+  B = \frac{\mu_0 I}{2\pi r}, \qquad \mu_0 = 4\pi\times10^{-7}\un{T\,m/A}.
+\]
+A solenoid with $n$ turns per metre has a uniform field $B = \mu_0 nI$ inside it. Both follow from Amp\`ere's law, $\oint\vb B\cdot\dd\vb l = \mu_0I_{\text{enc}}$, the magnetic analogue of Gauss's law. And unlike electric fields, magnetic field lines never begin or end:
+\[
+  \grad\cdot\vb B = 0 .
+\]
+There are no magnetic charges (``monopoles''), as far as anyone has found. The simplest source of magnetism is a current loop, a \emph{magnetic dipole}; a bar magnet is a vast number of aligned atomic dipoles, ultimately due to electron spin (Chapters~\ref{ch:qm} and~\ref{ch:condmat}).
+
+\section{Induction}
+
+In 1831 Faraday discovered that a \emph{changing} magnetic field creates an electric field.
+
+\begin{law}[Faraday's law]
+The electromotive force around a loop equals minus the rate of change of magnetic flux through it:
+\[
+  \oint\vb E\cdot\dd\vb l = -\dv{\Phi_B}{t}
+  \qquad\Longleftrightarrow\qquad
+  \curl\vb E = -\pdv{\vb B}{t}.
+\]
+\end{law}
+
+The minus sign is \emph{Lenz's law}: induced currents flow so as to oppose the change that made them. Drop a magnet down a copper pipe and it falls in slow motion, braked by the currents it induces. Faraday's law runs the modern world: every generator spins a coil in a magnetic field, every transformer couples two coils through a changing flux, and every electric guitar pickup, induction hob, and wireless charger is Faraday's law in a box.
+
+A coil opposes changes in its own current, with \emph{inductance} $L$ defined by $\mathcal{E} = -L\,\dd I/\dd t$. It stores energy $\tfrac12LI^2$, which again lives in the field, with density
+\[
+  u_B = \frac{B^2}{2\mu_0}.
+\]
+An inductor and a capacitor together make an oscillator, $L\ddot Q = -Q/C$, ringing at $\omega = 1/\sqrt{LC}$ (Chapter~\ref{ch:sho}). Every radio tuner is one.
+
+\section{Maxwell's equations}
+
+By the 1860s, the laws of Gauss, Faraday, and Amp\`ere were known, but Maxwell noticed that Amp\`ere's law was inconsistent. Charge a capacitor: current flows in the wire but not across the gap. A loop around the wire can be spanned by a surface that cuts the wire (enclosing current $I$) or by one that passes through the gap (enclosing nothing). Amp\`ere's law gives two different answers.
+
+Maxwell's fix was to add a term: a changing electric field acts as a source of magnetic field, just as a changing magnetic field is a source of electric field. With this \emph{displacement current} the equations become complete.
+
+\begin{law}[Maxwell's equations]
+\begin{align*}
+  \grad\cdot\vb E &= \frac{\rho}{\epsilon_0}, &
+  \curl\vb E &= -\pdv{\vb B}{t},\\
+  \grad\cdot\vb B &= 0, &
+  \curl\vb B &= \mu_0\vb J + \mu_0\epsilon_0\pdv{\vb E}{t}.
+\end{align*}
+Together with the Lorentz force law, these are all of classical electromagnetism.
+\end{law}
+
+Four lines. Everything in this chapter, and all of optics, follows from them.
+
+\section{Light}
+
+In empty space ($\rho = 0$, $\vb J=0$), take the curl of Faraday's law and use the curl of Amp\`ere--Maxwell:
+\[
+  \curl(\curl\vb E) = -\pdv{}{t}(\curl\vb B) = -\mu_0\epsilon_0\frac{\partial^2\vb E}{\partial t^2}.
+\]
+With $\curl(\curl\vb E) = \grad(\grad\cdot\vb E) - \nabla^2\vb E = -\nabla^2\vb E$, this is the wave equation (Chapter~\ref{ch:waves}),
+\[
+  \nabla^2\vb E = \mu_0\epsilon_0\,\frac{\partial^2\vb E}{\partial t^2},
+  \qquad
+  v = \frac{1}{\sqrt{\mu_0\epsilon_0}} = 2.998\times10^{8}\un{m/s}.
+\]
+Maxwell computed this speed from the constants of electricity and magnetism, measured on lab benches with batteries and coils, and found it equal to the measured speed of light. ``We can scarcely avoid the inference,'' he wrote, ``that light consists in the transverse undulations of the same medium which is the cause of electric and magnetic phenomena.'' Light is an electromagnetic wave.
+
+The waves are transverse: $\vb E$, $\vb B$, and the direction of travel are mutually perpendicular, with $E = cB$. They carry energy at a rate per area given by the \textbf{Poynting vector}
+\[
+  \vb S = \frac{1}{\mu_0}\,\vb E\times\vb B,
+\]
+and they carry momentum: light falling on an absorbing surface pushes it with pressure $I/c$, where $I$ is the intensity. Sunlight at the Earth has $I\approx1360\un{W/m^2}$, a pressure of about $5\un{\mu Pa}$ --- tiny, but enough to sail a spacecraft. The electromagnetic spectrum runs from radio waves (metres to kilometres) through microwaves, infrared, the narrow visible band ($400$--$700\un{nm}$), ultraviolet, X-rays, and gamma rays. It is all the same physics at different wavelengths.
+
+\section{Radiation}
+
+A charge at rest has a static field; a charge moving uniformly has a field that moves with it. Only an \emph{accelerating} charge radiates. Think of the field lines as stiff wires attached to the charge: jerk the charge, and a kink travels outward along the lines at speed $c$. That kink is the radiation, and its field falls off as $1/r$ rather than $1/r^2$, so it carries energy all the way to infinity. The total power radiated by a charge $q$ with acceleration $a$ (at speeds well below $c$) is given by the \textbf{Larmor formula}
+\[
+  P = \frac{q^2a^2}{6\pi\epsilon_0c^3}.
+\]
+An oscillating charge (a dipole antenna) has $a\propto\omega^2$, so it radiates power $\propto\omega^4$. That steep frequency dependence is why the sky is blue (Chapter~\ref{ch:sho}), why radio antennas must be roughly as long as the wavelength they emit, and why the classical atom is doomed (Problem~\ref{prob:classical-atom}).
+
+\section{Potentials and gauge freedom}
+
+Because $\grad\cdot\vb B = 0$, we can write $\vb B = \curl\vb A$ for a \emph{vector potential} $\vb A$, and then Faraday's law lets us write $\vb E = -\grad\phi - \partial\vb A/\partial t$. But the potentials are not unique: the substitution
+\[
+  \vb A \to \vb A + \grad\chi, \qquad \phi \to \phi - \pdv{\chi}{t}
+\]
+leaves $\vb E$ and $\vb B$ unchanged for \emph{any} function $\chi(\vb r,t)$. This redundancy is called \emph{gauge freedom}. In classical physics it looks like a curiosity. In quantum mechanics it becomes the organizing principle of all of fundamental physics: the electromagnetic field exists \emph{because} the quantum phase of charged particles can be changed independently at every point in space (Chapter~\ref{ch:qft}), and the strong and weak forces come from the same idea with bigger symmetry groups (Chapter~\ref{ch:particle}).
+
+\section{Fields in matter}
+
+In a material, the field polarizes atoms and molecules, creating tiny dipoles that partly cancel the applied field. The material is described by a \emph{relative permittivity} $\epsilon_r$ (water: about $80$, which is why it dissolves salts so well) and a relative permeability $\mu_r$. Light then travels at $c/n$ with refractive index $n = \sqrt{\epsilon_r\mu_r}$; the frequency dependence of $n$ produces rainbows (Chapter~\ref{ch:optics}). Magnetic materials range from feebly diamagnetic (everything, including frogs, which can be levitated in a $16\un{T}$ magnet) to strongly ferromagnetic (iron, where quantum effects align electron spins over whole domains; Chapter~\ref{ch:condmat}).
+
+\section{Electromagnetism and relativity}
+\label{sec:em-relativity}
+
+Here is a puzzle. A charge moves parallel to a current-carrying wire and feels a magnetic force. Jump into the charge's rest frame: now it is not moving, so there is no magnetic force --- but it must still be pushed, because whether it hits something cannot depend on your point of view. The resolution is that in the charge's frame the wire is electrically charged, because the moving positive ions and the moving electrons are length-contracted by different amounts (Chapter~\ref{ch:sr}). \emph{Magnetism is the relativistic correction to electrostatics.} It is detectable at the tiny speeds of electrons in wires only because the wire contains so many of them that their enormous electric forces otherwise cancel perfectly.
+
+\begin{keyidea}
+Electric and magnetic fields are not separate things. They are components of a single object --- the electromagnetic field tensor of Chapter~\ref{ch:sr} --- that mix into each other when you change your frame of reference. Maxwell's equations were relativistic decades before relativity; Einstein's 1905 paper was titled ``On the Electrodynamics of Moving Bodies.''
+\end{keyidea}
+
+\section{Problems}
+
+\begin{problems}
+\prob{1}\core \label{prob:coulomb-gravity} Compute the ratio of the electric repulsion to the gravitational attraction between two protons. Does it depend on their separation? Use the result to explain why gravity, the weakest force, dominates astronomy.
+
+\prob{1}\core A sphere of radius $R$ carries charge $Q$ spread uniformly through its volume. Use Gauss's law to find $\vb E$ inside and outside. Sketch $E(r)$. Compare with the gravitational field inside a uniform Earth, which Problem~\ref{prob:tunnel} used.
+
+\prob{1} A parallel-plate capacitor has plates of area $1\un{m^2}$ separated by $1\un{mm}$ of air, charged to $1000\un{V}$. Find its capacitance, charge, and stored energy, both from $\tfrac12CV^2$ and by integrating $\tfrac12\epsilon_0E^2$ over the gap.
+
+\prob{1} A defibrillator stores $200\un{J}$ in a $100\un{\mu F}$ capacitor. What is the voltage? If it discharges through the chest (resistance about $50\un{\Omega}$), what is the time constant?
+
+\prob{1} Find the cyclotron frequency and the radius of the orbit of an electron with kinetic energy $1\un{keV}$ in a $1\un{T}$ field. Repeat for a proton of the same energy.
+
+\prob{2}\core Starting from Maxwell's equations in vacuum, derive the wave equation for $\vb B$, and show for a plane wave that $\vb E\perp\vb B\perp\vb k$ and $E = cB$.
+
+\prob{2} A magnet falls through a vertical copper pipe and quickly reaches a slow terminal velocity. Explain qualitatively why, using Faraday's and Lenz's laws, and argue that the braking force is proportional to the velocity. How should the terminal velocity depend on the pipe's conductivity and wall thickness?
+
+\prob{2} A solar sail is a $100\un{m}\times100\un{m}$ reflecting sheet with total mass $100\un{kg}$, at the Earth's distance from the Sun. Find the radiation force on it, and compare with the Sun's gravitational pull. Why does the ratio not depend on the distance from the Sun?
+
+\prob{2} A point charge $q$ sits a distance $d$ above an infinite grounded conducting plane. Show that the field above the plane is the same as if the plane were replaced by an \emph{image charge} $-q$ at distance $d$ below it, and find the force on $q$. Why does this trick work?
+
+\prob{2}\core \label{prob:classical-atom} \emph{(The doom of the classical atom.)} In a classical picture of hydrogen, an electron circles the proton at radius $a_0 = 0.53\times10^{-10}\un{m}$. Use the Larmor formula to find the power it radiates, and estimate how long it takes to spiral into the nucleus. (Answer: about $10^{-11}\un{s}$.) Something is badly wrong with classical physics; Chapter~\ref{ch:qm} explains what.
+
+\prob{3} \emph{(Earnshaw's theorem.)} Prove that no arrangement of static charges can hold a test charge in stable equilibrium in empty space. That is, the potential energy $qV(\vb r)$ cannot have a local minimum where there is no charge.
+\hint{At a minimum, $\nabla^2V>0$ in every direction. What does Laplace's equation say? (Ion traps evade this theorem by using oscillating fields --- compare the Kapitza pendulum, Problem~\ref{prob:kapitza}.)}
+
+\prob{3} \emph{(Magnetism from relativity.)} A line of positive charges (density $\lambda$) moves right at speed $v$, and a line of negative charges (density $-\lambda$) moves left at speed $v$; the wire is neutral and carries current $I = 2\lambda v$. A test charge $q$ moves right at speed $v$ at distance $r$. In the lab frame, compute the magnetic force on it. Then transform to the test charge's rest frame, use length contraction to find the net charge density of the wire there, and compute the purely electric force. Show the two agree (after transforming the force), to leading order in $v/c$.
+\end{problems}
+
+\begin{reading}
+\rd{Purcell and Morin, \emph{Electricity and Magnetism}}{The Berkeley course text. Builds magnetism from relativity, as in \S\ref{sec:em-relativity}, and is full of insight.}
+\rd{David J.\ Griffiths, \emph{Introduction to Electrodynamics}}{The best undergraduate electromagnetism book by a wide margin; it opens with an excellent crash course in vector calculus.}
+\rd{\emph{The Feynman Lectures on Physics}, Volume II}{Feynman at his best: fields, potentials, and the reality of the field.}
+\rd{Andrew Zangwill, \emph{Modern Electrodynamics}}{A modern graduate text with careful explanations and many applications.}
+\end{reading}

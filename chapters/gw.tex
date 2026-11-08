@@ -1,0 +1,133 @@
+\chapter{Gravitational waves}
+\label{ch:gw}
+
+\buildson{general relativity (Chapter~\ref{ch:gr})}
+
+\chapterdek{Ripples in spacetime itself, predicted in 1916, thought undetectable for half a century, and finally heard in 2015 as two black holes collided a billion light-years away.}
+
+\begin{prototype}
+An inspiralling binary: two black holes or neutron stars orbiting each other, radiating gravitational waves, losing energy, and spiralling closer and faster until they merge. Its signal is a \emph{chirp}, a wave rising in both frequency and amplitude, ending in a crescendo. Its shape alone encodes the masses, spins, and distance of the pair.
+\end{prototype}
+
+If mass curves spacetime, then moving masses should send ripples through it, spreading outward at the speed of light, the way a moving charge sends out electromagnetic waves (Chapter~\ref{ch:em}). Einstein predicted these \emph{gravitational waves} in 1916, then doubted they were real, then decided they were too weak ever to detect. For decades physicists argued whether they carried energy at all. On 14 September 2015, the two LIGO detectors in Louisiana and Washington recorded a signal lasting a fifth of a second: the merger of two black holes, $1.3$ billion years ago. A new sense had been added to astronomy.
+
+\section{Ripples in spacetime}
+
+Far from any source, write the spacetime metric as flat spacetime plus a small perturbation, $g_{\mu\nu} = \eta_{\mu\nu} + h_{\mu\nu}$ with $\abs h\ll1$. To first order, Einstein's equations in vacuum become a wave equation,
+\[
+  \left(-\frac{1}{c^2}\frac{\partial^2}{\partial t^2} + \nabla^2\right)h_{\mu\nu} = 0,
+\]
+so gravitational waves travel at the speed of light. Like light, they are \emph{transverse}, and they have two polarizations. But their effect is different: a gravitational wave passing through a ring of free particles stretches it in one direction while squeezing it in the perpendicular one, then reverses, twice per cycle. The two polarizations, called ``plus'' and ``cross,'' do this along axes at $45^\circ$ to each other.
+
+\begin{center}
+\begin{tikzpicture}[scale=0.62]
+  \foreach \i/\rx/\ry/\lab in {0/1/1/{$t=0$}, 1/1.3/0.77/{$t=T/4$}, 2/1/1/{$t=T/2$}, 3/0.77/1.3/{$t=3T/4$}} {
+    \begin{scope}[xshift=\i*4cm]
+      \draw[ascrule,dashed] (0,0) circle (1);
+      \foreach \a in {0,30,...,330} \fill[ascblue] ({\rx*cos(\a)},{\ry*sin(\a)}) circle (2.6pt);
+      \node[font=\small] at (0,-2.0) {\lab};
+    \end{scope}
+  }
+\end{tikzpicture}
+
+{\small A ring of free particles as a ``plus''-polarized wave passes through the page.}
+\end{center}
+
+The size of the effect is the dimensionless \emph{strain} $h$: a length $L$ changes by about $\Delta L = \tfrac12hL$. And $h$ is tiny. Spacetime is extraordinarily stiff, because the coupling between matter and curvature is $G/c^4$, about $10^{-44}$ in SI units. The strongest waves reaching the Earth from astronomical sources have $h\sim10^{-21}$: they change the distance between the Earth and the Sun by about the width of an atom.
+
+\section{How gravitational waves are made}
+
+In electromagnetism, the dominant radiation comes from an oscillating electric \emph{dipole}. Gravity has no dipole radiation. The ``mass dipole'' of a system is its total mass times its centre of mass, and its second time derivative is the rate of change of total momentum, which is zero for an isolated system (Problem~\ref{prob:nodipole}). Nor does gravity have monopole radiation, since total mass--energy is conserved. A spherically symmetric collapsing star emits nothing. The leading radiation comes from a changing \emph{quadrupole moment}, a measure of how a mass distribution departs from spherical symmetry. Einstein's \textbf{quadrupole formula} gives the radiated power:
+\[
+  P = \frac{G}{5c^5}\left\langle\dddot Q_{ij}\dddot Q_{ij}\right\rangle,
+\]
+where $Q_{ij}$ is the (traceless) quadrupole moment. The prefactor $G/c^5$ is $3\times10^{-53}\un{W^{-1}}$ in SI units, which is why only enormous, fast-moving masses radiate appreciably. The Earth orbiting the Sun radiates about $200$ watts, far too little to matter (Problem~\ref{prob:inspiral}).
+
+For a binary of masses $m_1$, $m_2$ in a circular orbit of radius $a$, the radiated power is
+\[
+  P = \frac{32}{5}\frac{G^4}{c^5}\frac{(m_1m_2)^2(m_1+m_2)}{a^5} .
+\]
+The radiation carries away orbital energy, so the orbit shrinks; a smaller orbit means faster motion and stronger radiation, which shrinks it faster still. The gravitational-wave frequency is \emph{twice} the orbital frequency, because the quadrupole pattern of the binary repeats every half orbit. As the stars spiral together, the frequency and amplitude both rise: the \emph{chirp}. The time remaining until merger scales as $a^4$ (Problem~\ref{prob:inspiral}), and the rate at which the frequency sweeps up depends on the masses almost entirely through a single combination, the \emph{chirp mass}
+\[
+  \mathcal M = \frac{(m_1m_2)^{3/5}}{(m_1+m_2)^{1/5}},
+\]
+which is therefore the quantity a detector measures best (Problem~\ref{prob:chirp}).
+
+\section{The first evidence: a pulsar clock}
+
+In 1974 Russell Hulse and Joseph Taylor discovered a pulsar (Chapter~\ref{ch:astro}) in a tight orbit with another neutron star, with a period of under eight hours. A pulsar is a superb clock, and timing its pulses over years revealed the orbit shrinking --- the period decreasing by about $76$ microseconds per year --- exactly as predicted by the energy lost to gravitational waves. The agreement, now at the level of a fraction of a percent, was the first evidence that gravitational waves exist (Nobel Prize, 1993). In about $300$ million years, the two stars will merge.
+
+\section{Detecting a change of $10^{-18}$ metres}
+
+LIGO is a Michelson interferometer (Chapter~\ref{ch:optics}) with arms $4\un{km}$ long. A passing gravitational wave stretches one arm and squeezes the other, changing the interference at the output. For $h = 10^{-21}$, the arm lengths change by about $4\times10^{-18}\un{m}$ --- a few thousandths of the width of a proton. Measuring that requires heroic engineering:
+\begin{itemize}[itemsep=3pt]
+  \item The light bounces back and forth about $300$ times in each arm (a Fabry--P\'erot cavity), making the effective arm length over a thousand kilometres.
+  \item ``Power recycling'' builds up several hundred kilowatts of laser light circulating in the arms, to beat down \emph{shot noise}: the random arrival of photons, which limits phase measurements to precision $\sim1/\sqrt N$ for $N$ photons (Chapter~\ref{ch:math}).
+  \item The $40\un{kg}$ fused-silica mirrors hang from multi-stage pendulum suspensions that filter out ground vibrations by a factor of $10^{10}$ above $10\un{Hz}$ (Chapter~\ref{ch:sho}): a driven oscillator far above resonance barely moves.
+  \item The whole beam path is in one of the largest ultra-high vacuums on Earth.
+  \item At its best sensitivity, LIGO is limited by quantum mechanics itself: the photons' shot noise, and the random kicks of radiation pressure on the mirrors. Since 2019 LIGO has injected \emph{squeezed light} (Chapter~\ref{ch:amo}), redistributing quantum uncertainty to beat the shot-noise limit.
+\end{itemize}
+Two detectors thousands of kilometres apart are essential: a real signal appears in both within $10$ milliseconds (the light travel time between them), while local noise does not. Europe's Virgo and Japan's KAGRA join them, and with three or more detectors, a source's position on the sky can be triangulated.
+
+\section{GW150914}
+
+The first detection, named for its date, was almost absurdly clean: a chirp sweeping from $35$ to $250\un{Hz}$ in a fifth of a second, visible by eye in the raw data. Matching it against simulated waveforms from numerical relativity (Chapter~\ref{ch:comp}) revealed two black holes of $36$ and $29$ solar masses, $1.3$ billion light-years away, merging into one of $62$ solar masses. The missing three solar masses --- $5\times10^{47}\un{J}$ --- were radiated as gravitational waves in a fraction of a second, a peak power greater than that of all the stars in the observable universe combined (Problem~\ref{prob:energy150914}). The final moments, a decaying ``ringdown'' as the new black hole settled down, matched the predictions of general relativity for a Kerr black hole (Chapter~\ref{ch:gr}). Weiss, Barish, and Thorne received the 2017 Nobel Prize.
+
+\section{GW170817: multi-messenger astronomy}
+
+On 17 August 2017, LIGO and Virgo detected a longer, slower chirp lasting about $100$ seconds: two neutron stars merging $130$ million light-years away. Just $1.7$ seconds after the merger, the Fermi satellite recorded a burst of gamma rays from the same direction. Within hours, telescopes found a new point of light in the galaxy NGC~4993, and some seventy observatories followed it across the spectrum. The event delivered a cascade of results:
+\begin{itemize}[itemsep=3pt]
+  \item \textbf{Gravity travels at the speed of light}, to about one part in $10^{15}$ (Problem~\ref{prob:speed-of-gravity}), eliminating many alternative theories of gravity at a stroke.
+  \item \textbf{Neutron star mergers make short gamma-ray bursts}, solving a decades-old puzzle (Chapter~\ref{ch:astro}).
+  \item \textbf{The glow of a ``kilonova''} revealed the radioactive decay of heavy elements freshly forged by the r-process (Chapter~\ref{ch:nuclear}), some ten Earth masses of gold and platinum among them.
+  \item \textbf{A new way to measure the Hubble constant.} The amplitude of a gravitational wave gives the source's distance directly, with no distance ladder, and the host galaxy gives its redshift. Such ``standard sirens'' (Problem~\ref{prob:siren}) may help resolve the Hubble tension (Chapter~\ref{ch:cosmo}).
+\end{itemize}
+
+\section{A new window}
+
+LIGO, Virgo, and KAGRA have now detected hundreds of mergers, revealing a population of black holes heavier than anyone expected from stellar evolution, black holes with masses in a supposed ``gap'' where none should form, and neutron star--black hole pairs. Each event is a test of general relativity in the strong-field regime, where spacetime is wildly curved and moving at nearly the speed of light.
+
+Gravitational waves span a spectrum as wide as electromagnetic ones:
+\begin{itemize}[itemsep=3pt]
+  \item \textbf{Ground-based interferometers} ($10$ to $1000\un{Hz}$): stellar-mass mergers.
+  \item \textbf{LISA}, a planned triangle of spacecraft millions of kilometres apart ($\sim\un{mHz}$): mergers of supermassive black holes across the universe, scheduled for the 2030s.
+  \item \textbf{Pulsar timing arrays} (nanohertz): dozens of millisecond pulsars, monitored for years, act together as a detector the size of the galaxy. In 2023 several collaborations reported evidence for a background of such waves, probably from the slow inspiral of supermassive black hole pairs throughout the universe.
+  \item \textbf{The CMB} (the lowest frequencies of all): primordial gravitational waves from inflation would leave a twisting B-mode pattern in its polarization (Chapter~\ref{ch:cosmo}). Not yet seen.
+\end{itemize}
+
+\section{Problems}
+
+\begin{problems}
+\prob{1}\core A gravitational wave with strain $h = 10^{-21}$ passes through LIGO's $4\un{km}$ arm. By how much does the arm change length? Express it in proton diameters ($1.7\times10^{-15}\un{m}$).
+
+\prob{1} Explain why the gravitational-wave frequency of a binary is twice its orbital frequency. A binary radiates at $100\un{Hz}$. What is its orbital period?
+
+\prob{1}\core \label{prob:energy150914} GW150914 radiated three solar masses of energy. Compute it in joules and compare with the total energy the Sun will radiate in its $10$-billion-year lifetime. If most of it was emitted in about $20\un{ms}$, what was the average power? Compare with the total luminosity of the stars in the observable universe, about $10^{49}\un{W}$.
+
+\prob{2}\core \label{prob:nodipole} Show that the mass dipole moment $\vb D = \sum m_i\vb r_i$ of an isolated system has zero second time derivative. Why does this rule out dipole gravitational radiation, while electromagnetism has dipole radiation? (Hint: what plays the role of charge in gravity, and does every particle have the same charge-to-mass ratio?)
+
+\prob{2}\core \label{prob:speed-of-gravity} The gamma rays from GW170817 arrived $1.7\un{s}$ after the gravitational-wave merger signal, after travelling about $130$ million light-years. Assuming they were emitted within a few seconds of each other, bound the fractional difference between the speed of gravity and the speed of light.
+
+\prob{2} An order-of-magnitude estimate of the strain from a binary at distance $r$ is $h\sim\dfrac{4}{r}\left(\dfrac{G\mathcal M}{c^2}\right)^{5/3}\left(\dfrac{\pi f}{c}\right)^{2/3}$. Evaluate it for GW150914 ($\mathcal M\approx28\Msun$, $f\approx150\un{Hz}$, $r = 410\un{Mpc}$). Compare with the measured peak strain of $10^{-21}$.
+
+\prob{2} The Hulse--Taylor pulsar's orbit has a period of $7.75$ hours. Using Kepler's third law, estimate the orbital separation for two neutron stars of $1.4$ solar masses each. Compare it with the radius of the Sun.
+
+\prob{2} The innermost stable circular orbit of a black hole of mass $M$ is at $r = 6GM/c^2$. Find the gravitational-wave frequency of a test particle orbiting there, and evaluate it for a $60$-solar-mass black hole and a $10^6$-solar-mass one. Which detector would see each?
+
+\prob{3}\core \label{prob:inspiral} \emph{(How long to merge.)} For a circular binary, the orbital energy is $E = -Gm_1m_2/2a$. Setting $\dd E/\dd t = -P$ with the quadrupole power formula, show that the time to merge from separation $a$ is
+\[
+  t = \frac{5}{256}\frac{c^5a^4}{G^3m_1m_2(m_1+m_2)} .
+\]
+Compute the power radiated by the Earth--Sun system, and the time for the Earth to spiral into the Sun this way. Compare with the age of the universe.
+
+\prob{3} \label{prob:chirp} \emph{(Weighing with a chirp.)} Using the results of the previous problem and Kepler's law relating $a$ to the gravitational-wave frequency $f$, show that $\dot f\propto\mathcal M^{5/3}f^{11/3}$, with no other dependence on the masses. Explain why measuring the frequency and its rate of change determines the chirp mass, and why the individual masses are harder to extract.
+
+\prob{3} \label{prob:siren} \emph{(Standard sirens.)} The gravitational-wave amplitude of GW170817 implied a distance of about $40\un{Mpc}$; its host galaxy NGC~4993 recedes (after correcting for its local motion) at about $3000\un{km/s}$. Estimate $H_0$. Why is a single event's uncertainty large, and how many events would be needed to measure $H_0$ to $2\%$?
+\end{problems}
+
+\begin{reading}
+\rd{Bernard Schutz, \emph{A First Course in General Relativity}}{Chapter~9 is a clear introduction to gravitational waves and their detection.}
+\rd{Michele Maggiore, \emph{Gravitational Waves}, Volume~1}{The comprehensive graduate reference on theory and experiment.}
+\rd{Peter Saulson, \emph{Fundamentals of Interferometric Gravitational Wave Detectors}}{How LIGO actually works, including all its noise sources.}
+\rd{Janna Levin, \emph{Black Hole Blues}}{The human story of LIGO's half-century quest.}
+\end{reading}

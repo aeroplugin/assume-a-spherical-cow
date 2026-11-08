@@ -1,0 +1,151 @@
+\chapter{String theory and quantum gravity}
+\label{ch:strings}
+
+\buildson{general relativity (Chapter~\ref{ch:gr}), quantum field theory (Chapter~\ref{ch:qft})}
+
+\chapterdek{The deepest end of the pool: making gravity and the quantum agree --- the great unfinished problem of fundamental physics, and where this book ends.}
+
+\begin{prototype}
+A vibrating string. Replace every point-like particle with a tiny loop or strand of string. Like a guitar string, it can vibrate in many modes, and each mode looks, from far away, like a different particle. One of the modes of a closed loop is a massless particle of spin $2$ --- a graviton. Gravity is not added to string theory by hand; it is unavoidable.
+\end{prototype}
+
+Two theories describe everything we have ever measured. General relativity (Chapter~\ref{ch:gr}) governs gravity, planets, black holes, and the cosmos. Quantum field theory (Chapter~\ref{ch:qft}) governs everything else, from atoms to the Higgs boson. Each is confirmed to extraordinary precision in its own domain. They are mutually incompatible. In nearly all of nature, this does not matter, because gravity is negligible where quantum effects are large and quantum effects are negligible where gravity is strong. But at the centre of a black hole and at the beginning of the universe, both matter, and there we have no theory. This chapter is a tasting of the attempts to build one. It is more speculative than the rest of the book, and it is honest to say so.
+
+\section{The Planck scale}
+
+Where does quantum gravity become unavoidable? Dimensional analysis (Chapter~\ref{ch:math}) answers immediately. From $\hbar$ (quantum mechanics), $c$ (relativity), and $G$ (gravity), there is exactly one way to make a length, a mass, and a time:
+\[
+  \ell_P = \sqrt{\frac{\hbar G}{c^3}}\approx1.6\times10^{-35}\un{m},\qquad
+  m_P = \sqrt{\frac{\hbar c}{G}}\approx2.2\times10^{-8}\un{kg},\qquad
+  t_P = \frac{\ell_P}{c}\approx5.4\times10^{-44}\un{s}.
+\]
+The \emph{Planck energy} $m_Pc^2\approx1.2\times10^{19}\un{GeV}$ is a thousand trillion times beyond the LHC. Physically, the Planck mass is the mass whose Compton wavelength (where quantum effects become essential) equals its Schwarzschild radius (where gravity becomes essential; Problem~\ref{prob:planck-mass}). To probe a distance $\ell_P$ you would need to concentrate so much energy into so small a region that it would collapse into a black hole of that size. Below the Planck length, our very notion of distance may cease to make sense.
+
+\section{Why gravity resists quantization}
+
+At first sight, quantizing gravity should work like quantizing electromagnetism. Write the metric as flat spacetime plus a small fluctuation (Chapter~\ref{ch:gw}), quantize the waves, and you get \emph{gravitons}: massless particles of spin $2$. This works at low energies --- one can even compute the tiny quantum corrections to Newton's law. But as an effective field theory (Chapter~\ref{ch:qft}) it breaks down at high energies, for the same reason Fermi's theory of the weak force broke down. Newton's constant has dimensions: the strength of gravity between two particles of energy $E$ is effectively $GE^2/\hbar c^5 = (E/E_P)^2$, which becomes larger than $1$ near the Planck energy (Problem~\ref{prob:nonrenorm}). Each order of perturbation theory brings worse divergences, needing infinitely many new parameters to absorb them. The theory is \emph{non-renormalizable}. Something new must take over at the Planck scale, as the $W$ boson took over from Fermi's theory. The question is what.
+
+\section{Black holes are thermodynamic}
+
+The most important clues so far come from black holes. In 1972 Jacob Bekenstein, a graduate student, asked what happens to the entropy of a hot cup of tea thrown into a black hole. If it simply vanishes, the second law of thermodynamics (Chapter~\ref{ch:thermo}) is violated. He proposed that black holes themselves carry entropy, proportional to the area of their horizon. Hawking, initially sceptical, then discovered that black holes radiate at a temperature (Chapter~\ref{ch:gr}), which fixed the constant:
+\[
+  S_{\text{BH}} = \frac{\kB A}{4\ell_P^2} = \frac{\kB c^3A}{4G\hbar}.
+\]
+This formula contains every fundamental constant, and it is enormous. A solar-mass black hole has an entropy of about $10^{77}\kB$, twenty orders of magnitude more than the Sun itself (Problem~\ref{prob:bh-entropy}). Black holes are the most entropic objects possible.
+
+Two things about this are startling. First, in statistical mechanics, entropy counts microstates (Chapter~\ref{ch:statmech}). So a black hole --- which, classically, is perfectly described by mass, spin, and charge, with ``no hair'' --- must have $e^{10^{77}}$ hidden microscopic states. What are they? Second, entropy is usually proportional to \emph{volume}; for a black hole it is proportional to the \emph{area} of its boundary. Since a black hole is the most entropic thing that can fit in a region, the maximum information in \emph{any} region of space is bounded by its surface area, measured in Planck units. This \textbf{holographic principle} ('t~Hooft, Susskind) suggests that a theory of quantum gravity in a region can be described by degrees of freedom living on its boundary, like a hologram, which stores a three-dimensional image on a two-dimensional film.
+
+\section{The information paradox}
+
+Throw an encyclopaedia into a black hole and wait for the black hole to evaporate. Hawking's calculation says the radiation is exactly thermal, carrying no information about what fell in. Then the information is destroyed, and quantum mechanics, whose evolution is always reversible (unitary), is violated. Either quantum mechanics fails, or Hawking's semiclassical calculation misses something, or the information hides somewhere. This \emph{information paradox} has been argued over for fifty years. Most theorists now believe information is preserved, and calculations since 2019 using ideas from holography have shown how the entropy of the radiation can follow the \emph{Page curve} expected if information escapes, rising and then falling as the black hole evaporates. Exactly how the information gets out, and what an infalling observer would see, remains under active debate.
+
+\section{String theory}
+
+String theory began, by accident, as a theory of the strong force in the late 1960s, and was nearly abandoned when QCD (Chapter~\ref{ch:particle}) succeeded. Its fatal flaw for that purpose --- it always contained a massless spin-$2$ particle --- turned out, in 1974, to be its greatest virtue: that particle has exactly the properties of the graviton.
+
+The idea is simple to state. The fundamental objects are one-dimensional strings, open or closed, with a tension $T$. Like a guitar string (Chapter~\ref{ch:waves}), a string vibrates in a set of normal modes, and each mode, seen from a distance much larger than the string, is a particle whose mass is set by its vibrational energy. A single kind of string can thus produce many kinds of particles. The lowest modes are massless and include gauge bosons (from open strings) and the graviton (from closed strings); higher modes have masses of order the string scale, presumably near the Planck scale, far beyond reach.
+
+\begin{center}
+\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}
+  \draw[ascink!60, -{Stealth[length=5pt]}] (-2.3,-0.2) -- (-2.3,3.4) node[midway, left, font=\footnotesize] {time};
+  % particles
+  \draw[ascblue, line width=1.3pt] (0,0) -- (0,1.6) -- (-0.9,3.2);
+  \draw[ascblue, line width=1.3pt] (0,1.6) -- (0.9,3.2);
+  \fill[ascwarm] (0,1.6) circle (2.6pt);
+  \node[font=\small] at (0,-0.55) {particles};
+  % strings
+  \begin{scope}[xshift=4.6cm]
+    \fill[ascbluebg] (-0.65,0) .. controls (-0.65,1.3) and (-1.45,2.0) .. (-1.45,3.2) -- (-0.45,3.2)
+      .. controls (-0.45,2.3) and (0.45,2.3) .. (0.45,3.2) -- (1.45,3.2) .. controls (1.45,2.0) and (0.65,1.3) .. (0.65,0) -- cycle;
+    \draw[ascblue, thick] (-0.65,0) .. controls (-0.65,1.3) and (-1.45,2.0) .. (-1.45,3.2);
+    \draw[ascblue, thick] (0.65,0) .. controls (0.65,1.3) and (1.45,2.0) .. (1.45,3.2);
+    \draw[ascblue, thick] (-0.45,3.2) .. controls (-0.45,2.3) and (0.45,2.3) .. (0.45,3.2);
+    \draw[ascblue, thick] (-0.65,0) arc[start angle=180, end angle=360, x radius=0.65, y radius=0.17];
+    \draw[ascblue, thick, dashed] (0.65,0) arc[start angle=0, end angle=180, x radius=0.65, y radius=0.17];
+    \foreach \x in {-0.95,0.95} {
+      \fill[white] (\x,3.2) ellipse [x radius=0.5, y radius=0.14];
+      \draw[ascblue, thick] (\x,3.2) ellipse [x radius=0.5, y radius=0.14];
+    }
+    \node[font=\small] at (0,-0.55) {strings};
+  \end{scope}
+\end{tikzpicture}
+
+{\small Left: when point particles interact, their worldlines meet at a point, and the infinities of quantum field theory come from such points. Right: a closed string sweeps out a tube, and one string splitting into two sweeps out a ``pair of pants.'' The surface is smooth everywhere, with no special point where the split happens, which is part of why string theory is free of those infinities.}
+\end{minipage}
+\end{center}
+
+String theory has remarkable features:
+\begin{itemize}[itemsep=3pt]
+  \item \textbf{It is finite.} Point particles interact at points, and that is the source of the ultraviolet divergences of QFT. Strings interact by joining and splitting smoothly, spread over a region, and the divergences of quantum gravity disappear.
+  \item \textbf{It fixes the dimension of spacetime.} Quantum consistency requires $26$ dimensions for the simplest (bosonic) strings and $10$ for \emph{superstrings}, which include fermions and have a symmetry between bosons and fermions called \emph{supersymmetry}. The extra six dimensions must be curled up too small to see. This idea goes back to Kaluza and Klein in the 1920s: a curled-up dimension of radius $R$ would show up as a tower of heavier copies of every particle, with masses $n\hbar/Rc$ (Problem~\ref{prob:kk}). The shape of the hidden dimensions determines the particles and forces we see.
+  \item \textbf{It is unique, in a sense.} In the 1980s there seemed to be five different superstring theories. In 1995 Edward Witten and others showed that they are all different limits of a single eleven-dimensional theory, called \emph{M-theory}, linked by surprising equivalences (\emph{dualities}) --- for instance, a theory on a small circle of radius $R$ is equivalent to one on a circle of radius $\ell_s^2/R$. The theory also contains higher-dimensional objects called \emph{branes}, on which open strings can end.
+  \item \textbf{It counts black hole microstates.} In 1996 Strominger and Vafa built certain black holes out of strings and branes, counted their microscopic states, and recovered exactly $S = \kB A/4\ell_P^2$, including the factor of $\tfrac14$. It was the first time anyone had explained the Bekenstein--Hawking entropy microscopically.
+\end{itemize}
+
+\section{Holography made precise}
+
+In 1997 Juan Maldacena discovered the \textbf{AdS/CFT correspondence}: string theory (and hence quantum gravity) in a particular kind of curved spacetime, \emph{anti-de Sitter space}, is exactly equivalent to an ordinary quantum field theory, without gravity, living on that spacetime's boundary, in one fewer dimension. Two theories that look utterly different --- one with gravity and black holes in the bulk, one a gauge theory like QCD on the boundary --- are the same physics in different languages. A black hole in the bulk corresponds to a hot plasma on the boundary. It is the holographic principle made precise, and it has become one of the most cited ideas in physics.
+
+It has unexpected uses. Hard problems in strongly coupled quantum field theory can become tractable problems in classical gravity. AdS/CFT predicted that strongly coupled fluids have a viscosity-to-entropy ratio near $\hbar/4\pi\kB$ --- and the quark--gluon plasma made at heavy-ion colliders (Chapter~\ref{ch:nuclear}) turns out to be close to this bound, the most perfect fluid known (Problem~\ref{prob:viscosity}). And recent work suggests that the geometry of spacetime in the bulk is built from the quantum \emph{entanglement} of the boundary theory: spacetime itself might emerge from entanglement (Chapter~\ref{ch:qinfo}).
+
+\section{Doubts}
+
+String theory has not been tested experimentally, and may not be testable in any foreseeable way. Its natural scale is near the Planck energy. The many ways to curl up the extra dimensions seem to give an enormous \emph{landscape} of possible low-energy worlds --- by some estimates $10^{500}$ or more --- with different particles and constants, and no known principle picks out ours. Supersymmetry, which many hoped would appear at the LHC as a sign of string theory and as a solution to the hierarchy problem (Chapter~\ref{ch:particle}), has not appeared. Critics argue that a theory compatible with almost any outcome is not science; defenders reply that string theory has already taught us a great deal about quantum gravity, black holes, and quantum field theory, and that it remains the only framework known to unify all the forces with gravity consistently. Both views are held by serious physicists. You should know that the question is open.
+
+\section{Other roads}
+
+String theory is the most developed approach, but not the only one.
+\begin{itemize}[itemsep=3pt]
+  \item \textbf{Loop quantum gravity} quantizes the geometry of spacetime directly, without strings or extra dimensions. It predicts that area and volume come in discrete quanta, with space made of a network of ``spin networks'' at the Planck scale. Recovering smooth spacetime at large scales has proved difficult.
+  \item \textbf{Asymptotic safety} proposes that gravity might be a perfectly good quantum field theory after all, if its coupling approaches a fixed value at high energies rather than growing without bound.
+  \item \textbf{Causal sets} and \textbf{causal dynamical triangulations} model spacetime as a discrete structure, summing over ways of assembling it from building blocks.
+  \item \textbf{Emergent gravity} proposals suggest that gravity, like temperature or elasticity, is not fundamental but arises from the collective behaviour of underlying quantum degrees of freedom --- perhaps from entanglement itself.
+\end{itemize}
+
+\section{Can we ever test it?}
+
+Directly probing the Planck scale with today's magnet technology would require a ring hundreds of light-years across --- and even that would not work (Problem~\ref{prob:planck-accelerator}). But there are indirect windows. Inflation (Chapter~\ref{ch:cosmo}) may have stretched quantum fluctuations of the gravitational field itself to cosmic size; detecting them as B-modes in the CMB polarization would be direct evidence that gravity is quantized. Black hole mergers (Chapter~\ref{ch:gw}) test the structure of horizons. The arrival times of gamma rays from distant bursts constrain any Planck-scale graininess of spacetime that would make light's speed depend on its energy; so far, none is seen. And tabletop experiments have been proposed to test whether gravity can entangle two small masses, which would show that gravity is quantum.
+
+\section{Epilogue: how to keep going}
+
+This is the last plate on the menu, and it is the one with the most left unfinished. That is fitting. Physics is not a completed edifice but a set of very good approximations --- spherical cows, all of them, each valid in its domain and each a limit of something deeper. Newton's mechanics is the slow-motion limit of relativity and the large-action limit of quantum mechanics. Thermodynamics is the large-number limit of statistical mechanics. The Standard Model is an effective field theory, valid below some energy we do not yet know. Even general relativity, our deepest theory of space and time, is presumably the low-energy limit of a quantum theory of gravity we do not yet have.
+
+The open questions are enormous, and they are not only at the Planck scale. What are dark matter and dark energy? Why is there more matter than antimatter? What is the mechanism of high-temperature superconductivity? Is turbulence predictable? How do proteins fold so fast, and how did life begin? What does quantum mechanics mean?
+
+If you have tasted a chapter here and want the meal, every chapter has told you where to find it. The standard texts are standard because they work. Read them with a pencil. Do the problems --- more than you think you need to. Estimate before you calculate. Learn the prototype, and test everything against it. And when a problem looks hopeless, look for the small parameter, assume a spherical cow, and see how far it gets you. It usually gets you surprisingly far.
+
+\section{Problems}
+
+\begin{problems}
+\prob{1}\core Using dimensional analysis, show that the only combinations of $\hbar$, $c$, and $G$ with dimensions of length, mass, and time are the Planck units (up to numerical factors), and evaluate them. Also find the Planck temperature $m_Pc^2/\kB$.
+
+\prob{1} Compare the Planck energy with the collision energy of the LHC ($13.6\un{TeV}$) and with the most energetic cosmic rays ($\sim10^{20}\un{eV}$). How many orders of magnitude separate them?
+
+\prob{2}\core \label{prob:planck-mass} Find the mass at which a particle's reduced Compton wavelength $\hbar/mc$ equals its Schwarzschild radius $2Gm/c^2$. Compare it with the Planck mass. Interpret: why can't you localize a particle to better than the Planck length?
+
+\prob{2}\core \label{prob:bh-entropy} Compute the Bekenstein--Hawking entropy of a solar-mass black hole, in units of $\kB$ and in bits. The Sun's entropy is roughly $10^{58}\kB$ (about one per particle times a modest factor). Estimate the entropy of the supermassive black hole at the centre of our galaxy, and compare it with the entropy of the cosmic microwave background in the observable universe, about $10^{89}\kB$.
+
+\prob{2} A black hole's lifetime scales as $M^3$; one of about $2\times10^{11}\un{kg}$ would be evaporating now if it formed in the Big Bang. Find its Schwarzschild radius and Hawking temperature. What would the final moments of its evaporation look like?
+
+\prob{2}\core \label{prob:kk} \emph{(Kaluza--Klein.)} Suppose space has a fifth dimension curled into a circle of radius $R$. A particle's momentum around the circle must be quantized, $p_5 = n\hbar/R$ (its wavefunction must fit; Chapter~\ref{ch:qm}). Show that, seen from four dimensions, the particle appears as a tower of particles with masses $m_n = n\hbar/Rc$ (for a massless particle in five dimensions). The LHC has found no such towers below a few TeV. What upper limit does this put on $R$?
+
+\prob{2} \label{prob:nonrenorm} Show that the gravitational interaction energy of two particles of energy $E$ at a separation equal to their wavelength $\hbar c/E$, divided by $E$, is of order $GE^2/\hbar c^5 = (E/E_P)^2$. Evaluate this for two electrons at rest and for two protons at the LHC. Compare with the analogous argument for Fermi's theory (Chapter~\ref{ch:qft}).
+
+\prob{2} The holographic bound says the maximum entropy that can fit inside a sphere of radius $r$ is that of a black hole of the same size, $\kB\pi r^2/\ell_P^2$. Evaluate it for $r = 1\un{m}$, and compare with the entropy of a cubic metre of air at room temperature (about $10^{3}\un{J/K}$, i.e.\ $10^{26}\kB$). Why does ordinary matter come nowhere near the bound?
+
+\prob{3}\core \label{prob:planck-accelerator} \emph{(An accelerator to the Planck scale.)} Using LHC-strength magnets ($8\un{T}$) and the rigidity formula $p\,[\mathrm{GeV}] = 0.3B\,[\mathrm{T}]\,\rho\,[\mathrm{m}]$, find the radius of a ring that could accelerate protons to the Planck energy. Express it in light-years. Then consider synchrotron radiation (Chapter~\ref{ch:accel}): would even this ring work? Is there any way, even in principle, to probe the Planck length with particle collisions?
+\hint{Think about what happens when you concentrate a Planck energy into a Planck-sized region.}
+
+\prob{3} \label{prob:viscosity} \emph{(The most perfect fluid.)} AdS/CFT predicts that strongly coupled fluids have viscosity-to-entropy-density ratio $\eta/s\approx\hbar/4\pi\kB$. Evaluate this in SI units. For water at room temperature, $\eta\approx10^{-3}\un{Pa\,s}$ and the entropy density is about $4\times10^{6}\un{J/(K\,m^3)}$. How far above the bound is water? Measurements at heavy-ion colliders place the quark--gluon plasma within a factor of a few of the bound. What does a small $\eta/s$ mean physically?
+
+\prob{3} \emph{(The paradox, quantitatively.)} A solar-mass black hole evaporates in about $10^{67}$ years. Don Page argued that if information escapes, the entanglement entropy of the emitted radiation must rise, peak around the time when the black hole has lost half its entropy (the \emph{Page time}), and then fall to zero. Explain why, using the fact that a pure state that is divided into two parts has equal entanglement entropy in each part (Chapter~\ref{ch:qinfo}). Why does Hawking's original calculation, in which the entropy only rises, conflict with unitarity?
+\end{problems}
+
+\begin{reading}
+\rd{Barton Zwiebach, \emph{A First Course in String Theory}}{A remarkably accessible introduction for advanced undergraduates.}
+\rd{Carlo Rovelli, \emph{Reality Is Not What It Seems}}{A popular introduction to quantum gravity from the loop quantum gravity perspective.}
+\rd{Leonard Susskind, \emph{The Black Hole War}}{The information paradox and holography, told by one of the protagonists.}
+\rd{Thomas Hartman, lecture notes on Quantum Gravity and Black Holes}{A modern course on black hole thermodynamics, holography, and the information problem, free online.}
+\rd{Joseph Polchinski, \emph{String Theory}, Volumes I and II}{The graduate standard, for when you are ready.}
+\end{reading}

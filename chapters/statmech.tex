@@ -1,0 +1,209 @@
+\chapter{Statistical mechanics}
+\label{ch:statmech}
+
+\buildson{thermodynamics (Chapter~\ref{ch:thermo})}
+
+\chapterdek{How countless blind little parts conspire into exact laws --- and why the most powerful tool for understanding matter is knowing that you don't know.}
+
+\begin{prototype}
+A box of gas. It holds $10^{23}$ molecules, each with its own position and velocity, colliding billions of times a second. Yet its behaviour is captured perfectly by three numbers: pressure, volume, temperature. Statistical mechanics explains how so much ignorance produces so much certainty.
+\end{prototype}
+
+Thermodynamics (Chapter~\ref{ch:thermo}) describes heat, work, and entropy without ever asking what they are. Statistical mechanics answers the question. It starts from the microscopic laws --- Newton's or Schr\"odinger's --- adds one assumption about probability, and derives thermodynamics. Along the way it explains why heat capacities change with temperature, why stars glow the colours they do, why metals conduct, why magnets lose their magnetism when heated, and why there is an arrow of time.
+
+\section{Counting}
+
+A \emph{microstate} is a complete specification of the system: every molecule's position and velocity. A \emph{macrostate} is what we can actually observe: total energy, volume, pressure. Enormous numbers of microstates correspond to each macrostate. Call that number the \emph{multiplicity}, $\Omega$.
+
+\begin{example}[Coins]
+Flip $N$ coins. There is one microstate with all heads, but $\binom{N}{N/2} \approx 2^N\sqrt{2/\pi N}$ with exactly half heads. For $N=100$, that is about $10^{29}$. The distribution of the number of heads is peaked at $N/2$ with width $\sqrt N/2$; the \emph{relative} width is $1/\sqrt N$. For $N = 10^{23}$, the fraction of heads is $0.5$ to within one part in $10^{11}$, every time you look. You would wait far longer than the age of the universe to see a deviation of one part in a million.
+\end{example}
+
+This is the whole secret. For large systems, the overwhelming majority of microstates look the same macroscopically. The macroscopic world is predictable not despite the chaos underneath, but because of it.
+
+\begin{law}[The fundamental assumption]
+An isolated system in equilibrium is equally likely to be in any of its accessible microstates.
+\end{law}
+
+(Liouville's theorem, Chapter~\ref{ch:analytical}, makes this natural: the dynamics never favours one region of phase space over another of equal volume.)
+
+\section{Entropy and temperature}
+
+Boltzmann's great insight was that the entropy of thermodynamics is just the logarithm of the multiplicity:
+\[
+  S = \kB\ln\Omega .
+\]
+This is carved on his tombstone in Vienna. The logarithm makes entropy additive: two independent systems have $\Omega = \Omega_1\Omega_2$, so $S = S_1 + S_2$. And it explains the second law. A system wanders randomly among its microstates; it ends up in the macrostate with the most of them simply because that macrostate is overwhelmingly more probable. Entropy increases because there are more ways to be disordered than ordered.
+
+Now put two systems in thermal contact, sharing a fixed total energy $U = U_1 + U_2$. The most probable split of energy maximizes $\Omega_1(U_1)\Omega_2(U_2)$, i.e.\ maximizes $S_1+S_2$:
+\[
+  \pdv{S_1}{U_1} = \pdv{S_2}{U_2} .
+\]
+The quantity that is equal for two systems in equilibrium is, by the zeroth law, temperature. So
+
+\begin{definition}[Temperature]
+\[
+  \frac{1}{T} = \pdv{S}{U}.
+\]
+\end{definition}
+A hot system is one whose entropy grows only a little when you add energy; a cold one gains a lot. Heat flows from hot to cold because that increases the total entropy. Temperature, which seemed so concrete, is really a statement about how multiplicity changes with energy.
+
+\section{The Boltzmann factor}
+
+Most of the time we study a small system in contact with a large \emph{reservoir} at temperature $T$. What is the probability that the small system is in a particular state $s$ with energy $E_s$? The reservoir has energy $U_0 - E_s$, and the probability is proportional to the number of reservoir microstates, $\Omega_R(U_0 - E_s) = e^{S_R(U_0 - E_s)/\kB}$. Expanding $S_R$ to first order in the small energy $E_s$, and using $\partial S_R/\partial U = 1/T$:
+
+\begin{law}[The Boltzmann distribution]
+A system in equilibrium with a reservoir at temperature $T$ is found in a state of energy $E_s$ with probability
+\[
+  P(s) = \frac{e^{-E_s/\kB T}}{Z}, \qquad Z = \sum_s e^{-E_s/\kB T}.
+\]
+\end{law}
+
+This is the single most useful formula in statistical mechanics. States with energy much more than $\kB T$ above the ground state are exponentially suppressed; states within $\kB T$ are easily reached. Thermal energy $\kB T$ is the currency, and the Boltzmann factor $e^{-E/\kB T}$ is the exchange rate.
+
+\begin{example}[The thinning atmosphere]
+A molecule at height $h$ has extra energy $mgh$, so the density of the atmosphere falls as $e^{-mgh/\kB T}$. The \emph{scale height} $\kB T/mg$ is about $8\un{km}$ for air. Every $8\un{km}$ up, the air thins by a factor of $e$; at the top of Everest you breathe about a third as much oxygen.
+\end{example}
+
+The same factor controls chemical reaction rates (Arrhenius: rate $\propto e^{-E_a/\kB T}$, Chapter~\ref{ch:chem}), the thermal emission of electrons from hot metals, the ionization of gases in stars (Chapter~\ref{ch:plasma}), and the fraction of molecules fast enough to escape a planet.
+
+\section{The partition function}
+
+The normalizing sum $Z = \sum_s e^{-\beta E_s}$, with $\beta = 1/\kB T$, is called the \emph{partition function}. It looks like a mere normalization, but it is a generating function for all of thermodynamics:
+\[
+  \langle E\rangle = -\pdv{\ln Z}{\beta}, \qquad F = -\kB T\ln Z, \qquad S = -\pdv{F}{T}, \qquad P = -\pdv{F}{V}.
+\]
+Compute $Z$, and every thermodynamic property follows by differentiation.
+
+\begin{example}[The two-state system]
+A system with two states, energies $0$ and $\varepsilon$ (a spin in a magnetic field, say), has $Z = 1 + e^{-\beta\varepsilon}$ and $\langle E\rangle = \varepsilon/(e^{\beta\varepsilon}+1)$. At low temperature it sits in the ground state; at high temperature it is equally likely to be in either, so $\langle E\rangle\to\varepsilon/2$. The heat capacity $\dd\langle E\rangle/\dd T$ has a peak near $\kB T\approx\varepsilon/2$ and vanishes at both ends. A system with finitely many states can only absorb so much energy.
+\end{example}
+
+\section{Equipartition, and its failure}
+
+For a classical system whose energy contains a quadratic term --- $\tfrac12mv_x^2$, $\tfrac12 kx^2$, $\tfrac12I\omega^2$ --- a short Gaussian integral shows:
+
+\begin{theorem}[Equipartition]
+In classical equilibrium at temperature $T$, every quadratic degree of freedom has average energy $\tfrac12\kB T$.
+\end{theorem}
+
+A monatomic gas has three (motion in $x$, $y$, $z$), so $U = \tfrac32N\kB T$, as kinetic theory found. A diatomic molecule adds two rotations, giving $\tfrac52N\kB T$, and should add two more for vibration (kinetic and potential), giving $\tfrac72N\kB T$. A solid has three kinetic and three potential terms per atom, giving the Dulong--Petit heat capacity $3N\kB$.
+
+But measured heat capacities of air are $\tfrac52$, not $\tfrac72$; hydrogen's drops to $\tfrac32$ at low temperatures; and the heat capacities of solids vanish as $T\to0$. Degrees of freedom \emph{freeze out}. Classical physics has no explanation. The answer is that energy comes in quanta: an oscillator of frequency $\omega$ can only absorb energy in lumps of $\hbar\omega$ (Chapter~\ref{ch:qm}), and when $\kB T\ll\hbar\omega$ the Boltzmann factor $e^{-\hbar\omega/\kB T}$ makes even one quantum unlikely. Molecular vibrations need $\kB T\sim0.3\un{eV}$, far above room temperature, so they are frozen. Equipartition is the high-temperature limit of quantum statistics.
+
+\section{The speeds of molecules}
+
+The Boltzmann factor $e^{-mv^2/2\kB T}$, together with the number of velocity vectors with speed between $v$ and $v + \dd v$ ($\propto 4\pi v^2\,\dd v$), gives the \textbf{Maxwell--Boltzmann distribution} of molecular speeds:
+\[
+  f(v) = 4\pi\left(\frac{m}{2\pi\kB T}\right)^{3/2} v^2\,e^{-mv^2/2\kB T}.
+\]
+It rises from zero, peaks at $v_p = \sqrt{2\kB T/m}$, and has a long exponential tail. That tail matters: it is the few fastest molecules that escape planetary atmospheres, and the few fastest protons in the Sun's core that undergo fusion (Chapter~\ref{ch:nuclear}).
+
+\begin{center}
+\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}
+\begin{axis}[asc, width=0.72\linewidth, height=0.42\linewidth, xmin=0, xmax=2.05, ymin=0, ymax=3.9,
+  xlabel={speed $v$ (km/s)}, ylabel={$f(v)$ (s/km)}, domain=0:2.05, samples=160, xtick={0,0.5,...,2}, ytick={0,1,2,3}]
+  \addplot[ascblue, thick] {4/sqrt(pi)*16.8360^1.5*x^2*exp(-16.8360*x^2)};
+  \node[ascblue, font=\small, anchor=south west] at (axis cs:0.274,3.427) {$100\un{K}$};
+  \addplot[ascpurple, thick] {4/sqrt(pi)*5.6120^1.5*x^2*exp(-5.6120*x^2)};
+  \node[ascpurple, font=\small, anchor=south west] at (axis cs:0.450,1.987) {$300\un{K}$};
+  \addplot[ascwarm, thick] {4/sqrt(pi)*1.6836^1.5*x^2*exp(-1.6836*x^2)};
+  \node[ascwarm, font=\small, anchor=south west] at (axis cs:0.980,0.994) {$1000\un{K}$};
+\end{axis}
+\end{tikzpicture}
+
+{\small Maxwell--Boltzmann speed distributions for nitrogen at three temperatures. Hotter gas has a lower, broader peak at higher speed; the area under each curve is $1$.}
+\end{minipage}
+\end{center}
+
+\section{Quantum statistics}
+
+In quantum mechanics, identical particles are \emph{truly} identical: swapping two electrons does not give a new microstate. And particles come in two kinds (Chapter~\ref{ch:qm}). \textbf{Fermions} (electrons, protons, neutrons) obey the Pauli exclusion principle: at most one per quantum state. \textbf{Bosons} (photons, helium-4 atoms) can pile into the same state, and in fact prefer to. Working out the average number of particles in a single-particle state of energy $\varepsilon$ gives
+\[
+  \bar n_{\text{FD}}(\varepsilon) = \frac{1}{e^{(\varepsilon-\mu)/\kB T}+1}, \qquad
+  \bar n_{\text{BE}}(\varepsilon) = \frac{1}{e^{(\varepsilon-\mu)/\kB T}-1},
+\]
+where $\mu$ is the \emph{chemical potential}, set by the number of particles. When the states are sparsely occupied ($\bar n\ll1$), both reduce to the classical Boltzmann factor. When they are crowded, the difference of a single $\pm1$ produces entirely different physics: metals, white dwarfs, lasers, superfluids.
+
+\subsection{Blackbody radiation}
+Photons are bosons with $\mu=0$ (they can be created and destroyed freely). Counting the electromagnetic modes in a box (each one a harmonic oscillator) and occupying them with $\bar n_{\text{BE}}$ gives \textbf{Planck's law} for the energy density per unit frequency:
+\[
+  u(\nu) = \frac{8\pi h\nu^3}{c^3}\,\frac{1}{e^{h\nu/\kB T}-1}.
+\]
+Classical equipartition would give each mode an energy $\kB T$; since there are infinitely many high-frequency modes, the total energy diverges. This is the \emph{ultraviolet catastrophe}. Planck's quantization cuts the high-frequency modes off, because exciting them costs a quantum $h\nu\gg\kB T$. The spectrum peaks at a wavelength given by \textbf{Wien's law},
+\[
+  \lambda_{\max}T \approx 2.9\un{mm\,K},
+\]
+and integrating it gives the Stefan--Boltzmann law $j = \sigma T^4$ with $\sigma$ now computed from $h$, $c$, and $\kB$. The Sun ($5800\un{K}$) peaks in the visible, at about $500\un{nm}$ --- and our eyes evolved to see there. You ($310\un{K}$) glow at about $10\un{\mu m}$, in the infrared that thermal cameras see. The universe itself is filled with blackbody radiation at $2.725\un{K}$, the cosmic microwave background, the most perfect blackbody ever measured (Chapter~\ref{ch:cosmo}).
+
+\subsection{Degenerate fermions}
+Put $N$ electrons in a box at zero temperature. By the exclusion principle they cannot all sit in the ground state; they fill the lowest states one by one up to the \emph{Fermi energy}
+\[
+  E_F = \frac{\hbar^2}{2m}\left(3\pi^2 n\right)^{2/3},
+\]
+where $n$ is the number density. For the conduction electrons in copper, $E_F\approx7\un{eV}$, equivalent to a temperature of $80\,000\un{K}$. So at room temperature the electron gas in a metal is ``cold'': only the electrons within $\kB T$ of the Fermi energy can be excited at all. This is why electrons contribute so little to the heat capacity of metals, which baffled classical physicists. The same \emph{degeneracy pressure}, the resistance of fermions to being squeezed, holds up white dwarf stars against gravity, and neutron degeneracy holds up neutron stars (Chapter~\ref{ch:astro}).
+
+\subsection{Bose--Einstein condensation}
+Bosons do the opposite. Cool a gas of bosons below a critical temperature and a macroscopic fraction of them suddenly piles into the single lowest-energy state: a \emph{Bose--Einstein condensate}, a quantum wave large enough to see. The condition is that the thermal de~Broglie wavelength, $\lambda_T = h/\sqrt{2\pi m\kB T}$, becomes comparable to the spacing between atoms: the atoms' quantum waves overlap. Einstein predicted it in 1925; it was achieved in dilute atomic gases in 1995, at temperatures around $100\un{nK}$ (Chapter~\ref{ch:amo}). Liquid helium-4 becomes a superfluid below $2.17\un{K}$, flowing without viscosity, for closely related reasons.
+
+\section{Phase transitions and the Ising model}
+
+Why does a magnet suddenly lose its magnetism above a certain temperature? The simplest model of collective behaviour, the \textbf{Ising model}, gives the answer. Place spins $s_i = \pm1$ on a lattice, with energy
+\[
+  E = -J\sum_{\langle ij\rangle}s_is_j,
+\]
+summed over neighbouring pairs. With $J>0$, aligned neighbours lower the energy. At low temperature energy wins, the spins align, and the system is magnetized. At high temperature entropy wins, and the spins point randomly. In between there is a sharp \emph{critical temperature} $T_c$.
+
+The \textbf{mean-field approximation} is a beautiful spherical cow. Replace each spin's neighbours by their average magnetization $m$. Each spin then sees an effective field $zJm$ (with $z$ neighbours) and, as a two-state system, has average value $\tanh(zJm/\kB T)$. Self-consistency demands
+\[
+  m = \tanh\!\left(\frac{zJm}{\kB T}\right).
+\]
+For $\kB T > zJ$ the only solution is $m=0$; below, two magnetized solutions appear. So $\kB T_c\approx zJ$, and just below the transition $m\propto(T_c - T)^{1/2}$.
+
+Mean-field theory gets the qualitative story right and the details wrong. The true exponent in three dimensions is about $0.33$, not $0.5$. Strangely, the same exponent appears at the liquid--gas critical point of water, in binary alloys, and in many other systems that seem to have nothing in common. This \emph{universality} is explained by the \emph{renormalization group}: near a critical point, fluctuations exist at every length scale, and the microscopic details wash out as you zoom out. It is one of the deepest ideas in modern physics, connecting statistical mechanics to quantum field theory (Chapter~\ref{ch:qft}).
+
+\section{Fluctuations and Brownian motion}
+
+Under a microscope, pollen grains in water jiggle ceaselessly. In 1905 Einstein explained this \emph{Brownian motion} as the grain being kicked by water molecules, and predicted that it diffuses with
+\[
+  \langle x^2\rangle = 2Dt, \qquad D = \frac{\kB T}{6\pi\eta r},
+\]
+where $\eta$ is the viscosity and $r$ the grain's radius. This \emph{Einstein relation} links a fluctuation (random kicks) to dissipation (viscous drag), a deep and general connection. In 1908 Jean Perrin measured $\langle x^2\rangle$, extracted Boltzmann's constant and hence Avogadro's number, and so convinced the last sceptics that atoms are real. Random walks of this kind govern how molecules move inside cells (Chapter~\ref{ch:bio}) and how prices move in markets (Chapter~\ref{ch:complex}).
+
+\section{Problems}
+
+\begin{problems}
+\prob{1} Flip $100$ fair coins. Using the Gaussian approximation to the binomial distribution, estimate the probability of exactly $50$ heads, and of $60$ or more heads.
+
+\prob{1}\core Derive the barometric formula $n(h) = n_0e^{-mgh/\kB T}$ for an isothermal atmosphere, and compute the scale height for nitrogen at $250\un{K}$. Why is the atmosphere's helium fraction larger at high altitudes?
+
+\prob{1} A two-state system has energy splitting $\varepsilon = 0.1\un{eV}$. Find the ratio of populations of the upper and lower states at $300\un{K}$ and at $3000\un{K}$. At what temperature is the upper state $10\%$ occupied?
+
+\prob{1} Explain why the molar heat capacity of air at room temperature is about $\tfrac52R$, and predict how it changes at very high temperatures and at very low temperatures.
+
+\prob{2} From the Maxwell--Boltzmann distribution, find the most probable speed, the mean speed, and the root-mean-square speed of nitrogen molecules at $300\un{K}$, and show that they are in the ratio $\sqrt2:\sqrt{8/\pi}:\sqrt3$.
+
+\prob{2}\core Use Wien's law to find the peak wavelength of the radiation from the Sun's surface, a human body, a stove element glowing red, and the cosmic microwave background. Explain why stars hotter than the Sun look blue and cooler stars look red, but no star looks green.
+
+\prob{2} The Sun has radius $7.0\times10^{8}\un{m}$ and surface temperature $5800\un{K}$. Find its luminosity from the Stefan--Boltzmann law, and the intensity of sunlight at the Earth, $1.5\times10^{11}\un{m}$ away. Then estimate the Earth's temperature as a black sphere in equilibrium (Chapter~\ref{ch:geo} refines this).
+
+\prob{2}\core Copper has one conduction electron per atom and a density of $8.9\un{g/cm^3}$. Compute its Fermi energy and Fermi temperature. Explain why the classical expectation that electrons should add $\tfrac32\kB$ per electron to the heat capacity of a metal fails by a factor of about $\kB T/E_F$.
+
+\prob{2} Solve the mean-field Ising equation graphically, and show that just below $T_c$ the magnetization is $m\approx\sqrt{3(T_c-T)/T}$. What does mean-field theory predict for the magnetization exactly at $T_c$ in a small applied field?
+
+\prob{2} A sphere of radius $0.5\un{\mu m}$ is suspended in water ($\eta = 10^{-3}\un{Pa\,s}$) at $300\un{K}$. Find its diffusion constant and its typical displacement after one second and after one hour. How long does it take to diffuse $1\un{mm}$?
+
+\prob{3}\core \emph{(Making a condensate.)} A Bose--Einstein condensate forms when $n\lambda_T^3\approx2.6$, where $\lambda_T = h/\sqrt{2\pi m\kB T}$. Estimate the condensation temperature for rubidium-87 atoms at a density of $10^{20}\un{m^{-3}}$. Compare with liquid helium-4, of density $145\un{kg/m^3}$, and with the observed superfluid transition at $2.17\un{K}$. Why does a gas of rubidium have to be so much colder?
+
+\prob{3} \emph{(Hotter than infinity.)} For $N$ two-state spins with energies $0$ and $\varepsilon$, compute $S(U)$ using $\Omega = \binom{N}{n}$ with $n$ excited spins, and from it $1/T = \partial S/\partial U$. Show that when more than half the spins are excited, $T$ is negative. Explain why a system at negative temperature is \emph{hotter} than one at any positive temperature, in the sense that heat flows from it into any positive-temperature system. (Lasers need exactly such a population inversion.)
+
+\prob{3} \emph{(The Gibbs paradox.)} Treating $N$ gas molecules as distinguishable, the entropy of an ideal gas comes out as $S = N\kB\ln(V\,T^{3/2}) + \text{const}$. Show that this is not extensive: doubling the system (two identical boxes side by side) does not double $S$, and removing a partition between two boxes of the \emph{same} gas would appear to increase entropy. Show that dividing $\Omega$ by $N!$ fixes both problems. Classical physics has no reason to divide by $N!$; quantum mechanics, where identical particles are genuinely indistinguishable, does.
+\end{problems}
+
+\begin{reading}
+\rd{Daniel V.\ Schroeder, \emph{An Introduction to Thermal Physics}}{The best introduction, building entropy and temperature from counting Einstein solids exactly as this chapter does.}
+\rd{Kittel and Kroemer, \emph{Thermal Physics}}{A classic, quantum-first approach.}
+\rd{James P.\ Sethna, \emph{Entropy, Order Parameters, and Complexity}}{Modern statistical mechanics with outstanding exercises, from information theory to the renormalization group. Free online.}
+\rd{Mehran Kardar, \emph{Statistical Physics of Particles} and \emph{Statistical Physics of Fields}}{The graduate standard, the second volume covering phase transitions and the renormalization group.}
+\end{reading}

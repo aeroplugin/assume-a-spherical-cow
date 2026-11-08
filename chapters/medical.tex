@@ -1,0 +1,141 @@
+\chapter{Medical physics}
+\label{ch:medical}
+
+\buildson{quantum mechanics (Chapter~\ref{ch:qm}), nuclear physics (Chapter~\ref{ch:nuclear})}
+
+\chapterdek{Physics pointed at the human body --- to see inside it without cutting, and to heal it --- built almost entirely from discoveries made for other reasons.}
+
+\begin{prototype}
+The CT scan. Shine a thin fan of X-rays through the body from hundreds of angles, and measure how much gets through along each line. No single picture shows the inside. But from all the shadows together, a computer can reconstruct a three-dimensional map of the body, slice by slice.
+\end{prototype}
+
+Almost every tool in a modern hospital started as a physics experiment. R\"ontgen's X-rays were radiographing hands within weeks of their discovery in 1895. Nuclear magnetic resonance, developed to measure the magnetic moments of nuclei, became MRI. The positron, predicted by Dirac from pure theory, now finds tumours in PET scanners. Particle accelerators built to probe the nucleus treat cancer in thousands of hospitals. Medical physics is the art of turning fundamental physics into ways of seeing and healing, under the strictest of constraints: the patient must not be harmed.
+
+\section{X-rays}
+
+X-rays are photons with energies of tens of keV, short enough in wavelength to pass through soft tissue. A beam passing through a thickness $x$ of material is attenuated exponentially,
+\[
+  I = I_0\,e^{-\mu x},
+\]
+where the \emph{attenuation coefficient} $\mu$ depends on the material and the photon energy. At diagnostic energies two processes dominate: the \emph{photoelectric effect} (Chapter~\ref{ch:optics}), in which the photon is absorbed by ejecting an inner electron, and \emph{Compton scattering} (Chapter~\ref{ch:sr}). The photoelectric effect scales roughly as $Z^3/E^3$, so it depends steeply on atomic number. Bone, rich in calcium ($Z = 20$), absorbs far more than soft tissue, made of hydrogen, carbon, and oxygen. That contrast is why bones show up white on an X-ray. Iodine and barium ($Z = 53$, $56$) are swallowed or injected as \emph{contrast agents} to make blood vessels and the gut visible.
+
+An X-ray picture is a shadow: everything along each line is superimposed. A rib in front of a tumour hides it.
+
+\section{Computed tomography}
+
+In 1971 Godfrey Hounsfield built a machine that took X-ray projections from many angles and reconstructed a cross-sectional image by computer; Allan Cormack had independently worked out the mathematics. (They shared the 1979 Nobel Prize. Hounsfield worked for the record company EMI, and it is often said, though disputed, that the Beatles' profits paid for the first scanner.) The measurement along each line gives the integral of $\mu$ along that line:
+\[
+  \ln\frac{I_0}{I} = \int\mu(x,y)\,\dd\ell .
+\]
+The set of all such line integrals is the \emph{Radon transform} of the image, and the problem is to invert it. The key fact is the \textbf{projection--slice theorem}: the one-dimensional Fourier transform of a projection taken at angle $\theta$ equals a slice through the two-dimensional Fourier transform of the image, along the same angle (Chapter~\ref{ch:math}). So projections from all angles fill in the whole two-dimensional transform, which can then be inverted. In practice, CT scanners use \emph{filtered backprojection}: smear each projection back across the image along the lines it came from, after first sharpening it with a filter that undoes the blur that naive smearing would cause (Problem~\ref{prob:backprojection}). Modern scanners take a full rotation in a third of a second.
+
+\section{Magnetic resonance imaging}
+
+MRI images the protons in the body's water and fat. A proton has spin $\tfrac12$ and a magnetic moment (Chapter~\ref{ch:qm}). In a strong magnetic field $B_0$ --- typically $1.5$ or $3\un{T}$, from a superconducting magnet (Chapter~\ref{ch:condmat}) --- the spins have two energy levels, and they precess at the \emph{Larmor frequency}
+\[
+  f = \frac{\gamma}{2\pi}B_0,\qquad\frac{\gamma}{2\pi} = 42.58\un{MHz/T}
+\]
+for protons: $128\un{MHz}$ at $3\un{T}$, a radio frequency. At body temperature the energy splitting is a tiny fraction of $\kB T$, so the excess of spins aligned with the field is only a few parts per million (Problem~\ref{prob:mri-polarization}). But a cubic millimetre of tissue holds $10^{20}$ protons, so the net magnetization is measurable.
+
+An MRI scan works like this:
+\begin{enumerate}[itemsep=3pt]
+  \item A radio-frequency pulse at the Larmor frequency tips the net magnetization away from the field. (This is resonance, Chapter~\ref{ch:sho}, in a quantum system.)
+  \item The tipped magnetization precesses, inducing a radio signal in a receiver coil (Faraday's law, Chapter~\ref{ch:em}).
+  \item The signal decays. The spins relax back toward alignment with the field over a time $T_1$ (hundreds of milliseconds), by giving energy to their surroundings; and they lose phase coherence with each other over a shorter time $T_2$, because each spin sees slightly different local fields. Different tissues have different $T_1$ and $T_2$, and choosing the timing of pulses and measurements makes different tissues bright or dark. MRI has exquisite soft-tissue contrast.
+  \item Position is encoded by adding magnetic field \emph{gradients}, so that the Larmor frequency varies across the body. The frequency of a signal then tells you where it came from, and phase tells you the other coordinate. The raw data are the Fourier transform of the image, and a fast Fourier transform (Chapter~\ref{ch:comp}) recovers it.
+\end{enumerate}
+MRI uses no ionizing radiation. \emph{Functional} MRI exploits the fact that oxygenated and deoxygenated blood have different magnetic properties, mapping the brain regions that become active during a task.
+
+\section{Ultrasound}
+
+Ultrasound imaging sends pulses of sound at a few megahertz into the body and listens for echoes, like sonar or a bat. Echoes come from boundaries between tissues of different \emph{acoustic impedance} $Z = \rho v$ (Chapter~\ref{ch:waves}), and the fraction of intensity reflected is
+\[
+  R = \left(\frac{Z_2 - Z_1}{Z_2 + Z_1}\right)^2 .
+\]
+Soft tissues differ in impedance by a few percent, reflecting weakly and letting most of the sound through to deeper layers --- ideal for imaging. Air and tissue differ by a factor of three thousand, so almost everything reflects; this is why a gel is smeared on the skin, and why ultrasound cannot see through the lungs. The time of flight gives depth, since sound travels at about $1540\un{m/s}$ in tissue. Resolution is limited by the wavelength, a fraction of a millimetre, and higher frequencies give finer detail but are absorbed more strongly, so they cannot see as deep. \emph{Doppler ultrasound} measures the frequency shift of echoes from moving blood cells to map blood flow (Chapter~\ref{ch:waves}). Ultrasound is cheap, portable, real-time, and safe enough to watch a fetus.
+
+\section{Nuclear medicine}
+
+Instead of shining radiation through the body, nuclear medicine puts a radioactive tracer inside it and watches where it goes. The image shows \emph{function} rather than anatomy.
+
+\textbf{PET} (positron emission tomography) uses tracers containing positron-emitting nuclei. The most common is fluorodeoxyglucose (FDG), a sugar molecule tagged with fluorine-18 (half-life $110$ minutes); cancer cells, which consume glucose voraciously, light up. Each positron travels a millimetre or so, meets an electron, and annihilates into two gamma-ray photons. Because the positron and electron are nearly at rest, conservation of energy and momentum (Chapter~\ref{ch:sr}) demands that the photons each carry exactly $m_ec^2 = 511\un{keV}$ and fly off in opposite directions. A ring of detectors registers pairs arriving in coincidence; the annihilation happened somewhere on the line between them. Many such lines reconstruct the tracer's distribution, as in CT. Antimatter, put to work.
+
+\textbf{SPECT} uses single gamma emitters, most commonly technetium-99m, a metastable nucleus that emits a $140\un{keV}$ gamma ray with a six-hour half-life --- long enough to image, short enough to fade quickly. It is used in tens of millions of procedures a year.
+
+\section{Radiation therapy}
+
+Ionizing radiation damages DNA. That makes it dangerous, and it also makes it a weapon against cancer. About half of all cancer patients receive radiation therapy. The absorbed dose is measured in \emph{grays} ($1\un{Gy} = 1\un{J/kg}$); a typical course delivers $60\un{Gy}$ to a tumour, in daily fractions of about $2\un{Gy}$. The energy involved is tiny --- $60\un{Gy}$ would warm tissue by only $0.015^\circ\text{C}$ --- but it is delivered as ionizations that break chemical bonds in DNA (Problem~\ref{prob:dose}). \emph{Fractionation} exploits the fact that healthy cells repair damage between sessions better than tumour cells do.
+
+Most treatments use X-rays of several MeV from compact electron linear accelerators (Chapter~\ref{ch:accel}), aimed from many angles so the beams overlap on the tumour and spread out elsewhere. \textbf{Proton therapy} uses a cleverer piece of physics. A charged particle loses energy in matter at a rate that grows as it slows down (roughly as $1/v^2$; Chapter~\ref{ch:accel}), so it deposits most of its energy in a sharp \emph{Bragg peak} just before it stops. By tuning the proton energy, the peak can be placed in the tumour, with little dose beyond it. For tumours near the spinal cord or in children, sparing the tissue behind the target matters enormously.
+
+\begin{center}
+\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}
+\begin{axis}[asc, width=0.76\linewidth, height=0.42\linewidth, xmin=0, xmax=20.5, ymin=0, ymax=1.12,
+  xlabel={depth in water (cm)}, ylabel={dose (relative)}, xtick={0,5,...,20}, ytick={0,0.5,1}]
+  \fill[ascwarmbg] (axis cs:14.5,0) rectangle (axis cs:16.2,1.12);
+  \addplot[ascink!70, thick] coordinates {(0.0,0.0000) (0.1,0.1742) (0.2,0.3202) (0.3,0.4423) (0.4,0.5444) (0.5,0.6295) (0.6,0.7005) (0.7,0.7594) (0.8,0.8082) (0.9,0.8486) (1.0,0.8817) (1.1,0.9089) (1.2,0.9309) (1.3,0.9488) (1.4,0.9630) (1.5,0.9742) (1.6,0.9828) (1.7,0.9893) (1.8,0.9940) (1.9,0.9972) (2.0,0.9991) (2.1,1.0000) (2.2,1.0000) (2.3,0.9992) (2.4,0.9978) (2.5,0.9958) (2.6,0.9935) (2.7,0.9907) (2.8,0.9877) (2.9,0.9844) (3.0,0.9809) (3.1,0.9772) (3.2,0.9734) (3.3,0.9694) (3.4,0.9654) (3.5,0.9613) (3.6,0.9571) (3.7,0.9529) (3.8,0.9487) (3.9,0.9444) (4.0,0.9401) (4.1,0.9357) (4.2,0.9314) (4.3,0.9271) (4.4,0.9228) (4.5,0.9184) (4.6,0.9141) (4.7,0.9098) (4.8,0.9055) (4.9,0.9012) (5.0,0.8969) (5.1,0.8927) (5.2,0.8884) (5.3,0.8842) (5.4,0.8800) (5.5,0.8758) (5.6,0.8716) (5.7,0.8674) (5.8,0.8633) (5.9,0.8592) (6.0,0.8551) (6.1,0.8510) (6.2,0.8469) (6.3,0.8429) (6.4,0.8388) (6.5,0.8348) (6.6,0.8308) (6.7,0.8268) (6.8,0.8229) (6.9,0.8189) (7.0,0.8150) (7.1,0.8111) (7.2,0.8072) (7.3,0.8034) (7.4,0.7995) (7.5,0.7957) (7.6,0.7919) (7.7,0.7881) (7.8,0.7843) (7.9,0.7806) (8.0,0.7768) (8.1,0.7731) (8.2,0.7694) (8.3,0.7657) (8.4,0.7621) (8.5,0.7584) (8.6,0.7548) (8.7,0.7512) (8.8,0.7476) (8.9,0.7440) (9.0,0.7404) (9.1,0.7369) (9.2,0.7333) (9.3,0.7298) (9.4,0.7263) (9.5,0.7229) (9.6,0.7194) (9.7,0.7160) (9.8,0.7125) (9.9,0.7091) (10.0,0.7057) (10.1,0.7023) (10.2,0.6990) (10.3,0.6956) (10.4,0.6923) (10.5,0.6890) (10.6,0.6857) (10.7,0.6824) (10.8,0.6791) (10.9,0.6759) (11.0,0.6726) (11.1,0.6694) (11.2,0.6662) (11.3,0.6630) (11.4,0.6599) (11.5,0.6567) (11.6,0.6535) (11.7,0.6504) (11.8,0.6473) (11.9,0.6442) (12.0,0.6411) (12.1,0.6381) (12.2,0.6350) (12.3,0.6320) (12.4,0.6289) (12.5,0.6259) (12.6,0.6229) (12.7,0.6199) (12.8,0.6170) (12.9,0.6140) (13.0,0.6111) (13.1,0.6081) (13.2,0.6052) (13.3,0.6023) (13.4,0.5995) (13.5,0.5966) (13.6,0.5937) (13.7,0.5909) (13.8,0.5881) (13.9,0.5852) (14.0,0.5824) (14.1,0.5796) (14.2,0.5769) (14.3,0.5741) (14.4,0.5714) (14.5,0.5686) (14.6,0.5659) (14.7,0.5632) (14.8,0.5605) (14.9,0.5578) (15.0,0.5551) (15.1,0.5525) (15.2,0.5498) (15.3,0.5472) (15.4,0.5446) (15.5,0.5420) (15.6,0.5394) (15.7,0.5368) (15.8,0.5342) (15.9,0.5317) (16.0,0.5291) (16.1,0.5266) (16.2,0.5241) (16.3,0.5216) (16.4,0.5191) (16.5,0.5166) (16.6,0.5141) (16.7,0.5116) (16.8,0.5092) (16.9,0.5068) (17.0,0.5043) (17.1,0.5019) (17.2,0.4995) (17.3,0.4971) (17.4,0.4947) (17.5,0.4924) (17.6,0.4900) (17.7,0.4877) (17.8,0.4853) (17.9,0.4830) (18.0,0.4807) (18.1,0.4784) (18.2,0.4761) (18.3,0.4738) (18.4,0.4715) (18.5,0.4693) (18.6,0.4670) (18.7,0.4648) (18.8,0.4626) (18.9,0.4604) (19.0,0.4582) (19.1,0.4560) (19.2,0.4538) (19.3,0.4516) (19.4,0.4494) (19.5,0.4473) (19.6,0.4452) (19.7,0.4430) (19.8,0.4409) (19.9,0.4388) (20.0,0.4367)};
+  \addplot[ascblue, thick] coordinates {(0.0,0.1913) (0.1,0.1916) (0.2,0.1920) (0.3,0.1923) (0.4,0.1927) (0.5,0.1930) (0.6,0.1934) (0.7,0.1937) (0.8,0.1941) (0.9,0.1945) (1.0,0.1949) (1.1,0.1952) (1.2,0.1956) (1.3,0.1960) (1.4,0.1964) (1.5,0.1968) (1.6,0.1972) (1.7,0.1976) (1.8,0.1980) (1.9,0.1984) (2.0,0.1988) (2.1,0.1993) (2.2,0.1997) (2.3,0.2001) (2.4,0.2006) (2.5,0.2010) (2.6,0.2015) (2.7,0.2020) (2.8,0.2024) (2.9,0.2029) (3.0,0.2034) (3.1,0.2039) (3.2,0.2043) (3.3,0.2048) (3.4,0.2053) (3.5,0.2059) (3.6,0.2064) (3.7,0.2069) (3.8,0.2074) (3.9,0.2080) (4.0,0.2085) (4.1,0.2091) (4.2,0.2096) (4.3,0.2102) (4.4,0.2108) (4.5,0.2114) (4.6,0.2120) (4.7,0.2126) (4.8,0.2132) (4.9,0.2138) (5.0,0.2145) (5.1,0.2151) (5.2,0.2158) (5.3,0.2164) (5.4,0.2171) (5.5,0.2178) (5.6,0.2185) (5.7,0.2192) (5.8,0.2199) (5.9,0.2206) (6.0,0.2214) (6.1,0.2221) (6.2,0.2229) (6.3,0.2237) (6.4,0.2245) (6.5,0.2253) (6.6,0.2261) (6.7,0.2269) (6.8,0.2278) (6.9,0.2286) (7.0,0.2295) (7.1,0.2304) (7.2,0.2313) (7.3,0.2323) (7.4,0.2332) (7.5,0.2342) (7.6,0.2352) (7.7,0.2362) (7.8,0.2372) (7.9,0.2382) (8.0,0.2393) (8.1,0.2404) (8.2,0.2415) (8.3,0.2426) (8.4,0.2438) (8.5,0.2450) (8.6,0.2462) (8.7,0.2474) (8.8,0.2487) (8.9,0.2499) (9.0,0.2513) (9.1,0.2526) (9.2,0.2540) (9.3,0.2554) (9.4,0.2569) (9.5,0.2583) (9.6,0.2599) (9.7,0.2614) (9.8,0.2630) (9.9,0.2647) (10.0,0.2663) (10.1,0.2681) (10.2,0.2698) (10.3,0.2717) (10.4,0.2735) (10.5,0.2755) (10.6,0.2775) (10.7,0.2795) (10.8,0.2816) (10.9,0.2838) (11.0,0.2860) (11.1,0.2883) (11.2,0.2907) (11.3,0.2932) (11.4,0.2958) (11.5,0.2984) (11.6,0.3011) (11.7,0.3040) (11.8,0.3069) (11.9,0.3100) (12.0,0.3132) (12.1,0.3165) (12.2,0.3199) (12.3,0.3235) (12.4,0.3273) (12.5,0.3312) (12.6,0.3353) (12.7,0.3396) (12.8,0.3441) (12.9,0.3489) (13.0,0.3539) (13.1,0.3591) (13.2,0.3647) (13.3,0.3706) (13.4,0.3769) (13.5,0.3835) (13.6,0.3907) (13.7,0.3983) (13.8,0.4065) (13.9,0.4153) (14.0,0.4249) (14.1,0.4353) (14.2,0.4467) (14.3,0.4592) (14.4,0.4731) (14.5,0.4885) (14.6,0.5060) (14.7,0.5259) (14.8,0.5489) (14.9,0.5760) (15.0,0.6090) (15.1,0.6505) (15.2,0.7046) (15.3,0.7766) (15.4,0.8661) (15.5,0.9553) (15.6,1.0000) (15.7,0.9463) (15.8,0.7750) (15.9,0.5318) (16.0,0.2989) (16.1,0.1356) (16.2,0.0491) (16.3,0.0141) (16.4,0.0032) (16.5,0.0005) (16.6,0.0000) (16.7,0.0000) (16.8,0.0000) (16.9,0.0000) (17.0,0.0000) (17.1,0.0000) (17.2,0.0000) (17.3,0.0000) (17.4,0.0000) (17.5,0.0000) (17.6,0.0000) (17.7,0.0000) (17.8,0.0000) (17.9,0.0000) (18.0,0.0000) (18.1,0.0000) (18.2,0.0000) (18.3,0.0000) (18.4,0.0000) (18.5,0.0000) (18.6,0.0000) (18.7,0.0000) (18.8,0.0000) (18.9,0.0000) (19.0,0.0000) (19.1,0.0000) (19.2,0.0000) (19.3,0.0000) (19.4,0.0000) (19.5,0.0000) (19.6,0.0000) (19.7,0.0000) (19.8,0.0000) (19.9,0.0000) (20.0,0.0000)};
+  \node[ascink!80, font=\small, anchor=south west] at (axis cs:6,1.0) {X-rays};
+  \node[ascblue, font=\small, anchor=north east] at (axis cs:14.2,0.98) {protons};
+  \node[ascwarm, font=\small, anchor=south] at (axis cs:15.35,1.12) {tumour};
+\end{axis}
+\end{tikzpicture}
+
+{\small How the dose from a beam of X-rays and a beam of $150\un{MeV}$ protons varies with depth in water. The X-rays deposit the most just under the skin and keep going right through. The protons deposit most of their energy in a sharp Bragg peak at the end of their range, and nothing beyond it.}
+\end{minipage}
+\end{center}
+
+\section{Radiation and safety}
+
+Different radiations do different amounts of biological damage per gray, and different organs differ in sensitivity, so radiation protection uses the \emph{effective dose} in \emph{sieverts}. Some benchmarks:
+\begin{itemize}[itemsep=2pt]
+  \item natural background (radon, cosmic rays, potassium-40 in your body): about $3\un{mSv}$ per year;
+  \item a chest X-ray: $0.02\un{mSv}$; a transatlantic flight: about $0.05\un{mSv}$;
+  \item a CT scan of the abdomen: about $10\un{mSv}$;
+  \item a dose likely to cause acute radiation sickness: about $1\un{Sv}$; lethal to half of those exposed without treatment: about $4$--$5\un{Sv}$.
+\end{itemize}
+At low doses, the cancer risk is too small to measure directly. Regulators assume it is proportional to dose (the \emph{linear no-threshold} model), roughly $5\%$ extra lifetime risk per sievert, which is a prudent assumption rather than an established fact.
+
+\section{Light and electricity in medicine}
+
+Optics is everywhere in a hospital. \emph{Endoscopes} carry images out of the body along bundles of optical fibres that trap light by total internal reflection (Chapter~\ref{ch:optics}). LASIK eye surgery reshapes the cornea with pulses from an ultraviolet excimer laser at $193\un{nm}$, which breaks molecular bonds and removes tissue a fraction of a micrometre at a time without heating its surroundings. The \emph{pulse oximeter} clipped to your finger shines red and infrared light through it; oxygenated and deoxygenated haemoglobin absorb these wavelengths differently, so the ratio of transmitted intensities reveals your blood oxygen level (Problem~\ref{prob:oximeter}).
+
+The body is also electrical (Chapter~\ref{ch:bio}). The coordinated firing of heart muscle cells creates a rotating electric dipole whose field reaches the skin as a millivolt signal: the \emph{electrocardiogram}. The brain's activity produces microvolt signals (EEG) and femtotesla magnetic fields, detectable with SQUIDs (Chapter~\ref{ch:condmat}) or atomic magnetometers (Chapter~\ref{ch:amo}).
+
+\section{Problems}
+
+\begin{problems}
+\prob{1}\core At $60\un{keV}$, soft tissue has $\mu\approx0.2\un{cm^{-1}}$ and bone about $0.6\un{cm^{-1}}$. What fraction of the beam passes through $20\un{cm}$ of tissue? Through $18\un{cm}$ of tissue and $2\un{cm}$ of bone? Explain why bone appears white on the film.
+
+\prob{1}\core Find the proton Larmor frequency at $1.5\un{T}$ and $3\un{T}$. What part of the electromagnetic spectrum is this? Why must an MRI room be shielded with a copper cage?
+
+\prob{1}\core Compute the fraction of ultrasound intensity reflected at a boundary between soft tissue ($Z = 1.6\times10^{6}\un{kg/(m^2s)}$) and bone ($7.8\times10^{6}$), and between air ($430$) and tissue. Why is a gel used?
+
+\prob{1} What is the wavelength of $5\un{MHz}$ ultrasound in tissue? Estimate the finest detail it can resolve. Why does imaging the liver use $3\un{MHz}$, but imaging the eye uses $20\un{MHz}$?
+
+\prob{2} Explain, using conservation of energy and momentum, why positron annihilation produces two photons of exactly $511\un{keV}$ travelling in opposite directions, and why a single photon is impossible. If a PET scanner measures the difference in arrival times of the two photons to within $300\un{ps}$, how precisely can it locate the annihilation along the line?
+
+\prob{2} \label{prob:mri-polarization} At $3\un{T}$ and body temperature, find the ratio of the proton spin splitting to $\kB T$, and hence the fractional excess of spins aligned with the field. How many excess aligned protons are there in a cubic millimetre of water? Why do MRI manufacturers keep building stronger magnets?
+
+\prob{2} In an MRI scanner, a gradient of $10\un{mT/m}$ is applied. How different are the Larmor frequencies of protons $1\un{mm}$ apart? If the signal is recorded for $10\un{ms}$, can these be distinguished?
+\hint{Frequencies can be distinguished if they differ by more than about the inverse of the recording time (Chapter~\ref{ch:math}).}
+
+\prob{2}\core \label{prob:dose} A tumour of mass $1\un{kg}$ receives a dose of $2\un{Gy}$. How much energy is deposited, and what is the temperature rise? A lethal whole-body dose is about $5\un{Gy}$, which warms the body by about $0.001^\circ\text{C}$ --- less than a sip of hot tea. Explain why such a small energy is so dangerous: estimate how many ionizations $2\un{Gy}$ produces per cell (a cell has mass about $10^{-12}\un{kg}$, and each ionization deposits about $30\un{eV}$).
+
+\prob{2} Technetium-99m has a half-life of $6.0$ hours. A patient is injected with $500\un{MBq}$. What activity remains after $24$ hours? Why is a half-life of a few hours ideal for imaging?
+
+\prob{2} Protons of $150\un{MeV}$ have a range of about $16\un{cm}$ in water. Since the stopping power grows roughly as $1/v^2$ (and hence as $1/E$ for nonrelativistic protons), sketch the dose deposited as a function of depth, and explain the Bragg peak. Why is it a problem if the patient's anatomy is not exactly as planned?
+
+\prob{3}\core \label{prob:backprojection} \emph{(Why CT needs a filter.)} A single bright point at the origin produces, at every angle, a projection that is a spike at the origin. Show that naively ``backprojecting'' --- smearing each projection back along its lines and adding over all angles --- gives an image proportional to $1/r$, a blurry star rather than a point. Using the projection--slice theorem, show that the fix is to multiply each projection's Fourier transform by $\abs k$ (the \emph{ramp filter}) before backprojecting.
+\hint{In two dimensions, the Fourier transform of $1/r$ is proportional to $1/\abs k$.}
+
+\prob{3} \label{prob:oximeter} \emph{(The pulse oximeter.)} At $660\un{nm}$ deoxygenated haemoglobin absorbs much more strongly than oxygenated; at $940\un{nm}$ the reverse is true. Using the Beer--Lambert law with absorption coefficients $\epsilon_{\text{ox}}$ and $\epsilon_{\text{de}}$ at each wavelength, show how measuring the attenuation at both wavelengths determines the fraction of haemoglobin that is oxygenated. Then explain why the device uses only the part of the signal that pulses with each heartbeat: what unknown quantities does this remove?
+\end{problems}
+
+\begin{reading}
+\rd{Hobbie and Roth, \emph{Intermediate Physics for Medicine and Biology}}{A physics-first introduction to the body and to medical imaging.}
+\rd{Bushberg et al., \emph{The Essential Physics of Medical Imaging}}{The standard reference for X-rays, CT, MRI, ultrasound, and nuclear medicine.}
+\rd{Faiz M.\ Khan, \emph{The Physics of Radiation Therapy}}{The standard text for radiation oncology physics.}
+\rd{Bettyann Kevles, \emph{Naked to the Bone}}{A cultural history of medical imaging in the twentieth century.}
+\end{reading}

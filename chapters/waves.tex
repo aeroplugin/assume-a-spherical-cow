@@ -1,0 +1,190 @@
+\chapter{Waves}
+\label{ch:waves}
+
+\buildson{the harmonic oscillator (Chapter~\ref{ch:sho})}
+
+\chapterdek{Everything that wiggles and carries the wiggle somewhere else: plucked strings, sound, ocean swell, light, and --- in disguise --- the electron.}
+
+\begin{prototype}
+A taut string, plucked. A wave is a pattern of displacement that travels along it while each bit of string merely moves up and down. Information and energy move; matter stays put.
+\end{prototype}
+
+A single oscillator stays where it is. Couple many of them together --- each one tugging on its neighbours --- and the motion can travel. That is all a wave is. The idea is simple, but its reach is enormous: sound, light, earthquakes, water waves, and the quantum wavefunction all obey versions of the equation we derive below.
+
+\section{From oscillators to waves}
+
+Picture a line of beads of mass $m$, spaced a distance $a$ apart, joined by springs of stiffness $K$. Let $y_j$ be the displacement of bead $j$. Each bead is pulled by its two neighbours:
+\[
+  m\ddot y_j = K(y_{j+1} - y_j) - K(y_j - y_{j-1}) = K\,(y_{j+1} - 2y_j + y_{j-1}).
+\]
+That combination $y_{j+1}-2y_j+y_{j-1}$ is a discrete second derivative. Now let the spacing shrink, $a\to0$, keeping the mass per length $\mu = m/a$ and the tension-like quantity $Ka$ fixed. The displacement becomes a smooth field $y(x,t)$ and $y_{j+1}-2y_j+y_{j-1}\approx a^2\,\partial^2 y/\partial x^2$. We get
+\[
+  \frac{\partial^{2}y}{\partial t^{2}} = v^{2}\,\frac{\partial^{2}y}{\partial x^{2}} .
+\]
+This is the \textbf{wave equation}. For a string under tension $T$ with mass per length $\mu$, a direct force balance on a small segment gives the same equation with
+\[
+  v = \sqrt{\frac{T}{\mu}} .
+\]
+The pattern ``speed $= \sqrt{\text{stiffness}/\text{inertia}}$'' recurs everywhere: sound in a gas, $v=\sqrt{\gamma P/\rho}$; waves on deep water, $\sqrt{g/k}$; light in vacuum, $1/\sqrt{\mu_0\epsilon_0}$.
+
+\section{Solving the wave equation}
+
+\begin{theorem}[d'Alembert's solution]
+Every solution of the one-dimensional wave equation has the form
+\[
+  y(x,t) = f(x - vt) + g(x+vt)
+\]
+for some functions $f$ and $g$: a shape moving right at speed $v$ plus a shape moving left.
+\end{theorem}
+\begin{exercise}
+Verify by direct differentiation that $f(x-vt)$ solves the wave equation for any twice-differentiable $f$. Notice that its shape never changes as it moves. That is special: it is because $v$ does not depend on wavelength (see \S\ref{sec:dispersion}).
+\end{exercise}
+
+The most important shape is the sinusoid:
+\[
+  y = A\cos(kx - \omega t),\qquad k = \frac{2\pi}{\lambda},\quad \omega = 2\pi f, \quad \omega = vk .
+\]
+The \emph{wavenumber} $k$ counts radians per metre just as $\omega$ counts radians per second. In complex form we write $y = \mathrm{Re}\,[A e^{i(kx-\omega t)}]$, and because the wave equation is linear, Fourier analysis (Chapter~\ref{ch:math}) builds every other wave out of these.
+
+\section{Superposition: interference, beats, and standing waves}
+
+Because the wave equation is linear, waves pass through each other and simply add. Where crests meet crests the waves reinforce (\emph{constructive interference}); where crests meet troughs they cancel (\emph{destructive interference}). This is the defining behaviour of waves, and it will be the decisive evidence that light (Chapter~\ref{ch:optics}) and electrons (Chapter~\ref{ch:qm}) are waves.
+
+\textbf{Beats.} Add two waves of nearby frequencies $f_1$ and $f_2$ at one point:
+\[
+  \cos\omega_1t + \cos\omega_2 t = 2\cos\!\Big(\frac{\omega_1-\omega_2}{2}t\Big)\cos\!\Big(\frac{\omega_1+\omega_2}{2}t\Big).
+\]
+You hear the average pitch, swelling and fading $\abs{f_1 - f_2}$ times per second. Piano tuners use beats to match strings to better than a tenth of a hertz.
+
+\textbf{Standing waves.} Two equal waves going in opposite directions add to
+\[
+  A\cos(kx-\omega t) + A\cos(kx+\omega t) = 2A\cos(kx)\cos(\omega t),
+\]
+a pattern that does not travel at all: every point oscillates in place, with fixed \emph{nodes} where $\cos kx=0$. A string clamped at both ends ($y=0$ at $x=0$ and $x=L$) can only hold standing waves that fit:
+\[
+  \lambda_n = \frac{2L}{n},\qquad f_n = \frac{nv}{2L},\qquad n=1,2,3,\dots
+\]
+These are the \emph{normal modes} of the string, the continuum version of Chapter~\ref{ch:sho}'s coupled oscillators. A plucked string vibrates in many modes at once; the fundamental $f_1$ sets the pitch, and the mix of harmonics $2f_1, 3f_1,\dots$ sets the timbre --- why a violin and a flute playing the same note sound different.
+
+\begin{center}
+\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}
+  \foreach \n in {1,2,3} {
+    \begin{scope}[yshift={-(\n-1)*1.3cm}]
+      \draw[ascrule] (0,0) -- (6,0);
+      \draw[ascblue!45, thick, dashed, domain=0:6, samples=90] plot (\x, {-0.45*sin(\n*30*\x)});
+      \draw[ascblue, thick, domain=0:6, samples=90] plot (\x, {0.45*sin(\n*30*\x)});
+      \foreach \k in {0,...,\n} \fill[ascink] ({6*\k/\n},0) circle (1.8pt);
+      \node[font=\small, anchor=east] at (-0.3,0) {$n=\n$};
+      \node[font=\small, anchor=west] at (6.3,0) {\ifnum\n=1 $f_1$\else $\n f_1$\fi};
+    \end{scope}
+  }
+\end{tikzpicture}
+
+{\small The first three standing waves on a string fixed at both ends, drawn at two moments half a period apart. The dots are nodes, points that never move.}
+\end{minipage}
+\end{center}
+
+\begin{keyidea}
+Confinement gives quantization. A wave trapped in a region can only take certain discrete frequencies, because it has to fit. The same fact, applied to the electron's wave in an atom, is why atomic energy levels are discrete (Chapter~\ref{ch:qm}).
+\end{keyidea}
+
+\section{Energy, impedance, and reflection}
+
+A wave carries energy. For a sinusoidal wave on a string the power transmitted is
+\[
+  P = \tfrac12\,Z\,\omega^2 A^2, \qquad Z = \sqrt{T\mu} = \mu v,
+\]
+where $Z$ is the \emph{impedance} of the string: its resistance to being shaken. Notice that $P\propto A^2$; this is general. The energy of a wave goes as the square of its amplitude.
+
+When a wave reaches a junction between two strings of different impedance, part reflects and part transmits. Requiring the string to be continuous and the transverse forces to balance at the junction gives
+\[
+  r = \frac{Z_1 - Z_2}{Z_1 + Z_2}, \qquad t = \frac{2Z_1}{Z_1+Z_2}
+\]
+for the reflected and transmitted amplitudes. A wave hitting a much heavier string ($Z_2\gg Z_1$) reflects almost entirely and flips upside down; hitting a light string, it reflects without flipping. When $Z_1 = Z_2$ nothing reflects: the impedances are \emph{matched}.
+
+Impedance matching is everywhere once you look. Ultrasound scanners use gel because air and skin have wildly different acoustic impedances (Chapter~\ref{ch:medical}). The anti-reflection coating on glasses is a quarter-wavelength layer chosen to cancel reflections. Your middle ear is an impedance matcher between air and the fluid of the cochlea. And transmission lines carrying signals must be terminated in a matched resistor to avoid echoes.
+
+\section{Dispersion}
+\label{sec:dispersion}
+
+For a string, $\omega = vk$ exactly, and every wavelength travels at the same speed. Most media are not so simple: the relation $\omega(k)$, called the \emph{dispersion relation}, is not a straight line. Then two velocities matter:
+\[
+  v_{\text{phase}} = \frac{\omega}{k}, \qquad v_{\text{group}} = \dv{\omega}{k} .
+\]
+The phase velocity is the speed of an individual crest. The group velocity is the speed of the \emph{envelope} of a wave packet --- and so the speed at which energy and information travel.
+
+\begin{example}[Deep-water waves]
+For gravity waves on deep water, $\omega = \sqrt{gk}$. Then $v_{\text{phase}} = \sqrt{g/k}$ and $v_{\text{group}} = \tfrac12\sqrt{g/k}$: the packet moves at half the speed of its crests. Watch a group of waves spread from a stone dropped in a pond: individual ripples appear at the back of the group, run forward through it, and vanish at the front. Because long waves travel faster, a storm thousands of kilometres away is announced by long, slow swell arriving days ahead of the shorter waves --- which is how surf forecasters work.
+\end{example}
+
+\begin{example}[The beaded string revisited]
+Return to the discrete chain of beads. Trying $y_j = Ae^{i(kja - \omega t)}$ gives
+\[
+  \omega = 2\sqrt{K/m}\;\abs{\sin(ka/2)} .
+\]
+For long wavelengths ($ka\ll1$) this is $\omega\approx v k$, the continuum wave equation. But for short wavelengths the dispersion relation bends over and there is a \emph{maximum frequency} $2\sqrt{K/m}$: a lattice cannot vibrate faster than its atoms can respond. Wavelengths shorter than $2a$ are meaningless --- they describe the same bead motions as longer ones. This is our first glimpse of the \emph{Brillouin zone}, and of phonons in crystals (Chapter~\ref{ch:condmat}).
+\end{example}
+
+A wave packet in a dispersive medium spreads, because its different wavelength components travel at different speeds. A packet of width $\Delta x$ contains wavenumbers spread over $\Delta k\sim 1/\Delta x$ (Chapter~\ref{ch:math}); a narrow packet therefore spreads fast. This is why a quantum particle's wavefunction spreads out over time (Chapter~\ref{ch:qm}), and why fibre-optic signals must be periodically regenerated.
+
+\section{Waves in two and three dimensions}
+
+In higher dimensions the wave equation becomes
+\[
+  \frac{\partial^2\psi}{\partial t^2} = v^2\nabla^2\psi .
+\]
+\emph{Plane waves} $e^{i(\vb k\cdot\vb r - \omega t)}$ travel in the direction of the wave vector $\vb k$. \emph{Spherical waves} spreading from a point have amplitude falling as $1/r$, so their intensity falls as $1/r^2$: the energy is spread over a sphere of area $4\pi r^2$. That is the reason for every inverse-square law of radiation.
+
+\textbf{Huygens' principle} says that every point on a wavefront acts as a source of new wavelets, and the next wavefront is their envelope. It explains why waves bend around obstacles --- \emph{diffraction}. A wave passing through an opening of width $d$ spreads out by an angle
+\[
+  \theta \sim \frac{\lambda}{d}.
+\]
+Sound ($\lambda\sim1\un{m}$) diffracts around doorways, so you can hear around corners; light ($\lambda\sim0.5\un{\mu m}$) does not, so you cannot see around them. The same formula sets the resolution of every telescope and microscope (Chapter~\ref{ch:optics}).
+
+\section{The Doppler effect}
+
+A source of sound at frequency $f$ moving toward you at speed $v_s$ squeezes its wavefronts together; one moving away stretches them. If you, the observer, move at speed $v_o$ toward the source, you run into crests more often. Altogether, for sound of speed $v$,
+\[
+  f' = f\,\frac{v + v_o}{v - v_s}
+\]
+(with velocities counted positive toward each other). The rising-then-falling pitch of a passing siren is the textbook example; radar speed guns, Doppler ultrasound of blood flow (Chapter~\ref{ch:medical}), and the redshift of receding galaxies (Chapter~\ref{ch:cosmo}) are the same physics. For light the formula must be modified by relativity (Chapter~\ref{ch:sr}), because there is no medium to move relative to.
+
+When the source moves faster than the waves, $v_s>v$, the wavefronts pile up into a cone --- a \emph{shock wave} --- of half-angle $\sin\theta = v/v_s$. This is the sonic boom of a supersonic jet, the bow wave of a boat, and the Cherenkov light of a particle faster than light in water (Chapter~\ref{ch:accel}).
+
+\section{Problems}
+
+\begin{problems}
+\prob{1}\core A guitar string of length $65\un{cm}$ has fundamental frequency $110\un{Hz}$ (the note A$_2$). Find the wave speed. If the string has mass per length $6\un{g/m}$, find its tension. By what factor must the tension change to raise the pitch one octave?
+
+\prob{1} Two tuning forks sound at $440\un{Hz}$ and $443\un{Hz}$. How many beats per second do you hear, and what pitch? If a small piece of wax is stuck to the second fork, the beats slow down. Was the wax's effect to raise or lower its frequency?
+
+\prob{1} A string is fixed at one end and free (attached to a massless ring on a frictionless pole) at the other. Find its allowed wavelengths and show that only odd harmonics appear. This is why a clarinet, a pipe closed at one end, sounds ``hollow.''
+
+\prob{1} An ambulance siren sounds at $700\un{Hz}$ while driving at $30\un{m/s}$. What frequencies do you hear as it approaches and recedes? (Take $v=343\un{m/s}$.) How many semitones does the pitch drop? (A semitone is a factor $2^{1/12}$.)
+
+\prob{2}\core A wave on a string of impedance $Z_1$ meets a string of impedance $Z_2$. Derive the reflection and transmission amplitudes from continuity of displacement and of the transverse force, and show that the reflected and transmitted powers add up to the incident power.
+
+\prob{2} Show that the group velocity of deep-water waves is half their phase velocity. A storm $2000\un{km}$ away generates swell with periods from $8$ to $20$ seconds. How long after the first long-period swell arrives do the $8$-second waves arrive?
+
+\prob{2}\core A wave packet is a Gaussian of width $\sigma$ in $x$: $y(x,0) = e^{-x^2/2\sigma^2}\cos k_0x$. Compute its Fourier transform and show it is a Gaussian in $k$ of width $1/\sigma$. Conclude that $\Delta x\,\Delta k\ge\tfrac12$ for this packet, and argue that no packet can do better. (With $p = \hbar k$, this is the uncertainty principle.)
+
+\prob{2}\core For the beaded string, derive the dispersion relation $\omega = 2\sqrt{K/m}\,\abs{\sin(ka/2)}$. Find the group velocity as a function of $k$, and show that it vanishes at $k=\pi/a$. What does a standing wave at that wavenumber look like?
+
+\prob{2} A jet flies at Mach~2 at an altitude of $10\un{km}$. Find the half-angle of its shock cone, and how long after it passes directly overhead you hear the sonic boom.
+
+\prob{3} \emph{(Green's law.)} A tsunami travels across the open ocean (depth $4\un{km}$) with an amplitude of half a metre. Shallow-water waves travel at $v = \sqrt{gh}$. Assuming the energy flux is conserved as the wave moves into shallower water without reflecting, and that the wave's length scales with its speed, show that its amplitude grows as $h^{-1/4}$. Estimate the amplitude in water $10\un{m}$ deep, and the speed in the open ocean.
+\hint{The energy flux is (energy per area) $\times$ (group velocity), and energy per area scales as amplitude squared.}
+
+\prob{3} \emph{(Why waves break.)} In shallow water the wave speed depends on the local depth, $v\approx\sqrt{g(h+\eta)}$, where $\eta$ is the surface height. Explain why crests move faster than troughs, and show that a wave approaching a beach must eventually steepen until its front becomes vertical. This is the simplest example of a nonlinear wave forming a shock.
+
+\prob{3} \emph{(Kelvin's wake.)} Behind a duck, a boat, or a ship moving at constant speed on deep water, the wake is confined to a wedge of half-angle $\arcsin(1/3)\approx19.5^\circ$ --- \emph{independent of speed}. Derive this.
+\hint{The boat continuously emits waves of all wavelengths. A wave that keeps up with the boat must have phase velocity $u\cos\theta$, where $\theta$ is the angle of its crest normal to the boat's path, but its energy travels at the group velocity, which is half the phase velocity. Find the maximum angle at which energy emitted at earlier times can be found.}
+\end{problems}
+
+\begin{reading}
+\rd{A.\ P.\ French, \emph{Vibrations and Waves}}{The standard short introduction, very physical.}
+\rd{Frank S.\ Crawford, \emph{Waves} (Berkeley Physics Course, Vol.~3)}{Full of home experiments and physical insight.}
+\rd{Howard Georgi, \emph{The Physics of Waves}}{A clean, systematic treatment built on normal modes and symmetry. Freely available online.}
+\rd{\emph{The Feynman Lectures on Physics}, Volume I, Chapters~47--51}{Sound, the wave equation, beats, modes, and harmonics.}
+\end{reading}

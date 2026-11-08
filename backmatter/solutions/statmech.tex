@@ -1,0 +1,35 @@
+\solchapter{statmech}
+
+\sol{statmech}{1} Mean $50$, standard deviation $\sqrt{Npq} = 5$. $P(50)\approx1/(\sqrt{2\pi}\cdot5) = 0.080$ (exact: $0.0796$). For $60$ or more, use $z = (59.5-50)/5 = 1.9$, giving $2.9\%$ (exact: $2.8\%$).
+
+\sol{statmech}{2} A slab of thickness $\dd h$ supports its own weight: $\dd P = -nmg\,\dd h$. With $P = n\kB T$ at constant $T$, $\dd n/\dd h = -n\,mg/\kB T$, so $n = n_0e^{-mgh/\kB T}$. For N$_2$ at $250\un{K}$, $\kB T/mg = 7.6\un{km}$. Helium is seven times lighter, so its scale height is seven times larger and it thins out more slowly; above about $100\un{km}$, where turbulence no longer mixes the gases, the atmosphere is increasingly helium-rich.
+
+\sol{statmech}{3} The ratio is $e^{-\varepsilon/\kB T}$: $e^{-3.87} = 0.021$ at $300\un{K}$, and $e^{-0.39} = 0.68$ at $3000\un{K}$. Ten percent occupation means a ratio of $1/9$, so $\varepsilon/\kB T = \ln9$ and $T = 0.1\un{eV}/(2.20\,\kB) = 530\un{K}$.
+
+\sol{statmech}{4} Air is diatomic: three translational and two rotational quadratic terms give $\tfrac52R$. Vibrations need $\kB T\sim\hbar\omega\approx0.3\un{eV}$ ($3000\un{K}$) and are frozen. At high temperatures vibrations switch on, raising the heat capacity toward $\tfrac72R$ (until the molecules dissociate). At very low temperatures rotations freeze too, leaving $\tfrac32R$ --- seen clearly for hydrogen below about $100\un{K}$, whose light molecules have widely spaced rotational levels.
+
+\sol{statmech}{5} Maximizing $v^2e^{-mv^2/2\kB T}$ gives $v_p = \sqrt{2\kB T/m}$; Gaussian integrals give $\langle v\rangle = \sqrt{8\kB T/\pi m}$ and $v_{\text{rms}} = \sqrt{3\kB T/m}$. For N$_2$ at $300\un{K}$, $\sqrt{\kB T/m} = 298\un{m/s}$, so the three speeds are $422$, $476$, and $517\un{m/s}$, in the ratio $\sqrt2:\sqrt{8/\pi}:\sqrt3$.
+
+\sol{statmech}{6} With $\lambda_{\max} = 2.9\un{mm\,K}/T$: Sun $500\un{nm}$; body ($310\un{K}$) $9.4\un{\mu m}$; red-hot element ($\sim1000\un{K}$) $2.9\un{\mu m}$, mostly infrared, with only its visible tail seen; CMB $1.06\un{mm}$. Hotter stars peak in the blue or ultraviolet and look blue-white; cooler ones peak in the red or infrared and look red. A blackbody peaking in the green still emits strongly across the whole visible band, and the eye sees that mixture as white.
+
+\sol{statmech}{7} $L = 4\pi R^2\sigma T^4 = 4\pi(7.0\times10^8)^2(5.67\times10^{-8})(5800)^4\approx3.9\times10^{26}\un{W}$. At the Earth, $I = L/4\pi r^2\approx1400\un{W/m^2}$. A black sphere absorbs $\pi R_E^2I$ and emits $4\pi R_E^2\sigma T^4$, so $T = (I/4\sigma)^{1/4}\approx280\un{K}$.
+
+\sol{statmech}{8} $n = 8.9\times10^3/(63.5\times1.66\times10^{-27}) = 8.4\times10^{28}\un{m^{-3}}$, so $E_F = (\hbar^2/2m)(3\pi^2n)^{2/3} = 7.0\un{eV}$ and $T_F = 81\,000\un{K}$. Only electrons within about $\kB T$ of the Fermi surface can be excited --- the rest have no empty states nearby --- so only a fraction $\sim\kB T/E_F\approx0.4\%$ take up heat. (The exact result is $C = \tfrac{\pi^2}{2}N\kB(\kB T/E_F)$.)
+
+\sol{statmech}{9} Plot $y = m$ and $y = \tanh(T_cm/T)$; for $T<T_c$ the tanh starts steeper than $1$, so it crosses the line at $m = 0$ and at $\pm m_0$. Expanding $\tanh x\approx x - x^3/3$ with $x = T_cm/T$ gives $m^2 = 3(T_c/T-1)(T/T_c)^3\approx3(T_c-T)/T$. At $T = T_c$ in a small field $h$, $m = \tanh(m + h/\kB T_c)$ expands to $h/\kB T_c\approx m^3/3$, so $m\approx(3h/\kB T_c)^{1/3}$: the response is nonlinear, $m\propto h^{1/3}$.
+
+\sol{statmech}{10} $D = \kB T/6\pi\eta r = 4.1\times10^{-21}/(6\pi\times10^{-3}\times5\times10^{-7}) = 4.4\times10^{-13}\un{m^2/s}$. In one direction, $\sqrt{2Dt}$ is $0.9\un{\mu m}$ after a second and $56\un{\mu m}$ after an hour. To go $1\un{mm}$ takes $x^2/2D\approx1.1\times10^6\un{s}$, about two weeks.
+
+\sol{statmech}{11} For rubidium, $\lambda_T = (2.6/10^{20})^{1/3} = 3.0\times10^{-7}\un{m}$, so $T = h^2/(2\pi m\kB\lambda_T^2)\approx0.4\un{\mu K}$. For helium, $n = 145/(6.6\times10^{-27}) = 2.2\times10^{28}\un{m^{-3}}$, $\lambda_T = 4.9\times10^{-10}\un{m}$, and $T\approx3.1\un{K}$, close to the observed $2.17\un{K}$ (the difference is due to interactions in the liquid). The rubidium gas must stay dilute --- a hundred million times less dense than liquid helium --- or it would form molecules and solidify. Its atoms are therefore far apart, the thermal wavelength must be correspondingly longer, and since $T\propto n^{2/3}/m$, the gas must be far colder.
+
+\sol{statmech}{12} With $n = U/\varepsilon$ excited spins and Stirling, $S = \kB[N\ln N - n\ln n - (N-n)\ln(N-n)]$, so
+\[
+  \frac1T = \pdv{S}{U} = \frac{\kB}{\varepsilon}\ln\frac{N-n}{n}.
+\]
+For $n<N/2$, $T>0$; at $n = N/2$, $T = \infty$; for $n>N/2$, $T<0$. Heat flows in whichever direction increases total entropy. A negative-temperature system \emph{gains} entropy by losing energy, and any positive-temperature system gains entropy by receiving it, so energy always flows from the negative-temperature system. The ordering of hotness is $+0<\dots<+\infty = -\infty<\dots<-0$. This requires an energy spectrum bounded above, which is why it occurs for spins and lasers but not for gases.
+
+\sol{statmech}{13} Doubling $N$ and $V$ gives $S' = 2N\kB\ln(2V\,T^{3/2}) + \dots = 2S + 2N\kB\ln2$: not twice $S$. Likewise, removing a partition between two identical boxes would add $2N\kB\ln2$, though nothing physical has happened. Dividing $\Omega$ by $N!$ subtracts $\kB\ln N!\approx\kB(N\ln N - N)$, which turns $\ln V$ into $\ln(V/N)$:
+\[
+  S = N\kB\left[\ln\frac{V}{N} + \tfrac32\ln T + \text{const}\right].
+\]
+Now $S$ depends only on the intensive ratio $V/N$, so it is extensive, and mixing identical gases changes nothing. (This is the Sackur--Tetrode entropy, whose constant contains $h$ --- another sign that quantum mechanics is at work.)

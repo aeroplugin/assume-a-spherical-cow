@@ -1,0 +1,37 @@
+\solchapter{math}
+
+\sol{math}{1} The speed can depend only on $\lambda$, $g$, and $\rho$. Density is the only quantity containing mass, so it cannot be combined with the others into a speed: it cannot appear. Then $v = C\sqrt{g\lambda}$ for some number $C$ (the full theory gives $C = 1/\sqrt{2\pi}$). Long waves travel faster.
+
+\sol{math}{2} Heartbeats: $70$ per minute for $80$ years is $70\times60\times24\times365\times80\approx3\times10^9$, so about $10^9$. Seconds in a year: $365.25\times86\,400 = 3.16\times10^7$; $\pi\times10^7 = 3.14\times10^7$ is within $0.5\%$. Sand: say $10^6\un{km}$ of sandy coast, beaches $50\un{m}$ wide and $10\un{m}$ deep, gives $5\times10^{11}\un{m^3}$ of sand; a grain of $0.5\un{mm}$ has volume $\sim10^{-10}\un{m^3}$, so about $10^{21}$ grains. (Published estimates range from $10^{19}$ to $10^{21}$; the method matters more than the digit.)
+
+\sol{math}{3} $(1-x)^{-1/2}\approx1 + \tfrac12x + \tfrac38x^2$. With $x = 0.02$: $1 + 0.01 + 0.00015 = 1.01015$. The exact value is $1.0101525\ldots$; the error, about $2.5\times10^{-6}$, matches the next term $\tfrac{5}{16}x^3$.
+
+\sol{math}{4} For $\begin{pmatrix}2&1\\1&2\end{pmatrix}$: $\lambda = 3$ with $(1,1)$, and $\lambda = 1$ with $(1,-1)$. For $\begin{pmatrix}0&1\\-1&0\end{pmatrix}$: $\lambda^2 + 1 = 0$, so $\lambda = \pm i$, with eigenvectors $(1,\pm i)$. The matrix sends $(x,y)\mapsto(y,-x)$: a rotation by $90^\circ$ clockwise. A rotation turns \emph{every} direction, so no real vector is merely stretched.
+
+\sol{math}{5} $I^2 = \iint e^{-(x^2+y^2)}\,\dd x\,\dd y = \int_0^{2\pi}\!\!\int_0^\infty e^{-r^2}r\,\dd r\,\dd\theta = 2\pi\cdot\tfrac12 = \pi$, so $I = \sqrt\pi$. Rescaling, $\int e^{-ax^2}\dd x = \sqrt{\pi/a}$; differentiating with respect to $a$ gives $\int x^2e^{-ax^2}\dd x = \tfrac12\sqrt\pi\,a^{-3/2}$.
+
+\sol{math}{6} The function is odd, so only sines appear: $b_n = \tfrac1\pi\int_{-\pi}^{\pi}f\sin nx\,\dd x = \tfrac{2}{n\pi}(1-\cos n\pi)$, which is $4/n\pi$ for odd $n$ and $0$ for even $n$:
+\[
+  f(x) = \frac4\pi\left(\sin x + \frac{\sin3x}{3} + \frac{\sin5x}{5} + \cdots\right).
+\]
+A smooth function is well described by a few slow sines, and its coefficients fall off fast. A jump changes the function over an arbitrarily short distance, which by $\Delta x\,\Delta k\gtrsim1$ needs arbitrarily large wavenumbers, so the coefficients fall only as $1/n$. (Truncated sums overshoot near the jump by about $9\%$: the Gibbs phenomenon.)
+
+\sol{math}{7} $\grad\cdot(\curl\vb v) = \partial_i\varepsilon_{ijk}\partial_jv_k = \varepsilon_{ijk}\partial_i\partial_jv_k = 0$, because $\varepsilon_{ijk}$ is antisymmetric in $i,j$ while $\partial_i\partial_j$ is symmetric. For the second,
+\[
+  [\curl(\curl\vb v)]_i = \varepsilon_{ijk}\partial_j\varepsilon_{klm}\partial_lv_m = (\delta_{il}\delta_{jm}-\delta_{im}\delta_{jl})\partial_j\partial_lv_m = \partial_i(\partial_jv_j) - \partial_j\partial_jv_i ,
+\]
+using $\varepsilon_{ijk}\varepsilon_{klm} = \varepsilon_{kij}\varepsilon_{klm}$ and the identity in the text.
+
+\sol{math}{8} The sea surface is a surface of constant gravitational potential. The mountain is an excess mass per area $\Delta\rho H$ (with $\Delta\rho\approx1700\un{kg/m^3}$, rock minus water) spread over a width $W$, so dimensionally it changes the potential above it by $\Delta\Phi\sim G\Delta\rho HW\approx6.7\times10^{-11}\times1700\times2000\times2\times10^4\approx5\un{m^2/s^2}$. The surface rises by $\Delta h = \Delta\Phi/g\approx0.5\un{m}$: closest to a metre. Satellites that measure sea-surface height map the seafloor this way.
+
+\sol{math}{9} Write $x = \ell\sum_is_i$ with independent $s_i = \pm1$. Then $\langle x\rangle = 0$, and $\langle x^2\rangle = \ell^2\sum_{i,j}\langle s_is_j\rangle = N\ell^2$, since the cross terms average to zero. For perfume, $\sqrt N\ell = 5\un{m}$ needs $N = (5/10^{-7})^2 = 2.5\times10^{15}$ steps, or $2.5\times10^5\un{s}$: about three days. You smell it within a minute because air currents carry the molecules; diffusion is hopeless over metres.
+
+\sol{math}{10} The integrand is $e^{f(x)}$ with $f = N\ln x - x$. Then $f'(x) = N/x - 1$ vanishes at $x = N$, and $f''(N) = -1/N$. So $f\approx N\ln N - N - (x-N)^2/2N$, and
+\[
+  N!\approx N^Ne^{-N}\int_{-\infty}^\infty e^{-(x-N)^2/2N}\,\dd x = \sqrt{2\pi N}\,N^Ne^{-N}.
+\]
+Extending the lower limit to $-\infty$ is harmless because the peak has width $\sqrt N\ll N$. Even for $N = 10$ the error is under $1\%$.
+
+\sol{math}{11} With $u = 1/\epsilon$, $\dd/\dd\epsilon = -u^2\,\dd/\dd u$, so by induction every derivative has the form $P_n(u)e^{-u}$ for a polynomial $P_n$. As $\epsilon\to0^+$, $u\to\infty$ and $P_n(u)e^{-u}\to0$, so every derivative is continuous at $0$ with value $0$ (and the difference quotient $f^{(n)}(\epsilon)/\epsilon = uP_n(u)e^{-u}$ also tends to $0$). The Taylor series is identically zero, yet $f(\epsilon)>0$ for every $\epsilon>0$. A perturbative calculation computes exactly these Taylor coefficients, order by order, so it returns zero at every order. Effects like tunnelling need nonperturbative methods: WKB, instantons, or an exact solution.
+
+\sol{math}{12} The quantities $m$, $\sigma$ (units $\mathrm{kg\,s^{-2}}$), $\rho$, $g$, $r$ involve three dimensions, giving two groups: $\Pi_1 = mg/\sigma r$ and the \emph{Bond number} $\Pi_2 = \rho gr^2/\sigma$. So $mg/\sigma r = F(\rho gr^2/\sigma)$. For a small tap, $\Pi_2\ll1$ and $F$ tends to a constant: $m\propto\sigma r/g$, independent of $\rho$. Physically, the drop hangs from the rim by surface tension, a force up to $2\pi r\sigma$, and falls when its weight exceeds that: $m\approx2\pi r\sigma/g$ (Tate's law). For $r\approx3\un{mm}$, $m\approx2\pi(0.003)(0.072)/9.8\approx0.14\un{g}$, a drop about $3\un{mm}$ in radius. (Only part of the hanging drop actually falls, so real drops are a little smaller.)

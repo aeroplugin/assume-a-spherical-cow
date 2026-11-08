@@ -1,0 +1,199 @@
+\chapter{Complex systems and networks}
+\label{ch:complex}
+
+\buildson{statistical mechanics (Chapter~\ref{ch:statmech}), nonlinear dynamics (Chapter~\ref{ch:chaos})}
+
+\chapterdek{How structure and surprise emerge from many interacting parts --- in epidemics, earthquakes, flocks, markets, and the internet --- and how far the physicist's toolkit reaches beyond physics.}
+
+\begin{prototype}
+A power law, $P(x)\propto x^{-\alpha}$. The number of earthquakes releasing energy $E$, the sizes of cities, the frequencies of words, the numbers of links to web pages: all follow distributions with no typical scale, where enormous events are rare but nowhere near as rare as a bell curve would suggest. A power law is the fingerprint of a system where the parts talk to each other.
+\end{prototype}
+
+In 1972 the condensed matter physicist Philip Anderson wrote a short essay titled ``More Is Different.'' His point was that knowing the laws governing the parts does not tell you the behaviour of the whole: at each level of complexity, new properties \emph{emerge} that need new concepts. Water molecules do not know about waves; neurons do not know about thoughts. A \emph{complex system} is one in which many parts interact to produce collective behaviour that no single part controls or contains. Statistical mechanics (Chapter~\ref{ch:statmech}) was the first science of such systems. Its ideas --- phase transitions, critical points, universality, fluctuations --- turn out to apply far beyond gases and magnets.
+
+\section{Power laws and scale invariance}
+
+A Gaussian distribution has a characteristic scale: almost all values lie within a few standard deviations of the mean. Human heights are Gaussian; you will never meet someone ten metres tall. A \emph{power-law} distribution $P(x)\propto x^{-\alpha}$ has no such scale. It looks the same at every magnification: the ratio $P(2x)/P(x) = 2^{-\alpha}$ does not depend on $x$. Plotted on logarithmic axes, it is a straight line of slope $-\alpha$.
+
+Power laws appear everywhere once you look:
+\begin{itemize}[itemsep=3pt]
+  \item \textbf{Earthquakes} obey the Gutenberg--Richter law: each step of one in magnitude (a factor of about $30$ in energy) makes earthquakes about ten times rarer.
+  \item \textbf{Words} obey Zipf's law: the $r$th most common word in a language appears with frequency roughly $\propto1/r$. ``The'' is about twice as common as ``of,'' three times as common as ``and.''
+  \item \textbf{City sizes, personal wealth} (Pareto's law), the sizes of solar flares, forest fires, and moon craters, and the numbers of citations to scientific papers.
+\end{itemize}
+Heavy tails have consequences. If $\alpha\le2$, the mean of the distribution is infinite; if $\alpha\le3$, the variance is. Averages computed from data then never settle down, because they are dominated by the single largest event so far. Financial returns have fat tails, which is why ``once-in-a-century'' market crashes happen every decade or so.
+
+Why do power laws appear? There are several mechanisms, and each is a lesson. Systems tuned to a \emph{critical point} have fluctuations at every scale (Chapter~\ref{ch:statmech}). \emph{Rich-get-richer} processes, where growth is proportional to current size, produce them naturally (\S\ref{sec:networks}). And \emph{multiplicative} random processes produce log-normal distributions that can masquerade as power laws over a few decades. A word of caution: many claimed power laws in the literature dissolve under careful statistics. A straight line on a log-log plot over one decade is not evidence of anything.
+
+\section{Random walks and diffusion, again}
+
+A random walker taking steps of fixed size spreads as $\sqrt t$ (Chapter~\ref{ch:math}). This \emph{normal diffusion} describes perfume in a room, proteins in a cell (Chapter~\ref{ch:bio}), and heat in a solid. But if the step lengths themselves follow a heavy-tailed distribution, occasional enormous jumps dominate and the walker spreads faster than $\sqrt t$: a \emph{L\'evy flight}. Albatrosses, sharks, and human travellers show L\'evy-like patterns, perhaps because such searches are efficient when food is sparse and patchy.
+
+\section{Networks}
+\label{sec:networks}
+
+Many complex systems are best described as \emph{networks}: nodes joined by links. Friends in a social network, routers on the internet, proteins that bind each other, airports joined by flights, neurons joined by synapses. The simplest statistic is the \emph{degree distribution} $P(k)$, the fraction of nodes with $k$ links.
+
+\textbf{Random graphs.} In the Erd\H{o}s--R\'enyi model, each pair of $N$ nodes is linked independently with probability $p$. The mean degree is $c = p(N-1)$, and the degree distribution is Poisson. As $c$ increases past $1$, something dramatic happens: a \emph{giant component} suddenly appears, a connected cluster containing a finite fraction of all nodes (Problem~\ref{prob:giant}). Below $c=1$, the network is a dust of small islands; above, most nodes can reach most others. This is a phase transition, with all the trappings of Chapter~\ref{ch:statmech}.
+
+\textbf{Small worlds.} In 1967 Stanley Milgram asked people in Nebraska to forward a letter to a stranger in Boston via acquaintances; the letters that arrived took about six steps. In 1998 Watts and Strogatz explained how: a network that is mostly local and cliquish (your friends know each other) needs only a few random long-range links to make the typical distance between any two nodes grow only logarithmically with $N$.
+
+\begin{center}
+\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}
+  \begin{scope}[xshift=0cm]
+  \draw[ascink!55] (90:1.55) -- (67:1.55);
+  \draw[ascink!55] (67:1.55) -- (45:1.55);
+  \draw[ascink!55] (45:1.55) -- (22:1.55);
+  \draw[ascink!55] (22:1.55) -- (0:1.55);
+  \draw[ascink!55] (0:1.55) -- (-22:1.55);
+  \draw[ascink!55] (-22:1.55) -- (-45:1.55);
+  \draw[ascink!55] (-45:1.55) -- (-67:1.55);
+  \draw[ascink!55] (-67:1.55) -- (-90:1.55);
+  \draw[ascink!55] (-90:1.55) -- (-112:1.55);
+  \draw[ascink!55] (-112:1.55) -- (-135:1.55);
+  \draw[ascink!55] (-135:1.55) -- (-157:1.55);
+  \draw[ascink!55] (-157:1.55) -- (-180:1.55);
+  \draw[ascink!55] (-180:1.55) -- (-202:1.55);
+  \draw[ascink!55] (-202:1.55) -- (-225:1.55);
+  \draw[ascink!55] (-225:1.55) -- (-247:1.55);
+  \draw[ascink!55] (-247:1.55) -- (90:1.55);
+  \draw[ascink!55] (90:1.55) -- (45:1.55);
+  \draw[ascink!55] (67:1.55) -- (22:1.55);
+  \draw[ascink!55] (45:1.55) -- (0:1.55);
+  \draw[ascink!55] (22:1.55) -- (-22:1.55);
+  \draw[ascink!55] (0:1.55) -- (-45:1.55);
+  \draw[ascink!55] (-22:1.55) -- (-67:1.55);
+  \draw[ascink!55] (-45:1.55) -- (-90:1.55);
+  \draw[ascink!55] (-67:1.55) -- (-112:1.55);
+  \draw[ascink!55] (-90:1.55) -- (-135:1.55);
+  \draw[ascink!55] (-112:1.55) -- (-157:1.55);
+  \draw[ascink!55] (-135:1.55) -- (-180:1.55);
+  \draw[ascink!55] (-157:1.55) -- (-202:1.55);
+  \draw[ascink!55] (-180:1.55) -- (-225:1.55);
+  \draw[ascink!55] (-202:1.55) -- (-247:1.55);
+  \draw[ascink!55] (-225:1.55) -- (90:1.55);
+  \draw[ascink!55] (-247:1.55) -- (67:1.55);
+  \foreach \k in {0,...,15} \fill[ascblue] ({90-22.5*\k}:1.55) circle (2.6pt);
+  \end{scope}
+  \begin{scope}[xshift=5.2cm]
+  \draw[ascink!55] (90:1.55) -- (67:1.55);
+  \draw[ascink!55] (67:1.55) -- (45:1.55);
+  \draw[ascink!55] (45:1.55) -- (22:1.55);
+  \draw[ascink!55] (22:1.55) -- (0:1.55);
+  \draw[ascink!55] (0:1.55) -- (-22:1.55);
+  \draw[ascink!55] (-22:1.55) -- (-45:1.55);
+  \draw[ascink!55] (-67:1.55) -- (-90:1.55);
+  \draw[ascink!55] (-90:1.55) -- (-112:1.55);
+  \draw[ascink!55] (-112:1.55) -- (-135:1.55);
+  \draw[ascink!55] (-135:1.55) -- (-157:1.55);
+  \draw[ascink!55] (-157:1.55) -- (-180:1.55);
+  \draw[ascink!55] (-180:1.55) -- (-202:1.55);
+  \draw[ascink!55] (-202:1.55) -- (-225:1.55);
+  \draw[ascink!55] (-225:1.55) -- (-247:1.55);
+  \draw[ascink!55] (-247:1.55) -- (90:1.55);
+  \draw[ascink!55] (90:1.55) -- (45:1.55);
+  \draw[ascink!55] (45:1.55) -- (0:1.55);
+  \draw[ascink!55] (22:1.55) -- (-22:1.55);
+  \draw[ascink!55] (0:1.55) -- (-45:1.55);
+  \draw[ascink!55] (-22:1.55) -- (-67:1.55);
+  \draw[ascink!55] (-45:1.55) -- (-90:1.55);
+  \draw[ascink!55] (-67:1.55) -- (-112:1.55);
+  \draw[ascink!55] (-90:1.55) -- (-135:1.55);
+  \draw[ascink!55] (-112:1.55) -- (-157:1.55);
+  \draw[ascink!55] (-135:1.55) -- (-180:1.55);
+  \draw[ascink!55] (-157:1.55) -- (-202:1.55);
+  \draw[ascink!55] (-202:1.55) -- (-247:1.55);
+  \draw[ascink!55] (-225:1.55) -- (90:1.55);
+  \draw[ascink!55] (-247:1.55) -- (67:1.55);
+  \draw[ascwarm, thick] (67:1.55) -- (-112:1.55);
+  \draw[ascwarm, thick] (-45:1.55) -- (-202:1.55);
+  \draw[ascwarm, thick] (-180:1.55) -- (0:1.55);
+  \foreach \k in {0,...,15} \fill[ascblue] ({90-22.5*\k}:1.55) circle (2.6pt);
+  \end{scope}
+  \node[font=\small] at (0,-2.05) {regular ring};
+  \node[font=\small] at (5.2,-2.05) {three links rewired};
+\end{tikzpicture}
+
+{\small Left: sixteen people, each linked to the four nearest. Getting from one side of the ring to the other takes four steps. Right: rewire just three links at random, and the shortcuts bring most pairs much closer. This is the Watts--Strogatz small world.}
+\end{minipage}
+\end{center}
+
+\textbf{Scale-free networks.} Real networks are not Poisson. The web, citation networks, and airline networks have a few enormous \emph{hubs} and a power-law degree distribution, $P(k)\propto k^{-\gamma}$ with $\gamma$ typically between $2$ and $3$. In 1999 Barab\'asi and Albert proposed a mechanism: networks grow, and new nodes prefer to link to nodes that are already well connected. This \emph{preferential attachment} generates a power law with $\gamma = 3$ (Problem~\ref{prob:ba}). Scale-free networks are robust to random failures, since most nodes are unimportant, but fragile to targeted attacks on their hubs.
+
+A curious consequence of heavy-tailed degree distributions is the \emph{friendship paradox}: on average, your friends have more friends than you do. You are more likely to be friends with someone popular, simply because popular people have more friends to be.
+
+\section{Percolation}
+
+Pour water on coffee grounds. Will it find a path through? Model the grounds as a lattice in which each site is open with probability $p$. For small $p$ the open sites form isolated clusters; above a sharp \emph{percolation threshold} $p_c$, an infinite cluster spans the system. On a square lattice $p_c\approx0.593$ for sites and exactly $\tfrac12$ for bonds. Percolation is perhaps the simplest phase transition of all --- it is purely geometric --- and near $p_c$ it shows the same power laws, fractal clusters, and universal exponents as magnets and fluids at their critical points. It models forest fires, the flow of oil through porous rock, the conductivity of composite materials, and the spread of disease.
+
+\section{Epidemics}
+
+The \textbf{SIR model} divides a population into susceptible ($s$), infected ($i$), and recovered ($r$) fractions:
+\[
+  \dot s = -\beta si,\qquad \dot i = \beta si - \gamma i,\qquad \dot r = \gamma i .
+\]
+Each infected person meets and infects others at rate $\beta$ and recovers at rate $\gamma$. The key number is the \emph{basic reproduction number} $R_0 = \beta/\gamma$, the average number of people one infected person infects in a fully susceptible population. Early on, $\dot i = (\beta - \gamma)i$, so the epidemic grows exponentially if $R_0>1$ and fizzles if $R_0<1$. A threshold, again.
+
+The epidemic grows only while each case produces more than one new case, $R_0s>1$. Once the susceptible fraction falls below $1/R_0$, the epidemic declines. If that fraction is reached by vaccination, the disease cannot spread at all:
+\[
+  \text{herd immunity threshold} = 1 - \frac{1}{R_0}.
+\]
+For influenza, with $R_0\approx1.5$, that is a third of the population; for measles, with $R_0\approx15$, it is $93\%$. On real contact networks with heavy-tailed degree distributions, highly connected ``superspreaders'' dominate transmission, and vaccinating hubs is far more effective than vaccinating at random.
+
+\section{Self-organized criticality}
+
+Critical points usually require tuning: a magnet is critical only at exactly $T_c$. Yet power laws are everywhere in nature, where no one is tuning anything. In 1987 Bak, Tang, and Wiesenfeld proposed that some systems drive \emph{themselves} to a critical state. Their model is a \emph{sandpile}. Drop grains one at a time onto a grid; when a site holds four grains, it topples, sending one grain to each neighbour, which may topple in turn. The pile builds up to a state where a single added grain can trigger an avalanche of any size, and the avalanche sizes follow a power law --- with no tuning at all. Whether real earthquakes, forest fires, extinctions, and neural activity are self-organized critical is debated, but the idea changed how physicists think about where power laws come from.
+
+\section{Collective motion}
+
+A flock of starlings turns as one, though no bird is in charge. In the \emph{Vicsek model}, self-propelled particles move at constant speed and, at each step, align their direction with the average of their neighbours plus some noise. At low noise, the whole flock spontaneously chooses a direction and moves together; at high noise it is a disordered swarm. The transition between them is a phase transition of a new kind, one that is possible only because the particles are active, constantly consuming energy. This is the field of \emph{active matter}, which also describes bacterial colonies, crowds, and the cytoskeleton of cells.
+
+Traffic is collective motion too. On a crowded road, a single driver tapping the brakes can set off a \emph{phantom jam}, a stop-and-go wave that travels backward along the highway at about $20\un{km/h}$ long after its cause has driven away. It has been reproduced by asking drivers to circle a ring road at constant speed: they cannot.
+
+\section{Econophysics}
+
+Physicists have applied statistical mechanics to markets and economies, sometimes fruitfully. Stock prices follow roughly a random walk (Bachelier proposed this in 1900, five years before Einstein's Brownian motion), but returns have fat power-law tails, and volatility clusters in time. A toy model of an economy --- agents who meet in random pairs and exchange random amounts of money, conserving the total --- relaxes to an \emph{exponential} distribution of wealth, exactly the Boltzmann distribution with money playing the role of energy (Problem~\ref{prob:money}). Adding savings or rich-get-richer effects produces a Pareto power-law tail, as observed for the wealthiest few percent in real economies. Such models illuminate mechanisms; they should not be mistaken for economies.
+
+\section{Information}
+
+Many complex systems process information, and Shannon gave it a measure in 1948. For a source emitting symbols with probabilities $p_i$, the \emph{information entropy} is
+\[
+  H = -\sum_i p_i\log_2p_i \quad\text{bits per symbol},
+\]
+the minimum average number of bits needed to encode its output. A fair coin has $H = 1$ bit; a coin that lands heads $90\%$ of the time has only $0.47$; English text, because of its redundancy, has about one bit per character rather than the $\log_2 27\approx4.75$ of random letters. Shannon's formula is Boltzmann's $S = -\kB\sum p_i\ln p_i$ in different units --- a coincidence that turned out to be deep. Information is physical: erasing it costs energy (Problem~\ref{prob:landauer} in Chapter~\ref{ch:thermo}).
+
+\section{Problems}
+
+\begin{problems}
+\prob{1}\core Compute the herd immunity threshold for $R_0 = 1.5$, $3$, and $15$. Explain why a vaccine that is $90\%$ effective cannot by itself stop measles, whatever fraction of people receive it.
+
+\prob{1} English has about $50\,000$ words in common use. If word frequencies follow Zipf's law exactly, $f_r\propto1/r$, what fraction of a typical text is made of the $100$ most common words?
+\hint{$\sum_{r=1}^{n}1/r\approx\ln n + 0.577$.}
+
+\prob{1} For a power-law probability density $P(x) = Cx^{-\alpha}$ on $x\ge1$, show that the mean is finite only for $\alpha>2$ and the variance only for $\alpha>3$. What does it mean, in practice, for a variance to be infinite?
+
+\prob{2}\core In the SIR model, divide the equations for $\dot s$ and $\dot r$ to show that $s = e^{-R_0r}$ throughout the epidemic. Deduce the \emph{final size equation} $r_\infty = 1 - e^{-R_0r_\infty}$, and solve it numerically for $R_0 = 2$. What fraction of the population is never infected?
+
+\prob{2}\core \label{prob:giant} In a large Erd\H{o}s--R\'enyi graph with mean degree $c$, let $u$ be the probability that a node is \emph{not} in the giant component. A node is outside it only if none of its neighbours are in it. Argue that $u = e^{-c(1-u)}$, so the giant component fraction $S = 1-u$ satisfies $S = 1 - e^{-cS}$. Show that a nonzero solution exists only for $c>1$. Compare with the SIR final size equation.
+
+\prob{2} Prove the friendship paradox: if you pick a random \emph{friendship} and look at one end, the expected degree is $\expval{k^2}/\expval{k}\ge\expval{k}$. When is the inequality an equality?
+
+\prob{2} The energy released by an earthquake grows as $10^{1.5M}$ with magnitude $M$, and the number of quakes falls as $10^{-M}$. Show that the total energy released by all quakes of magnitude near $M$ grows with $M$. What does this imply about which earthquakes release most of the Earth's seismic energy?
+
+\prob{2} Compute the Shannon entropy of a fair six-sided die, a fair coin, and a coin with $p = 0.9$. A compression program reduces a large English text file to $25\%$ of its size, from $8$ bits per character. Estimate the information entropy of English.
+
+\prob{3}\core \label{prob:ba} \emph{(Preferential attachment.)} A network grows by adding one node at a time, each bringing $m$ new links that attach to existing nodes with probability proportional to their degree. In a continuum approximation, the degree of node $i$ added at time $t_i$ obeys $\dd k_i/\dd t = k_i/2t$. Solve this, and deduce that the fraction of nodes with degree greater than $k$ is $\propto k^{-2}$, so $P(k)\propto k^{-3}$. Why are the oldest nodes the biggest hubs?
+
+\prob{3} \label{prob:money} \emph{(Money as energy.)} $N$ agents each start with \$100. At each step two random agents meet, pool their money, and split it at a uniformly random fraction. Total money is conserved. Argue, by analogy with the derivation of the Boltzmann distribution, that the equilibrium distribution of wealth is exponential, $P(m)\propto e^{-m/T}$, and identify the ``temperature'' $T$. Simulate it to check. Why don't real economies look like this at the top?
+
+\prob{3} \label{prob:sandpile} \emph{(The sandpile.)} Implement the Bak--Tang--Wiesenfeld sandpile on a $50\times50$ grid with grains falling off the edges. After the pile reaches its steady state, record the size of the avalanche triggered by each added grain. Plot the distribution of sizes on log-log axes and estimate its exponent. Then explain qualitatively why the pile must evolve to a state that is critical, rather than one that is too flat (no large avalanches) or too steep (huge avalanches only).
+\end{problems}
+
+\begin{reading}
+\rd{M.\ E.\ J.\ Newman, \emph{Networks}}{The standard textbook on network science, from a physicist.}
+\rd{Albert-L\'aszl\'o Barab\'asi, \emph{Network Science}}{An accessible, beautifully illustrated textbook, free online.}
+\rd{Melanie Mitchell, \emph{Complexity: A Guided Tour}}{A thoughtful popular overview of complex systems science.}
+\rd{Per Bak, \emph{How Nature Works}}{The case for self-organized criticality, by its originator.}
+\rd{P.\ W.\ Anderson, ``More Is Different'' (\emph{Science}, 1972)}{Four pages that every physicist should read.}
+\end{reading}

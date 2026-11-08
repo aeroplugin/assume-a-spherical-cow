@@ -1,0 +1,156 @@
+\chapter{Astrophysics}
+\label{ch:astro}
+
+\buildson{statistical mechanics (Chapter~\ref{ch:statmech}), nuclear physics (Chapter~\ref{ch:nuclear}), general relativity (Chapter~\ref{ch:gr})}
+
+\chapterdek{The life of stars and the violent afterlives of what they leave behind --- all deduced from light that left its source before we were born.}
+
+\begin{prototype}
+The Sun: a ball of hot gas, held together by its own gravity and held up by its own pressure. Fusion in its core supplies the heat that keeps the pressure up. Nearly everything about it --- its temperature, its size, its brightness, its lifetime --- follows from that balance, with a few lines of estimation.
+\end{prototype}
+
+Astrophysics is physics without experiments. We cannot touch a star, weigh a galaxy, or rewind a supernova; almost all we have is the light that reaches us, plus a trickle of neutrinos, cosmic rays, and, since 2015, gravitational waves. From these, astrophysicists have worked out how stars are born, live, and die, what powers the brightest objects in the universe, and how much of the universe is made of matter we cannot see. Every branch of physics in this book is needed, and the spherical cow is not a joke here; it is the main tool.
+
+\section{What light tells us}
+
+\textbf{Distance.} The nearest stars shift slightly against the background as the Earth orbits the Sun. A star with a \emph{parallax} of one arcsecond is one \emph{parsec} away, $3.26$ light-years; the nearest star, Proxima Centauri, is $1.3\un{pc}$. The Gaia satellite has measured parallaxes for over a billion stars. Farther out, astronomers use \emph{standard candles}, objects of known luminosity $L$: measuring their flux $F = L/4\pi d^2$ gives their distance. Cepheid variable stars, whose pulsation period reveals their luminosity, reach nearby galaxies; Type Ia supernovae reach across the universe (Chapter~\ref{ch:cosmo}). Each rung of this \emph{distance ladder} is calibrated by the one below.
+
+\textbf{Temperature and composition.} A star's colour gives its surface temperature through Wien's law (Chapter~\ref{ch:statmech}): red stars are about $3000\un{K}$, the Sun $5800\un{K}$, blue stars $30\,000\un{K}$. Its spectral lines (Chapter~\ref{ch:amo}) reveal its composition. In 1925 Cecilia Payne-Gaposchkin showed, using the Saha equation (Chapter~\ref{ch:plasma}), that stars are made mostly of hydrogen and helium --- a conclusion so contrary to expectation that she was pressured to call it ``almost certainly not real.''
+
+\textbf{Motion.} Doppler shifts of spectral lines give velocities along the line of sight, to better than a metre per second with modern spectrographs.
+
+\section{A star is a spherical cow}
+
+A star is in \emph{hydrostatic equilibrium}: at every radius, the pressure gradient holds up the weight of the layers above,
+\[
+  \dv{P}{r} = -\frac{Gm(r)\rho(r)}{r^2}.
+\]
+The \textbf{virial theorem} gives a powerful shortcut: for a gas in equilibrium under its own gravity, twice the thermal kinetic energy equals minus the gravitational energy, $2K = -U$. With $K\sim N\kB T$ and $U\sim -GM^2/R$, the typical internal temperature is
+\[
+  \kB T\sim\frac{GMm_p}{R}.
+\]
+For the Sun this gives about $10^7\un{K}$ (Problem~\ref{prob:virial}) --- right at the temperature needed for hydrogen fusion. That is no coincidence: a contracting ball of gas heats up until fusion switches on and halts the contraction. Stars are self-regulating thermostats.
+
+The virial theorem has a strange consequence. A star that loses energy contracts and gets \emph{hotter}: it has a negative heat capacity. This is why stars are stable. If fusion runs too fast, the star expands, cools, and fusion slows down.
+
+In the nineteenth century, before nuclear physics, Kelvin and Helmholtz proposed that the Sun shines by slowly contracting, converting gravitational energy into heat. The available energy is $\sim GM^2/R$, which at the Sun's luminosity lasts only about $30$ million years. Geologists and Darwin needed billions. The resolution, found in the 1930s by Bethe and others, was nuclear fusion (Chapter~\ref{ch:nuclear}): converting $0.7\%$ of the mass of hydrogen into energy, the Sun can shine for about ten billion years.
+
+\section{Getting the energy out}
+
+Energy produced in the Sun's core takes a long time to escape. A photon in the dense interior travels only about a millimetre before being absorbed and re-emitted in a random direction. To random-walk $7\times10^{8}\un{m}$ out takes $(R/\ell)^2\sim10^{24}$ steps and tens of thousands of years (Problem~\ref{prob:photon-walk}). The energy reaching you as sunlight today left the core before the end of the last ice age. In the outer third of the Sun, the gas becomes opaque enough that convection takes over, carrying heat up in boiling cells visible as the granulation of the surface. Neutrinos, by contrast, escape the core in two seconds and reach us in eight minutes: they show us the Sun's core as it is now.
+
+Combining hydrostatic equilibrium with the physics of radiative diffusion gives a steep \emph{mass--luminosity relation} for main-sequence stars, roughly $L\propto M^{3.5}$. A star's lifetime is its fuel ($\propto M$) divided by its burn rate ($\propto L$), so $t\propto M^{-2.5}$. Massive stars live fast and die young: a star of $10$ solar masses lives about $30$ million years, while a red dwarf of $0.1$ solar masses will shine for trillions.
+
+\section{The Hertzsprung--Russell diagram}
+
+Plot stars by luminosity against surface temperature and they fall into a few groups, not a random scatter. Most lie along the \emph{main sequence}, the long middle age of hydrogen burning, running from hot, bright, massive stars to cool, dim, small ones. Above it lie \emph{giants} and \emph{supergiants}, bright but cool, so they must be enormous. Below it lie \emph{white dwarfs}, hot but faint, so they must be tiny. The HR diagram is the map on which stellar evolution is traced, and every star moves across it as it ages.
+
+\begin{center}
+\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}
+\begin{axis}[asc, width=0.78\linewidth, height=0.6\linewidth, xmode=log, ymode=log, x dir=reverse,
+  xmin=2500, xmax=40000, ymin=1e-4, ymax=3e6, axis line style={-}, axis lines=box,
+  xlabel={surface temperature (K)}, ylabel={luminosity ($L_\odot$)},
+  xtick={3000,5000,10000,20000,40000}, xticklabels={$3000$,$5000$,$10\,000$,$20\,000$,$40\,000$},
+  ytick={1e-4,1e-2,1,1e2,1e4,1e6}, yticklabels={$10^{-4}$,$10^{-2}$,$1$,$10^{2}$,$10^{4}$,$10^{6}$}, clip mode=individual]
+  \addplot[ascink!35, dashed, domain=2600:40000, samples=20] {0.0001*(x/5772)^4};
+  \node[ascink!60, font=\scriptsize, anchor=south] at (axis cs:26000,5.764e-02) {$0.01\,R_\odot$};
+  \addplot[ascink!35, dashed, domain=2600:40000, samples=20] {1*(x/5772)^4};
+  \node[ascink!60, font=\scriptsize, anchor=south] at (axis cs:2900,8.921e-02) {$R_\odot$};
+  \addplot[ascink!35, dashed, domain=2600:40000, samples=20] {10000*(x/5772)^4};
+  \node[ascink!60, font=\scriptsize, anchor=south] at (axis cs:2900,8.921e+02) {$100\,R_\odot$};
+  \addplot[fill=ascblue!25, draw=ascblue!60] coordinates {(2800.0,1.542e-02) (2949.8,2.244e-02) (3107.6,3.265e-02) (3273.9,4.752e-02) (3449.1,6.917e-02) (3633.6,1.007e-01) (3828.0,1.465e-01) (4032.8,2.132e-01) (4248.6,3.103e-01) (4475.9,4.516e-01) (4715.4,6.573e-01) (4967.6,9.566e-01) (5233.4,1.392e+00) (5513.4,2.026e+00) (5808.4,2.949e+00) (6119.2,4.292e+00) (6446.6,6.246e+00) (6791.5,9.090e+00) (7154.8,1.323e+01) (7537.6,1.925e+01) (7940.9,2.802e+01) (8365.8,4.078e+01) (8813.4,5.936e+01) (9284.9,8.639e+01) (9781.7,1.257e+02) (10305.0,1.830e+02) (10856.3,2.663e+02) (11437.2,3.876e+02) (12049.1,5.641e+02) (12693.8,8.209e+02) (13372.9,1.195e+03) (14088.4,1.739e+03) (14842.2,2.531e+03) (15636.3,3.683e+03) (16472.8,5.360e+03) (17354.2,7.801e+03) (18282.7,1.135e+04) (19260.8,1.652e+04) (20291.3,2.405e+04) (21377.0,3.500e+04) (22520.7,5.094e+04) (23725.6,7.413e+04) (24995.0,1.079e+05) (26332.3,1.570e+05) (27741.2,2.285e+05) (29225.4,3.326e+05) (30789.0,4.841e+05) (32436.3,7.045e+05) (34171.7,1.025e+06) (36000.0,1.492e+06) (36000.0,1.879e+05) (34171.7,1.291e+05) (32436.3,8.869e+04) (30789.0,6.094e+04) (29225.4,4.187e+04) (27741.2,2.877e+04) (26332.3,1.977e+04) (24995.0,1.358e+04) (23725.6,9.333e+03) (22520.7,6.413e+03) (21377.0,4.406e+03) (20291.3,3.028e+03) (19260.8,2.080e+03) (18282.7,1.429e+03) (17354.2,9.821e+02) (16472.8,6.748e+02) (15636.3,4.637e+02) (14842.2,3.186e+02) (14088.4,2.189e+02) (13372.9,1.504e+02) (12693.8,1.033e+02) (12049.1,7.101e+01) (11437.2,4.879e+01) (10856.3,3.353e+01) (10305.0,2.304e+01) (9781.7,1.583e+01) (9284.9,1.088e+01) (8813.4,7.473e+00) (8365.8,5.134e+00) (7940.9,3.528e+00) (7537.6,2.424e+00) (7154.8,1.666e+00) (6791.5,1.144e+00) (6446.6,7.863e-01) (6119.2,5.403e-01) (5808.4,3.712e-01) (5513.4,2.551e-01) (5233.4,1.753e-01) (4967.6,1.204e-01) (4715.4,8.275e-02) (4475.9,5.686e-02) (4248.6,3.907e-02) (4032.8,2.684e-02) (3828.0,1.844e-02) (3633.6,1.267e-02) (3449.1,8.708e-03) (3273.9,5.983e-03) (3107.6,4.111e-03) (2949.8,2.825e-03) (2800.0,1.941e-03)} -- cycle;
+  \addplot[fill=ascwarm!30, draw=ascwarm!70] coordinates {(3695.9,9.934e+02) (3654.3,9.827e+02) (3619.8,9.535e+02) (3592.6,9.077e+02) (3572.9,8.483e+02) (3560.7,7.788e+02) (3556.2,7.032e+02) (3559.4,6.252e+02) (3570.2,5.479e+02) (3588.6,4.741e+02) (3614.4,4.057e+02) (3647.7,3.439e+02) (3688.1,2.894e+02) (3735.4,2.422e+02) (3789.4,2.019e+02) (3849.7,1.682e+02) (3915.9,1.401e+02) (3987.4,1.171e+02) (4063.7,9.827e+01) (4144.1,8.305e+01) (4227.8,7.079e+01) (4314.1,6.098e+01) (4402.0,5.317e+01) (4490.5,4.699e+01) (4578.5,4.217e+01) (4664.9,3.846e+01) (4748.6,3.569e+01) (4828.3,3.373e+01) (4902.9,3.249e+01) (4971.3,3.189e+01) (5032.4,3.193e+01) (5085.1,3.259e+01) (5128.6,3.391e+01) (5162.2,3.596e+01) (5185.3,3.882e+01) (5197.4,4.264e+01) (5198.4,4.760e+01) (5188.2,5.394e+01) (5167.1,6.196e+01) (5135.3,7.202e+01) (5093.5,8.457e+01) (5042.3,1.002e+02) (4982.6,1.194e+02) (4915.4,1.429e+02) (4841.8,1.716e+02) (4762.9,2.061e+02) (4679.8,2.470e+02) (4593.8,2.950e+02) (4506.0,3.504e+02) (4417.5,4.129e+02) (4329.5,4.820e+02) (4242.9,5.563e+02) (4158.6,6.338e+02) (4077.5,7.118e+02) (4000.5,7.869e+02) (3928.1,8.554e+02) (3860.9,9.134e+02) (3799.6,9.575e+02) (3744.5,9.848e+02) (3695.9,9.934e+02)} -- cycle;
+  \addplot[fill=ascpurple!22, draw=ascpurple!60] coordinates {(28183.8,1.413e+05) (28018.9,1.531e+05) (27531.6,1.659e+05) (26744.2,1.793e+05) (25691.3,1.934e+05) (24417.4,2.077e+05) (22973.1,2.222e+05) (21411.6,2.365e+05) (19784.7,2.502e+05) (18140.7,2.631e+05) (16521.4,2.746e+05) (14961.4,2.845e+05) (13486.9,2.924e+05) (12116.6,2.980e+05) (10861.8,3.013e+05) (9727.9,3.019e+05) (8715.1,3.000e+05) (7819.9,2.955e+05) (7036.3,2.887e+05) (6356.4,2.798e+05) (5771.8,2.690e+05) (5273.7,2.568e+05) (4853.6,2.435e+05) (4503.8,2.294e+05) (4217.0,2.150e+05) (3987.4,2.005e+05) (3809.8,1.863e+05) (3680.1,1.725e+05) (3595.3,1.594e+05) (3553.3,1.471e+05) (3553.3,1.357e+05) (3595.3,1.252e+05) (3680.1,1.157e+05) (3809.8,1.071e+05) (3987.4,9.950e+04) (4217.0,9.281e+04) (4503.8,8.697e+04) (4853.6,8.195e+04) (5273.7,7.770e+04) (5771.8,7.417e+04) (6356.4,7.132e+04) (7036.3,6.911e+04) (7819.9,6.752e+04) (8715.1,6.651e+04) (9727.9,6.609e+04) (10861.8,6.623e+04) (12116.6,6.694e+04) (13486.9,6.824e+04) (14961.4,7.014e+04) (16521.4,7.267e+04) (18140.7,7.585e+04) (19784.7,7.974e+04) (21411.6,8.436e+04) (22973.1,8.978e+04) (24417.4,9.604e+04) (25691.3,1.032e+05) (26744.2,1.113e+05) (27531.6,1.203e+05) (28018.9,1.303e+05) (28183.8,1.413e+05)} -- cycle;
+  \addplot[fill=ascink!15, draw=ascink!50] coordinates {(21489.5,1.921e-02) (21175.5,1.905e-02) (20751.0,1.847e-02) (20227.6,1.751e-02) (19618.9,1.624e-02) (18940.0,1.475e-02) (18206.8,1.314e-02) (17435.3,1.149e-02) (16641.0,9.876e-03) (15838.6,8.361e-03) (15041.1,6.985e-03) (14260.2,5.769e-03) (13505.7,4.722e-03) (12785.6,3.839e-03) (12106.2,3.106e-03) (11472.1,2.508e-03) (10886.6,2.026e-03) (10351.8,1.641e-03) (9868.8,1.336e-03) (9437.7,1.095e-03) (9058.2,9.070e-04) (8729.6,7.600e-04) (8451.0,6.457e-04) (8221.3,5.572e-04) (8039.5,4.893e-04) (7904.7,4.378e-04) (7816.0,3.997e-04) (7773.0,3.726e-04) (7775.4,3.551e-04) (7823.3,3.461e-04) (7916.8,3.451e-04) (8056.7,3.520e-04) (8243.5,3.672e-04) (8478.4,3.916e-04) (8762.3,4.267e-04) (9096.2,4.744e-04) (9481.2,5.377e-04) (9917.8,6.204e-04) (10406.4,7.274e-04) (10946.7,8.651e-04) (11537.5,1.042e-03) (12176.6,1.267e-03) (12860.6,1.554e-03) (13584.7,1.917e-03) (14342.4,2.372e-03) (15125.6,2.938e-03) (15924.1,3.634e-03) (16726.4,4.476e-03) (17518.9,5.480e-03) (18287.1,6.652e-03) (19015.3,7.987e-03) (19687.5,9.469e-03) (20287.8,1.106e-02) (20801.2,1.271e-02) (21214.4,1.434e-02) (21516.0,1.587e-02) (21697.8,1.720e-02) (21754.4,1.825e-02) (21684.3,1.894e-02) (21489.5,1.921e-02)} -- cycle;
+  \node[font=\small, rotate=-33, ascblue!80!black] at (axis cs:12000,2500) {main sequence};
+  \node[font=\small, ascwarm!80!black] at (axis cs:4300,5e3) {red giants};
+  \node[font=\small, ascpurple] at (axis cs:10000,1.4e5) {supergiants};
+  \node[font=\small] at (axis cs:9500,1.2e-3) {white dwarfs};
+  \node[font=\normalsize] at (axis cs:5772,1) {$\odot$};
+  \node[font=\scriptsize, anchor=west] at (axis cs:5300,1) {Sun};
+\end{axis}
+\end{tikzpicture}
+
+{\small The Hertzsprung--Russell diagram, sketched. Most stars, the Sun among them, lie on the main sequence, where luminosity rises steeply with temperature. The dashed lines join stars of equal radius, since $L\propto R^2T^4$: giants are big and cool, white dwarfs small and hot. By astronomical tradition, temperature increases to the left.}
+\end{minipage}
+\end{center}
+
+\section{How stars live and die}
+
+When a star exhausts the hydrogen in its core, the core contracts and heats, hydrogen burns in a shell around it, and the envelope swells enormously: the star becomes a \emph{red giant}. In about five billion years the Sun will swell past the orbit of Venus. The core eventually becomes hot enough to fuse helium into carbon and oxygen. Then the fates diverge.
+
+\textbf{Low-mass stars} like the Sun never get hot enough to fuse carbon. They puff off their outer layers as a glowing \emph{planetary nebula} and leave behind their exposed core: a \emph{white dwarf}, the mass of the Sun packed into the size of the Earth, which slowly cools forever.
+
+\textbf{Massive stars}, above about eight solar masses, burn through successively heavier fuels --- carbon, neon, oxygen, silicon --- in shells like an onion, each stage faster than the last: the final silicon burning takes about a day. The core becomes iron, from which no more energy can be extracted by fusion (Chapter~\ref{ch:nuclear}). With nothing to hold it up, the iron core, more massive than the Sun, collapses in less than a second, from the size of the Earth to a ball of neutrons twenty kilometres across. Infalling matter rebounds off the stiff neutron core, and a flood of neutrinos carrying $99\%$ of the energy helps blast the rest of the star apart: a \emph{core-collapse supernova}, briefly as bright as a whole galaxy. In 1987, a supernova in the nearby Large Magellanic Cloud was seen first in neutrinos: two dozen were caught by detectors in Japan and the United States, confirming the theory. Supernovae seed the galaxy with the heavy elements made in the star.
+
+\section{Compact objects}
+
+\textbf{White dwarfs} are held up not by thermal pressure but by \emph{electron degeneracy pressure}, the resistance of electrons to being squeezed into the same states (Chapters~\ref{ch:statmech} and~\ref{ch:qm}). Balancing degeneracy pressure against gravity gives a strange result: more massive white dwarfs are \emph{smaller}, $R\propto M^{-1/3}$ (Problem~\ref{prob:wd}). As the mass increases, the electrons are squeezed until they move at nearly the speed of light, and their pressure can no longer keep up with gravity. In 1930, on a ship to England, the nineteen-year-old Subrahmanyan Chandrasekhar found that there is a maximum mass,
+\[
+  M_{\text{Ch}}\approx1.4\,\Msun,
+\]
+above which no white dwarf can exist (Problem~\ref{prob:chandra}). It is built from fundamental constants: $M_{\text{Ch}}\sim(\hbar c/G)^{3/2}/m_p^2$. A white dwarf in a binary that accretes matter past this limit is destroyed in a thermonuclear explosion, a \emph{Type Ia supernova}. Because they all explode at nearly the same mass, these are standard candles, and they revealed the accelerating expansion of the universe (Chapter~\ref{ch:cosmo}).
+
+\textbf{Neutron stars} are what remains after a core collapse, held up by neutron degeneracy and nuclear forces: one and a half solar masses in a sphere about $12\un{km}$ across, the density of an atomic nucleus. Conservation of angular momentum spins them up (Chapter~\ref{ch:newton}) and conservation of magnetic flux (Chapter~\ref{ch:plasma}) amplifies their fields to $10^8\un{T}$ or more. A rotating neutron star whose magnetic axis sweeps a beam of radio waves past the Earth is seen as a \emph{pulsar}, ticking with a regularity rivalling atomic clocks. The first was found in 1967 by the graduate student Jocelyn Bell Burnell, who noticed a ``bit of scruff'' on her chart recorder. The fastest spins $716$ times a second.
+
+Above about two to three solar masses, nothing can resist gravity, and the core collapses to a \textbf{black hole} (Chapter~\ref{ch:gr}).
+
+\section{Accretion and the brightest things in the universe}
+
+Matter falling onto a compact object of mass $M$ and radius $R$ releases gravitational energy $GMm/R$ per mass $m$. For a neutron star or black hole this is $10$ to $40\%$ of $mc^2$, dwarfing nuclear fusion. Infalling gas, carrying angular momentum, forms an \emph{accretion disk} that heats up to millions of degrees and glows in X-rays.
+
+There is a limit to how bright an accreting object can be. Radiation pushes outward on the infalling gas, mainly by scattering off electrons, while gravity pulls inward, mainly on protons. The two balance at the \textbf{Eddington luminosity}
+\[
+  L_{\text{Edd}} = \frac{4\pi GMm_pc}{\sigma_T}\approx3\times10^{4}\,\Lsun\,\frac{M}{\Msun},
+\]
+where $\sigma_T$ is the Thomson cross-section for scattering light off an electron (Problem~\ref{prob:eddington}). At the centres of galaxies lurk \emph{supermassive black holes} of millions to billions of solar masses. When they feed, they become \emph{quasars} and other \emph{active galactic nuclei}, outshining their entire host galaxies from a region the size of the solar system, and often launching jets of plasma at nearly the speed of light across hundreds of thousands of light-years.
+
+\section{Galaxies and dark matter}
+
+Our galaxy, the Milky Way, is a disk of a few hundred billion stars, $30$ kiloparsecs across, with the Sun about $8\un{kpc}$ from the centre, orbiting at $220\un{km/s}$ once every $230$ million years. If most of the galaxy's mass were in its visible stars, concentrated toward the centre, the orbital speeds of stars and gas far from the centre should fall off like Kepler's planets, $v\propto r^{-1/2}$. In the 1970s Vera Rubin and Kent Ford measured the rotation curves of spiral galaxies, and radio astronomers traced the $21$-cm line of hydrogen far beyond the visible disks (Chapter~\ref{ch:amo}). The curves are \emph{flat}: orbital speeds stay constant out to great distances. The enclosed mass must keep growing in proportion to radius (Problem~\ref{prob:rotation}), far beyond where the stars thin out. Galaxies are embedded in vast halos of invisible \emph{dark matter}, outweighing the visible matter by about five to one. Fritz Zwicky had seen the same thing in clusters of galaxies in 1933. What dark matter is remains one of the great open questions in physics (Chapters~\ref{ch:cosmo} and~\ref{ch:particle}).
+
+\section{Exoplanets}
+
+In 1995 Michel Mayor and Didier Queloz detected the tiny Doppler wobble of the star 51~Pegasi, pulled back and forth by a planet half the mass of Jupiter orbiting in just four days --- a ``hot Jupiter'' that no theory had predicted. Since then over five thousand \emph{exoplanets} have been found. The \emph{radial velocity} method measures a star's wobble; the \emph{transit} method, used by the Kepler and TESS satellites, detects the slight dimming as a planet crosses its star's face, by a fraction $(R_p/R_*)^2$ (Problem~\ref{prob:transit}). Combining both gives a planet's mass and radius, hence its density, and transits even allow the light filtering through a planet's atmosphere to be analysed for its molecules. Planets turn out to be common, and many stars have planets in their \emph{habitable zones}, where liquid water could exist.
+
+\section{The high-energy universe}
+
+The universe also speaks in particles. \emph{Cosmic rays}, mostly protons and nuclei, arrive with energies up to $10^{20}\un{eV}$ --- the kinetic energy of a well-hit tennis ball in a single proton --- accelerated by shock waves in supernova remnants and other, still uncertain, sources. \emph{Gamma-ray bursts}, flashes of gamma rays that briefly outshine everything else, come from the collapse of massive stars and the mergers of neutron stars. The IceCube detector, a cubic kilometre of Antarctic ice instrumented with light sensors, catches high-energy neutrinos from distant galaxies. And since 2015, gravitational waves (Chapter~\ref{ch:gw}) have added a new sense entirely: \emph{multi-messenger astronomy}.
+
+\section{Problems}
+
+\begin{problems}
+\prob{1}\core A star has a parallax of $0.10$ arcseconds. How far away is it in parsecs and light-years? Gaia measures parallaxes to about $20$ micro-arcseconds. How far can it measure distances to $10\%$ accuracy?
+
+\prob{1}\core The Sun converts about $10\%$ of its hydrogen to helium during its main-sequence life, releasing $0.7\%$ of the rest mass energy. Estimate its main-sequence lifetime from its mass ($2\times10^{30}\un{kg}$, about $70\%$ hydrogen) and luminosity ($3.8\times10^{26}\un{W}$).
+
+\prob{1} Estimate the Kelvin--Helmholtz time $GM^2/(RL)$ for the Sun. Why did this estimate cause a crisis in nineteenth-century science?
+
+\prob{2}\core \label{prob:virial} Use the virial theorem to estimate the Sun's central temperature from its mass and radius ($7\times10^{8}\un{m}$), treating it as a gas of protons and electrons. Compare with the thermal energy needed for protons to fuse classically ($\sim1\un{MeV}$), and with the quantum-mechanical requirement (Problem~\ref{prob:gamow}).
+
+\prob{2} \label{prob:photon-walk} A photon in the solar interior has a mean free path of about $1\un{mm}$. Estimate how many steps it needs to random-walk out of the Sun, and how long that takes. How does this compare with the neutrino travel time?
+
+\prob{2} Using $L\propto M^{3.5}$ and the Sun's lifetime of $10^{10}$ years, estimate the main-sequence lifetimes of stars of $10$, $3$, and $0.2$ solar masses. Which of these could have hosted planets on which life evolved?
+
+\prob{2}\core \label{prob:eddington} Derive the Eddington luminosity by balancing the outward radiation force on an electron, $\sigma_TL/(4\pi r^2c)$, against the inward gravitational force on a proton (the two are bound together electrostatically), using $\sigma_T = 6.65\times10^{-29}\un{m^2}$. Evaluate it for a black hole of $10^9$ solar masses, and compare with the luminosity of a large galaxy, about $10^{11}\Lsun$.
+
+\prob{2} \label{prob:wd} \emph{(White dwarfs shrink as they grow.)} For non-relativistic degenerate electrons, the pressure scales as $P\sim\hbar^2n^{5/3}/m_e$ with $n\propto M/R^3$. The pressure needed to support a star scales as $P\sim GM^2/R^4$. Show that $R\propto M^{-1/3}$, and estimate the radius of a one-solar-mass white dwarf (about $2$ electrons per proton plus neutron pair, i.e.\ $n\approx\rho/2m_p$).
+
+\prob{2}\core \label{prob:rotation} Stars and gas in a galaxy orbit at a constant $v = 220\un{km/s}$ from $8\un{kpc}$ out to $50\un{kpc}$. Show that the mass enclosed within radius $r$ is $M(r) = v^2r/G$, and compute it at both radii. The visible stars and gas total about $6\times10^{10}$ solar masses. What fraction of the mass within $50\un{kpc}$ is dark?
+
+\prob{2} \label{prob:transit} When Jupiter transits the Sun, by what fraction does the Sun dim? When the Earth does? ($R_\odot = 7.0\times10^{5}\un{km}$, $R_J = 7.0\times10^{4}\un{km}$, $R_\oplus = 6.4\times10^{3}\un{km}$.) Why was it so much harder to find Earth-sized planets?
+
+\prob{3}\core \label{prob:chandra} \emph{(The Chandrasekhar mass.)} For ultra-relativistic degenerate electrons, each electron's energy is $pc$ rather than $p^2/2m$, so the pressure scales as $P\sim\hbar cn^{4/3}$. Show that this pressure and the gravitational requirement $GM^2/R^4$ now scale the \emph{same} way with $R$, so they cannot balance at any particular radius. Instead there is a critical mass, $M\sim(\hbar c/G)^{3/2}/m_p^2$. Evaluate this. Explain physically why a white dwarf heavier than this must collapse.
+
+\prob{3} \emph{(Why stars have the masses they do.)} Below about $0.08\,\Msun$, a contracting ball of gas becomes electron-degenerate before its core reaches fusion temperatures, so it never ignites: a brown dwarf. Above about $100$--$150\,\Msun$, a star's luminosity would approach the Eddington limit. Using the virial temperature and the mass--luminosity relation, explain both limits qualitatively, and why the range of stellar masses spans only a factor of about $10^3$.
+
+\prob{3} \emph{(Making a pulsar.)} The iron core of a massive star, about the size of the Earth, rotates once per hour and has a magnetic field of about $100\un{T}$ before collapsing to a neutron star of radius $12\un{km}$. Assuming angular momentum and magnetic flux are conserved, estimate the neutron star's spin period and magnetic field. Then estimate the maximum spin rate, at which the equator would move fast enough to fly off, and compare with the fastest known pulsar.
+\end{problems}
+
+\begin{reading}
+\rd{Carroll and Ostlie, \emph{An Introduction to Modern Astrophysics}}{The comprehensive undergraduate text, affectionately known as ``the big orange book.''}
+\rd{Ryden and Peterson, \emph{Foundations of Astrophysics}}{A clear, modern, more concise alternative.}
+\rd{Dan Maoz, \emph{Astrophysics in a Nutshell}}{A compact, physics-driven tour with excellent order-of-magnitude problems.}
+\rd{A.\ C.\ Phillips, \emph{The Physics of Stars}}{A short, careful book on how stars work.}
+\end{reading}

@@ -1,0 +1,185 @@
+% ==========================================================
+%  preamble.tex --- Assume a Spherical Cow
+% ==========================================================
+
+% ---------------- fonts & encoding ----------------
+\usepackage{amsmath,amsthm}
+\usepackage{fontspec}
+\usepackage[mathrm=sym]{unicode-math}
+\setmainfont{texgyrepagella}[Extension=.otf,UprightFont=*-regular,BoldFont=*-bold,
+  ItalicFont=*-italic,BoldItalicFont=*-bolditalic]
+\setsansfont{texgyreheros}[Extension=.otf,UprightFont=*-regular,BoldFont=*-bold,
+  ItalicFont=*-italic,BoldItalicFont=*-bolditalic,Scale=MatchLowercase]
+\setmonofont{lmmono10-regular.otf}
+\setmathfont{texgyrepagella-math.otf}
+\usepackage{microtype}
+
+% ---------------- page ----------------
+\usepackage[letterpaper,top=1in,bottom=1in,inner=1.15in,outer=1.05in,headsep=18pt,headheight=15pt]{geometry}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{graphicx}
+\usepackage[most]{tcolorbox}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,backgrounds,calc,positioning,decorations.pathmorphing,decorations.pathreplacing,decorations.markings,shapes.geometric}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18,
+  asc/.style={axis lines=left, axis line style={-{Stealth[length=5pt]}}, tick align=outside,
+    tick label style={font=\footnotesize}, label style={font=\small},
+    legend style={draw=none, fill=white, fill opacity=0.85, text opacity=1, font=\footnotesize},
+    every axis plot/.append style={line join=round}}}
+\usepackage{listings}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+
+% ---------------- palette ----------------
+\definecolor{ascblue}{HTML}{2B4EC0}
+\definecolor{ascwarm}{HTML}{B23A2B}
+\definecolor{ascpurple}{HTML}{7A3FB0}
+\definecolor{ascbluebg}{HTML}{EEF1FC}
+\definecolor{ascwarmbg}{HTML}{FAEEEB}
+\definecolor{ascgraybg}{HTML}{F4F3EF}
+\definecolor{ascrule}{HTML}{D9D6CC}
+\definecolor{ascink}{HTML}{20242A}
+
+\usepackage[colorlinks=true,linkcolor=ascblue,urlcolor=ascblue,citecolor=ascblue,bookmarksnumbered=true]{hyperref}
+
+% ---------------- headings ----------------
+\titleformat{\chapter}[display]
+  {\normalfont\sffamily}
+  {\large\color{ascblue}\MakeUppercase{\chaptertitlename}\ \thechapter}
+  {4pt}
+  {\Huge\bfseries\rmfamily\color{ascink}}
+\titlespacing*{\chapter}{0pt}{10pt}{22pt}
+\titleformat{\section}
+  {\normalfont\Large\bfseries}{\color{ascblue}\S\thesection}{0.6em}{}
+\titleformat{\subsection}
+  {\normalfont\large\bfseries}{\color{ascblue}\thesubsection}{0.6em}{}
+\setcounter{secnumdepth}{2}
+\setcounter{tocdepth}{1}
+
+% ---------------- running heads ----------------
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+\renewcommand{\sectionmark}[1]{\markright{#1}}
+\fancyhead[LE]{\small\sffamily\thepage\qquad\textit{Assume a Spherical Cow}}
+\fancyhead[RO]{\small\sffamily\leftmark\qquad\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\fancypagestyle{plain}{\fancyhf{}\fancyfoot[C]{\small\sffamily\thepage}\renewcommand{\headrulewidth}{0pt}}
+
+% ---------------- theorem-like environments ----------------
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[chapter]
+\newtheorem{example}[definition]{Example}
+\newtheorem{exercise}[definition]{Exercise}
+\newtheorem{question}[definition]{Question}
+\newtheorem{theorem}[definition]{Theorem}
+\newtheorem{law}[definition]{Law}
+\newtheorem{proposition}[definition]{Proposition}
+\theoremstyle{remark}
+\newtheorem{remark}[definition]{Remark}
+
+\tcolorboxenvironment{definition}{enhanced,breakable,colback=white,colframe=ascblue!55,
+  boxrule=0.5pt,arc=2pt,left=7pt,right=7pt,top=5pt,bottom=5pt,before skip=10pt,after skip=10pt}
+\tcolorboxenvironment{theorem}{enhanced,breakable,colback=ascbluebg,colframe=ascblue!55,
+  boxrule=0.5pt,arc=2pt,left=7pt,right=7pt,top=5pt,bottom=5pt,before skip=10pt,after skip=10pt}
+\tcolorboxenvironment{law}{enhanced,breakable,colback=ascbluebg,colframe=ascblue!55,
+  boxrule=0.5pt,arc=2pt,left=7pt,right=7pt,top=5pt,bottom=5pt,before skip=10pt,after skip=10pt}
+\tcolorboxenvironment{proposition}{enhanced,breakable,colback=ascbluebg,colframe=ascblue!55,
+  boxrule=0.5pt,arc=2pt,left=7pt,right=7pt,top=5pt,bottom=5pt,before skip=10pt,after skip=10pt}
+\tcolorboxenvironment{example}{enhanced,breakable,colback=ascgraybg,colframe=ascgraybg,
+  boxrule=0pt,arc=2pt,left=7pt,right=7pt,top=5pt,bottom=5pt,before skip=10pt,after skip=10pt}
+
+% prototype box (red) --- the "prototypical example" convention
+\newtcolorbox{prototype}[1][PROTOTYPE]{enhanced,breakable,sharp corners,
+  colback=ascwarmbg,colframe=ascwarmbg,boxrule=0pt,
+  borderline west={3pt}{0pt}{ascwarm},
+  left=12pt,right=10pt,top=7pt,bottom=7pt,before skip=10pt,after skip=12pt,
+  fonttitle=\sffamily\bfseries\footnotesize,coltitle=ascwarm,
+  attach title to upper={\quad},title={#1}}
+
+% key-idea box (blue)
+\newtcolorbox{keyidea}[1][KEY IDEA]{enhanced,breakable,arc=4pt,
+  colback=ascbluebg,colframe=ascbluebg,boxrule=0pt,
+  left=10pt,right=10pt,top=7pt,bottom=7pt,before skip=10pt,after skip=12pt,
+  fonttitle=\sffamily\bfseries\footnotesize,coltitle=ascblue,
+  attach title to upper={\quad},title={#1}}
+
+% ---------------- chapter furniture ----------------
+\newcommand{\buildson}[1]{\noindent{\small\sffamily\color{gray}{\footnotesize BUILDS ON}\enspace #1}\par\medskip}
+\newcommand{\chapterdek}[1]{{\noindent\large\itshape #1\par}\bigskip}
+
+% ---------------- difficulty: orders of perturbation ----------------
+\definecolor{ordone}{HTML}{2B4EC0}
+\definecolor{ordtwo}{HTML}{7A3FB0}
+\definecolor{nonpert}{HTML}{B23A2B}
+\newcommand{\diffmark}[1]{%
+  \ifcase#1\or
+    {\color{ordone}$\mathcal{O}(\epsilon)$}%
+  \or
+    {\color{ordtwo}$\mathcal{O}(\epsilon^{2})$}%
+  \or
+    {\color{nonpert}$e^{-1/\epsilon}$}%
+  \fi}
+\newenvironment{problems}{%
+  \begin{enumerate}[label=\textbf{\thechapter.\arabic*},ref=\thechapter.\arabic*,
+    leftmargin=3.1em,labelsep=0.6em,itemsep=9pt,topsep=6pt]}
+  {\end{enumerate}}
+\newcommand{\prob}[1]{\item \diffmark{#1}\quad}
+\newcommand{\core}{\tikz[baseline=-0.55ex]\node[star,star points=5,star point ratio=2.3,
+  fill=ascblue,inner sep=1.15pt]{};\ }
+\newcommand{\aside}{\textcolor{gray}{$\dagger$}\ }
+\newcommand{\hint}[1]{\par\smallskip{\small\textit{Hint:} #1}}
+
+% ---------------- hints & solutions appendices ----------------
+% \solchapter{qm} -> heading "14  Quantum mechanics"; \sol{qm}{5} -> "14.5"
+\newcommand{\solchapter}[1]{\section*{{\color{ascblue}\ref*{ch:#1}}\quad\nameref*{ch:#1}}}
+\newcommand{\sol}[2]{\par\smallskip\noindent\textbf{\ref*{ch:#1}.#2}\enspace}
+\newcommand{\solfile}[1]{\IfFileExists{backmatter/solutions/#1.tex}{\input{backmatter/solutions/#1}}{}}
+
+% ---------------- further reading ----------------
+\newenvironment{reading}{%
+  \section*{Further reading}
+  \begin{itemize}[leftmargin=1.4em,itemsep=4pt]}
+  {\end{itemize}}
+\newcommand{\rd}[2]{\item \textbf{#1} --- #2}
+
+% ---------------- code ----------------
+\lstset{basicstyle=\ttfamily\small,columns=fullflexible,keepspaces=true,
+  frame=single,rulecolor=\color{ascrule},backgroundcolor=\color{ascgraybg},
+  xleftmargin=1em,framexleftmargin=0.6em,language=Python,
+  keywordstyle=\color{ascblue}\bfseries,commentstyle=\color{gray}\itshape,
+  stringstyle=\color{ascwarm},showstringspaces=false,breaklines=true}
+
+% ---------------- math macros ----------------
+\newcommand{\dd}{\mathop{}\!\mathrm{d}}
+\newcommand{\dv}[2]{\frac{\mathrm{d}#1}{\mathrm{d}#2}}
+\newcommand{\pdv}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\ket}[1]{\lvert #1\rangle}
+\newcommand{\bra}[1]{\langle #1\rvert}
+\newcommand{\braket}[2]{\langle #1\vert #2\rangle}
+\newcommand{\expval}[1]{\langle #1\rangle}
+\newcommand{\vb}[1]{\mathbf{#1}}
+\newcommand{\vu}[1]{\hat{\mathbf{#1}}}
+\newcommand{\un}[1]{\,\mathrm{#1}}
+\newcommand{\order}[1]{\mathcal{O}\!\left(#1\right)}
+\newcommand{\abs}[1]{\left\lvert #1\right\rvert}
+\newcommand{\norm}[1]{\left\lVert #1\right\rVert}
+\newcommand{\grad}{\nabla}
+\newcommand{\curl}{\nabla\times}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\Msun}{M_{\odot}}
+\newcommand{\Rsun}{R_{\odot}}
+\newcommand{\Lsun}{L_{\odot}}
+\newcommand{\kB}{k_{\mathrm{B}}}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\sgn}{sgn}
+
+% ---------------- misc ----------------
+\setlength{\parskip}{0.35em}
+\setlength{\parindent}{1.2em}
+\raggedbottom

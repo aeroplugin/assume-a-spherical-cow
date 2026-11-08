@@ -1,0 +1,167 @@
+\chapter{Continuum mechanics and acoustics}
+\label{ch:continuum}
+
+\buildson{waves (Chapter~\ref{ch:waves}), fluid dynamics (Chapter~\ref{ch:fluids})}
+
+\chapterdek{Elastic solids, why bridges stand and glass shatters, why giants are impossible, and the physics of every sound you have ever heard.}
+
+\begin{prototype}
+A vibrating drumhead: a stretched elastic membrane, fixed at its rim. Strike it and it rings in a set of normal modes, like a string --- but unlike a string, its overtones are not whole-number multiples of the fundamental, which is why most drums do not have a clear pitch.
+\end{prototype}
+
+Fluid dynamics (Chapter~\ref{ch:fluids}) treats matter that flows. This chapter is about matter that resists: solids that stretch, bend, buckle, and break, and the waves that travel through them. It is an old subject --- Hooke, Euler, and Cauchy laid most of it down --- and an unglamorous one, but every building, bone, bridge, and musical instrument depends on it. And it is full of beautiful spherical cows.
+
+\section{Stress and strain}
+
+Pull on a rod and it stretches. The natural measures are intensive. The \emph{stress} $\sigma = F/A$ is force per area, measured in pascals; the \emph{strain} $\varepsilon = \Delta L/L$ is fractional change in length, dimensionless. For small strains, most solids obey Hooke's law:
+\[
+  \sigma = E\,\varepsilon ,
+\]
+with \emph{Young's modulus} $E$. Steel has $E\approx200\un{GPa}$, bone $20\un{GPa}$, wood $10\un{GPa}$, rubber about $0.01\un{GPa}$.
+
+A stretched rod also gets thinner. The ratio of sideways contraction to lengthwise stretch is \emph{Poisson's ratio} $\nu$, about $0.3$ for most metals and $0.5$ for rubber (which keeps its volume as it deforms). Two more moduli describe other deformations: the \emph{shear modulus} $G$, for sliding layers past each other, and the \emph{bulk modulus} $K$, for uniform compression. For an isotropic material only two of $E$, $\nu$, $G$, $K$ are independent; for example $G = E/2(1+\nu)$.
+
+In three dimensions, stress is not a vector but a \emph{tensor}. At any point, the force per area on a small surface depends on which way the surface faces, and can have components both normal to it (pressure or tension) and along it (shear). It takes a $3\times3$ symmetric matrix $\sigma_{ij}$ to describe it. Its eigenvectors are the \emph{principal stress directions}, along which there is no shear (Chapter~\ref{ch:math}). Strain is a tensor too, and Hooke's law becomes a linear relation between the two.
+
+\section{Why moduli are what they are}
+
+Here is a spherical cow worth having. A solid is atoms joined by bonds of energy $U_0\sim1\un{eV}$ and length $a\sim0.2\un{nm}$. Stretching a bond by $\delta$ costs energy $\sim U_0(\delta/a)^2$ (it is a spring near its minimum; Chapter~\ref{ch:sho}). Per unit volume, the elastic energy is $\tfrac12E\varepsilon^2$ with $\varepsilon = \delta/a$, and there is one bond per volume $a^3$. Matching,
+\[
+  E\sim\frac{U_0}{a^3}\approx\frac{1.6\times10^{-19}\un{J}}{(2\times10^{-10}\un{m})^3}\approx 20\un{GPa}.
+\]
+That is the right order of magnitude for ordinary solids, from nothing but the size and strength of a chemical bond. Rubber, with $E$ ten thousand times smaller, must be stiff for a completely different reason --- and it is: rubber's elasticity is entropic, from the tangled polymer chains resisting being straightened (Chapter~\ref{ch:bio}).
+
+\section{Bending, buckling, and scaling}
+
+A beam bends with a stiffness proportional to $EI$, where $I = \int y^2\,\dd A$ is the \emph{second moment of area} of its cross-section. A rectangular beam of width $b$ and depth $h$ has $I = bh^3/12$: doubling the depth makes it eight times stiffer. This is why floor joists are placed on edge, why I-beams put most of their material far from the centre, and why bones and bamboo are hollow tubes. Material near the middle of a beam is barely stressed and mostly adds weight.
+
+A thin column under compression does not crush; it \emph{buckles} sideways, suddenly, at the \textbf{Euler load}
+\[
+  F_c = \frac{\pi^2EI}{L^2}.
+\]
+Long columns are disproportionately weak. Buckling is a pitchfork bifurcation (Chapter~\ref{ch:chaos}): below $F_c$ the straight column is stable; above it, it must choose to bend one way or the other.
+
+Galileo noticed the most important scaling law in structural engineering. Scale an animal up by a factor $s$ in every direction. Its weight grows as $s^3$, but the cross-section of its bones, which sets their strength, grows only as $s^2$. The stress in its bones grows as $s$. A giant ten times human size would break its legs standing up. This \emph{square--cube law} is why elephants have proportionally thick legs, why the largest animals live in water, why insects can lift many times their weight, and why King Kong is a physical impossibility.
+
+\section{Strength and fracture}
+
+How strong \emph{should} a material be? To pull a solid apart you must stretch its bonds by roughly their own length, a strain of order one, so the theoretical strength is a sizeable fraction of $E$, roughly $E/10$. Real materials are typically a hundred to a thousand times weaker. Why?
+
+In 1920, A.~A.~Griffith found the answer: cracks. A crack of length $a$ concentrates stress at its tip. It grows if the elastic energy released by extending it exceeds the surface energy $\gamma$ needed to make new surface. Balancing the two gives a fracture stress
+\[
+  \sigma_f\approx\sqrt{\frac{2E\gamma}{\pi a}}.
+\]
+Larger flaws mean weaker materials. Freshly drawn glass fibres, free of surface scratches, approach the theoretical strength; a scratched window pane is far weaker, which is why glaziers score glass before snapping it. Metals avoid brittle fracture because they can deform plastically: planes of atoms slip past each other by moving \emph{dislocations}, line defects in the crystal (Chapter~\ref{ch:condmat}), blunting crack tips and absorbing energy. That is the difference between a material that is \emph{strong} (resists stress) and one that is \emph{tough} (resists cracks).
+
+\section{Elastic waves}
+
+A solid carries two kinds of waves. In \textbf{longitudinal} or \emph{P waves} (primary), the material compresses and expands along the direction of travel; in \textbf{transverse} or \emph{S waves} (secondary), it shears sideways. Their speeds are
+\[
+  v_P = \sqrt{\frac{K + \tfrac43G}{\rho}}, \qquad v_S = \sqrt{\frac{G}{\rho}},
+\]
+always following the pattern $\sqrt{\text{stiffness}/\text{inertia}}$ (Chapter~\ref{ch:waves}). P waves are faster, which is why they arrive first after an earthquake; the delay before the S waves tells a seismometer how far away the quake was. And since fluids cannot resist shear ($G=0$), \emph{S waves cannot travel through liquids}. The shadow that the Earth's core casts for S waves is how we know the outer core is molten iron (Chapter~\ref{ch:geo}). Along a surface there are also \emph{Rayleigh waves}, rolling like ocean swell, which do much of an earthquake's damage.
+
+\section{Sound}
+
+In a fluid only the bulk modulus resists compression, so sound travels at $v = \sqrt{K/\rho}$. For a gas, Newton assumed the compressions were isothermal, $K = P$, and got $280\un{m/s}$ for air --- fifteen percent too slow. Laplace realized that sound oscillates too fast for heat to flow, so the compressions are adiabatic (Chapter~\ref{ch:thermo}), $K = \gamma P$:
+\[
+  v = \sqrt{\frac{\gamma P}{\rho}} = \sqrt{\frac{\gamma\kB T}{m}} \approx 343\un{m/s}
+\]
+at room temperature. The speed depends on temperature but not on pressure, and it is comparable to the speed of the molecules themselves. Sound travels at about $1500\un{m/s}$ in water and $5000\un{m/s}$ in steel. In helium it is nearly three times faster than in air, which raises the resonances of your vocal tract and gives the famous squeaky voice.
+
+The ear responds to an astonishing range of intensities, from about $10^{-12}\un{W/m^2}$ (the threshold of hearing, a pressure wave that moves the eardrum less than an atom's width) to about $1\un{W/m^2}$ (the threshold of pain). So intensity is measured logarithmically, in \emph{decibels}:
+\[
+  \beta = 10\log_{10}\frac{I}{10^{-12}\un{W/m^2}}\ \text{dB}.
+\]
+Every $10\un{dB}$ is a factor of ten in intensity. A whisper is about $30\un{dB}$, conversation $60\un{dB}$, a rock concert $110\un{dB}$. Two identical sources together are only $3\un{dB}$ louder than one. The ear perceives a $10\un{dB}$ increase as roughly ``twice as loud'' --- one of many examples of our senses being approximately logarithmic.
+
+\section{Resonators and music}
+
+Musical instruments are resonators. A string or an open pipe has harmonics at whole-number multiples of its fundamental (Chapter~\ref{ch:waves}), which is why strings and flutes sound sweetly pitched. A pipe closed at one end has only odd harmonics. Blowing across the mouth of a bottle excites a different kind of resonator, the \emph{Helmholtz resonator}: the plug of air in the neck acts as a mass, bouncing on the springy air in the body. Its frequency is
+\[
+  f = \frac{v}{2\pi}\sqrt{\frac{A}{V\ell}},
+\]
+for neck area $A$, neck length $\ell$, and body volume $V$. The body of a guitar, the hollow of a violin, and the bass reflex port of a loudspeaker are Helmholtz resonators.
+
+A \textbf{drumhead} is a two-dimensional string. A circular membrane of radius $R$, tension per length $T$, and mass per area $\sigma$ has wave speed $c = \sqrt{T/\sigma}$, and its modes are described by Bessel functions, the circular cousins of sines. The fundamental is $f_{01} = 2.405\,c/2\pi R$, and the next modes are at $1.59$, $2.14$, $2.30$, $2.65,\dots$ times the fundamental --- not whole numbers. The overtones clash, and the sound has no clear pitch. The patterns of nodes can be seen by sprinkling sand on a vibrating plate, which collects along the nodal lines in \emph{Chladni figures}.
+
+\begin{center}
+\begin{minipage}{\linewidth}\centering
+\begin{tikzpicture}
+  \def\R{0.95}
+  \begin{scope}
+    \fill[ascblue!22] (0,0) circle (\R);
+    \draw[thick] (0,0) circle (\R);
+    \node[font=\small] at (0,0) {$+$};
+    \node[font=\small] at (0,-1.35) {$f_{01}$};
+  \end{scope}
+  \begin{scope}[xshift=2.7cm]
+    \fill[ascblue!22] (90:\R) arc[start angle=90, end angle=270, radius=\R] -- cycle;
+    \fill[ascwarm!22] (-90:\R) arc[start angle=-90, end angle=90, radius=\R] -- cycle;
+    \draw[thick] (0,0) circle (\R);
+    \draw[ascink, line width=1.2pt] (0,-\R) -- (0,\R);
+    \node[font=\small] at (-0.45,0) {$+$}; \node[font=\small] at (0.45,0) {$-$};
+    \node[font=\small] at (0,-1.35) {$1.59\,f_{01}$};
+  \end{scope}
+  \begin{scope}[xshift=5.4cm]
+    \foreach \a/\c in {0/ascblue, 90/ascwarm, 180/ascblue, 270/ascwarm}
+      \fill[\c!22] (0,0) -- (\a:\R) arc[start angle=\a, end angle=\a+90, radius=\R] -- cycle;
+    \draw[thick] (0,0) circle (\R);
+    \draw[ascink, line width=1.2pt] (0,-\R) -- (0,\R) (-\R,0) -- (\R,0);
+    \foreach \a/\s in {45/+, 135/-, 225/+, 315/-} \node[font=\small] at (\a:0.5) {$\s$};
+    \node[font=\small] at (0,-1.35) {$2.14\,f_{01}$};
+  \end{scope}
+  \begin{scope}[xshift=8.1cm]
+    \fill[ascwarm!22] (0,0) circle (\R);
+    \fill[ascblue!22] (0,0) circle ({0.436*\R});
+    \draw[thick] (0,0) circle (\R);
+    \draw[ascink, line width=1.2pt] (0,0) circle ({0.436*\R});
+    \node[font=\small] at (0,0) {$+$}; \node[font=\small] at (0,0.72) {$-$};
+    \node[font=\small] at (0,-1.35) {$2.30\,f_{01}$};
+  \end{scope}
+\end{tikzpicture}
+
+{\small The four lowest modes of a circular drumhead, seen from above. Shaded regions move in opposite directions ($+$ and $-$), and the black nodal lines stay still. The frequencies are not whole-number multiples of the fundamental.}
+\end{minipage}
+\end{center}
+
+In 1966 Mark Kac asked: can one hear the shape of a drum? That is, do the frequencies determine the shape? You can hear its area and its perimeter (Problem~\ref{prob:drum-area}). But in 1992 Gordon, Webb, and Wolpert constructed two differently shaped drums with exactly the same frequencies. You cannot, in general, hear the shape of a drum.
+
+\section{Between solid and liquid}
+
+Many materials are neither. Silly Putty bounces like a solid but flows into a puddle overnight: it is \emph{viscoelastic}, with a relaxation time that separates elastic from viscous behaviour. Glaciers and the Earth's mantle are solids on human timescales and fluids on geological ones, which is why continents can drift (Chapter~\ref{ch:geo}). Cornstarch in water (``oobleck'') thickens when struck and flows when stroked; ketchup does the opposite. These \emph{non-Newtonian fluids}, whose viscosity depends on how fast they are sheared, include blood, paint, toothpaste, and most of the soft matter of Chapter~\ref{ch:condmat}.
+
+\section{Problems}
+
+\begin{problems}
+\prob{1}\core A steel wire $2\un{m}$ long and $1\un{mm}$ in diameter supports a $100\un{kg}$ load. What is the stress? Would mild steel, with a yield strength of about $250\un{MPa}$, survive? Piano wire, with a yield strength near $2\un{GPa}$, would; how much does it stretch?
+
+\prob{1} Compute the speed of sound in air at $20^\circ\text{C}$ both isothermally and adiabatically. Then compute it in helium and explain why a helium-filled voice sounds higher, even though the vocal cords vibrate at the same rate.
+
+\prob{1} An orchestra of ten identical violins plays a note at $70\un{dB}$. How loud is a single violin? How many violins would you need to reach $90\un{dB}$?
+
+\prob{1} Find the first three resonant frequencies of a $1\un{m}$ organ pipe open at both ends, and of one closed at one end.
+
+\prob{2}\core Blowing across a wine bottle with a $0.75\un{L}$ body and a neck $8\un{cm}$ long and $3\un{cm^2}$ in area makes a hum. Estimate its pitch. How does the pitch change as you drink the wine?
+
+\prob{2}\core Using the bond-stretching argument in this chapter, estimate Young's modulus for a solid with bonds of energy $3\un{eV}$ and length $0.15\un{nm}$. Compare with diamond, $E\approx1000\un{GPa}$.
+
+\prob{2} A tree trunk is a vertical column loaded by its own weight. Greenhill showed in 1881 that a uniform column buckles under its own weight if it is taller than about $0.8\,(E/\rho g)^{1/3}\,D^{2/3}$, where $D$ is its diameter. Estimate the maximum height of a tree with a $1\un{m}$-diameter trunk ($E\approx10\un{GPa}$, $\rho\approx700\un{kg/m^3}$). Real trees obey this $h\propto D^{2/3}$ scaling remarkably well, with a safety factor of about four.
+
+\prob{2} Scale a human up tenfold in every dimension. By what factor do the weight, the bone cross-section, and the stress in the bones change? By what factor would the bones need to be thickened to keep the stress the same, and what would the giant look like?
+
+\prob{2} After an earthquake a seismometer records the S waves arriving $8\un{s}$ after the P waves. Taking $v_P = 6\un{km/s}$ and $v_S = 3.5\un{km/s}$, how far away was the quake? How many stations do you need to locate it?
+
+\prob{3}\core \emph{(Griffith's criterion.)} A thin plate under tensile stress $\sigma$ contains a crack of length $2a$. The crack relieves stress in a region of area roughly $\pi a^2$ per unit thickness, releasing elastic energy about $\pi a^2\sigma^2/E$, while costing surface energy $4a\gamma$ (two faces, each of length $2a$). Find the critical crack length beyond which the crack grows spontaneously, and hence the fracture stress. Estimate the strength of glass ($E = 70\un{GPa}$, $\gamma = 1\un{J/m^2}$) with $1\un{\mu m}$ surface flaws.
+
+\prob{3} \label{prob:drum-area} \emph{(Hearing the area of a drum.)} For a membrane of any shape with area $A$ and wave speed $c$, the number of modes with frequency below $f$ grows, for large $f$, as $N(f)\approx\pi Af^2/c^2$ (Weyl's law). Derive this by counting the modes of a square membrane, whose modes have $f = \tfrac{c}{2L}\sqrt{m^2+n^2}$, as lattice points in a quarter circle. Conclude that a listener with perfect pitch could, in principle, hear the area of any drum.
+
+\prob{3} The overtones of a circular drumhead are inharmonic, yet orchestral timpani have a clear pitch. The reason is that the air enclosed in the kettle and the surrounding air load the membrane, lowering the frequencies of different modes by different amounts. Look up the frequencies of the $(1,1)$, $(2,1)$, $(3,1)$, and $(4,1)$ modes of a real timpani, and show that they are close to the ratios $2:3:4:5$ --- a nearly harmonic series, which the ear fuses into a single definite pitch. Why are the symmetric $(0,n)$ modes unimportant for the pitch?
+\end{problems}
+
+\begin{reading}
+\rd{Benny Lautrup, \emph{Physics of Continuous Matter}}{Elasticity and fluids together, with the physicist's eye for estimates and exotic examples.}
+\rd{J.\ E.\ Gordon, \emph{Structures: Or Why Things Don't Fall Down} and \emph{The New Science of Strong Materials}}{Two wonderful popular books by an engineer, full of insight about strength, cracks, and design.}
+\rd{Landau and Lifshitz, \emph{Theory of Elasticity}}{Short and rigorous; for when you want the tensors done properly.}
+\rd{Fletcher and Rossing, \emph{The Physics of Musical Instruments}}{The definitive treatment of strings, pipes, plates, and drums.}
+\end{reading}
